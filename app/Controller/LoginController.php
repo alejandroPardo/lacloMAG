@@ -17,6 +17,10 @@ class LoginController extends AppController {
  */
 	public function index() {
 	}
+
+	public function prueba() {
+		$this->redirect(array('controller' => 'backend')); 
+	}
 }
 
 

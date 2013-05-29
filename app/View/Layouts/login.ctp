@@ -1,6 +1,6 @@
 <?php
 
-$cakeDescription = __d('LACLOmag', 'LACLO Magazine - Backend Login');
+$cakeDescription = __d('LACLOmag', 'LACLO Magazine - Backend');
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,6 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine - Backend Login');
 <body>
 	<div id="container">
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

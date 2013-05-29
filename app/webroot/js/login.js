@@ -3,38 +3,11 @@ jQuery.event.special.tap = {
     setup: function (a, b) {
         var c = this,
             d = jQuery(c);
-        if (window.Touch) {
-            d.bind("touchstart", jQuery.event.special.tap.onTouchStart);
-            d.bind("touchmove", jQuery.event.special.tap.onTouchMove);
-            d.bind("touchend", jQuery.event.special.tap.onTouchEnd)
-        } else {
-            d.bind("click", jQuery.event.special.tap.click)
-        }
+        d.bind("click", jQuery.event.special.tap.click)
     },
     click: function (a) {
         a.type = "tap";
         jQuery.event.handle.apply(this, arguments)
-    },
-    teardown: function (a) {
-        if (window.Touch) {
-            $elem.unbind("touchstart", jQuery.event.special.tap.onTouchStart);
-            $elem.unbind("touchmove", jQuery.event.special.tap.onTouchMove);
-            $elem.unbind("touchend", jQuery.event.special.tap.onTouchEnd)
-        } else {
-            $elem.unbind("click", jQuery.event.special.tap.click)
-        }
-    },
-    onTouchStart: function (a) {
-        this.moved = false
-    },
-    onTouchMove: function (a) {
-        this.moved = true
-    },
-    onTouchEnd: function (a) {
-        if (!this.moved) {
-            a.type = "tap";
-            jQuery.event.handle.apply(this, arguments)
-        }
     }
 };
 // @PLUGIN Notifications
@@ -45,11 +18,11 @@ jQuery.event.special.tap = {
         settings = $.extend({
         	title: undefined,
         	content: undefined,
-            timeout: 0,
+            timeout: 10000,
             img: undefined,
             border: true,
             fill: false,
-            showTime: false,
+            showTime: true,
             click: undefined,
             icon: undefined,
             color: undefined,
@@ -79,8 +52,6 @@ jQuery.event.special.tap = {
         
         hide = $("<div>", {
 			click: function () {
-				 
-				
 				if($(this).parent().is(':last-child')) {
 				    $(this).parent().remove();
 				    $('#notifications .notification:last-child').removeClass("more");
@@ -147,12 +118,7 @@ jQuery.event.special.tap = {
 			icon.appendTo(left);
 		}
 
-        left.appendTo(notification);
-        right.appendTo(notification);
-        
-        hide.appendTo(notification);
-        
-        function timeSince(time){
+		function timeSince(time){
         	var time_formats = [
         	  [2, "One second", "1 second from now"], // 60*2
         	  [60, "seconds", 1], // 60
@@ -207,6 +173,11 @@ jQuery.event.special.tap = {
         	
         }
 
+        left.appendTo(notification);
+        right.appendTo(notification);
+        
+        hide.appendTo(notification);
+
         notification.hover(
         	function () {
             	hide.show();
@@ -230,123 +201,33 @@ jQuery.event.special.tap = {
 	        	notification.remove();
             }, settings.timeout)
         }
-        
-        if (settings.click != undefined) {
-        	notification.addClass("click");
-            notification.bind("click", function (event) {
-            	var target = $(event.target);
-                if(!target.is(".hide") ) {
-                    settings.click.call(this)
-                }
-            })
-        }
+
         return this
     }
 })(jQuery);
+
 $.initializeLogin = function() {
 	// Update
 	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
 		// IE8 doesn't like HTML!
-	} else {
-		window.addEventListener("load", function (a) {
-		    window.applicationCache.addEventListener("updateready", function (a) {
-		        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-		            window.applicationCache.swapCache();
-		            
-		            $.notification( 
-		            	{
-		            		title: 'An update has been installed!',
-		            		content: 'Click here to reload.',
-		            		icon: "u",
-		            		click: function() {
-		            			window.location.reload();
-		            		}
-		            	}
-		            );
-		            
-		        }
-		    }, false);
-	    
-		    window.applicationCache.addEventListener("downloading", function (a) {
-		        if (window.applicationCache.status == window.applicationCache.DOWNLOADING) {
-		    		$.notification( 
-		    			{
-		    				title: 'Latest version is being cached',
-		    				content: 'Only takes a few seconds.',
-		    				icon: "H"
-		    			}
-		    		);
-		    	}
-		    }, false);
-
-		}, false);
-	}
+	} 
 	// Adding overlay to the body
 	$("body").addClass("welcome").append('<div id="overlays"></div>');
 	
 	// Welcome notification
 	$.notification( 
 		{
-			title: "Welcome to the Dashboard",
-			content: "Please pick a user!",
+			title: "Bienvenido a LACLO magazine.",
+			content: "¡Ingrese sus datos para continuar!",
 			img: "img/demo/cloud.png",
-			border: false
+			border: false,
+			timeout: false,
+			showTime: false
 		}
 	);
-	
-	// Adding animation to the user avatars.
-	$("#users").addClass("animated flipInY");
-	
-	$(".plus").bind("tap", function() {
-		var avatar = $('<a data-username="Javier Roslyn" href="#" class="avatar" data-avatar="img/demo/autumn.jpg" />');
-		avatar.css("background-image", "url("+ avatar.attr("data-avatar") +")");
-		$("#avatars").append(avatar);
-		avatar.addClass("animated bounceInDown").delay(1000).queue(function(){ 
-			$(this).removeClass("animated bounceInDown");
-			$(this).clearQueue();
-		});
-		$(this).hide();
-	});
-	
-	// Reveal login form when an avatar is clicked
-	$(".avatar").live("tap", function() {
-		$.notification( 
-			{
-				title: "Hi, " + $(this).attr("data-username"),
-				content: "Just leave the fields empty to enter the actual Dashboard. If you do type <em>something</em> be prepared for a cute wobble animation.",
-				img: $(this).attr("data-avatar"),
-				fill: true,
-				showTime: true
-			}
-		);
-		$("#password .input.username .avatar").remove();
-		var avatar = $(this).clone().wrap('<div>').parent().html();
-		$("#password .input.username").append(avatar);
-		$("#password .input.username input").attr( "value", $(this).attr("data-username") );
-		
-		$("#users").addClass("animated flipOutY").delay(1000).queue(function(){ 
-			$(this).removeClass();
-			$(this).hide();
-			$(this).clearQueue();
-		});
-		$("#password").removeClass().addClass("animated fadeInDown").show();
-		
-		$("#password .input.password input").focus();
-	});
-	
-	$("#password a.back").bind("tap", function() {
-		$("#users").removeClass().addClass("animated flipInY active").show();
-		$("#password").addClass("animated fadeOutUp").delay(1000).queue(function(){ 
-			$(this).removeClass();
-			$(this).hide();
-			$(this).clearQueue();
-		});
-	});
-	
-	$(".avatar").each(function() {
-		var source = $(this).attr("data-avatar");
-		$(this).css("background-image", "url("+ source +")");
-	});
+
+	$("#password").addClass("animated flipInY").show();
+	$("#password .input.password input").focus();
 	
 	$("#password button").bind("tap", function() {
 		forgot();
@@ -359,21 +240,20 @@ $.initializeLogin = function() {
 	});
 	
 	function forgot() {
-		if($("#password .input.password input").attr("value")!='') {
+		if($("#password .input.password input").attr("value")=='' || $("#password .input.username input").attr("value")=='') {
 			$.notification( 
 				{
-					title: "Wrong password",
-					content: "Just leave the password field empty to log in.",
+					title: "Datos Incompletos",
+					content: "Debe completar ambos campos para continuar",
 					icon: "!"
 				}
 			);
 			$("#password").removeClass().addClass("animated wobble").delay(1000).queue(function(){ 
-				$(this).removeClass();
-				$(this).clearQueue();
 			});
 			$("#password .input.password input").attr("value", "").focus();
 		} else {
-			document.location.href = "backend";
+
+			document.location.href = "login/prueba";
 		}
 	}
 };

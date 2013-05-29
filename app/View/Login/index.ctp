@@ -1,16 +1,15 @@
 <!--Log in screen-->
 <div id="welcome">
-	<div id="users">
-		<a href="#" class="plus">Add a user</a>
-		<div id="avatars">
-			<a data-username="Jacques Halifax" data-avatar="img/demo/boy_avatar.jpg" href="#" class="avatar pin"></a>
-			<a data-username="Noemi Hux" data-avatar="img/demo/avatar3.jpg" href="#" class="avatar"></a>
-		</div>
+	
+	<div id="overlayLogo">
+  		<?php echo $this->Html->image('bg.jpg', array('alt' => 'Overlay'));?>
+  		<?php echo $this->Html->image('logoLogin.png', array('alt' => 'Logo'));?>
 	</div>
+  	
+	
 	<div id="password">
-		<div class="input username"><input type="text" placeholder="User name" /></div>
-		<div class="input password"><input type="password" placeholder="Password" /></div>
+		<div class="input username"><input type="text" placeholder="Usuario" /></div>
+		<div class="input password"><input type="password" placeholder="Contraseña" /></div>
 		<button>Log in</button>
-		<a href="#" class="back">Back</a>
 	</div>
 </div>

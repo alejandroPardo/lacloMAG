@@ -10,6 +10,8 @@ body {
 body.welcome {
 	background: #1c2029 url(../img/linen.png) repeat;
 }
+
+
 body.dashboard {
 	background: #262C36;
 }
@@ -2101,6 +2103,24 @@ body.welcome #notifications {
 	background: -webkit-radial-gradient(circle, rgba(100,100,100,0.2), rgba(0,0,0,0.9));
 	background: -moz-radial-gradient(circle, rgba(100,100,100,0.2), rgba(0,0,0,0.9));
 }
+#overlayLogo {
+  position: fixed; 
+  z-index: -4425;
+  top: 25%; 
+  left: -50%; 
+  width: 200%; 
+}
+#overlayLogo img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+
 #welcome::after {
 	content: '';
 	width: 100%;
