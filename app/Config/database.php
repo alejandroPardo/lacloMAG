@@ -61,7 +61,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'prueba',
+		'database' => 'laclomag',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
