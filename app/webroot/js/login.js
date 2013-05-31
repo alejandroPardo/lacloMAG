@@ -252,9 +252,75 @@ $.initializeLogin = function() {
 			});
 			$("#password .input.password input").attr("value", "").focus();
 		} else {
+			/**
+			 * AJAX call to login the user
+			 */
+				var data = $("#password").serialize();
 
-			document.location.href = "login/prueba";
+				$.ajax({
+					type: "post",
+					url: "ajax/verify",
+					data: data,
+					dataType: "JSON",
+					success: function(response) {
+						$.notification({
+				title: "ALL GOOD.",
+				content: "!!",
+				img: "img/demo/cloud.png",
+				border: false,
+				timeout: false,
+				showTime: false
+			});
+					},
+					error: function(XMLHttpRequest) {
+						$.notification({
+			title: "Datos Incorrectos",
+			content: "Revise sus datos para continuar",
+			icon: "!"
+		});
+					}
+				});
+				return false;
+			/*document.location.href = "login/prueba";*/
 		}
+	}
+
+	/**
+	 * Handle the AJAX callbacks
+	 */
+	function handleCallback(response, status) {
+		// Response was a success
+		if (response.success) {
+			$.notification({
+				title: "ALL GOOD.",
+				content: "!!",
+				img: "img/demo/cloud.png",
+				border: false,
+				timeout: false,
+				showTime: false
+			});
+
+		// Response contains errors
+		} else {
+			$.notification({
+			title: "Some errors",
+			content: "Revise sus datos para continuar",
+			icon: "!"
+		});
+
+		return false;
+		}
+	}
+
+	/**
+	 * Handle an AJAX failure
+	 */
+	function handleError(XMLHttpRequest, textStatus, errorThrown) {
+		$.notification({
+			title: "Datos Incorrectos",
+			content: "Revise sus datos para continuar",
+			icon: "!"
+		});
 	}
 };
 
