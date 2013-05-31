@@ -13,12 +13,13 @@ class AjaxController extends AppController {
 		// Must be disabled or AJAX calls fail
 		$this->Security->validatePost = false;
 
-		if (!$this->RequestHandler->is('ajax')) {
-			$this->Security->blackHole($this, 'You are not authorized to process this request!');
-		} else {
+		if ($this->RequestHandler->accepts('json')) {
 			if (strpos(env('HTTP_REFERER'), trim(env('HTTP_HOST'), '/')) === false) {
 				$this->Security->blackHole($this, 'Invalid referrer detected for this request!');
 			}
+		} else {
+			$this->Security->blackHole($this, 'You are not authorized to process this request!');
+
 		}
     }
 
