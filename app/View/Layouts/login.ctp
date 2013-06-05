@@ -31,6 +31,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine - Backend');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	</div>
+	<?php echo $this->Js->writeBuffer(); // Write cached scripts ?>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

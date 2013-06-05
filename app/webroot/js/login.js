@@ -258,10 +258,10 @@ $.initializeLogin = function() {
 				var data = $("#password").serialize();
 
 				$.ajax({
-					type: "post",
-					url: "ajax/verify",
+					type: "GET",
+					url: "ajax/verify/",
 					data: data,
-					dataType: "JSON",
+					dataType: "json",
 					success: function(response) {
 						$.notification({
 				title: "ALL GOOD.",
