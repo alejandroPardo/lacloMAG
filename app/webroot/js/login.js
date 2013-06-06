@@ -255,72 +255,41 @@ $.initializeLogin = function() {
 			/**
 			 * AJAX call to login the user
 			 */
-				var data = $("#password").serialize();
-
+				var username = document.getElementById("username");
+				var password = document.getElementById("pass");
+				var data = "username="+ username.value +"&password="+ password.value;
+				$.notification({
+					title: "Datos",
+					content: data,
+					icon: "!"
+				});
 				$.ajax({
 					type: "GET",
 					url: "ajax/verify/",
-					data: data,
+					data:  data,
 					dataType: "json",
 					success: function(response) {
-						$.notification({
-				title: "ALL GOOD.",
-				content: "!!",
-				img: "img/demo/cloud.png",
-				border: false,
-				timeout: false,
-				showTime: false
-			});
-					},
-					error: function(XMLHttpRequest) {
-						$.notification({
-			title: "Datos Incorrectos",
-			content: "Revise sus datos para continuar",
-			icon: "!"
-		});
+						// Response was a success
+						if (response.success) {
+							$.notification({
+								title: "Perfecto!!",
+								content: "Ahora se puede hacer el redirect :D",
+								icon: "!"
+							});
+
+						// Response contains errors
+						} else {
+							$.notification({
+								title: "Datos Incorrectos",
+								content: "Revise sus datos para continuar",
+								icon: "!"
+							});
+						}
 					}
 				});
+
 				return false;
-			/*document.location.href = "login/prueba";*/
-		}
-	}
-
-	/**
-	 * Handle the AJAX callbacks
-	 */
-	function handleCallback(response, status) {
-		// Response was a success
-		if (response.success) {
-			$.notification({
-				title: "ALL GOOD.",
-				content: "!!",
-				img: "img/demo/cloud.png",
-				border: false,
-				timeout: false,
-				showTime: false
-			});
-
-		// Response contains errors
-		} else {
-			$.notification({
-			title: "Some errors",
-			content: "Revise sus datos para continuar",
-			icon: "!"
-		});
-
-		return false;
-		}
-	}
-
-	/**
-	 * Handle an AJAX failure
-	 */
-	function handleError(XMLHttpRequest, textStatus, errorThrown) {
-		$.notification({
-			title: "Datos Incorrectos",
-			content: "Revise sus datos para continuar",
-			icon: "!"
-		});
+			}
 	}
 };
 

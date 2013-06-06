@@ -7,6 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class AjaxController extends AppController {
 	public $components = array('RequestHandler', 'Security');
+	public $uses = array('User');
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -24,39 +25,43 @@ class AjaxController extends AppController {
     }
 
 
-
 	public function verify() {
-		$this->RequestHandler->ajaxLayout; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+		$this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
 		$this->autoLayout = false;
 		$this->autoRender = false;
-		$response['success'] = true;
-		if ($this->request->is('ajax')) 
-			return new CakeResponse(array('response' => json_encode($response))); 
+		if(isset($this->params['url']['username'])) {
+    		$arg = $this->params['url']['username'];
+    		$response['data'] = $arg;
+    	}
+  		if(isset($this->params['url']['password'])){
+    		$arg2 = $this->params['url']['password'];
+    		$response['data2'] = $arg2;
+  		}
+
+
+    	$response = array('success' => false);
+		/*if(isset($this->data)){
+			$response = array('success' => true, 'user' => $this->params['url']['username'];);
+		} else{
+			$response = array('success' => false);
 		}
-/*
-		$response['success'] = true;
 
-		$this->header('Content-Type: application/json');
-		//echo json_encode($response);
-		return json_encode($response);
 
-/*
-		if (!empty($this->data['User']['username']) && !empty($this->data['User']['password'])) {
-			if ($this->Auth->login($this->data)) {
+		if (!empty($this->data['username']) && !empty($this->data['password'])) {
+			$response['success'] = true;*/
+			/*if ($this->Auth->login($this->data)) {
 				$response['success'] = true;
 				$response['data'] = $this->data['User'];
 			} else {
 				$response['data'] = 'Username/password combo incorrect';
 				$response['code'] = 0;
 			}
-		} else {
-			$response['data'] = 'No username/password';
-			$response['code'] = -1;
-		}
+		}*/
 
 		$this->header('Content-Type: application/json');
 		echo json_encode($response);
-		return;*/
+		return;
+	}
 }
 
 
