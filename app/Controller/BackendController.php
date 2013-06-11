@@ -9,6 +9,7 @@ class BackendController extends AppController {
 
 	function beforeFilter() {
         $this->layout = 'backend';
+        $this->Auth->allow('index');
     }
 /**
  * index method

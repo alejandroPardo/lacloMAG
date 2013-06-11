@@ -29,17 +29,18 @@ class AjaxController extends AppController {
 		$this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
 		$this->autoLayout = false;
 		$this->autoRender = false;
-		if(isset($this->params['url']['username'])) {
-    		$arg = $this->params['url']['username'];
+	
+		if(isset($this->request->data['username'])) {
+    		$arg = $this->params['username'];
     		$response['data'] = $arg;
     	}
-  		if(isset($this->params['url']['password'])){
+  		if(isset($this->request->data['username'])){
     		$arg2 = $this->params['url']['password'];
     		$response['data2'] = $arg2;
   		}
 
 
-    	$response = array('success' => false);
+    	$response['success'] =  true;
 		/*if(isset($this->data)){
 			$response = array('success' => true, 'user' => $this->params['url']['username'];);
 		} else{

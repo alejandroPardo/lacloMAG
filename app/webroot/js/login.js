@@ -257,15 +257,21 @@ $.initializeLogin = function() {
 			 */
 				var username = document.getElementById("username");
 				var password = document.getElementById("pass");
-				var data = "username="+ username.value +"&password="+ password.value;
+				//var data = "username="+ username.value +"&password="+ password.value;
+				var data = {
+					username : username.value,
+					pass : password.value
+				};
 				$.notification({
 					title: "Datos",
 					content: data,
 					icon: "!"
 				});
+
+				console.dir(data);
 				$.ajax({
-					type: "GET",
-					url: "ajax/verify/",
+					type: "POST",
+					url: "pepe/",
 					data:  data,
 					dataType: "json",
 					success: function(response) {
@@ -285,6 +291,7 @@ $.initializeLogin = function() {
 								icon: "!"
 							});
 						}
+						console.dir(response);
 					}
 				});
 

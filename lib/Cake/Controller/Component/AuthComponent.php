@@ -545,6 +545,7 @@ class AuthComponent extends Component {
 
 		if (empty($user)) {
 			$user = $this->identify($this->request, $this->response);
+
 		}
 		if ($user) {
 			$this->Session->renew();
@@ -710,6 +711,8 @@ class AuthComponent extends Component {
 		if (empty($this->authenticate)) {
 			return;
 		}
+
+
 		$this->_authenticateObjects = array();
 		$config = Hash::normalize((array)$this->authenticate);
 		$global = array();
@@ -729,7 +732,9 @@ class AuthComponent extends Component {
 			}
 			$settings = array_merge($global, (array)$settings);
 			$this->_authenticateObjects[] = new $className($this->_Collection, $settings);
+
 		}
+	
 		return $this->_authenticateObjects;
 	}
 

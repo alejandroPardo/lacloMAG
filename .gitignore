@@ -9,7 +9,6 @@
 /build
 /dist
 /tags
-
 /app/Config/database.php
 
 # OS generated files #

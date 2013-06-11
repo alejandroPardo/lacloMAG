@@ -7,14 +7,25 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+	/*public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('login', 'logout');
+    }*/
+    function beforeFilter() {
+        $this->layout = 'users';
+        $this->Auth->allow('index', 'pepe', 'login', 'add');
+    }
+
+
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$this->set('users', $this->User->find('all'));
+		$log = $this->User->getDataSource()->getLog(false, false);
+		debug($log);
 	}
 
 /**
@@ -93,4 +104,49 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+    public function login() {
+       
+    }
+
+    public function logout() {
+        $this->redirect($this->Auth->logout());
+    }
+
+    public function pepe() {
+    	//$this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+		//$this->autoLayout = false;
+		$this->autoRender = false;
+    	$userData = $this->Auth->user();
+    	$response['passwordsha1'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh'.$this->request->data['pass']);
+    	$this->request->data['pass'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh123');
+        
+        if($userData != null) {
+            $response['success'] = true;
+            $response['loggedIn'] = true;
+
+        }
+
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+
+                $response['success'] = true;
+            } else {
+                $response['success'] = false;
+                $response['sha1'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh123');
+            }
+            $log = $this->User->getDataSource()->getLog(false, false);
+            $response['log'] = $log;
+            $response['password'] = $this->request->data['pass'];
+         	
+            $this->header('Content-Type: application/json');
+
+            
+        }
+
+        echo json_encode($response);
+
+
+    }
 }
