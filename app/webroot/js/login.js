@@ -219,7 +219,7 @@ $.initializeLogin = function() {
 		{
 			title: "Bienvenido a LACLO magazine.",
 			content: "¡Ingrese sus datos para continuar!",
-			img: "img/demo/cloud.png",
+			img: "../img/demo/cloud.png",
 			border: false,
 			timeout: false,
 			showTime: false
@@ -257,44 +257,28 @@ $.initializeLogin = function() {
 			 */
 				var username = document.getElementById("username");
 				var password = document.getElementById("pass");
-				//var data = "username="+ username.value +"&password="+ password.value;
-				var data = {
-					username : username.value,
-					pass : password.value
-				};
-				$.notification({
-					title: "Datos",
-					content: data,
-					icon: "!"
-				});
-
-				console.dir(data);
+				var data = "data[User][username]="+ username.value +"&data[User][password]="+ password.value;
 				$.ajax({
 					type: "POST",
-					url: "pepe/",
+					url: "verify/",
 					data:  data,
 					dataType: "json",
 					success: function(response) {
 						// Response was a success
 						if (response.success) {
-							$.notification({
-								title: "Perfecto!!",
-								content: "Ahora se puede hacer el redirect :D",
-								icon: "!"
-							});
-
+							document.location.href = "redirection/";
 						// Response contains errors
 						} else {
+							$("#password").removeClass().addClass("animated wobble").delay(1000).queue(function(){ 
+							});
 							$.notification({
 								title: "Datos Incorrectos",
 								content: "Revise sus datos para continuar",
 								icon: "!"
 							});
 						}
-						console.dir(response);
 					}
 				});
-
 				return false;
 			}
 	}

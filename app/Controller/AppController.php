@@ -34,36 +34,18 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public $components = array(
-		'Session',
+    public $components = array(
+        'Session',
         'Auth' => array(
-            'authorize' => array('controller'),
-            'loginAction' => array('controller' => 'users', 'action' => 'login'),
             'loginRedirect' => array('controller' => 'backend', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
-            'authenticate' => array(
-	            'Form' => array(
-	                'fields' => array('username' => 'email')
-	            )
-        	)
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         )
     );
 
-    public function isAuthorized($user = null) {
-        // Any registered user can access public functions
-        if (empty($this->request->params['admin'])) {
-            return true;
-        }
 
-        // Only admins can access admin functions
-        if (isset($this->request->params['admin'])) {
-            return (bool)($user['role'] === 'admin');
-        }
-
-        // Default deny
-        return false;
+    public function beforeFilter(){
+        $this->Auth->allow('index', 'view');
     }
-
 
 
 }

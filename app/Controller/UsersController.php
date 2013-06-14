@@ -7,15 +7,10 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-	/*public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('login', 'logout');
-    }*/
     function beforeFilter() {
         $this->layout = 'users';
-        $this->Auth->allow('index', 'pepe', 'login', 'add');
+        $this->Auth->allow('add', 'verify');
     }
-
 
 /**
  * index method
@@ -23,9 +18,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->set('users', $this->User->find('all'));
-		$log = $this->User->getDataSource()->getLog(false, false);
-		debug($log);
+		$this->User->recursive=0;
+		$this->set('users', $this->paginate());
 	}
 
 /**
@@ -105,7 +99,37 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+	public function login(){}
 
+	public function verify(){
+		$this->autoRender = false;
+		if($this->request->is('post')){
+			$this->Session->destroy();
+			if($this->Auth->login()){
+				$response['success'] = true;
+				//$this->redirect($this->Auth->redirect());
+			} else {
+				$response['success'] = false;
+				$this->Session->setFlash(__('Usuario invalido'));
+			}
+		}
+		echo json_encode($response);
+	}
+
+	public function logout(){
+		$this->redirect($this->Auth->logout());
+	}
+
+	public function redirection(){
+		$this->redirect($this->Auth->redirect());
+	}
+
+
+
+
+
+/********shit**********/
+/*
     public function login() {
        
     }
@@ -148,5 +172,5 @@ class UsersController extends AppController {
         echo json_encode($response);
 
 
-    }
+    }*/
 }
