@@ -415,7 +415,7 @@ $.demo = function() {
 				return false;
 				
 			case "ajax-load":
-				options = {animation: animation, url: "img/demo/ajax.html"};
+				options = {animation: animation, url: "../img/demo/ajax.html"};
 				break;
 				
 			case "full-overlay":
@@ -465,15 +465,15 @@ $.demo = function() {
 		switch(attr) {
 		
 			case "standard":
-				options = {title: 'Standard notification', content: 'This is the content area. Even <strong>HTML</strong>-tags are allowed!', img: "img/demo/avatar92.jpg"}
+				options = {title: 'Standard notification', content: 'This is the content area. Even <strong>HTML</strong>-tags are allowed!', img: "../img/demo/avatar92.jpg"}
 				break;
 				
 			case "time":
-				options = {title: 'Time notification', content: 'You can easily include time tags on every notification.', showTime: true, img: "img/demo/boy_avatar.jpg"}
+				options = {title: 'Time notification', content: 'You can easily include time tags on every notification.', showTime: true, img: "../img/demo/boy_avatar.jpg"}
 				break;
 				
 			case "timeout":
-				options = {title: 'Timeout notification', content: 'This notification will close itself in five seconds!', timeout: 5000, img: "img/demo/obama.jpg"}
+				options = {title: 'Timeout notification', content: 'This notification will close itself in five seconds!', timeout: 5000, img: "../img/demo/obama.jpg"}
 				break;
 				
 			case "callback":
@@ -481,7 +481,7 @@ $.demo = function() {
 					{
 						title: 'Callback', 
 						content: 'By clicking on the notification, you can call a function.', 
-						img: "img/demo/avatar.jpg",
+						img: "../img/demo/avatar.jpg",
 						click: function() {
 							$.notification(
 	                            {
@@ -495,11 +495,11 @@ $.demo = function() {
 				break;
 			
 			case "border":
-				options = {title: 'Borderless image', content: 'Notice how the cloud does not have a border.', img: "img/demo/cloud.png", border: false}
+				options = {title: 'Borderless image', content: 'Notice how the cloud does not have a border.', img: "../img/demo/cloud.png", border: false}
 				break;
 				
 			case "fill":
-				options = {title: 'Image fill', content: 'Image fills out the entire left section of the notification.', img: "img/demo/avatar2.jpg", fill: true}
+				options = {title: 'Image fill', content: 'Image fills out the entire left section of the notification.', img: "../img/demo/avatar2.jpg", fill: true}
 				break;
 				
 			case "icon":
@@ -734,12 +734,12 @@ $.demo = function() {
 	
 	// Bind events to the tiles
 	$("#article").bind("tap", function() {
-		$.editor("img/demo/editor.txt", "#editor-textarea", "#editor-preview");
+		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");
 		$.change("#text");	
 	});
 
 	$("#comment").bind("tap", function() {
-		$.fn.gallery("img/demo/montage.html");
+		$.fn.gallery("../img/demo/montage.html");
 		
 		if(!$(this).attr("data-toggle")) {
 			$.notification( 
@@ -1052,7 +1052,7 @@ $.demo = function() {
 		{
 			title: 'Welcome to Pastel!',
 			content: '<strong>Please</strong> take a look around, I hope you like it!',
-			img: "img/demo/alone.jpg",
+			img: "../img/demo/alone.jpg",
 			fill: true
 		}
 	);

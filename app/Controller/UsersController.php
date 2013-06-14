@@ -101,6 +101,13 @@ class UsersController extends AppController {
 
 	public function login(){}
 
+
+/**
+ * verify method
+ *
+ * verifies if user login data is correct
+ * @return json response
+ */
 	public function verify(){
 		$this->autoRender = false;
 		if($this->request->is('post')){
@@ -116,61 +123,23 @@ class UsersController extends AppController {
 		echo json_encode($response);
 	}
 
+/**
+ * logout method
+ *
+ * logout and destroy user session
+ * @return void
+ */
 	public function logout(){
 		$this->redirect($this->Auth->logout());
 	}
 
+/**
+ * redirect method
+ *
+ * redirects user after login depending on role
+ * @return void
+ */
 	public function redirection(){
 		$this->redirect($this->Auth->redirect());
 	}
-
-
-
-
-
-/********shit**********/
-/*
-    public function login() {
-       
-    }
-
-    public function logout() {
-        $this->redirect($this->Auth->logout());
-    }
-
-    public function pepe() {
-    	//$this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
-		//$this->autoLayout = false;
-		$this->autoRender = false;
-    	$userData = $this->Auth->user();
-    	$response['passwordsha1'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh'.$this->request->data['pass']);
-    	$this->request->data['pass'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh123');
-        
-        if($userData != null) {
-            $response['success'] = true;
-            $response['loggedIn'] = true;
-
-        }
-
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-
-                $response['success'] = true;
-            } else {
-                $response['success'] = false;
-                $response['sha1'] = sha1('hbgasdigbasd44478446845GAJKDKXBGYklskugh123');
-            }
-            $log = $this->User->getDataSource()->getLog(false, false);
-            $response['log'] = $log;
-            $response['password'] = $this->request->data['pass'];
-         	
-            $this->header('Content-Type: application/json');
-
-            
-        }
-
-        echo json_encode($response);
-
-
-    }*/
 }

@@ -9,14 +9,17 @@ class BackendController extends AppController {
 
 	function beforeFilter() {
         $this->layout = 'backend';
-        $this->Auth->allow('index');
     }
 /**
- * index method
- *
+ * dashboard method
+ * shows 
  * @return void
  */
-	public function index() {
+	public function dashboard() {
+	}
+
+	public function logout() {
+		$this->redirect('users/logout');
 	}
 }
 

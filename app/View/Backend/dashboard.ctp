@@ -1,117 +1,3 @@
-	<div id="header">
-		<ul class="con">
-			<li class="dashboard">
-				<a href="#home">Dashboard</a>
-			</li>
-			<li class="count indicator">
-				<span data-count="8">Notifications</span>
-				<ul>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li class="messages">
-				<span>Messages</span>
-				<ul>
-					<li class="unread">
-						<a href="img/demo/ajax.html" data-modal>
-							<img class="avatar" src="img/demo/avatar.jpg" alt="avatar" />
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<img class="avatar" src="img/demo/boy_avatar.jpg" alt="avatar" />
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="img/demo/ajax.html" data-modal>
-							<img class="avatar" src="img/demo/avatar92.jpg" alt="avatar" />
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li class="avatar">
-				<img src="img/demo/avatar.jpg" alt="avatar" />
-				<ul>
-					<li>
-						<a href="#">
-							<h4>Jacques Alba</h4>
-							<p>Edit your profile</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<h4>Sign out</h4>
-							<p>Leave the demo and return to the sign in screen</p>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li class="search">
-				<input type="text" placeholder="Search" />
-				<ul>
-					<li>
-						<a href="#">
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<h4>Jens Alba</h4>
-							<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-						</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
 	<div id="stream">
 		<div class="con">
 			<div class="tile" id="hello">
@@ -1223,7 +1109,7 @@
 									<div class="comment">
 									      <p>Hey. Copenhagen any good?</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 4 days ago</div>
@@ -1232,7 +1118,7 @@
 									<div class="comment">
 									    <p>?</p>
 									    <div class="avatar">
-									    	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									    	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>Jacques</strong> 2 hours ago</div>
@@ -1241,7 +1127,7 @@
 									<div class="comment">
 									     <p>You did not just create this comment with the magic of ajax?</p>
 									     <div class="avatar">
-									     	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									     	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									     </div>
 									</div>
 									<div class="byline"><strong>You</strong> An hour ago</div>
@@ -1250,7 +1136,7 @@
 									<div class="comment">
 									      <p>Oh yes I did.</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 2 sec. ago</div>
@@ -1260,7 +1146,7 @@
 									    <p>Donec sem mi, faucibus ac consectetur in, bibendum eget massa.
 									    Nulla at imperdiet magna. </p>
 									    <div class="avatar">
-									    	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									    	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>You</strong> <span class="time" title="timestamp goes here">Just now</span></div>
@@ -1269,7 +1155,7 @@
 									<div class="comment">
 									    <p>*London </p>
 									    <div class="avatar">
-									    	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									    	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>You</strong> Just now</div>
@@ -1284,7 +1170,7 @@
 									<div class="comment">
 									      <p>Hey. Copenhagen any good?</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 4 days ago</div>
@@ -1293,7 +1179,7 @@
 									<div class="comment">
 									    <p>?</p>
 									    <div class="avatar">
-									    	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									    	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>Jacques</strong> 2 hours ago</div>
@@ -1302,7 +1188,7 @@
 									<div class="comment">
 									     <p>You did not just create this comment with the magic of ajax?</p>
 										<div class="avatar">
-											<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+											<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 										</div>
 									</div>
 									<div class="byline"><strong>You</strong> An hour ago</div>
@@ -1311,7 +1197,7 @@
 									<div class="comment">
 									      <p>Oh yes I did.</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 2 sec. ago</div>
@@ -1321,7 +1207,7 @@
 									    <p>Donec sem mi, faucibus ac consectetur in, bibendum eget massa.
 									    Nulla at imperdiet magna. </p>
 									    <div class="avatar">
-									    	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									    	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>You</strong> <span class="time" title="timestamp goes here">Just now</span></div>
@@ -1330,7 +1216,7 @@
 									<div class="comment">
 									    <p>*London </p>
 									    <div class="avatar">
-									    	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									    	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>You</strong> Just now</div>
@@ -1345,7 +1231,7 @@
 									<div class="comment">
 									      <p>Hey. Copenhagen any good?</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 4 days ago</div>
@@ -1354,7 +1240,7 @@
 									<div class="comment">
 									    <p>?</p>
 									    <div class="avatar">
-									    	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									    	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>Jacques</strong> 2 hours ago</div>
@@ -1363,7 +1249,7 @@
 									<div class="comment">
 									     <p>You did not just create this comment with the magic of ajax?</p>
 									     <div class="avatar">
-									     	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									     	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									     </div>
 									</div>
 									<div class="byline"><strong>You</strong> An hour ago</div>
@@ -1372,7 +1258,7 @@
 									<div class="comment">
 									      <p>Oh yes I did.</p>
 									      <div class="avatar">
-									      	<img src="img/demo/avatar92.jpg" alt="avatar" />
+									      	<img src="../img/demo/avatar92.jpg" alt="avatar" />
 									      </div>
 									 </div>
 									 <div class="byline"><strong>Jacques</strong> 2 sec. ago</div>
@@ -1382,7 +1268,7 @@
 									    <p>Donec sem mi, faucibus ac consectetur in, bibendum eget massa.
 									    Nulla at imperdiet magna. </p>
 									   <div class="avatar">
-									   	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									   	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									   </div>
 									</div>
 									<div class="byline"><strong>You</strong> <span class="time" title="timestamp goes here">Just now</span></div>
@@ -1391,7 +1277,7 @@
 									<div class="comment">
 									    <p>*London </p>
 									    <div class="avatar">
-									    	<img src="img/demo/boy_avatar.jpg" alt="avatar" />
+									    	<img src="../img/demo/boy_avatar.jpg" alt="avatar" />
 									    </div>
 									</div>
 									<div class="byline"><strong>You</strong> Just now</div>
