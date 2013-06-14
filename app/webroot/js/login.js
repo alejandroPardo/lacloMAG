@@ -257,8 +257,13 @@ $.initializeLogin = function() {
 			 */
 				var username = document.getElementById("username");
 				var password = document.getElementById("pass");
-				var data = "data[User][username]="+ username.value +"&data[User][password]="+ password.value;
-				$.ajax({
+
+				var data = {
+                    'data[User][username]': username.value,
+                    'data[User][password]': password.value
+                }
+
+                $.ajax({
 					type: "POST",
 					url: "verify/",
 					data:  data,
