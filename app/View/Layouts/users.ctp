@@ -15,7 +15,6 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine - Backend');
 		echo $this->Html->css('app');
 
 		echo $this->Html->script('library');
-		echo $this->Html->script('migrateLibrary');
 		echo $this->Html->script('login');
 
 		echo $this->fetch('meta');

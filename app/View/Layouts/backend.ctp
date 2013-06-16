@@ -15,9 +15,10 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 		echo $this->Html->css('app');
 
 		echo $this->Html->script('library');
-		echo $this->Html->script('migrateLibrary');
-		echo $this->Html->script('app');
 		echo $this->Html->script('initialize');
+		echo $this->Html->script('app');
+		
+		
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -30,45 +31,15 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 				<div id="header">
 					<ul class="con">
 						<li class="dashboard">
-							<a href="#home">Dashboard</a>
+							<a href="dashboard" rel='external'>Inicio</a>
 						</li>
 						<li class="count indicator">
-							<span data-count="8">Notifications</span>
+							<span data-count="0">Notificaciones</span>
 							<ul>
 								<li>
 									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
+										<h4>Implementar Notificaciones!!</h4>
+										<p>Deberia abrir un modal con los eventos nuevos que haya</p>
 									</a>
 								</li>
 							</ul>
@@ -79,22 +50,8 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 								<li class="unread">
 									<a href="../img/demo/ajax.html" data-modal>
 										<img class="avatar" src="../img/demo/avatar.jpg" alt="avatar" />
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<img class="avatar" src="../img/demo/boy_avatar.jpg" alt="avatar" />
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
-									</a>
-								</li>
-								<li>
-									<a href="../img/demo/ajax.html" data-modal>
-										<img class="avatar" src="../img/demo/avatar92.jpg" alt="avatar" />
-										<h4>Jens Alba</h4>
-										<p>Lorem ipsum dolor sit imet smd ddm lksdm lkdsm</p>
+										<h4>Implementar Mensajes si vamos a hacerlos</h4>
+										<p>No se que carajo sera</p>
 									</a>
 								</li>
 							</ul>
@@ -109,9 +66,9 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 									</a>
 								</li>
 								<li>
-									<a href='<?php echo $this->Html->link(__('Sign Out'), array('action' => 'logout')); ?>'>
-										<h4>Sign out</h4>
-										<p>Leave the demo and return to the sign in screen</p>
+									<a href='logout' rel='external'>
+										<h4>Desconectarse</h4>
+										<p>Salir de la aplicación</p>
 									</a>
 								</li>
 							</ul>

@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class BackendController extends AppController {
 
 	function beforeFilter() {
+		parent::beforeFilter();
         $this->layout = 'backend';
     }
 /**
@@ -19,8 +20,6 @@ class BackendController extends AppController {
 	}
 
 	public function logout() {
-		$this->redirect('users/logout');
+		$this->redirect(array("controller" => "users", "action" => "logout"));
 	}
 }
-
-
