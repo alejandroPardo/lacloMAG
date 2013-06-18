@@ -2289,6 +2289,29 @@ body.welcome #notifications {
 	background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
 	background-image: -moz-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
 }
+
+#forgot button {
+	width: 100%;
+	margin-top: 20px;
+	height: 45px;
+	font: bold 14px/45px HelveticaNeue, Helvetica, Arial;
+	color: rgba(0,0,0,0.75);
+	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	-moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	padding: 0px;
+	border-radius: 4px;
+	border: 0px solid;
+	background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.35));
+	background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.35));
+	background-color: #FFD000;
+	cursor: pointer;
+}
+#forgot button:hover {
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+	background-image: -moz-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+}
 #password input {
 	color: white;
 }
@@ -2626,7 +2649,7 @@ div.overlay h2 span {
 	height: 100%;
 	width: 3000px;
 	right: 0px;
-	background: #1f1f1f;
+	background: url(../img/header.jpg);
 	opacity: 0.87;
 	-moz-box-shadow: rgba(0,0,0,0.91) -10px -3px 32px inset;
 	-webkit-box-shadow: rgba(0,0,0,0.91) -10px -3px 32px inset;
@@ -2638,9 +2661,10 @@ div.overlay h2 span {
 	margin-right: 20px;
 }
 #header ul li.dashboard a {
-	padding-left: 34px;
-	background: url(../img/icon-dashboard-active.png) center left no-repeat;
-	background-position: 0px 25px;
+	margin-right: -20px;
+	min-width: 144px;
+	background: url(../img/header-logo.jpg) no-repeat;
+	background-position: 0px 0px;
 	z-index: 1;
 	position: relative;
 	display: block;	

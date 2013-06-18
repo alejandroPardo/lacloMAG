@@ -46,11 +46,11 @@ jQuery.event.special.tap = {
         settings = $.extend({
         	title: undefined,
         	content: undefined,
-            timeout: 0,
+            timeout: 6000,
             img: undefined,
             border: true,
             fill: false,
-            showTime: false,
+            showTime: true,
             click: undefined,
             icon: undefined,
             color: undefined,
@@ -6219,7 +6219,7 @@ $.fn.modal = function(options) {
 		$(".particles").remove();
 	}
 	
-	$.getScript("js/three.js", function(){
+	$.getScript("../js/three.js", function(){
 		if (!window.requestAnimationFrame) {
 		    window.requestAnimationFrame = (function () {
 		        return window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||

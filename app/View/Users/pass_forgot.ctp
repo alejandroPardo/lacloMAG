@@ -1,5 +1,5 @@
 <!--Log in screen-->
-<div id="welcome">
+
 	
 	<div id="overlayLogo">
   		<?php echo $this->Html->image('bg.jpg', array('alt' => 'Overlay'));?>
@@ -11,11 +11,7 @@
 		<div class="input username"><input id="username" type="text" placeholder="Email o Username" /></div>
 		<div class="input password"><input id="pass" type="password" placeholder="Contraseña" /></div>
 		<button>Entrar</button>
-		<div id="forgot">
-			<button>¿Olvidó su Clave?</button>
-		</div>
 	</div>
 
 	
 
-</div>

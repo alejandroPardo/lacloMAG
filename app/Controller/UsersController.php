@@ -9,7 +9,7 @@ class UsersController extends AppController {
 
     function beforeFilter() {
         $this->layout = 'users';
-        $this->Auth->allow('add', 'verify');
+        $this->Auth->allow('add', 'verify', 'passForgot');
     }
 
 /**
@@ -141,5 +141,9 @@ class UsersController extends AppController {
  */
 	public function redirection(){
 		$this->redirect($this->Auth->redirect());
+	}
+
+	public function passForgot(){
+		
 	}
 }

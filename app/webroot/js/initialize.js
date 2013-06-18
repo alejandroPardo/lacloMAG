@@ -43,10 +43,6 @@ $.initialize = function() {
 		    }, false);
 	
 		}, false);
-	
-
-
-
 	}
 	
 	// --------------- Navigation ----------------------------
@@ -118,11 +114,6 @@ $.initialize = function() {
 	    var page = location.hash;
 	    var title = $(page).data("title");
 	    if($(page).length>0) {
-		    if(title==undefined) {
-		    	document.title = "Dashboard"
-		    } else {
-		    	document.title = title + " - Dashboard";
-		    }
 		    $(".section.current").removeClass("current").hide();
 		    $('a[data-href*="#"].current').removeClass("current");
 		    
@@ -164,8 +155,6 @@ $.initialize = function() {
 	$("input:checkbox").each(function () {
 		$(this).checkbox();
 	});
-	
-	
 	
 	$(".checkbox input").change(function () {
 		$(this).parents("span").toggleClass("checked");
@@ -284,6 +273,7 @@ $.initialize = function() {
 	// --------------- Pull to refresh -----------------------
 	if ($.browser.webkit && navigator.platform=='MacIntel') {
 		var distance;
+		var pulled = false;
 		$('body').append('<div class="pull"><span class="icon">w</span><div>Pull <span>to refresh</span></div></div>');
 		$(window).scroll(function () {
 			if($(window).scrollTop() < 0) {
@@ -292,10 +282,15 @@ $.initialize = function() {
 				if(distance < 2) {
 					distance = 0;
 					$("#stream").removeClass("hide");
+					if(pulled){
+						$(window).delay(2000);
+						location.reload();
+					}
 				}
 				if(distance > 62) {
 					$('.pull div').html('Release <span>to refresh</span>');
 					$('.pull .icon').addClass('release');
+					pulled = true;
 				} else {
 					$('.pull div').html('Pull <span> to refresh</span>');
 					$('.pull .icon').removeClass('release');
@@ -314,8 +309,6 @@ $.initialize = function() {
 		});
 	}
 	// -------------------------------------------------------
-	
-	
 };
 
 //This $.demo function can easily be deleted without hurting core functionality - just be aware that demo won't function properly.
@@ -761,7 +754,7 @@ $.demo = function() {
 	});
 	
 	// Change theme, temporary function
-	$("#footer").bind("tap", function() {
+	$("#footer strong").bind("tap", function() {
 		if($("body").hasClass("feather")) {
 			$("body").removeClass("feather");
 		} else {
@@ -1045,29 +1038,6 @@ $.demo = function() {
 		}
 		
 	}
-	
-	
-//	-------------------------------------------------------------------------------------------------------------------------------------------
-	$.notification( 
-		{
-			title: 'Welcome to Pastel!',
-			content: '<strong>Please</strong> take a look around, I hope you like it!',
-			img: "../img/demo/alone.jpg",
-			fill: true
-		}
-	);
-	
-	$.notification( 
-		{
-			title: 'This is the notification area',
-			content: 'Check the <em>Notifications</em> section for more information.',
-			icon: '&amp;'
-		}
-	);
-	
-	
-	
-	
 }
 
 // Initializing of the Pastel Dashboard!

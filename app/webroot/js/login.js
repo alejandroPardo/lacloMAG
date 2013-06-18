@@ -219,7 +219,7 @@ $.initializeLogin = function() {
 		{
 			title: "Bienvenido a LACLO magazine.",
 			content: "¡Ingrese sus datos para continuar!",
-			img: "../img/demo/cloud.png",
+			img: "../img/logo-notification.png",
 			border: false,
 			timeout: false,
 			showTime: false
@@ -228,6 +228,10 @@ $.initializeLogin = function() {
 
 	$("#password").addClass("animated flipInY").show();
 	$("#password .input.password input").focus();
+
+	$("#forgot button").bind("tap", function() {
+		document.location.href = "passForgot/";
+	});
 	
 	$("#password button").bind("tap", function() {
 		forgot();

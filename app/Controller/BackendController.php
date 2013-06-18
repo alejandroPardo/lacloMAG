@@ -10,6 +10,9 @@ class BackendController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
         $this->layout = 'backend';
+        $this->set('username', $this->Auth->user('username'));
+		$this->set('fullName', $this->Auth->user('first_name').' '.$this->Auth->user('last_name'));
+		$this->set('firstName', $this->Auth->user('first_name'));
     }
 /**
  * dashboard method
@@ -22,4 +25,6 @@ class BackendController extends AppController {
 	public function logout() {
 		$this->redirect(array("controller" => "users", "action" => "logout"));
 	}
+
+	public function demo(){}
 }
