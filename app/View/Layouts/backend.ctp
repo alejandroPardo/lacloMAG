@@ -99,69 +99,49 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			<div id="stream">
 				<div class="con">
 					<div class="tile" id="hello">
-						<h2><span>Bienvenido,</span> <br/><?php echo $firstName; ?></h2>
+						<h2><span>Hola,</span> <br/><?php echo $firstName; ?></h2>
 						
 						<ul class="nav">
 							<li>
-								<a href="#home">*</a>
+								<a href="dashboard" rel='external'>*</a>
 							</li>
 							<li>
-								<a href="#icons">8</a>
+								<a href="writeNew" rel='external'>8</a>
 							</li>
 							<li>
-								<a href="#ui">&amp;</a>
+								<a href="news" rel='external'>G</a>
 							</li>
 							<li>
-								<a href="#more" data-reveal>v</a>
+								<a href="exemplaries" rel='external'>'</a>
 							</li>
 						</ul>
 					</div>
 
-					<a class="tile" id="article">
+					<a class="tile" href="dashboard" rel='external'>
+						<span class="vector">0</span>
+						<span class="title"><strong>Dashboard</strong>/Inicio</span>
+						<span class="desc"><strong>Volver</strong> al inicio</span>
+					</a>
+					<a class="tile" href="article" rel='external'>
 						<span class="vector">C</span>
-						<span class="title"><strong>New</strong> article</span>
-						<span class="desc"><strong>Text</strong> editor</span>
+						<span class="title"><strong>Ver</strong> Artículos</span>
+						<span class="desc"><strong>Artículos</strong> recibidos</span>
 					</a>
-					<a class="tile" href="#ui" id="elements">
-						<span class="vector">&amp;</span>
-						<span class="title"><strong>UI</strong> elements</span>
-						<span class="desc"><strong>Simply</strong> everything</span>
+					<a class="tile" href="pending" rel='external'>
+						<span class="vector count" data-count="7">=</span>
+						<span class="title"><strong>Artículos</strong> pendientes</span>
+						<span class="desc"><strong>Revisiones</strong>/Asignaciones</span>
 					</a>
-					<a class="tile" id="comment">
-						<span class="vector count" data-count="7">2</span>
-						<span class="title"><strong>Photo</strong> montage</span>
-						<span class="desc"><strong>Beautiful </strong> gallery</span>
-					</a>
-					<a class="tile" href="#iphone" id="mobile">
-						<span class="vector">J</span>
-						<span class="title"><strong>iPhone</strong> app</span>
-						<span class="desc"><strong>Fast</strong> and fluid</span>
-					</a>
-					<a class="tile" href="#location" id="recent">
+					<a class="tile" href="current" rel='external'>
 						<span class="vector">N</span>
-						<span class="title"><strong>Location</strong> sandbox</span>
-						<span class="desc"><strong>Google Maps</strong> API</span>
+						<span class="title"><strong>Ejemplar</strong> actual</span>
+						<span class="desc"><strong>Revisar</strong>/actualizar</span>
 					</a>
-					
-					
-					<ul id="more" class="icons">
-						<li>
-							<ul>
-								<li class="iphone"><a href="#iphone">iPhone app</a></li>
-								<li class="chart"><a id="charts_init" href="#charts">Charts</a></li>
-								<li class="down"><a href="#sample">Sample page</a></li>
-							</ul>
-						</li>
-						<li>
-							<ul>
-								<li class="warning"><a href="#errors">Error pages</a></li>
-								<li class="taging"><a href="#docs">Docs</a></li>
-								<li class="blank-star"><a href="#alerts">Notifications</a></li>
-							</ul>
-						</li>
-						
-					</ul>
-					
+					<a class="tile" href="article" rel='external'>
+						<span class="vector">L</span>
+						<span class="title"><strong>Archivo</strong></span>
+						<span class="desc"><strong>Antiguos</strong>/Otros</span>
+					</a>
 				</div>
 			</div>
 
