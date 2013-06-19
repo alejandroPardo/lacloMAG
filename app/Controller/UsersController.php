@@ -115,6 +115,8 @@ class UsersController extends AppController {
 			if($this->Auth->login()){
 				$response['success'] = true;
 				//$this->redirect($this->Auth->redirect());
+				$this->User->id = $this->Auth->user('id'); // target correct record
+        		$this->User->saveField('last_login', date(DATE_ATOM)); // save login time
 			} else {
 				$response['success'] = false;
 				$this->Session->setFlash(__('Usuario invalido'));

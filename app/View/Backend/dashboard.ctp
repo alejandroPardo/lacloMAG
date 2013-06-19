@@ -17,7 +17,7 @@
 					<div class="content">
 						<div class="heading">
 							<h4><span>Actividades</span> recientes</h4>
-							<span>Últimas actividades realizadas</span>
+							<span><a href='lasActivities' rel='external'>Últimas actividades realizadas</a></span>
 						</div>
 						<div class="wrapper" style="left: 1px; right: 1px; top: 141px; bottom: 0px;">
 							<ul>

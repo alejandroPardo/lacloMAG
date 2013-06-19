@@ -132,9 +132,17 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 
 			<?php echo $this->fetch('content'); ?>
 			<div id="footer">
-				<div class="con">
-					<h4>Pastel <span class="feather animated fadeIn">Feather</span> <span class="theme">Click to <strong>change theme</strong></span></h4>
-				</div>
+			<div class="container">
+			    <div class="col_2 alpha">
+			    	I
+			    </div>
+			    <div class="col_8">
+			        <h4>Pastel <span class="feather animated fadeIn">Feather</span> <span class="theme">Click to <strong>change theme</strong></span></h4>
+			    </div>
+			    <div class="col_2 omega">
+			    I
+			    </div>
+			</div>
 			</div>
 		</div>
 	</div>
