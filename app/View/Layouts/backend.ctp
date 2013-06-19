@@ -136,11 +136,21 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			    <div class="col_2 alpha">
 			    	I
 			    </div>
-			    <div class="col_8">
-			        <h4>Pastel <span class="feather animated fadeIn">Feather</span> <span class="theme">Click to <strong>change theme</strong></span></h4>
+			    <div class="col_2">
+			    	<br/>
+			    	<br/>
+			   		<?php echo $this->Html->image('laclo-logo.png');?>
 			    </div>
-			    <div class="col_2 omega">
-			    I
+			    <div class="col_4">
+			    	<br/>
+			    	<br/>
+			   		<h4>Pastel <span class="feather animated fadeIn">Feather</span> <span class="theme">Click to <strong>change theme</strong></span></h4>
+
+			    </div>
+			    <div class="col_2">
+			    	<br/>
+			   		<?php echo $this->Html->image('ucv-logo.png');?>
+
 			    </div>
 			</div>
 			</div>
