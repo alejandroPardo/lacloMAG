@@ -723,7 +723,7 @@ $.demo = function() {
 	.table()
 	.pagination();
 	
-	$("#home").append('<ul class="round"><li class="current">Page one</li><li>Page two</li><li>Page three</li></ul>');
+	/*$("#home").append('<ul class="round"><li class="current">Page one</li><li>Page two</li><li>Page three</li></ul>');*/
 	
 	// Bind events to the tiles
 	$("#article").bind("tap", function() {
@@ -866,73 +866,22 @@ $.demo = function() {
 	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
 		// IE8 doesn't like Canvas.
 	} else {
-	
-		var d1 = [];
-	    for (var i = 0; i <= 10; i += 1)
-	        d1.push([i, parseInt(Math.random() * 250)]);
+
+	    var data = [];
+		var series = Math.floor(Math.random()*7)+1;
+		for( var i = 0; i<series; i++) {
+			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+		}
 	    
-	    var d2 = [];
-	    var d3 = [];
-	    for (var i = 0; i <= 10; i += 0.4)
-	        d3.push([i, parseInt(Math.random() * 140)]);
-	        
-		var d4 = [];
-	    for (var i = 0; i <= 10; i += 0.1)
-	        d4.push([i, Math.sqrt(i * 10)]);
-	    
-	    var d5 = [];
-	    var d6 = [];
-	    for (var i = 0; i <= 10; i += 0.5 + Math.random())
-	        d6.push([i, Math.sqrt(2*i + Math.sin(i) + 5)]);      
-	
-	    var stack = 1, bars = false, lines = true, steps = false;
-	    
-	    
-	    d5 = [ [0, 42], [1, 50], [2, 65], [3, 76], [4, 77], [5, 180], [6, 199], [7, 220], [8, 240], [9, 340], [10, 398] ];
-	    d2 = [ [0, 2], [1, 30], [2, 25], [3, 186], [4, 150], [5, 200], [6, 189], [7, 120], [8, 140], [9, 200], [10, 198] ];
-	    ds = [ [0, 2], [1, 30], [2, 25], [3, 186] ];
-	    ds2 = [ [0, 6], [1, 20], [2, 69], [3, 286] ];
-	    
-		$.plot($("#chart1"), 
-			[
-				{
-					label: "DR NU",
-					data: d5,
-					lines: { show: true, fill: 0.4 },
-					color: "#8AB4B5",
-					hoverable: true
-				},
-				{
-					label: "Pattern.dk",
-					data: d1,
-					lines: { show: true, lineWidth: 4 },
-					color: "#FC354C"
-				},
-				{
-					label: "Pouteria",
-					data: d3,
-					lines: { show: true, lineWidth: 2 },
-					color: "#1E2528"
-				},
-				{
-					label: "Halifaxed.com",
-					data: d2,
-					lines: { show: true, lineWidth: 2 },
-					color: "#008C83"
-				}
-			], 
-				
-				{
-					series	:	{ lines: { show: true }, points: { show: true }, curvedLines: { active: true } },
-					grid	:	{ hoverable: true, clickable: true },
-					legend	:	{ show: false },
-					yaxis	:	{ position: "right" }
-				}
-		);
-		
-		
-		
-		
+		$.plot($("#pie_chart"), data,
+			{
+			       series: {
+			           pie: { 
+			               show: true
+			           }
+			       }
+			});
+
 		function demo_chart() {
 			$.plot($("#chart_linear_stack"), [ { data: d1, label: "iPhone", color: "#333333" }, { data: d2, label: "iPad", color: "#3B8686" }, { data: d3, label: "Mac", color: "#79BD9A" } ], {
 			   series: {

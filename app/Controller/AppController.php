@@ -42,8 +42,8 @@ class AppController extends Controller {
         )
     );
 
-
     public function beforeFilter(){
+        $this->Auth->authenticate = array('Custom');
         $this->Auth->allow('index', 'passForgot');
     }
 

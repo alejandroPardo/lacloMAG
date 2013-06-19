@@ -43,7 +43,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 						</ul>
 					</li>
 					<li class="messages">
-						<span>Messages</span>
+						<span>Mensajes</span>
 						<ul>
 							<li class="unread">
 								<a href="../img/demo/ajax.html" data-modal>
@@ -99,22 +99,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			<div id="stream">
 				<div class="con">
 					<div class="tile" id="hello">
-						<h2><span>Hola,</span> <br/><?php echo $firstName; ?></h2>
-						
-						<ul class="nav">
-							<li>
-								<a href="dashboard" rel='external'>*</a>
-							</li>
-							<li>
-								<a href="writeNew" rel='external'>8</a>
-							</li>
-							<li>
-								<a href="news" rel='external'>G</a>
-							</li>
-							<li>
-								<a href="exemplaries" rel='external'>'</a>
-							</li>
-						</ul>
+						<h2><span>Hola,</span> <br/><?php echo $firstName; ?> <br/><br/><span><?php echo $role; ?></span></h2>
 					</div>
 
 					<a class="tile" href="dashboard" rel='external'>

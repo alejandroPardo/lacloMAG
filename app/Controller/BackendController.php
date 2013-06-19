@@ -13,7 +13,9 @@ class BackendController extends AppController {
         $this->set('username', $this->Auth->user('username'));
 		$this->set('fullName', $this->Auth->user('first_name').' '.$this->Auth->user('last_name'));
 		$this->set('firstName', $this->Auth->user('first_name'));
+		$this->set('role', $this->Auth->user('role'));
     }
+
 /**
  * dashboard method
  * shows 
