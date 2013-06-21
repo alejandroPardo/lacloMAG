@@ -3,6 +3,7 @@
 
     class User extends AppModel {
         public $name = 'User';
+        public $hasMany = array('Admin', 'Author', 'Editor', 'Evaluator', 'Reader');
 
     	public function beforeSave($options = array()) {
 			if (isset($this->data[$this->alias]['password'])) {
@@ -26,7 +27,7 @@
     		),
     		'role' => array(
     			'valid' => array(
-    				'rule' => array('inList', array('admin', 'author', 'editor', 'reader')),
+    				'rule' => array('inList', array('admin', 'author', 'editor', 'evaluator', 'reader')),
     				'message' => 'Introduzca un rol valido',
     				'allowEmpty' => false
     			)

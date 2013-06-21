@@ -6,6 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class UsersController extends AppController {
+	public $uses = array('Admin', 'Author', 'Editor', 'Evaluator', 'Reader', 'User');
 
     function beforeFilter() {
         $this->layout = 'users';
@@ -46,8 +47,29 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$user_id=$this->User->getLastInsertId();
+				$this->User->id = $user_id;
+				$role = $this->User->field('role'); // echo the name for row id 22
+				if($role == 'admin'){
+					$this->Admin->create();
+					$this->Admin->saveField('user_id', $user_id);
+				} else if($role == 'author'){
+					$this->Author->create();
+					$this->Author->saveField('user_id', $user_id);
+				} else if($role == 'editor'){
+					$this->Editor->create();
+					$this->Editor->saveField('user_id', $user_id);
+				} else if($role == 'evaluator'){
+					$this->Evaluator->create();
+					$this->Evaluator->saveField('user_id', $user_id);
+				} else if($role == 'reader'){
+					$this->Reader->create();
+					$this->Reader->saveField('user_id', $user_id);
+				} else 
+				
+				$this->Session->setFlash(__('The user has been saved '.$role));
 				$this->redirect(array('action' => 'index'));
+
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
