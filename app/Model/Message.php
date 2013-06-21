@@ -3,6 +3,6 @@
 
     class Message extends AppModel {
         public $name = 'Message';
-        public $hasOne = 'MappedMessage';
+        public $hasMany = 'MappedMessage';
     }
 ?>

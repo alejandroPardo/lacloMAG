@@ -31,7 +31,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					<li class="dashboard">
 						<a href="dashboard" rel='external' alt='Inicio'>I</a>
 					</li>
-					<li class="count indicator">
+					<li class="count">
 						<span data-count="0">Notificaciones</span>
 						<ul>
 							<li>
@@ -42,16 +42,27 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 							</li>
 						</ul>
 					</li>
-					<li class="messages">
-						<span>Mensajes</span>
+					<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
+					<span data-count=<?php echo $pendingMessages;?>>Mensajes</span>
 						<ul>
-							<li class="unread">
-								<a href="../img/demo/ajax.html" data-modal>
-									<img class="avatar" src="../img/avatar.jpg" alt="avatar" />
-									<h4>Implementar Mensajes si vamos a hacerlos</h4>
-									<p>No se que carajo sera</p>
-								</a>
-							</li>
+							<?php foreach( $messages as $message ): ?>
+								<?php 
+									if($message['MappedMessage']['is_read']==0){
+										echo "<li class='unread'>";
+									} else {
+										echo "<li>";
+									}
+								?>
+							    	<a href="ajax" data-modal>
+										<h4>De: 
+											<?php 
+												echo ($message['User']['username']);
+											?>
+										</h4>
+										<p><?php echo ($message['Message']['content']);?></p>
+									</a>
+								</li>
+							<?php endforeach; ?>
 						</ul>
 					</li>
 					<li class="avatar">
