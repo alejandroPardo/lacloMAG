@@ -14,7 +14,7 @@ class BackendController extends AppController {
         $this->set('username', $this->Auth->user('username'));
 		$this->set('fullName', $this->Auth->user('first_name').' '.$this->Auth->user('last_name'));
 		$this->set('firstName', $this->Auth->user('first_name'));
-		$this->set('role', $this->Auth->user('role'));
+		
 		$messages = $this->MappedMessage->find('all', array(
 		    'conditions' => array('MappedMessage.user_id' => $this->Auth->user('id')), //array of conditions
 		    //'fields' => array('Model.field1', 'DISTINCT Model.field2'), //array of field names
@@ -28,6 +28,16 @@ class BackendController extends AppController {
 		$pendingMessages = $this->MappedMessage->find('count', array('conditions' => array('MappedMessage.is_read' => 0)));
     	$this->set('pendingMessages', $pendingMessages);
 		$this->set('messages', $messages);
+
+		if($this->Auth->user('role') == 'admin'){
+			$this->set('role', 'Administrador');
+		} else if($this->Auth->user('role') == 'author'){
+			$this->set('role', 'Autor');
+		} else if($this->Auth->user('role') == 'editor'){
+			$this->set('role', 'Editor');
+		} else if($this->Auth->user('role') == 'evaluator'){
+			$this->set('role', 'Evaluador');
+		}
     }
 
 /**
@@ -35,9 +45,29 @@ class BackendController extends AppController {
  * shows 
  * @return void
  */
-	public function dashboard() {
-		
+	public function index() {
+		if($this->Auth->user('role') == 'admin'){
+			$this->redirect('dashboard');
+		} else if($this->Auth->user('role') == 'author'){
+			$this->redirect('author');
+		} else if($this->Auth->user('role') == 'editor'){
+			$this->redirect('editor');
+		} else if($this->Auth->user('role') == 'evaluator'){
+			$this->redirect('evaluator');
+		} else if($this->Auth->user('role') == 'reader'){
+			$this->redirect(array("controller" => "frontend", "action" => "index"));
+		} else {
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		}
 	}
+
+	public function dashboard() {}
+
+	public function editor() {}
+
+	public function author() {}
+
+	public function evaluator() {}
 
 	public function logout() {
 		$this->redirect(array("controller" => "users", "action" => "logout"));

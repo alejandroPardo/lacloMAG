@@ -112,32 +112,17 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					<div class="tile" id="hello">
 						<h2><span>Hola,</span> <br/><?php echo $firstName; ?> <br/><br/><span><?php echo $role; ?></span></h2>
 					</div>
-
-					<a class="tile" href="dashboard" rel='external'>
-						<span class="vector">0</span>
-						<span class="title"><strong>Dashboard</strong>/Inicio</span>
-						<span class="desc"><strong>Volver</strong> al inicio</span>
-					</a>
-					<a class="tile" href="article" rel='external'>
-						<span class="vector">C</span>
-						<span class="title"><strong>Ver</strong> Artículos</span>
-						<span class="desc"><strong>Artículos</strong> recibidos</span>
-					</a>
-					<a class="tile" href="pending" rel='external'>
-						<span class="vector count" data-count="7">=</span>
-						<span class="title"><strong>Artículos</strong> pendientes</span>
-						<span class="desc"><strong>Revisiones</strong>/Asignaciones</span>
-					</a>
-					<a class="tile" href="current" rel='external'>
-						<span class="vector">N</span>
-						<span class="title"><strong>Ejemplar</strong> actual</span>
-						<span class="desc"><strong>Revisar</strong>/actualizar</span>
-					</a>
-					<a class="tile" href="article" rel='external'>
-						<span class="vector">L</span>
-						<span class="title"><strong>Archivo</strong></span>
-						<span class="desc"><strong>Antiguos</strong>/Otros</span>
-					</a>
+					<?php 
+						if ($role == 'Administrador'){
+							echo $this->element('menuAdmin'); 
+						} else if ($role == 'Autor'){
+							echo $this->element('menuAuthor'); 
+						} else if ($role == 'Editor'){
+							echo $this->element('menuEditor'); 
+						} else if ($role == 'Evaluador'){
+							echo $this->element('menuEvaluator'); 
+						}
+					?>
 				</div>
 			</div>
 

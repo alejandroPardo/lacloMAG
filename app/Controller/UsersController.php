@@ -65,7 +65,7 @@ class UsersController extends AppController {
 				} else if($role == 'reader'){
 					$this->Reader->create();
 					$this->Reader->saveField('user_id', $user_id);
-				} else 
+				}
 				
 				$this->Session->setFlash(__('The user has been saved '.$role));
 				$this->redirect(array('action' => 'index'));
