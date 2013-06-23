@@ -91,7 +91,18 @@ class BackendController extends AppController {
 
 	public function demo(){}
 
+	public function profile(){
+		$this->set('usernameProfile', $this->Auth->user('username'));
+		$this->set('emailProfile', $this->Auth->user('email'));
+		$this->set('roleProfile', $this->Auth->user('role'));
+		$this->set('firstNameProfile', $this->Auth->user('first_name'));
+		$this->set('lastNameProfile', $this->Auth->user('last_name'));
+	}
+
 	public function ajax(){
 		$this->layout = false;
+	}
+
+	public function prueba(){
 	}
 }

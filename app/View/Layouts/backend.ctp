@@ -29,7 +29,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			<div id="header">
 				<ul class="con">
 					<li class="dashboard">
-						<a href="dashboard" rel='external' alt='Inicio'>I</a>
+						<a href="dashboard" rel='external' alt='Inicio'>&nbsp;</a>
 					</li>
 					<li class="count">
 						<span data-count="0">Notificaciones</span>
@@ -69,7 +69,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 						<img src="../img/avatar.jpg" alt="avatar" />
 						<ul>
 							<li>
-								<a href="#">
+								<a href="profile" rel="external">
 									<h4><?php echo $fullName;?></h4>
 									<p>Editar tu perfil</p>
 								</a>
@@ -125,8 +125,13 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					?>
 				</div>
 			</div>
-
-			<?php echo $this->fetch('content'); ?>
+			<div id="dashboard">
+				<div class="scroll con">
+					<div class="section current" title="Home" id="home">
+						<?php echo $this->fetch('content'); ?>
+					</div>
+				</div>
+			</div>
 			<div id="footer">
 			<div class="container">
 			    <div class="col_2 alpha">
