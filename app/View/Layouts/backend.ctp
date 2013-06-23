@@ -138,10 +138,10 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			   		<?php echo $this->Html->image('laclo-logo.png');?>
 			    </div>
 			    <div class="col_4">
-			    	<br/>
-			    	<br/>
-			   		<h4>Pastel <span class="feather animated fadeIn">Feather</span> <span class="theme">Click to <strong>change theme</strong></span></h4>
-
+			    	<div class="latam">
+			    		<?php echo $this->Html->image('latam.png');?>
+			    	</div>
+			    	<h4><span class="theme">Copyright © 2013 Universidad Central de Venezuela. Todos los derechos reservados.</span></h4>
 			    </div>
 			    <div class="col_2">
 			    	<br/>

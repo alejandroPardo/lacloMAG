@@ -191,16 +191,31 @@ label {
 	-webkit-box-shadow: black 0px 10px 10px -10px inset;
 	-moz-box-shadow: black 0px 10px 10px -10px inset;
 	box-shadow: black 0px 10px 10px -10px inset;
-	font-size: 20px;
+	font-size: 12px;
 	color: #111;
 	text-shadow: rgba(102, 120, 138, 0.45) 0px 1px 0px;	
 	-webkit-user-select: none;
-	cursor: pointer;
 }
 #footer h4 {
 	display: inline-block;
 	position: relative;
 }
+#footer .latam{
+	margin-left: auto;
+    margin-right: auto;
+    width: 130px;
+    margin-top: -10px;
+    margin-bottom: -30px;
+}
+#footer .col_4{
+	text-align: center;
+	margin-bottom: -30px;
+}
+
+#footer .col_2{
+margin-top: 10px;
+}
+
 #footer h4 span {
 	font-family: HelveticaNeue-Light,HelveticaNeue, Helvetica, Arial, sans-serif;
 	font-weight: normal;

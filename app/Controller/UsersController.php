@@ -167,7 +167,5 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->redirect());
 	}
 
-	public function passForgot(){
-		
-	}
+	public function passForgot(){}
 }

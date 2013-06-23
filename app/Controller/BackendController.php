@@ -61,13 +61,29 @@ class BackendController extends AppController {
 		}
 	}
 
-	public function dashboard() {}
+	public function dashboard() {
+		if($this->Auth->user('role') != 'admin'){
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		}
+	}
 
-	public function editor() {}
+	public function editor() {
+		if($this->Auth->user('role') != 'editor'){
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		}
+	}
 
-	public function author() {}
+	public function author() {
+		if($this->Auth->user('role') != 'author'){
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		}
+	}
 
-	public function evaluator() {}
+	public function evaluator() {
+		if($this->Auth->user('role') != 'evaluator'){
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		}
+	}
 
 	public function logout() {
 		$this->redirect(array("controller" => "users", "action" => "logout"));
