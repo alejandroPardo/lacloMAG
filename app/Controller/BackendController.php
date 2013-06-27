@@ -25,7 +25,7 @@ class BackendController extends AppController {
 		    //'offset' => n, //int
 		    //'callbacks' => true //other possible values are false, 'before', 'after'
 		));
-		$pendingMessages = $this->MappedMessage->find('count', array('conditions' => array('MappedMessage.is_read' => 0)));
+		$pendingMessages = $this->MappedMessage->find('count', array('conditions' => array('MappedMessage.is_read' => 0, 'MappedMessage.user_id' => $this->Auth->user('id'))));
     	$this->set('pendingMessages', $pendingMessages);
 		$this->set('messages', $messages);
 
@@ -89,7 +89,9 @@ class BackendController extends AppController {
 		$this->redirect(array("controller" => "users", "action" => "logout"));
 	}
 
-	public function demo(){}
+	public function demo(){
+		$this->layout = 'demo';
+	}
 
 	public function profile(){
 		$this->set('usernameProfile', $this->Auth->user('username'));
@@ -105,4 +107,16 @@ class BackendController extends AppController {
 
 	public function prueba(){
 	}
+
+	/****************
+	/*
+	/*	Authors Functions
+	/*
+	/***************/
+
+	public function createArticle(){
+		
+	}
+
+
 }

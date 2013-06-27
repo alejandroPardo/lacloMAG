@@ -29,7 +29,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			<div id="header">
 				<ul class="con">
 					<li class="dashboard">
-						<a href="dashboard" rel='external' alt='Inicio'>&nbsp;</a>
+						<a href="index" rel='external' alt='Inicio'>&nbsp;</a>
 					</li>
 					<li class="count">
 						<span data-count="0">Notificaciones</span>
@@ -125,11 +125,10 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					?>
 				</div>
 			</div>
+			<input type="hidden" id="role" value=<?php echo $role;?>>
 			<div id="dashboard">
 				<div class="scroll con">
-					<div class="section current" title="Home" id="home">
-						<?php echo $this->fetch('content'); ?>
-					</div>
+					<?php echo $this->fetch('content'); ?>
 				</div>
 			</div>
 			<div id="footer">

@@ -66,14 +66,6 @@ $.initialize = function() {
 						} else {
 							$.info({desc: "The hash <strong>"+$(this).data("href")+"</strong> is not valid"});
 						}
-					} else {
-						var page = $(this).data("href");
-						var title = element.data("title");
-						
-						if(title==undefined) {
-							title = $(this).text();
-						}
-						$.change(page, title);
 					}
 				} else {
 					if ( $(this).hasAttr('data-modal') ) {
@@ -100,42 +92,11 @@ $.initialize = function() {
 			window.location.href = $(this).attr("data-href");
 		}
 	});
-	if (window.location.hash) {
-		var url = location.hash;
-		var caption = $(url).data("title");
-		window.location.hash = "";
-		$.change(url, caption);
-	} else {
-		var url = "#" + $(".section.current").attr("id");
-		var caption = $(url).data("title");
-		$.change(url, caption, true);
-	}
-	$(window).hashchange( function(){
-	    var page = location.hash;
-	    var title = $(page).data("title");
-	    if($(page).length>0) {
-		    $(".section.current").removeClass("current").hide();
-		    $('a[data-href*="#"].current').removeClass("current");
-		    
-		    $('a[data-href*="' + page + '"]').addClass("current");
-		    $(page).addClass("current").show();
-		    $(document).scrollTop(0);
-	    } else {
-	    	$.info({desc: "The page <strong>"+page+"</strong> was not found."});
-	    }
-	});	
 	// -------------------------------------------------------
 	
 	
 	// --------------- Add class to body ---------------
 	$("body").addClass("dashboard");
-	// -------------------------------------------------------
-	
-
-	// --------------- Check for touch devices ---------------
-	if (window.Touch) {
-		// Do
-	};
 	// -------------------------------------------------------
 
 
@@ -194,7 +155,6 @@ $.initialize = function() {
 			})
 			
 			$(this).append(round);
-			
 		}
 	});
 	// -------------------------------------------------------
@@ -311,9 +271,175 @@ $.initialize = function() {
 	// -------------------------------------------------------
 };
 
+/********************************************
+//
+//
+// FUNCIONES DE ADMIN BACKEND
+//
+/********************************************/
+
+
+$.admin = function(lastUrl) {
+
+	if(lastUrl == 'dashboard'){ // DASHBOARD DE AUTHOR
+		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
+		var data = [];
+		var series = Math.floor(Math.random()*7)+1;
+		for( var i = 0; i<series; i++) {
+			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+		}
+		
+		$.plot($("#pie_chart"), data,
+		{
+		       series: {
+		           pie: { 
+		               show: true
+		           }
+		       }
+		});
+		/////// END PIECHART 
+
+		//TO-DO DEL DASHBOARD CON LOS EFECTOS Y EL ALTERNATE DIMENSION
+		$("li.layer > ul").bind("tap", function() {
+			if( !$(this).hasClass("turn") ) {
+				$("li.layer > ul.turn").addClass("back").delay(800).queue(function(){ 
+					$(this).removeClass("turn");
+					$(this).removeClass("back");
+					$(this).clearQueue();
+				});
+				$(this).addClass("turn");
+			} else {
+				$(this).addClass("back").delay(800).queue(function(){ 
+					$(this).removeClass("turn");
+					$(this).removeClass("back");
+					$(this).clearQueue();
+				});
+			}
+		});
+		$("li.todo").each(function() {
+			$(this).prepend('<span class="box" />');
+		});
+		$("li.todo span").bind("tap", function() {
+			if( !$(this).parent("li.todo").hasClass("unchecked") ) {
+				$(this).parent("li.todo").removeClass("checked").addClass("unchecked");
+			} else {
+				$(this).parent("li.todo").removeClass("unchecked").addClass("checked");
+			}
+			return false;	
+		});
+		// TO-DO END
+
+		
+	}
+};
+
+/********************************************
+//
+//
+// FUNCIONES DE EDITOR BACKEND
+//
+/********************************************/
+
+
+$.editor = function(lastUrl) {
+
+	if(lastUrl == 'editor'){ // DASHBOARD DE AUTHOR
+		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
+		var data = [];
+		var series = Math.floor(Math.random()*7)+1;
+		for( var i = 0; i<series; i++) {
+			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+		}
+		
+		$.plot($("#pie_chart"), data,
+		{
+		       series: {
+		           pie: { 
+		               show: true
+		           }
+		       }
+		});
+		/////// END PIECHART 
+	}
+};
+
+/********************************************
+//
+//
+// FUNCIONES DE AUTHOR BACKEND
+//
+/********************************************/
+
+
+$.author = function(lastUrl) {
+
+	if(lastUrl == 'author'){ // DASHBOARD DE AUTHOR
+		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
+		var data = [];
+		var series = Math.floor(Math.random()*7)+1;
+		for( var i = 0; i<series; i++) {
+			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+		}
+		
+		$.plot($("#pie_chart"), data,
+		{
+		       series: {
+		           pie: { 
+		               show: true
+		           }
+		       }
+		});
+
+		/////// END PIECHART 
+	} else if (lastUrl == 'createArticle'){
+		var content = "**Hello**"
+		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");
+	}
+};
+
+/********************************************
+//
+//
+// FUNCIONES DE EVALUATOR BACKEND
+//
+/********************************************/
+
+
+$.evaluator = function(lastUrl) {
+
+	if(lastUrl == 'evaluator'){ // DASHBOARD DE AUTHOR
+		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
+		var data = [];
+		var series = Math.floor(Math.random()*7)+1;
+		for( var i = 0; i<series; i++) {
+			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+		}
+		
+		$.plot($("#pie_chart"), data,
+		{
+		       series: {
+		           pie: { 
+		               show: true
+		           }
+		       }
+		});
+		/////// END PIECHART 
+	}
+};
+
+
+
+
+
+
+
+/****** DEMO PARA USAR COMO REFERENCIA MIENTRAS TRABAJAMOS ********/
+
+/*
 //This $.demo function can easily be deleted without hurting core functionality - just be aware that demo won't function properly.
 $.demo = function() {
-	//Prospect to færdige funktioner
+
+	//TO-DO DEL DASHBOARD CON LOS EFECTOS Y EL ALTERNATE DIMENSION
 	$("li.layer > ul").bind("tap", function() {
 		if( !$(this).hasClass("turn") ) {
 			$("li.layer > ul.turn").addClass("back").delay(800).queue(function(){ 
@@ -341,7 +467,7 @@ $.demo = function() {
 		}
 		return false;	
 	});
-	// PROSPECT END
+	// TO-DO END
 	
 	// --------------- Validator -----------------------------
 	$('form#demo').isHappy({
@@ -723,12 +849,10 @@ $.demo = function() {
 	.table()
 	.pagination();
 	
-	/*$("#home").append('<ul class="round"><li class="current">Page one</li><li>Page two</li><li>Page three</li></ul>');*/
-	
 	// Bind events to the tiles
 	$("#article").bind("tap", function() {
 		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");
-		$.change("#text");	
+		$.change("#text");
 	});
 
 	$("#comment").bind("tap", function() {
@@ -792,51 +916,6 @@ $.demo = function() {
 		}
 	})
 	
-	//Retina demo
-		var left = 0;
-        var top = 0;
-        var sizes = { 
-						retina: { width:190, height:190 },
-		        		app:	{ width:220, height:330 } 
-					};
-        var retina;
-    	$("#iphone_con .retina").css("background-image","url(img/demo/screen.jpg)");
-    	$("#iphone_small_white .retina").css("background-image","url(img/demo/todo.jpg)");
-    	$("#iphone_small .retina").css("background-image","url(img/demo/maps.jpg)");
-        $('.screenshot').mousemove(function(e){
-        
-            offset  = { left: $(this).offset().left, top: $(this).offset().top };
-            title = $(this).attr('title');
-            retina  = $(this).children(".retina");
-            left = (e.pageX-offset.left);
-            top = (e.pageY-offset.top);
-            if(retina.is(':not(:animated):hidden')){
-                $(this).trigger('mouseenter');
-            }
-    
-            if(left<0 || top<0 || left > sizes.app.width ||
-                top > sizes.app.height)
-            {
-    
-                if(!retina.is(':animated')){
-                    $(this).trigger('mouseleave');
-                }
-                return false;
-            }
-    
-            retina.css({
-                left                : left - sizes.retina.width/2,
-                top                 : top - sizes.retina.height/2,
-                backgroundPosition  : '-'+(2.15*left)+'px -'+(2.5*top)+'px'
-            });
-    
-        }).mouseleave(function(){
-            $(this).children(".retina").fadeOut('fast');
-        }).mouseenter(function(){
-            $(this).children(".retina").hide();
-            $(this).children(".retina").fadeIn('fast');
-    });	
-	
 	$("#orbit_1").orbit(
 		{
 			animation: "rollIn",
@@ -866,7 +945,6 @@ $.demo = function() {
 	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
 		// IE8 doesn't like Canvas.
 	} else {
-
 	    var data = [];
 		var series = Math.floor(Math.random()*7)+1;
 		for( var i = 0; i<series; i++) {
@@ -987,10 +1065,22 @@ $.demo = function() {
 		}
 		
 	}
-}
+}*/
 
 // Initializing of the Pastel Dashboard!
 $(document).ready(function() {
 	$.initialize();
-	$.demo();
+	var url = window.location.pathname.split("/");
+    var lastUrl = url[url.length - 1];
+    var role = document.getElementById('role').value;
+
+    if(role == 'Administrador'){
+    	$.admin(lastUrl);
+    } else if(role == 'Autor'){
+    	$.author(lastUrl);
+    } else if(role == 'Editor'){
+    	$.editor(lastUrl);
+    } else if(role == 'Evaluador'){
+    	$.evaluator(lastUrl);
+    }
 });
