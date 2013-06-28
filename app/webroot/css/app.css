@@ -2326,6 +2326,46 @@ body.welcome #notifications {
 	background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
 	background-image: -moz-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
 }
+#forgot .forPass {
+	width: 100%;
+	margin-top: 20px;
+	height: 45px;
+	font: bold 14px/45px HelveticaNeue, Helvetica, Arial;
+	color: rgba(0,0,0,0.75);
+	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	-moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.2), 0px -1px 0px rgba(255,255,255,0.3) inset;
+	padding: 0px;
+	border-radius: 4px;
+	border: 0px solid;
+	background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.35));
+	background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.35));
+	background-color: #FFD000;
+	cursor: pointer;
+}
+#forgot .forPass:hover{
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+	background-image: -moz-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+}
+#forgot .forEmail input {
+	border: 1px solid #bbb; 
+	background: -webkit-linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2));
+	background: -moz-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0));
+	box-shadow: 0px 1px 0px black, rgba(0, 0, 0, .35) 0px 4px 5px -5px inset;
+	color: #fff;
+	font-weight: bold;
+}
+#forgot .forEmail {
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom: 0px solid;
+	box-shadow: rgba(0,0,0,0.4) 0px 6px 6px -6px inset;
+}
 #password input {
 	color: white;
 }

@@ -1,17 +1,9 @@
-<!--Log in screen-->
+<h1>Recuperar Contraseña</h1>
 
-	
-	<div id="overlayLogo">
-  		<?php echo $this->Html->image('bg.jpg', array('alt' => 'Overlay'));?>
-  		<?php echo $this->Html->image('logoLogin.png', array('alt' => 'Logo'));?>
+	<h4>Correo Electrónico</h4>
+	<div id="forgot">
+		<div class="forEmail"><input id="email" type="text" placeholder="Email o Username" /></div>
+		<br>
+		<button id="boton">Entrar</button>
+		<input type="submit" value="Recuperar Contraseña" class="forPass" />
 	</div>
-  	
-	
-	<div id="password">
-		<div class="input username"><input id="username" type="text" placeholder="Email o Username" /></div>
-		<div class="input password"><input id="pass" type="password" placeholder="Contraseña" /></div>
-		<button>Entrar</button>
-	</div>
-
-	
-

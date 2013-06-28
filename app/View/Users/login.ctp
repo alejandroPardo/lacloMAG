@@ -10,11 +10,16 @@
 	<div id="password">
 		<div class="input username"><input id="username" type="text" placeholder="Email o Username" /></div>
 		<div class="input password"><input id="pass" type="password" placeholder="Contraseña" /></div>
-		<button>Entrar</button>
+		<button id="boton">Entrar</button>
 		<div id="forgot">
-			<button>¿Olvidó su Clave?</button>
+			<div id="modals" class="tab">
+				<br>
+				<button><strong>¿Olvidó su Clave?</strong></button>
+			</div>
 		</div>
 	</div>
+
+	
 
 	
 

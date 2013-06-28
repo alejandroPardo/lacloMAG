@@ -207,6 +207,13 @@ jQuery.event.special.tap = {
 })(jQuery);
 
 $.initializeLogin = function() {
+	// --------------- Overlay initialization ----------------
+	$("body").append('<div id="overlays"></div>');
+	$("#overlays.dark").live("tap", function() {
+		$(this).removeClass("dark");
+		$("#overlays .modal").remove();
+	});
+	// -------------------------------------------------------
 	// Update
 	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
 		// IE8 doesn't like HTML!
@@ -228,12 +235,8 @@ $.initializeLogin = function() {
 
 	$("#password").addClass("animated flipInY").show();
 	$("#password .input.password input").focus();
-
-	$("#forgot button").bind("tap", function() {
-		document.location.href = "passForgot/";
-	});
 	
-	$("#password button").bind("tap", function() {
+	$("#password #boton").bind("tap", function() {
 		forgot();
 	});
 	
@@ -241,6 +244,28 @@ $.initializeLogin = function() {
 		if (event.which == 13) {
 			forgot();
 		}
+	});
+
+	$("#forgot #boton").bind("tap", function() {
+		$("#overlays .modal").remove();
+		$.notification( 
+		{
+			title: "le di al boton de forget pass",
+			content: "asdasd",
+			border: false,
+			showTime: false
+		});
+	});
+
+	// MODAL FORGOT PASSWORD
+	$("#modals button").bind("tap", function() {
+		var attr = $(this).attr("data-function");
+		var options;
+
+		options =  { animation: "flipInX", theme: "dark", url: "passForgot" };
+		
+		$("#buttons").modal(options);
+		
 	});
 	
 	function forgot() {
