@@ -207,19 +207,19 @@ jQuery.event.special.tap = {
 })(jQuery);
 
 $.initializeLogin = function() {
-	// --------------- Overlay initialization ----------------
-	$("body").append('<div id="overlays"></div>');
-	$("#overlays.dark").live("tap", function() {
-		$(this).removeClass("dark");
-		$("#overlays .modal").remove();
-	});
-	// -------------------------------------------------------
 	// Update
 	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
 		// IE8 doesn't like HTML!
 	} 
 	// Adding overlay to the body
 	$("body").addClass("welcome").append('<div id="overlays"></div>');
+
+	// --------------- Overlay initialization ----------------
+	$("#overlays.dark").live("tap", function() {
+		$(this).removeClass("dark");
+		$("#overlays .modal").remove();
+	});
+	// -------------------------------------------------------
 	
 	// Welcome notification
 	$.notification( 
@@ -234,7 +234,7 @@ $.initializeLogin = function() {
 	);
 
 	$("#password").addClass("animated flipInY").show();
-	$("#password .input.password input").focus();
+	$("#password .input.username input").focus();
 	
 	$("#password #boton").bind("tap", function() {
 		forgot();
@@ -246,17 +246,6 @@ $.initializeLogin = function() {
 		}
 	});
 
-	$("#forgot #boton").bind("tap", function() {
-		$("#overlays .modal").remove();
-		$.notification( 
-		{
-			title: "le di al boton de forget pass",
-			content: "asdasd",
-			border: false,
-			showTime: false
-		});
-	});
-
 	// MODAL FORGOT PASSWORD
 	$("#modals button").bind("tap", function() {
 		var attr = $(this).attr("data-function");
@@ -264,8 +253,61 @@ $.initializeLogin = function() {
 
 		options =  { animation: "flipInX", theme: "dark", url: "passForgot" };
 		
-		$("#buttons").modal(options);
+		$().modal(options);
+	});
+
+	$("#btnForgot").live("tap", function() {
+		if($("#forgot .forEmail input").attr("value")=='') {
+			$.notification( 
+				{
+					title: "Datos Incompletos",
+					content: "Para recuperar su contraseña debe ingresar su Correo Electrónico",
+					icon: "!"
+				}
+			);
+		} else {
+			/**
+			 * AJAX call to login the user
+			 */
+			var email = document.getElementById("email");
+
+			var data = {
+                'data[User][email]': email.value
+            }
+
+            $.ajax({
+				type: "POST",
+				url: "forgetPwd/",
+				data:  data,
+				dataType: "json",
+				success: function(response) {
+					// Response was a success
+					if (response.success) {
+						$.notification({
+							title: "Correo Electrónico enviado",
+							content: "Se enviaron a su correo electrónico los pasos para recuperar su contraseña",
+							icon: "!"
+						});
+					// Response contains errors
+					} else {
+						$.notification({
+							title: "Error al recuperar contraseña",
+							content: "No se pudo enviar su contraseña. ¿Escribió correctamente su correo electrónico?",
+							icon: "!",
+							error: true
+						});
+					}
+				}
+			});
+			$("#overlays").removeClass("dark");
+			$("#overlays .modal").remove();
+		}
 		
+	});
+
+	$("#btnForgotCancel").live("tap", function() {
+		$("#overlays").removeClass("dark");
+		$("#overlays .modal").remove();
 	});
 	
 	function forgot() {
@@ -308,7 +350,8 @@ $.initializeLogin = function() {
 							$.notification({
 								title: "Datos Incorrectos",
 								content: "Revise sus datos para continuar",
-								icon: "!"
+								icon: "!",
+								error: true
 							});
 						}
 					}
@@ -318,6 +361,104 @@ $.initializeLogin = function() {
 	}
 };
 
+$.initializeReset = function() {
+	// Update
+	if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+		// IE8 doesn't like HTML!
+	} 
+	// Adding overlay to the body
+	$("body").addClass("welcome").append('<div id="overlays"></div>');
+
+	$.notification( 
+		{
+			title: "Recuperar contraseña.",
+			content: "¡Ingrese la Nueva Contraseña!",
+			img: "../../img/logo-notification.png",
+			border: false,
+			timeout: false,
+			showTime: false
+		}
+	);
+
+	$("#forgot").addClass("animated flipInY").show();
+	$("#forgot .forEmail.first input").focus();
+	
+	
+	$("#forgot .forEmail.second input").keyup(function(event) {
+		if (event.which == 13) {
+			forgotpwd();
+		}
+	});
+
+	$("#btnRecover").bind("tap", function() {
+		forgotpwd();
+	});
+
+	function forgotpwd() {
+		if($("#forgot .forEmail.first input").attr("value")=='' || $("#forgot .forEmail.second input").attr("value")=='') {
+			$.notification( 
+				{
+					title: "Datos Incompletos",
+					content: "Debe completar ambos campos para continuar",
+					icon: "!"
+				}
+			);
+			$("#forgot").removeClass().addClass("animated wobble").delay(1000).queue(function(){});
+		} else {
+			if($("#forgot .forEmail.first input").attr("value") != $("#forgot .forEmail.second input").attr("value")) {
+				$.notification( 
+					{
+						title: "Datos Incorrectos",
+						content: "Las Contraseñas ingresadas son diferentes",
+						icon: "!"
+					}
+				);
+				$("#forgot").removeClass().addClass("animated wobble").delay(1000).queue(function(){});
+			} else {
+				/**
+				 * AJAX call to change the user password
+				 */
+				var password = document.getElementById("pass1");
+				var token = document.getElementById("token");
+
+				var data = {
+                    'data[User][password]': password.value,
+					'data[User][tokenhash]': token.value
+                }
+                
+                $.ajax({
+					type: "POST",
+					url: "../changePwd/",
+					data:  data,
+					dataType: "json",
+					success: function(response) {
+						// Response was a success
+						if (response.success) {
+							document.location.href = "../login/success";
+						// Response contains errors
+						} else {
+							$("#password").removeClass().addClass("animated wobble").delay(1000).queue(function(){ 
+							});
+							$.notification({
+								title: "Ocurrio un error",
+								content: "Actualice la página e intente nuevamente",
+								icon: "!",
+								error: true
+							});
+						}
+					}
+				});
+				return false;
+			}
+		}
+	}	
+};
+
+
+
 $(document).ready(function() {
-	$.initializeLogin();
+	var url = window.location.pathname.split("/");
+    var lastUrl = url[url.length - 2];
+    var lastUrl1 = url[url.length - 1];
+    if(lastUrl == 'reset'){$.initializeReset();} else {$.initializeLogin();}
 });

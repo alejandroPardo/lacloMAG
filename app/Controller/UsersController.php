@@ -7,10 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 	public $uses = array('Admin', 'Author', 'Editor', 'Evaluator', 'Reader', 'User');
+	var $components=array("Email","Session");
+	var $helpers=array("Html","Form","Session");
 
     function beforeFilter() {
         $this->layout = 'users';
-        $this->Auth->allow('add', 'verify', 'passForgot');
+        $this->Auth->allow('add', 'verify', 'passForgot', 'forgetPwd', 'reset', 'changePwd');
     }
 
 /**
@@ -69,34 +71,9 @@ class UsersController extends AppController {
 				
 				$this->Session->setFlash(__('The user has been saved '.$role));
 				$this->redirect(array('action' => 'index'));
-
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
-		}
-	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
 		}
 	}
 
@@ -167,7 +144,119 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->redirect());
 	}
 
+/**
+ * passForgot method
+ *
+ * renders passforgot modal
+ * @return 
+ */
 	public function passForgot(){
 		$this->layout = false;
+	}
+
+/**
+ * forgetpwd method
+ *
+ * verifies if user email data is correct and sends recovery token
+ * @return json response
+ */
+	function forgetPwd(){
+        $this->autoRender = false;
+        $this->User->recursive=-1;
+        if(!empty($this->data)){
+			$email=$this->data['User']['email'];
+            $fu=$this->User->find('first',array('conditions'=>array('User.email'=>$email)));
+            if($fu){
+            	//debug($fu);
+                $key = Security::hash(String::uuid(),'sha512',true);
+                $hash=sha1($fu['User']['username'].rand(0,100));
+                $url = Router::url(array('controller'=>'users','action'=>'reset'), true).'/'.$key.'#'.$hash;
+                $ms=$url;
+                $ms=wordwrap($ms,1000);
+                //debug($url);
+                $fu['User']['tokenhash']=$key;
+                $this->User->id=$fu['User']['id'];
+                if($this->User->saveField('tokenhash',$fu['User']['tokenhash'])){
+                    //============Email================//
+                    /* SMTP Options */
+                    $this->Email->smtpOptions = array(
+                        'port'=>'465',
+                        'host' => 'ssl://smtp.gmail.com',
+                        'username'=>'laclomag@gmail.com',
+                        'password'=>'Laclo1234'
+                    );
+
+                    $this->Email->template = 'resetpw';
+                    $this->Email->from    = 'LACLO Magazine <laclomag@gmail.com>';
+                    $this->Email->to      = $fu['User']['first_name'].'<'.$fu['User']['email'].'>';
+                    $this->Email->subject = 'Cambio de Contraseña LACLO Magazine';
+                    $this->Email->sendAs = 'both';
+
+                    $this->Email->delivery = 'smtp';
+                    $this->set('ms', $ms);
+                    $this->Email->send();
+                    $this->set('smtp_errors', $this->Email->smtpError);
+                    $this->Session->setFlash(__('Check Your Email To Reset your password', true));
+                    $response['success'] = true;
+
+                    //============EndEmail=============//
+                } else {
+					$response['success'] = false;
+                    $this->Session->setFlash("Error Generating Reset link");
+                }
+            } else {
+            	$response['success'] = false;
+                $this->Session->setFlash('Email does Not Exist');
+            }
+        }
+        echo json_encode($response);
+    }
+
+/**
+ * reset method
+ *
+ * changes user password with token
+ * @return json response
+ */
+	function reset($token=null){
+	    $this->User->recursive=-1;
+	    if(!empty($token)){
+	    	$this->set('token', $token);
+	        $u=$this->User->findBytokenhash($token);
+	        if($u){
+
+	        } else {
+	            $this->Session->setFlash('Something bad.', 'default', array(), 'bad');
+	        }
+	    } else {
+	        $this->redirect(array('action' => 'index'));
+	    }
+	}
+
+	public function changePwd(){
+		$this->autoRender = false;
+        if(!empty($this->data)){
+        	$token = $this->data['User']['tokenhash'];
+			$u=$this->User->findBytokenhash($token);
+			if($u){
+				$this->User->id=$u['User']['id'];
+
+	            $this->User->data=$this->data;
+	            $this->User->data['User']['username']=$u['User']['username'];
+	            $new_hash=sha1($u['User']['username'].rand(0,100));//created token
+	            $this->User->data['User']['tokenhash']=$new_hash;
+	            if($this->User->save($this->User->data)){
+	            	$response['success'] = true;
+	            	$this->Session->setFlash('Something good.', 'default', array(), 'good');
+	            } else {
+	            	$response['success'] = false;
+	            }
+			} else {
+				$response['success'] = false;
+			}
+        } else {
+        	$response['success'] = false;
+        }
+        echo json_encode($response);
 	}
 }
