@@ -8,7 +8,7 @@
   	
 	
 	<div id="password">
-		<div class="input username"><input id="username" type="text" placeholder="Email o Username" /></div>
+		<div class="input username"><input id="username" type="text" placeholder="Username" /></div>
 		<div class="input password"><input id="pass" type="password" placeholder="Contraseña" /></div>
 		<button id="boton">Entrar</button>
 		<div id="forgot">
