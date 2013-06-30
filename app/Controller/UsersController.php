@@ -178,7 +178,9 @@ class UsersController extends AppController {
                 $this->User->id=$fu['User']['id'];
                 if($this->User->saveField('tokenhash',$fu['User']['tokenhash'])){
                     //============Email================//
+
                     /* SMTP Options */
+
                     $this->Email->smtpOptions = array(
                         'port'=>'465',
                         'host' => 'ssl://smtp.gmail.com',
@@ -194,8 +196,10 @@ class UsersController extends AppController {
 
                     $this->Email->delivery = 'smtp';
                     $this->set('ms', $ms);
+                    $this->set('user', $fu['User']['first_name']);
                     $this->Email->send();
                     $this->set('smtp_errors', $this->Email->smtpError);
+
                     $this->Session->setFlash(__('Check Your Email To Reset your password', true));
                     $response['success'] = true;
 
@@ -215,8 +219,8 @@ class UsersController extends AppController {
 /**
  * reset method
  *
- * changes user password with token
- * @return json response
+ * verifies token
+ * 
  */
 	function reset($token=null){
 	    $this->User->recursive=-1;
@@ -233,6 +237,12 @@ class UsersController extends AppController {
 	    }
 	}
 
+/**
+ * changePwd method
+ *
+ * changes user password 
+ * @return json response
+ */
 	public function changePwd(){
 		$this->autoRender = false;
         if(!empty($this->data)){
