@@ -21,6 +21,7 @@ CREATE  TABLE IF NOT EXISTS `laclomag`.`users` (
   `last_login` DATETIME NULL ,
   `first_name` VARCHAR(50) NULL ,
   `last_name` VARCHAR(50) NULL ,
+  `tokenhash` VARCHAR(255) NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
@@ -221,16 +222,16 @@ DROP TABLE IF EXISTS `laclomag`.`reader_comments` ;
 CREATE  TABLE IF NOT EXISTS `laclomag`.`reader_comments` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `magazine_id` INT NULL ,
-  `user_id` INT NULL ,
+  `reader_id` INT NULL ,
   `comment` VARCHAR(255) NULL ,
   `created` DATETIME NULL ,
   `status` VARCHAR(20) NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   INDEX `magazine_id_idx` (`magazine_id` ASC) ,
-  INDEX `reader_id_idx` (`user_id` ASC) ,
+  INDEX `reader_id_idx` (`reader_id` ASC) ,
   CONSTRAINT `reader_comments_reader_id`
-    FOREIGN KEY (`user_id` )
+    FOREIGN KEY (`reader_id` )
     REFERENCES `laclomag`.`readers` (`id` )
     ON DELETE CASCADE
     ON UPDATE CASCADE,
