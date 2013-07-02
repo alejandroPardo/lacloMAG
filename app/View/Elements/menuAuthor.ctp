@@ -3,7 +3,7 @@
 	<span class="title"><strong>Dashboard</strong>/Inicio</span>
 	<span class="desc"><strong>Volver</strong> al inicio</span>
 </a>
-<a class="tile" id="article" href="createArticle" rel='external'>
+<a class="tile" href="createArticle" rel='external'>
 	<span class="vector">C</span>
 	<span class="title"><strong>Crear</strong> artículo</span>
 	<span class="desc"><strong>Nuevos</strong>/artículos</span>

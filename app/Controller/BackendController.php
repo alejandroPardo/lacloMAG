@@ -105,9 +105,6 @@ class BackendController extends AppController {
 		$this->layout = false;
 	}
 
-	public function prueba(){
-	}
-
 	/****************
 	/*
 	/*	Authors Functions
@@ -118,5 +115,12 @@ class BackendController extends AppController {
 		
 	}
 
+	public function uploadArticle(){
+		
+	}
+
+	public function addUpload() {
+		
+  	}
 
 }

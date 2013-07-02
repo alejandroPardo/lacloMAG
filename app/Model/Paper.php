@@ -3,7 +3,6 @@
 
     class Paper extends AppModel {
         public $name = 'Paper';
-        public $hasMany = array('MagazinePaper', 'PaperEvaluator', 'PaperComment', 'PaperAuthor', 'PaperEditor');
-        public $hasOne = 'PaperFile';
+        public $hasMany = array('MagazinePaper', 'PaperEvaluator', 'PaperComment', 'PaperAuthor', 'PaperEditor', 'PaperFile');
     }
 ?>

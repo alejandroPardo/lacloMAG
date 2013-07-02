@@ -9,16 +9,16 @@
 				<div class="wrapper padding">
 					<div class="profileData">
 						<form action="prueba" method="post">
-						<p>Nombres y Apellidos</p>
-						<p class="combine">
-							<input id="firstname" type="text" placeholder="Nombres" value=<?php echo $firstNameProfile;?> />
-							<input id ="lastname" type="text" placeholder="Last name" value=<?php echo $lastNameProfile;?> />
-						</p>
-						<p>Correo Electrónico</p>
-						<p>
-							<input id="email" type="text" placeholder="Correo Electrónico" value=<?php echo $emailProfile;?> />
-						</p>
-						<input type="submit" value="Modificar Datos" />
+							<p>Nombres y Apellidos</p>
+							<p class="combine">
+								<input id="firstname" type="text" placeholder="Nombres" value=<?php echo $firstNameProfile;?> />
+								<input id ="lastname" type="text" placeholder="Last name" value=<?php echo $lastNameProfile;?> />
+							</p>
+							<p>Correo Electrónico</p>
+							<p>
+								<input id="email" type="text" placeholder="Correo Electrónico" value=<?php echo $emailProfile;?> />
+							</p>
+							<input type="submit" value="Modificar Datos" />
 						</form>
 					</div>
 				</div>
