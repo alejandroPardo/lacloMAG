@@ -119,7 +119,7 @@ class BackendController extends AppController {
 		
 	}
 
-	public function addUpload() {
+	public function pendingAuthor() {
 		
   	}
 
