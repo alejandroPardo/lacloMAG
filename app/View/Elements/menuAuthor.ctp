@@ -14,7 +14,7 @@
 	<span class="desc"><strong>Archivo</strong> PDF externo</span>
 </a>
 <a class="tile" href="pendingAuthor" rel='external'>
-	<span class="vector count" data-count="7">=</span>
+	<span class="vector count" data-count= <?php echo $pendingArticles;?> >=</span>
 	<span class="title"><strong>Artículos</strong> pendientes</span>
 	<span class="desc"><strong>Revisiones</strong>/Asignaciones</span>
 </a>

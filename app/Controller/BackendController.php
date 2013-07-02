@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor');
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -33,6 +33,28 @@ class BackendController extends AppController {
 			$this->set('role', 'Administrador');
 		} else if($this->Auth->user('role') == 'author'){
 			$this->set('role', 'Autor');
+			$markers = $this->Paper->find('count', array('joins' => array(
+			    array(
+			        'table' => 'paper_authors',
+			        'alias' => 'PaperAuthor',
+			        'type' => 'inner',
+			        'foreignKey' => 'paper_id',
+			        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
+			    ),
+			    array(
+			        'table' => 'authors',
+			        'alias' => 'Author',
+			        'type' => 'inner',
+			        'foreignKey' => 'author_id',
+			        'conditions'=> array(
+			            'Author.id = PaperAuthor.author_id',
+			        )
+			    )
+			), 'conditions' => array('OR' => array('Paper.status' => 5, 'Paper.status' => 4,'Paper.status' => 3)), 
+			));
+		/*	$pendingArticles = $this->Paper->find('all', array('conditions' => array('Paper.status' => 6)));
+			$pend = $this->PaperAuthor->find('count', array('conditions' => array('PaperAuthor.paper_id' => $pendingArticles['id'], 'PaperAuthor.author_id' => $this->Auth->user('id'))));*/
+			$this->set('pendingArticles', $markers);
 		} else if($this->Auth->user('role') == 'editor'){
 			$this->set('role', 'Editor');
 		} else if($this->Auth->user('role') == 'evaluator'){
@@ -77,6 +99,7 @@ class BackendController extends AppController {
 		if($this->Auth->user('role') != 'author'){
 			$this->redirect(array("controller" => "users", "action" => "logout"));
 		}
+
 	}
 
 	public function evaluator() {
