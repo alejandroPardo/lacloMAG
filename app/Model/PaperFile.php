@@ -1,23 +1,34 @@
 <?php
-	App::uses('AuthComponent', 'Controller/Component');
+App::uses('AppModel', 'Model');
+/**
+ * PaperFile Model
+ *
+ * @property Paper $Paper
+ */
+class PaperFile extends AppModel {
 
-    class PaperFile extends AppModel {
-        public $name = 'PaperFile';
-        public $belongsTo = 'Paper';
+/**
+ * Display field
+ *
+ * @var string
+ */
+	public $displayField = 'name';
 
-	    var $actsAs = array( 
-	    	'Upload.Upload' => array( 
-	    		'file' => array( 
-	    			'fields' => array( 
-	    				'dir' => 'photo_dir' 
-	    			), 
-	    			'thumbsizes' => array( 
-	    				'80x80' => '80x80', 
-	    				'1280x768' => '1280x768'
-	    			), 
-	    			'thumbnailMethod'	=> 'php', 
-	    		) 
-	    	) 
-	    );
-    }
-?>
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Paper' => array(
+			'className' => 'Paper',
+			'foreignKey' => 'paper_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+}

@@ -21,24 +21,21 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->User->recursive=0;
-		$this->set('users', $this->paginate());
+		if($this->Auth->User()){
+			$this->redirect('logout');
+		} else {
+			$this->redirect('login');
+		}
 	}
 
 /**
- * view method
+ * login method
  *
- * @throws NotFoundException
- * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+	public function login() {
 	}
+
 
 /**
  * add method
@@ -76,30 +73,6 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Session->setFlash(__('User deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('User was not deleted'));
-		$this->redirect(array('action' => 'index'));
-	}
-
-	public function login(){}
-
 
 /**
  * verify method
