@@ -156,6 +156,8 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			</div>
 		</div>
 	</div>
+	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->element('sql_dump'); ?>
+
 </body>
 </html>

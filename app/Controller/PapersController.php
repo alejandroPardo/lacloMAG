@@ -38,10 +38,26 @@ class PapersController extends AppController {
     }
 
     public function uploadPaper() {
+
         if ($this->request->is('post')) {
-            
             $file = $this->data['Paper']['file'];
             debug($file);
+            die();
+
+            $this->Paper->create();
+            $data = array('name' => $this->data['Paper']['name']);
+            if ($this->Paper->save($data)) {
+                $this->PaperFile->create();
+                $data = array('name' => $file['name']);
+                if ($this->PaperFile->save($data)) {
+                    $this->Session->setFlash(__('The PaperFile has been saved '));
+                    $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
+
+                } else {
+                    $this->Session->setFlash(__('The PaperFile has not been saved '));
+                    $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
+                }
+            }
         }
     }
 
