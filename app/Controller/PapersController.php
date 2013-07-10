@@ -37,4 +37,12 @@ class PapersController extends AppController {
         $this->redirect(array("controller" => "backend", "action" => "index"));
     }
 
+    public function uploadPaper() {
+        if ($this->request->is('post')) {
+            
+            $file = $this->data['Paper']['file'];
+            debug($file);
+        }
+    }
+
 }

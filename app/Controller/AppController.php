@@ -34,6 +34,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    public $helpers = array('AjaxMultiUpload.Upload');
+    
     public $components = array(
         'Session',
         'Auth' => array(

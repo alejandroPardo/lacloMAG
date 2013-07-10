@@ -1,8 +1,5 @@
-<?php echo $this->Form->create('PaperFile', array('type' => 'file'));
-
-	echo $this->Form->input('name'); 
-	echo $this->Form->input('file', array('type' => 'file')); 
-
-	echo $this->Form->end(__('Submit'));
-
-?>
+<?php echo $this->Form->create('Paper', array('action' => 'uploadPaper')); ?>
+<br><br>
+<?php echo $this->Form->input('file', array('type' => 'file')); ?>
+<?php /*echo $this->Upload->edit('Papers', $user['id']);*/ ?>
+<?php echo $this->Form->end('Submit'); ?>
