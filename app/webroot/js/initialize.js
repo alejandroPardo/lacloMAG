@@ -392,8 +392,11 @@ $.author = function(lastUrl) {
 
 		/////// END PIECHART 
 	} else if (lastUrl == 'createArticle'){
-		var content = "**Hello**"
-		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");
+		$('#redactor_content').redactor({
+			imageUpload: 'uploadImage'
+		});
+		/*var content = "**Hello**"
+		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");*/
 	}
 };
 
