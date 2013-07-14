@@ -18,7 +18,7 @@
 							<p>
 								<input id="email" type="text" placeholder="Correo Electrónico" value=<?php echo $emailProfile;?> />
 							</p>
-							<input type="submit" value="Modificar Datos" />
+							<input type="submit" value="Modificar Datos" class="col full sugar" />
 						</form>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 							<p>
 								<input id="pass2" type="password" placeholder="Confirme Contraseña" />
 							</p>
-							<input type="submit" value="Cambiar Contraseña" />
+							<input type="submit" value="Cambiar Contraseña" class="full sugar" />
 						</form>
 					</div>
 				</div>

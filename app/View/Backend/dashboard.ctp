@@ -1,5 +1,4 @@
 <div class="section current">
-	<div class="row widgets">
 		<div id="pie" class="col sixty">
 			<div class="content">
 				<div class="heading">
