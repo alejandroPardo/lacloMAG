@@ -11,7 +11,7 @@
 			</textarea>
 			</div>
 			<br>
-			<input type="submit" value="Enviar" class="lime twenty"/>
+			<input type="submit" value="Enviar" class="lime twenty"/> <input type="submit" value="Guardar Previo" class="lime twenty"/>
 			<br><br>
 		</form>
 </div>

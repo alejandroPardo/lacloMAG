@@ -11,7 +11,7 @@
 <a class="tile" href="uploadArticle" rel='external'>
 	<span class="vector">I</span>
 	<span class="title"><strong>Subir</strong> artículo</span>
-	<span class="desc"><strong>Archivo</strong> PDF externo</span>
+	<span class="desc"><strong>Archivo PDF</strong> solo texto</span>
 </a>
 <a class="tile" href="pendingAuthor" rel='external'>
 	<span class="vector count" data-count= <?php echo $pendingArticles;?> >=</span>
