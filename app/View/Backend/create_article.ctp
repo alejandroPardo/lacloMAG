@@ -3,8 +3,7 @@
 		<div id="editor-textarea" class="column"></div>
 		<div id="editor-preview" class="column right"></div>
 	</div>-->
-	
-		<form action="" method="post" class="column full">
+		<form action="" method="post" class="column full" enctype="multipart/form-data">
 			<div class="carton container">
 			<textarea id="redactor_content" name="content">
 				<h2>Hello and welcome</h2>
