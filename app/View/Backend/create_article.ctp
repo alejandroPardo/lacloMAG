@@ -3,15 +3,20 @@
 		<div id="editor-textarea" class="column"></div>
 		<div id="editor-preview" class="column right"></div>
 	</div>-->
-		<form action="" method="post" class="column full" enctype="multipart/form-data">
+		<?php echo $this->Form->create('Paper', array('action' => 'createPaper', 'enctype' => 'multipart/form-data')); ?>
 			<div class="carton container">
 			<textarea id="redactor_content" name="content">
-				<h2>Hello and welcome</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<?php echo $content;?>
 			</textarea>
 			</div>
 			<br>
-			<input type="submit" value="Enviar" class="lime twenty"/> <input type="submit" value="Guardar Previo" class="lime twenty"/>
+			<p style="margin-left:5%;" >Nombre del Paper</p>
+			<p>
+				<input name="name" type="text" placeholder="Nombre del Paper" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" />
+				<input type="hidden" name="userid" value="<?php echo $author;?>" />
+				<input type="hidden" name="preview" value="<?php echo $preview;?>" />
+			</p>
+			<input type="submit" value="Enviar" name="send" class="lime twenty"> <input type="submit" value="Guardar Previo" name="send" class="lime twenty"/>
 			<br><br>
 		</form>
 </div>

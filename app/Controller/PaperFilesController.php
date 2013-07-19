@@ -9,6 +9,7 @@ require '../Vendor/WkHtmlToPdf.php';
 class PaperFilesController extends AppController {
 
 	public function index() {
+		
 	}
 
 	public function view($id = null) {

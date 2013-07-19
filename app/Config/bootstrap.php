@@ -72,7 +72,6 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
-CakePlugin::load('PdfViewer');
 CakePlugin::load('AjaxMultiUpload');
 
 /**

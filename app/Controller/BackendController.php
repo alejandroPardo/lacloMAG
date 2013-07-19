@@ -6,7 +6,8 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile');
+	public $userID;
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -33,6 +34,12 @@ class BackendController extends AppController {
 			$this->set('role', 'Administrador');
 		} else if($this->Auth->user('role') == 'author'){
 			$this->set('role', 'Autor');
+			$this->userID = $this->Author->find('all', array(
+			    'conditions' => array('user_id'=>$this->Auth->user('id')),
+			    'fields' => array('id')
+			));
+			$this->userID = $this->userID['0']['Author']['id'];
+
 			$markers = $this->Paper->find('count', array('joins' => array(
 			    array(
 			        'table' => 'paper_authors',
@@ -47,13 +54,11 @@ class BackendController extends AppController {
 			        'type' => 'inner',
 			        'foreignKey' => 'author_id',
 			        'conditions'=> array(
-			            'Author.id = PaperAuthor.author_id',
+			            'Author.id' => $this->userID,
 			        )
 			    )
 			), 'conditions' => array('OR' => array('Paper.status' => 5, 'Paper.status' => 4,'Paper.status' => 3)), 
 			));
-		/*	$pendingArticles = $this->Paper->find('all', array('conditions' => array('Paper.status' => 6)));
-			$pend = $this->PaperAuthor->find('count', array('conditions' => array('PaperAuthor.paper_id' => $pendingArticles['id'], 'PaperAuthor.author_id' => $this->Auth->user('id'))));*/
 			$this->set('pendingArticles', $markers);
 		} else if($this->Auth->user('role') == 'editor'){
 			$this->set('role', 'Editor');
@@ -135,11 +140,40 @@ class BackendController extends AppController {
 	/***************/
 
 	public function createArticle(){
-		
+		$this->set('author', $this->userID);
+		$paper = $this->Paper->find('first', array('joins' => array(
+		    array(
+		        'table' => 'paper_authors',
+		        'alias' => 'PaperAuthor',
+		        'type' => 'inner',
+		        'foreignKey' => 'paper_id',
+		        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
+		    ),
+		    array(
+		        'table' => 'authors',
+		        'alias' => 'Author',
+		        'type' => 'inner',
+		        'foreignKey' => 'author_id',
+		        'conditions'=> array(
+		            'Author.id' => $this->userID,
+		        )
+		    )
+		), 'conditions' => array('Paper.status' => 0), 
+		));
+		if (!empty($paper)) {
+			$this->set('content', $paper['PaperFile']['0']['raw']);
+			$this->set('name', $paper['PaperFile']['0']['name']);
+			$this->set('preview', $paper['Paper']['id']);
+		} else {
+			$this->set('content', '');
+			$this->set('name', '');
+			$this->set('preview', '0');
+		}
 	}
 
 	public function uploadArticle(){
-		
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 12)));
+		$this->set('paper', $paper['PaperFile']['raw']);
 	}
 
 	public function pendingAuthor() {
