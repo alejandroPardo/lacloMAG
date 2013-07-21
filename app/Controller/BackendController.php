@@ -129,6 +129,61 @@ class BackendController extends AppController {
 		$this->set('lastNameProfile', $this->Auth->user('last_name'));
 	}
 
+	public function changeUserData(){
+
+		if ($this->request->is('post')) {
+
+			$this->request->data['id']  = $this->Auth->user('id');
+			$userArray['User']['id'] =  $this->Auth->user('id');
+			$userArray['User']['first_name'] =  $this->request->data['first_name'];
+			$userArray['User']['last_name'] =  $this->request->data['last_name'];
+			$userArray['User']['email'] = $this->request->data['email'];
+			$this->User->id =$this->Auth->user('id');
+
+			if ($this->User->save($userArray)) {
+				
+				$this->Session->write('Auth', $this->User->read(null, $this->Auth->User('id')));
+	 			$this->redirect(array("controller" => "backend", "action" => "profile"));
+	 		}
+		}
+	}
+	public function changeUserPassword() {
+
+		if ($this->request->is('post')) {
+			
+			if ($this->request->data['pass1'] != '' && $this->request->data['pass2'] != '') {
+				
+				$currentUser = $this->User->read(null, $this->Auth->User('id'));
+
+				$currentPass = $currentUser['User']['password'];
+				$currentFormPass = AuthComponent::password($this->request->data['pass1']);
+
+				$newPass = $this->request->data['pass2'];
+				$newPassConfirmed = $this->request->data['pass3'];
+				
+				if ($currentPass == $currentFormPass && $newPass == $newPassConfirmed) {	
+					
+					$userArray['User']['id'] =  $this->Auth->user('id');
+					$userArray['User']['password'] = $this->request->data['pass2'];
+
+					if ($this->User->save($userArray)) {
+						$this->Session->setFlash(__('The user has been updated, please reenter your password'));
+			 			$this->redirect(array("controller" => "backend", "action" => "logout"));
+			 		}
+
+				} else {
+					$this->Session->setFlash(__('Datos Incorrectos'));
+					$this->redirect(array("controller" => "backend", "action" => "profile"));
+				}
+			} else {
+				$this->Session->setFlash(__('Faltan Datos'));
+				$this->redirect(array("controller" => "backend", "action" => "profile"));
+
+			}
+
+		}
+	}
+
 	public function ajax(){
 		$this->layout = false;
 	}
