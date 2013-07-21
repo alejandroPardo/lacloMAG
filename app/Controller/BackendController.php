@@ -59,6 +59,30 @@ class BackendController extends AppController {
 			    )
 			), 'conditions' => array('OR' => array('Paper.status' => 5, 'Paper.status' => 4,'Paper.status' => 3)), 
 			));
+			$papersPreviews = $this->Paper->find('count', array('joins' => array(
+			    array(
+			        'table' => 'paper_authors',
+			        'alias' => 'PaperAuthor',
+			        'type' => 'inner',
+			        'foreignKey' => 'paper_id',
+			        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
+			    ),
+			    array(
+			        'table' => 'authors',
+			        'alias' => 'Author',
+			        'type' => 'inner',
+			        'foreignKey' => 'author_id',
+			        'conditions'=> array(
+			            'Author.id' => $this->userID,
+			        )
+			    )
+			), 'conditions' => array('OR' => array('Paper.status' => 0)), 
+			));
+			if($papersPreviews>0){
+				$this->set('papersPreviews', '!');
+			} else {
+				$this->set('papersPreviews', '');
+			}
 			$this->set('pendingArticles', $markers);
 		} else if($this->Auth->user('role') == 'editor'){
 			$this->set('role', 'Editor');
@@ -220,7 +244,7 @@ class BackendController extends AppController {
 			$this->set('name', $paper['PaperFile']['0']['name']);
 			$this->set('preview', $paper['Paper']['id']);
 		} else {
-			$this->set('content', '');
+			$this->set('content', '<h1>Bienvenido al Creador de Artículos LACLOmagazine</h1><p>En el menú superior puede agregar fotos, tablas, cambiar colores de letra y fondo en las letras, cambiar la alineación del texto, agregar lineas horizontales y sangrías.</p><blockquote><span style="color: rgb(119, 119, 119); font-style: italic; line-height: 1.45em; -webkit-text-stroke-color: transparent;">Puede utilizar citas textuales remarcadas con este estilo.</span></blockquote><p></p><ol><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">También</span><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">&nbsp;puede numerar&nbsp;</span><br></li><li><span style="color: rgb(85, 85, 85); line-height: 1.45em; -webkit-text-stroke-color: transparent;">su contenido.</span><br></li></ol><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;"><ul><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">O agregarle una viñeta.</span><br></li><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">Utilizar <b>negritas</b>, <i>cursivas</i> o <strike>letras tachadas.</strike></span></li></ul></span><p></p>');
 			$this->set('name', '');
 			$this->set('preview', '0');
 		}

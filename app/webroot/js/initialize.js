@@ -391,14 +391,29 @@ $.author = function(lastUrl) {
 		});
 
 		/////// END PIECHART 
-	} else if (lastUrl == 'createArticle'){
+	} else if (lastUrl == 'createArticle') {
 		$('#redactor_content').redactor({
 			imageUpload: 'uploadImage'
 		});
-		/*var content = "**Hello**"
-		$.editor("../img/demo/editor.txt", "#editor-textarea", "#editor-preview");*/
 	}
 };
+
+function formBtn(){
+	if($("#paper").attr("value")=='') {
+		$.notification(
+			{
+				title: "Datos Incompletos",
+				content: "Debe introducir un nombre para el paper.",
+				icon: "!"
+			}
+		);
+		event.preventDefault();
+		evt.preventDefault();
+		window.event.returnValue = false;
+		return false;
+	}
+	return true;
+}
 
 /********************************************
 //
