@@ -3,20 +3,21 @@
 		<div id="editor-textarea" class="column"></div>
 		<div id="editor-preview" class="column right"></div>
 	</div>-->
-		<?php echo $this->Form->create('Paper', array('action' => 'createPaper', 'enctype' => 'multipart/form-data')); ?>
-			<div class="carton container">
-			<textarea id="redactor_content" name="content">
-				<?php echo $content;?>
-			</textarea>
-			</div>
-			<br>
-			<p style="margin-left:5%;" >Nombre del Paper</p>
-			<p>
-				<input name="name" type="text" placeholder="Nombre del Paper" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" />
-				<input type="hidden" name="userid" value="<?php echo $author;?>" />
-				<input type="hidden" name="preview" value="<?php echo $preview;?>" />
-			</p>
-			<input type="submit" value="Enviar" name="send" class="lime twenty"> <input type="submit" value="Guardar Previo" name="send" class="lime twenty"/>
-			<br><br>
-		</form>
+	<?php echo $this->Form->create('Paper', array('action' => 'createPaper', 'enctype' => 'multipart/form-data')); ?>
+		<div class="carton container">
+		<textarea id="redactor_content" name="content">
+			<?php echo $content;?>
+		</textarea>
+		</div>
+		<br>
+		<p style="margin-left:5%;" >Nombre del Paper</p>
+		<p>
+			<input name="name" type="text" placeholder="Nombre del Paper" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" id="paper" />
+			<input type="hidden" name="userid" value="<?php echo $author;?>" />
+			<input type="hidden" name="preview" value="<?php echo $preview;?>" />
+		</p>
+		<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onclick="return formBtn()" /> 
+		<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"  onClick="return formBtn();"/>
+		<br><br>
+	</form>
 </div>
