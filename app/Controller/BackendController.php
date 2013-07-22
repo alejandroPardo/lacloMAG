@@ -145,6 +145,12 @@ class BackendController extends AppController {
 		$this->layout = 'demo';
 	}
 
+	/****************
+	/*
+	/*	Common Role Functions
+	/*
+	/***************/	
+
 	public function profile(){
 		$this->set('usernameProfile', $this->Auth->user('username'));
 		$this->set('emailProfile', $this->Auth->user('email'));
@@ -206,10 +212,6 @@ class BackendController extends AppController {
 			}
 
 		}
-	}
-
-	public function ajax(){
-		$this->layout = false;
 	}
 
 	/****************

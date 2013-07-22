@@ -5,9 +5,9 @@
 	</div>-->
 	<?php echo $this->Form->create('Paper', array('action' => 'createPaper', 'enctype' => 'multipart/form-data')); ?>
 		<div class="carton container">
-		<textarea id="redactor_content" name="content">
-			<?php echo $content;?>
-		</textarea>
+			<textarea id="redactor_content" name="content">
+				<?php echo $content;?>
+			</textarea>
 		</div>
 		<br>
 		<p style="margin-left:5%;" >Nombre del Paper</p>

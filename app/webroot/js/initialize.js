@@ -408,8 +408,6 @@ function formBtn(){
 			}
 		);
 		event.preventDefault();
-		evt.preventDefault();
-		window.event.returnValue = false;
 		return false;
 	}
 	return true;

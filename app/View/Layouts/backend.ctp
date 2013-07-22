@@ -26,15 +26,15 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 	?>
 </head>
 <body>
-
-		<?php if($this->Session->check('Message.flash')){ 
+	<?php 
+		if($this->Session->check('Message.flash')){ 
 			echo "<script>";
-			echo "$(document).ready(function(){";
-   		    echo "$.notification({ title: 'Notificación al Usuario.', content: ' ".$this->Session->flash()."', icon: '!', border: false });";
-   		       		 echo "});";
-  		 echo "</script>";
-  		 }
-  		 ?>
+				echo "$(document).ready(function(){";
+				    echo "$.notification({ title: 'Notificación al Usuario.', content: ' ".$this->Session->flash()."', icon: '!', border: false });";
+				echo "});";
+			echo "</script>";
+		}
+	?>
 			
 	<div id="container">
 		<div id="content">
