@@ -1,6 +1,6 @@
 <div class="section current">
 	<div class="row widgets">
-		<div id="pie" class="col sixty">
+		<div id="pie" class="col sixty" style="height:500px;">
 			<div class="content">
 				<div class="heading">
 					<h4><span>Datos del </span>Usuario</h4>
@@ -18,13 +18,14 @@
 							<p>
 								<input id="email" name="email" type="text" placeholder="Correo Electrónico" value=<?php echo $emailProfile;?> />
 							</p>
+							<br/><br/><br/><br/><br/><br/>
 							<input type="submit" value="Modificar Datos" class="col full sugar" />
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="pie" class="col fourty last">
+		<div id="pie" class="col fourty last" style="height:500px;">
 			<div class="content">
 				<div class="heading">
 					<h4><span>Cambiar</span> contraseña</h4>
