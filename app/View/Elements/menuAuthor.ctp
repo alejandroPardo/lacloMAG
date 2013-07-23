@@ -4,7 +4,7 @@
 	<span class="desc"><strong>Volver</strong> al inicio</span>
 </a>
 <a class="tile" href="createArticle" rel='external'>
-	<span class="vector count" data-count= <?php echo $papersPreviews;?>>C</span>
+	<span <?php if($papersPreviews!='0'){ echo "class='vector count' data-count='".$papersPreviews."'";} else { echo "class='vector'";}?> >C</span>
 	<span class="title"><strong>Crear</strong> artículo</span>
 	<span class="desc"><strong>Nuevos</strong>/artículos</span>
 </a>

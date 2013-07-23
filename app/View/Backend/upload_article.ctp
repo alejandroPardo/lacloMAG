@@ -5,7 +5,7 @@
 <?php /*echo $this->Upload->edit('Papers', $user['id']);*/ ?>
 <?php echo $this->Form->end('Submit'); ?>
 <div class="section padding current">
-	<div id="redactor_box" class="carton container redactor_box ">
+	<div class="redactor_box redactor_editor">
 		<?php echo $paper; ?>
 	</div>
 </div>
