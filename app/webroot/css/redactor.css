@@ -26,7 +26,7 @@ body .redactor_box_fullscreen {
     z-index: 2000;
 }
 
-.redactor_box textarea {
+.redactor_box {
 	font-family: Menlo, Monaco, monospace, sans-serif;
 	font-size: 13px;
 	overflow: auto;
@@ -38,7 +38,6 @@ body .redactor_box_fullscreen {
 	z-index: 1004;
 	outline: none;
 	border: none;
-	width: 100%;
 }
 
 .redactor_editor,

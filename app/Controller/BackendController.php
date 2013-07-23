@@ -81,7 +81,7 @@ class BackendController extends AppController {
 			if($papersPreviews>0){
 				$this->set('papersPreviews', '!');
 			} else {
-				$this->set('papersPreviews', '');
+				$this->set('papersPreviews', '0');
 			}
 			$this->set('pendingArticles', $markers);
 		} else if($this->Auth->user('role') == 'editor'){
@@ -253,11 +253,15 @@ class BackendController extends AppController {
 	}
 
 	public function uploadArticle(){
-		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 12)));
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 13)));
 		$this->set('paper', $paper['PaperFile']['raw']);
 	}
 
 	public function pendingAuthor() {
+		
+  	}
+
+  	public function articleAuthor() {
 		
   	}
 

@@ -5463,7 +5463,7 @@ Showdown.converter = function () {
 			};
 			
 			this.defaults = {
-				size: 15,
+				size: 5,
 				offset: 0,
 				page: 0,
 				extended: false,

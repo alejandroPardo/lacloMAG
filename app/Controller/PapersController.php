@@ -13,8 +13,8 @@ class PapersController extends AppController {
 
     public function createReport() {
 
-        $data = $this->User->find('all');
-        $this->set('data', $data);
+        $paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 12)));
+        $this->set('data', $paper);
 
         // grab the html that is rendered in the view
         $view = new View($this);

@@ -1,4 +1,4 @@
-<!-- expense report -->
+<?php echo $data; ?><!-- expense report -->
 <html>
 <body>
   <h3>Expense Report</h3>

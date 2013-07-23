@@ -395,7 +395,17 @@ $.author = function(lastUrl) {
 		$('#redactor_content').redactor({
 			imageUpload: 'uploadImage'
 		});
+	} else if (lastUrl == 'pendingAuthor') {
+		$("table")
+			.table()
+			.pagination({extended: true});
 	}
+	 else if (lastUrl == 'articleAuthor') {
+		$("table")
+			.table()
+			.pagination({extended: true});
+	}
+	
 };
 
 function formBtn(){
