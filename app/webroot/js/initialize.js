@@ -399,12 +399,15 @@ $.author = function(lastUrl) {
 		$("table")
 			.table()
 			.pagination({extended: true});
-	}
-	 else if (lastUrl == 'articleAuthor') {
+	} else if (lastUrl == 'articleAuthor') {
 		$("table")
 			.table()
 			.pagination({extended: true});
+	} else if (lastUrl == 'uploadArticle') {
+		$.editor("../files/editor.txt", "#editor-textarea");
 	}
+
+	
 	
 };
 

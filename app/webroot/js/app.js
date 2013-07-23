@@ -5498,7 +5498,7 @@ Showdown.converter = function () {
 					}
 					
 					if(config.extended==true) {
-						pager.prepend('<button class="first">First</button><button class="prev sugar">Previous</button><button class="next red">Next</button><button class="last">Last</button>');
+						pager.prepend('<button class="first">Primero</button><button class="prev sugar">Anterior</button><button class="next red">Siguiente</button><button class="last">Último</button>');
 						$('.first',pager).click(function() {
 							moveToFirstPage(table);
 							return false;
