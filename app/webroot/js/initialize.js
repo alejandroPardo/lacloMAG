@@ -406,9 +406,6 @@ $.author = function(lastUrl) {
 	} else if (lastUrl == 'uploadArticle') {
 		$.editor("../files/editor.txt", "#editor-textarea");
 	}
-
-	
-	
 };
 
 function formBtn(){

@@ -57,7 +57,7 @@ class BackendController extends AppController {
 			            'Author.id' => $this->userID,
 			        )
 			    )
-			), 'conditions' => array('OR' => array('Paper.status' => 5, 'Paper.status' => 4,'Paper.status' => 3)), 
+			), 'conditions' => array('OR' => array('Paper.status' => 'ASIGNED', 'Paper.status' => 'REJECTED' ,'Paper.status' => 'APPROVED')), 
 			));
 			$papersPreviews = $this->Paper->find('count', array('joins' => array(
 			    array(
@@ -76,7 +76,7 @@ class BackendController extends AppController {
 			            'Author.id' => $this->userID,
 			        )
 			    )
-			), 'conditions' => array('OR' => array('Paper.status' => 0)), 
+			), 'conditions' => array('OR' => array('Paper.status' => 'UNSENT')), 
 			));
 			if($papersPreviews>0){
 				$this->set('papersPreviews', '!');
@@ -239,7 +239,7 @@ class BackendController extends AppController {
 		            'Author.id' => $this->userID,
 		        )
 		    )
-		), 'conditions' => array('Paper.status' => 0), 
+		), 'conditions' => array('Paper.status' => 'UNSENT'), 
 		));
 		if (!empty($paper)) {
 			$this->set('content', $paper['PaperFile']['0']['raw']);

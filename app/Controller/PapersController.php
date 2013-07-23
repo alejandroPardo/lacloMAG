@@ -66,9 +66,9 @@ class PapersController extends AppController {
             $this->Paper->create();
 
             if($this->data['send']=='Enviar'){
-                $data = array('name' => $this->data['name'], 'status' => '1');
+                $data = array('name' => $this->data['name'], 'status' => 'SENT');
             } else {
-                $data = array('name' => $this->data['name'], 'status' => '0');
+                $data = array('name' => $this->data['name'], 'status' => 'UNSENT');
             }
             if($this->data['preview']==0){
                 if ($this->Paper->save($data)) {
