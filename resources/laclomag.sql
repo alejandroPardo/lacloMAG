@@ -325,7 +325,7 @@ CREATE TABLE `papers` (
   `name` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
+  `status` enum('UNSENT','SENT','RECEIVED', 'ASIGNED', 'ONREVISION', 'REJECTED', 'APPROVED', 'CONFIRMED') NOT NULL DEFAULT 'UNSENT',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
