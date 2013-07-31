@@ -295,4 +295,21 @@ class BackendController extends AppController {
 		    
 		}
   	}
+
+  	/*Editor Section*/
+
+  	public function viewArticlesEditor () {
+  	}
+
+  	public function viewPendingArticlesEditor() {
+
+  	}
+
+  	public function viewCurrentMagEditor() {
+
+  	}
+
+  	public function viewArticlesArchiveEditor() {
+  		
+  	}
 }

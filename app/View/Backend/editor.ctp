@@ -3,7 +3,7 @@
 		<div id="pie" class="col sixty">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Ejemplar</span> Actual</h4>
+					<h4><span>Revista</span> Actual</h4>
 					<span>Progreso en el próximo ejemplar a publicar</span>
 				</div>
 				<div class="wrapper padding">
