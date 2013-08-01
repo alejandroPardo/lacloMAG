@@ -35,7 +35,7 @@ class PaperFilesController extends AppController {
 			));
 
 			// decode the database and add the html to the pdf
-			$html = base64_decode($pdf_file['PaperFile']['raw']);
+			$html = $pdf_file['PaperFile']['raw'];
 			$pdf->addPage($html);
 
 			$this->set('htm', $html);

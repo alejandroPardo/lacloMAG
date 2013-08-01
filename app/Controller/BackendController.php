@@ -40,49 +40,29 @@ class BackendController extends AppController {
 			));
 			$this->userID = $this->userID['0']['Author']['id'];
 
-			$markers = $this->Paper->find('count', array('joins' => array(
-			    array(
-			        'table' => 'paper_authors',
-			        'alias' => 'PaperAuthor',
-			        'type' => 'inner',
-			        'foreignKey' => 'paper_id',
-			        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
-			    ),
-			    array(
-			        'table' => 'authors',
-			        'alias' => 'Author',
-			        'type' => 'inner',
-			        'foreignKey' => 'author_id',
-			        'conditions'=> array(
-			            'Author.id' => $this->userID,
-			        )
-			    )
-			), 'conditions' => array('OR' => array('Paper.status' => 'ASIGNED', 'Paper.status' => 'REJECTED' ,'Paper.status' => 'APPROVED')), 
-			));
-			$papersPreviews = $this->Paper->find('count', array('joins' => array(
-			    array(
-			        'table' => 'paper_authors',
-			        'alias' => 'PaperAuthor',
-			        'type' => 'inner',
-			        'foreignKey' => 'paper_id',
-			        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
-			    ),
-			    array(
-			        'table' => 'authors',
-			        'alias' => 'Author',
-			        'type' => 'inner',
-			        'foreignKey' => 'author_id',
-			        'conditions'=> array(
-			            'Author.id' => $this->userID,
-			        )
-			    )
-			), 'conditions' => array('OR' => array('Paper.status' => 'UNSENT')), 
-			));
+			$markers = $this->Paper->PaperAuthor->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
+	  					'Author.id' => $this->userID
+	  				),
+	  			)
+	  		);
+
+			$papersPreviews = $this->Paper->PaperAuthor->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.status' => array('UNSENT'),
+	  					'Author.id' => $this->userID
+	  				),
+	  			)
+	  		);
 			if($papersPreviews>0){
 				$this->set('papersPreviews', '!');
 			} else {
 				$this->set('papersPreviews', '0');
 			}
+
 			$this->set('pendingArticles', $markers);
 		} else if($this->Auth->user('role') == 'editor'){
 			$this->set('role', 'Editor');
@@ -128,7 +108,6 @@ class BackendController extends AppController {
 		if($this->Auth->user('role') != 'author'){
 			$this->redirect(array("controller" => "users", "action" => "logout"));
 		}
-
 	}
 
 	public function evaluator() {
@@ -222,25 +201,14 @@ class BackendController extends AppController {
 
 	public function createArticle(){
 		$this->set('author', $this->userID);
-		$paper = $this->Paper->find('first', array('joins' => array(
-		    array(
-		        'table' => 'paper_authors',
-		        'alias' => 'PaperAuthor',
-		        'type' => 'inner',
-		        'foreignKey' => 'paper_id',
-		        'conditions'=> array('PaperAuthor.paper_id = Paper.id')
-		    ),
-		    array(
-		        'table' => 'authors',
-		        'alias' => 'Author',
-		        'type' => 'inner',
-		        'foreignKey' => 'author_id',
-		        'conditions'=> array(
-		            'Author.id' => $this->userID,
-		        )
-		    )
-		), 'conditions' => array('Paper.status' => 'UNSENT'), 
-		));
+		$paper = $this->Paper->PaperAuthor->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.status' => array('UNSENT'),
+	  					'Author.id' => $this->userID
+	  				),
+	  			)
+	  		);
 		if (!empty($paper)) {
 			$this->set('content', $paper['PaperFile']['0']['raw']);
 			$this->set('name', $paper['PaperFile']['0']['name']);
@@ -258,10 +226,34 @@ class BackendController extends AppController {
 	}
 
 	public function pendingAuthor() {
-		
+		$papers = $this->Paper->PaperAuthor->find('all',
+  			array(
+  				'conditions' => array(
+  					'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
+  					'Author.id' => $this->userID
+  				),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
   	}
 
+
   	public function articleAuthor() {
+  		
+  	}
+
+  	public function renderArticle(){
+  		debug(intval($this->params['url']['file']));
   		
   	}
 
