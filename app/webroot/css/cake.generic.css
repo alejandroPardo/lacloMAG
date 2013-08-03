@@ -406,6 +406,11 @@ form .error-message {
 	padding: 5px;
 }
 
+.cake-debug-output
+{
+	background-color: #FFFFFF !important;
+}
+
 .success,
 .message,
 .cake-error,

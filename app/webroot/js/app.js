@@ -6495,13 +6495,13 @@ var previousPoint = null;
 $.editor = function(url, textarea, preview, text) {
 	if(url!=undefined  || text!=undefined) {
 		if(textarea==undefined) {
-			$.notification( 
+			/*$.notification( 
 				{
 					title: "Not enough parameters were provided",
 					content: "Please check the documentation for the editor.",
 					error: true
 				}
-			);
+			);*/
 			return false;
 		}
 		

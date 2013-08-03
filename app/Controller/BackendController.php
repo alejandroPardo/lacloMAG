@@ -291,6 +291,18 @@ class BackendController extends AppController {
   	/*Editor Section*/
 
   	public function viewArticlesEditor () {
+
+  		$aceptedArticles = $this->Paper->PaperAuthor->find('all',
+  			array(
+  				'conditions' => array(
+  					'Paper.status' => array('SENT','UNSENT'),
+  					'Author.id' => 2
+  				),
+  			)
+  		);
+  		debug($aceptedArticles);
+  		die();
+
   	}
 
   	public function viewPendingArticlesEditor() {
@@ -302,6 +314,6 @@ class BackendController extends AppController {
   	}
 
   	public function viewArticlesArchiveEditor() {
-  		
+
   	}
 }

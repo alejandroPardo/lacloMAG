@@ -8909,3 +8909,9 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 	-moz-box-shadow: rgba(0,0,0,0.3) 0px -5px 0px inset;
 	box-shadow: rgba(0,0,0,0.3) 0px -5px 0px inset;
 }
+
+.cake-debug
+{
+	background-color: #FFFFFF;
+	overflow-y: scroll; 
+}
