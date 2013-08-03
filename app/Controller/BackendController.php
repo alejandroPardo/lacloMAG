@@ -292,20 +292,31 @@ class BackendController extends AppController {
 
   	public function viewArticlesEditor () {
 
-  		$aceptedArticles = $this->Paper->PaperAuthor->find('all',
+  		$papers = $this->Paper->PaperAuthor->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => array('SENT','UNSENT'),
-  					'Author.id' => 2
+  					/*'Paper.status' => array('SENT','UNSENT'),
+  					'Author.id' => 2*/
   				),
+  				'recursive' => 2
   			)
   		);
-  		debug($aceptedArticles);
-  		die();
-
+  		$this->set('papers', $papers);
+  		//debug($papers);
   	}
 
   	public function viewPendingArticlesEditor() {
+  		$papers = $this->Paper->PaperAuthor->find('all',
+  			array(
+  				'conditions' => array(
+  					/*'Paper.status' => array('SENT','UNSENT'),
+  					'Author.id' => 2*/
+  				),
+  				'recursive' => 2
+  			)
+  		);
+  		$this->set('papers', $papers);
+  		//debug($papers);
 
   	}
 
