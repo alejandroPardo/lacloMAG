@@ -8913,5 +8913,8 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 .cake-debug
 {
 	background-color: #FFFFFF;
-	overflow-y: scroll; 
+	overflow-y: scroll;
+	position: absolute;
+	height: 100%;
+	z-index: 10000;
 }
