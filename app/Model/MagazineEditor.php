@@ -3,6 +3,6 @@
 
     class MagazineEditor extends AppModel {
         public $name = 'MagazineEditor';
-        public $belongsTo = array('MagazineEditor', 'Editor');
+        public $belongsTo = array('Magazine', 'Editor');
     }
 ?>
