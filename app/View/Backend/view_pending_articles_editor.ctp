@@ -23,4 +23,4 @@
         </td>
     </tr>
 <?php endforeach; ?>
-    </table>
+</table>

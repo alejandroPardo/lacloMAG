@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor');
 	public $userID;
 
 	function beforeFilter() {
@@ -321,7 +321,16 @@ class BackendController extends AppController {
   	}
 
   	public function viewCurrentMagEditor() {
-
+  		$magazines = $this->Magazine->MagazineEditor->find('first',
+  			array(
+  				'conditions' => array(
+  					'Magazine.status' => array('ACTUAL'),
+  					'Editor.user_id' =>$this->Auth->user('id'),
+  				),
+  				//'recursive' => 2
+  			)
+  		);
+  		$this->set('magazine', $magazines);
   	}
 
   	public function viewArticlesArchiveEditor() {
