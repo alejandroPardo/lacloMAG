@@ -158,10 +158,15 @@ CREATE TABLE `magazines` (
   `modified` datetime DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `exemplary` int(11) DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
+  `status` enum('ACTUAL','ARCHIVED','ONCONSTRUCTION') NOT NULL DEFAULT 'ONCONSTRUCTION',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `magazines`
+-- ----------------------------
+INSERT INTO `laclomag`.`magazines` (`id`, `name`, `created`, `modified`, `title`, `exemplary`, `status`) VALUES (NULL, 'Mag Agosto', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'AugustMag', '1231', 'ACTUAL'), (NULL, 'Mag Julio', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'Mag Julio', '1231', 'ONCONSTRUCTION');
 
 -- ----------------------------
 --  Table structure for `mapped_messages`
@@ -395,7 +400,8 @@ CREATE TABLE `users` (
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('1', 'ale', 'alejandro.pardo.r@gmail.com', 'f6caa9aaf55160618260aac07fab499a70e8e941', 'admin', '2013-06-29 15:43:00', '2013-07-10 16:22:29', '2013-07-02 19:14:10', 'Alejandro', 'Pardo', '1b8fb4d1830b5cea8564c11e61c981fb50d34576'), ('2', 'author', 'author@laclomag.com', 'f6caa9aaf55160618260aac07fab499a70e8e941', 'author', '2013-06-29 15:43:00', '2013-07-10 21:21:33', '2013-07-10 21:21:33', 'Test', 'Author', '384b05616ce2e1c3495c82573aa388e4fbfdfa85a4329453f2e6abe96c10f00485c81adf61851c2ce66cbb295d2addd2715eb9e5c2c4948bd6263a97cc425fd2');
+INSERT INTO `users` VALUES ('1', 'ale', 'alejandro.pardo.r@gmail.com', 'f6caa9aaf55160618260aac07fab499a70e8e941', 'admin', '2013-06-29 15:43:00', '2013-07-10 16:22:29', '2013-07-02 19:14:10', 'Alejandro', 'Pardo', '1b8fb4d1830b5cea8564c11e61c981fb50d34576'), ('2', 'author', 'author@laclomag.com', 'f6caa9aaf55160618260aac07fab499a70e8e941', 'author', '2013-06-29 15:43:00', '2013-07-10 21:21:33', '2013-07-10 21:21:33', 'Test', 'Author', '384b05616ce2e1c3495c82573aa388e4fbfdfa85a4329453f2e6abe96c10f00485c81adf61851c2ce66cbb295d2addd2715eb9e5c2c4948bd6263a97cc425fd2')
+ ('3', 'editor', 'editor@laclomag.com', 'f6caa9aaf55160618260aac07fab499a70e8e941', 'editor', '2013-06-29 15:43:00', '2013-07-10 21:21:33', '2013-07-10 21:21:33', 'Test', 'Editor', '384b05616ce2e1c3495c82573aa388e4fbfdfa85a4329453f2e6abe96c10f00485c81adf61851c2ce66cbb295d2addd2715eb9e5c2c4948bd6263a97cc425fd2');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
