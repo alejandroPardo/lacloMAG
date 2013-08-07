@@ -292,15 +292,29 @@ class BackendController extends AppController {
 
   	public function viewArticlesEditor () {
 
-  		$papers = $this->Paper->PaperAuthor->find('all',
+  		$this->Paper->Behaviors->load('Containable');
+  		$papers = $this->Paper->find('all',
   			array(
-  				'conditions' => array(
-  					/*'Paper.status' => array('SENT','UNSENT'),
-  					'Author.id' => 2*/
+  				'contain' => array(
+  					'PaperAuthor' =>array(
+  						'fields' => array('author_id'),
+  						'Author' => array(
+  							'fields' => array('id'),
+  							'User' => array(
+  								'fields' => array('first_name','last_name')
+  								)
+  							)
+  						),
+					'MagazinePaper' => array(
+						'fields' => array('id'),
+						'Magazine' => array(
+							'fields' => 'name'
+						)
+					)
   				),
-  				'recursive' => 2
   			)
   		);
+
   		$this->set('papers', $papers);
   		//debug($papers);
   	}
