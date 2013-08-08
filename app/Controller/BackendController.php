@@ -280,7 +280,7 @@ class BackendController extends AppController {
 
 		    // displaying file    
 			$array = array(
-				'filelink' => '../files/'.$filename
+				'filelink' => '..'.DS.'files'.DS.$filename
 			);
 			
 			echo stripslashes(json_encode($array));   

@@ -73,6 +73,7 @@ Cache::config('default', array('engine' => 'File'));
  */
 
 CakePlugin::load('AjaxMultiUpload');
+CakePlugin::load('CakePdf', array('bootstrap' => true));
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
@@ -94,6 +95,15 @@ Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'
 ));
+
+Configure::write('CakePdf', array(
+    'engine' => 'CakePdf.WkHtmlToPdf',
+    'orientation' => 'portrait',
+    'pagesize' => 'A4',
+    'download' => true
+));
+
+Configure::write('WkHtmlToPdf.binary', APP . 'Vendor/wkhtmltopdf.app/Contents/MacOS/wkhtmltopdf');
 
 /**
  * Configures default file logging options

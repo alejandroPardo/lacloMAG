@@ -41,7 +41,8 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'backend', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
-        )
+        ),
+        'RequestHandler'
     );
 
     public function beforeFilter(){
