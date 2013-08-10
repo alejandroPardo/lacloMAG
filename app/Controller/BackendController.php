@@ -249,7 +249,24 @@ class BackendController extends AppController {
 
 
   	public function articleAuthor() {
-  		
+  		$papers = $this->Paper->PaperAuthor->find('all',
+  			array(
+  				'conditions' => array(
+  					'Author.id' => $this->userID
+  				),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
   	}
 
   	public function renderArticle(){
@@ -280,7 +297,7 @@ class BackendController extends AppController {
 
 		    // displaying file    
 			$array = array(
-				'filelink' => '..'.DS.'files'.DS.$filename
+				'filelink' => '../files'.DS.$filename
 			);
 			
 			echo stripslashes(json_encode($array));   

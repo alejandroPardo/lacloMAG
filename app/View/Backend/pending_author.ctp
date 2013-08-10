@@ -4,8 +4,8 @@
 			<thead>
 				<tr>
 					<th>Nombre del Paper</th>
-					<th>Status</th>
 					<th>Creado</th>
+					<th>Status</th>
 					<th style="width: 20px">Descargar</th>
 				</tr>
 			</thead>
@@ -20,7 +20,7 @@
 								if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}
 						echo "</strong></td>";
 						echo "<td style='text-align: center;'>";
-							$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'];
+							$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 							echo '<a href='.$file.' rel="external"><img src="../img/download.png"></a>';
 						echo "</td>";
 					echo "</tr>";
