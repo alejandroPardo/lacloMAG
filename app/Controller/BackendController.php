@@ -108,6 +108,19 @@ class BackendController extends AppController {
 		if($this->Auth->user('role') != 'author'){
 			$this->redirect(array("controller" => "users", "action" => "logout"));
 		}
+		$approved = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('APPROVED'),'Author.id' => $this->userID)));
+  		$published = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('PUBLISHED'),'Author.id' => $this->userID)));
+  		$rejected = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('REJECTED'),'Author.id' => $this->userID)));
+  		$editing = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('ASSIGNED', 'ONREVISION', 'SENT'),'Author.id' => $this->userID)));
+  		$unsent = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('UNSENT'),'Author.id' => $this->userID)));
+  		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => array('NOTIFICATION'),'Logbook.user_id' => $this->Auth->user('id'))));
+  		$this->set('approved', $approved);
+  		$this->set('published', $published);
+  		$this->set('rejected', $rejected);
+  		$this->set('editing', $editing);
+  		$this->set('unsent', $unsent);
+  		$this->set('total', $unsent+$editing+$rejected+$published+$approved);
+  		$this->set('notifications', $notifications);
 	}
 
 	public function evaluator() {
@@ -283,6 +296,8 @@ class BackendController extends AppController {
 			$i++;
   		}
 
+  		//debug($papers);
+
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
   	}
@@ -323,7 +338,11 @@ class BackendController extends AppController {
 		}
   	}
 
-  	/*Editor Section*/
+	/****************
+	/*
+	/*	Editor Functions
+	/*
+	/***************/
 
   	public function viewArticlesEditor () {
 

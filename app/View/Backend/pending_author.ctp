@@ -22,7 +22,6 @@
 						echo "<td style='text-align: center;'>";
 							$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 							echo '<a href='.$file.' rel="external" target="_blank" ><img src="../img/download.png"></a>';
-							/*echo $this->Html->link(__('Edit'), array('controller' => 'paperfiles', 'action' => 'view', $paperFiles[$index]['0']['PaperFile']['id'].'.pdf', ), array('target' => '_blank', 'escapeTitle' => false, 'rel' => 'external' ));*/
 						echo "</td>";
 					echo "</tr>";
 					$index++;

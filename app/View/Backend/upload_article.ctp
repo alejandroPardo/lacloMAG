@@ -7,5 +7,6 @@
 				<?php echo $paper; ?>
 			</div>
 		</div>
+
 	</div>
 </div>

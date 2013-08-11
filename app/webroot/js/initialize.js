@@ -378,23 +378,7 @@ $.editor = function(lastUrl) {
 $.author = function(lastUrl) {
 
 	if(lastUrl == 'author'){ // DASHBOARD DE AUTHOR
-		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
-		var data = [];
-		var series = Math.floor(Math.random()*7)+1;
-		for( var i = 0; i<series; i++) {
-			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
-		}
 		
-		$.plot($("#pie_chart"), data,
-		{
-		       series: {
-		           pie: { 
-		               show: true
-		           }
-		       }
-		});
-
-		/////// END PIECHART 
 	} else if (lastUrl == 'createArticle') {
 		$('#redactor_content').redactor({
 			imageUpload: 'uploadImage'

@@ -44,17 +44,6 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					<li class="dashboard">
 						<a href="index" rel='external' alt='Inicio'>&nbsp;</a>
 					</li>
-					<li class="count">
-						<span data-count="0">Notificaciones</span>
-						<ul>
-							<li>
-								<a href="../img/demo/ajax.html" data-modal>
-									<h4>Implementar Notificaciones!!</h4>
-									<p>Deberia abrir un modal con los eventos nuevos que haya</p>
-								</a>
-							</li>
-						</ul>
-					</li>
 					<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
 					<span data-count=<?php echo $pendingMessages;?>>Mensajes</span>
 						<ul>

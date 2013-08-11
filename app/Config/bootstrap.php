@@ -72,7 +72,7 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
-CakePlugin::load('AjaxMultiUpload');
+CakePlugin::load('AjaxMultiUpload', array('bootstrap' => true));
 CakePlugin::load('CakePdf', array('bootstrap' => true));
 
 /**
