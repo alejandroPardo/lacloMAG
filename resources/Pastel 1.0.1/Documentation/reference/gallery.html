@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li class="current">
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Gallery</h1>
+			
+			<p>The gallery plugin is based on Codrop's excellent montage plugin that arrange photos in elegant rows. I've made an easy to use wrapper. </p>
+			
+			<p>It's really simple:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">gallery</span><span class="pun">(</span><span class="str">"montage.html"</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>The <em>montage.html</em>-file includes a lot of images like this:</p>
+			
+			<pre><code><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"path/to/image1.png"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"path/to/image2.png"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"path/to/image3.png"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"path/to/image4.png"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"path/to/image5.png"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Or you can get the content of an existing element:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#image-con"</span><span class="pun">).</span><span class="pln">gallery</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>A list of every parameter that can be passed on to the function:</p>
+			
+			<ul>
+			<li><strong>liquid</strong>    <em>true</em>      (boolean)   - if true the montage will fill the containers width on resize</li>
+			<li><strong>margin</strong>:    <em>1</em>         (integer)   - space between photos (in pixels).</li>
+			<li><strong>minw</strong>:        <em>70</em>        (integer)   - minimum width of a photo.</li>
+			<li><strong>minh</strong>:        <em>20</em>        (integer)   - minimum height of a photo.</li>
+			<li><strong>maxh</strong>:        <em>250</em>       (integer)   - max height of a photo.</li>
+			<li><strong>alternateHeight</strong>        <em>false</em>     (boolean)   - if set to true it will have priority over the parameter fixedHeight.</li>
+			<li><strong>alternateHeightRange</strong>    <em>false</em>     (array)     - height will be a random value between 'min' and 'max'</li>
+			<li><strong>fixedHeight</strong>            <em>null</em>      (integer)   - If the following value is set, this will have priority over defaults.minsize. All images will have this height.</li>
+			<li><strong>minsize</strong>                <em>false</em>     (integer)   - Setting this value will make minw, minh irrelevant. Chosen height will be the one of the smallest image when this is set to true.</li>
+			<li><strong>fillLastRow</strong>            <em>false</em>     (boolean)   - if true, there will be no gap in the end of the container. The last image will fill any white space left.</li>
+			</ul>
+			
+			<h2>Complete example</h2>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">gallery</span><span class="pun">(</span><span class="str">"montage.html"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; liquid</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; margin</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">5</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; minw</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">20</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; minh</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">20</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; maxh</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">20</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; border</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">false</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; alternateHeight</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; alternateHeightRange</span><span class="pun">:</span><span class="pln"> &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; min </span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; max </span><span class="pun">:</span><span class="pln"> </span><span class="lit">300</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; fixedHeight</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">300</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; fillLastRow</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="kwd">true</span><span class="pln"><br></span><span class="pun">})</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

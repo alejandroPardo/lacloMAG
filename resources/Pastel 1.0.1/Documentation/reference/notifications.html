@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li class="current">
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Notifications</h1>
+			
+			<p>Pastel includes a jQuery plugin based on my own Owl plugin (on sale on Codecanyon.)
+			It has a completely different look, better suited for administrator and dashboard interfaces.</p>
+			
+			<p>The notifications are small, beautiful, unobtrusive and very flexible. They are a very important part of the interface as they communicate directly with the user, whether it's pure information or a fatal error. The notifications can be created anywhere in your Javascript. </p>
+			
+			<h2>Examples</h2>
+			
+			<p>A simple notification without much fanfare:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">notification </span><span class="pun">(</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'Your First Notification'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">'Pretty cool, huh?'</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">)</span><span class="pln"> &nbsp; <br></span></code></pre>
+			
+			<p>Easy to grasp, no? A default notification where no icon or image is specified will simply show a notification icon. That's very easy to change though:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">notification </span><span class="pun">(</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'Your Second Notification'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">'Pretty cool, huh?'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; img</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'/path/to/image.png'</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Or use the included icon font instead of a image:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">notification </span><span class="pun">(</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'Your Third Notification'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">'Pretty cool, huh?'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; icon</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="str">'N'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; color</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'lightblue'</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>In this case a light blue maps icon will be shown. See the Icons page for a overview of the complete character map. The color can be specified in either HEX, rgb(a) or as in the example, color name.</p>
+			
+			<p>If you want to create a callback function, when the user clicks a notification that's simply done by providing the <em>click</em>-option:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">notification </span><span class="pun">(</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'Your Fourth Notification'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">'Pretty cool, huh?'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; click</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">'Created on callback!'</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Options</h2>
+			
+			<p>Below is a overview of every single parameter that can be passed on to the notification plugin and what it does.</p>
+			
+			<ul>
+			<li><strong>title</strong>:    <em>undefined</em> (string)    - provide the title of the notification.</li>
+			<li><strong>content</strong>:    <em>undefined</em> (string)    - provide the content of the notification.</li>
+			<li><strong>timeout</strong>:    <em>0</em>         (integer)   - if you want the notification to destroy itself after a certain milliseconds.</li>
+			<li><strong>img</strong>:        <em>undefined</em> (string)    - provide path (relative or absolute) to the image.</li>
+			<li><strong>border</strong>:    <em>true</em>      (boolean)   - if set to false, the border and shadow around the image will not be shown. Practical if you want to show a icon.</li>
+			<li><strong>fill</strong>        <em>false</em>     (boolean)   - if set to true, the image will fill the entire left section of a notification. Nice effect with photos.</li>
+			<li><strong>showTime</strong>    <em>false</em>     (boolean)   - if set to true, the notification will get a visible timestamp and update every fourth second. </li>
+			<li><strong>click</strong>        <em>undefined</em> (function)  - if function is set, it will be called, when a user clicks the notification.</li>
+			<li><strong>icon</strong>        <em>undefined</em> (string)    - if set (and <em>img</em> is not set) a vector icon will be shown. Use the character map.</li>
+			<li><strong>color</strong>        <em>undefined</em> (string)    - if set and an icon is present, the icon will be rendered in the specified color. Any CSS color will suffice, whether it's HEX, rgba(a), hsl(a) or CSS color names.</li>
+			<li><strong>error</strong>        <em>undefined</em> (boolean)   - if set to true, the notification will be red.</li>
+			</ul>
+			
+			<h2>Complete example</h2>
+			
+			<p>Here's a complete example. Keep in mind that the specified icon never will be shown, as an image is present.</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">notification </span><span class="pun">(</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'Your Fifth Notification'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">'Pretty cool, huh?'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; timeout</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="lit">5000</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; img</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'path/to/image.png'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; border</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; fill</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; showTime</span><span class="pun">:</span><span class="pln"> &nbsp; </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; click</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">'Created on callback!'</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; icon</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="str">'N'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; color</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">'#333'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; error</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="kwd">true</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">)</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

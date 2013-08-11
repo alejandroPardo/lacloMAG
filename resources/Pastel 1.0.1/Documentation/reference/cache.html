@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li class="current">
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Update System</h1>
+			
+			<p>Pastel is a true HTML5 offline application, which makes use of a cache manifest. That's exciting for three reasons:</p>
+			
+			<ol>
+			<li>Pastel works without an internet connection</li>
+			<li>Much improved page loads</li>
+			<li>Update notifications</li>
+			</ol>
+			
+			<p>It's supported by most desktop browsers (Chrome, Firefox, Safari, Opera etc.) and mobile browsers on both iOS and Android.
+			Beside caching every script, stylesheet and document, I've included a small update system, which is quite important. It can be hard to reset or delete offline caches. You should probably disable the manifest file while developing - but if you change something and want to update the app on the client site, simply load up the <em>cache.manifest</em>-file in the root:</p>
+			
+			<pre><code><span class="pln">CACHE MANIFEST<br></span><span class="com"># Version 0.9.1</span><span class="pln"><br></span><span class="pun">(..)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Change the version number or something else. Doesn't matter, the cache.manifest should just be different from the last. </p>
+			
+			<p>That's really it. Pastel will listen for cache updates and even prompt the user with the built-in notifications. First to tell the user that a new cache is being downloaded and then prompt the user when the download is done, giving the option to reload the app. It's really easy.</p>
+			
+			<p>Some servers doesn't serve the correct MIME type for the manifest files - so if you can't get the cache.manifest to work add an <em>.htaccess</em> file to the root of the Pastel app with this content:</p>
+			
+			<pre><code><span class="typ">AddType</span><span class="pln"> text</span><span class="pun">/</span><span class="pln">cache</span><span class="pun">-</span><span class="pln">manifest </span><span class="pun">.</span><span class="pln">manifest manifest<br></span><span class="pun">&lt;</span><span class="typ">FilesMatch</span><span class="pln"> </span><span class="str">"\.(manifest)$"</span><span class="pun">&gt;</span><span class="pln"><br></span><span class="typ">FileETag</span><span class="pln"> </span><span class="kwd">None</span><span class="pln"><br></span><span class="pun">&lt;</span><span class="typ">IfModule</span><span class="pln"> mod_headers</span><span class="pun">.</span><span class="pln">c</span><span class="pun">&gt;</span><span class="pln"><br></span><span class="typ">Header</span><span class="pln"> unset </span><span class="typ">ETag</span><span class="pln"><br></span><span class="typ">Header</span><span class="pln"> </span><span class="kwd">set</span><span class="pln"> </span><span class="typ">Cache</span><span class="pun">-</span><span class="typ">Control</span><span class="pln"> </span><span class="str">"max-age=0, no-cache, no-store, must-revalidate"</span><span class="pln"><br></span><span class="typ">Header</span><span class="pln"> </span><span class="kwd">set</span><span class="pln"> </span><span class="typ">Pragma</span><span class="pln"> </span><span class="str">"no-cache"</span><span class="pln"><br></span><span class="typ">Header</span><span class="pln"> </span><span class="kwd">set</span><span class="pln"> </span><span class="typ">Expires</span><span class="pln"> </span><span class="str">"Wed, 11 Jan 1984 05:00:00 GMT"</span><span class="pln"><br></span><span class="pun">&lt;</span><span class="str">/IfModule&gt;<br>&lt;/</span><span class="typ">FilesMatch</span><span class="pun">&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Some people have had problems with the way Firefox handles the cache manifest file. If you experience issues and need to support the browser, either turn of the manifest or configure your server.</p></div>
+		</div>
+	</div>
+</body>
+</html>

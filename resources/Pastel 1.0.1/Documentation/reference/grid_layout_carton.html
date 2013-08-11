@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li class="current">
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Layout, Grid &amp; Cartons</h1>
+			
+			<p>Even though the demo has a fixed width you can simply add the <em>.fluid</em>-class to the body-element - or change the global wrapper <em>.con</em> in the stylesheet.</p>
+			
+			<h2>Grid</h2>
+			
+			<p>I've included a variation of the popular 960gs grid system. It's based on 12 columns, rock solid, fluid and will resize to whatever width the container has. Remember to check out the demo in the UI-section. First a basic example with three columns:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_4 alpha"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; Column with the width of 4 columns<br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; Column with the width of 2 columns<br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_6 omega"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; Column with the width of 6 columns<br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>The <em>.container</em> div is very important as it clears the floating elements. If you prefer the old fashion clear method with a separate element - go ahead! For the columns just use the <em>.col</em>-class with a suffix of how many columns it should fill. Remember to add the <em>.alpha</em> and <em>.omega</em> classes to the <strong>first</strong> and <strong>last</strong> column in every container. Alternatively you can use the CSS selectors <em>_::first-child</em> and _::last-child::. I didn't want to risk to break the layout in old browsers. The layout will be broken if you exceed more than 12 columns in total.</p>
+			
+			<p>You can nest the columns as you please, for instance:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_4 alpha"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_3 alpha"</span><span class="tag">&gt;</span><span class="pln">1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_3"</span><span class="tag">&gt;</span><span class="pln">2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_3"</span><span class="tag">&gt;</span><span class="pln">3</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_3 omega"</span><span class="tag">&gt;</span><span class="pln">4</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_6 alpha"</span><span class="tag">&gt;</span><span class="pln">1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_6 omega"</span><span class="tag">&gt;</span><span class="pln">2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_6 omega"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2 alpha"</span><span class="tag">&gt;</span><span class="pln">1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln">2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln">3</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln">4</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2"</span><span class="tag">&gt;</span><span class="pln">5</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2 omega"</span><span class="tag">&gt;</span><span class="pln">6</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Everything in these columns will align up nicely - works as most grid systems. I have, however, added some very simple (but neat!) functionality:</p>
+			
+			<h2>Cartons</h2>
+			
+			<p>Cartons give some basic style to your columns. You guessed it, that's not the cool part! Consider this simple markup:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_4 carton alpha"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 3</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_2 carton"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 3</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_6 carton omega"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln">Content 1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>First notice how I've added the class <em>.carton</em> to every column to give them some basic styling. Last, notice the columns' children. The class <em>.content</em> is largely uninteresting as it only adds a 20px padding. But together with some javascript, magic appears! If there's more than one <em>.content</em>-div in a column, Pastel will automatically create some neat pagination so you can navigate between the <em>.content</em>-divs with some iOS-like dots. If there's only one <em>.content</em>-div (as in the last column) - it will be leaved untouched. You can even nest them infinitely, check out the crazy <em>Inception</em>-example in the UI-section.</p>
+			
+			<p>If you want to add a heading to a carton just add a <em>H2</em>-heading like this:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col_4 carton alpha"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;h2&gt;</span><span class="pln">Heading</span><span class="tag">&lt;/h2&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Check out the Cartons demo page for all the examples.</p></div>
+		</div>
+	</div>
+</body>
+</html>

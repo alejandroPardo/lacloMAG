@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li class="current">
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Editor</h1>
+			
+			<p>All this documentation was written in Markdown. As described by John Gruber:</p>
+			
+			<blockquote>
+			  <p>Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text    format, then convert it to structurally valid XHTML (or HTML).</p>
+			</blockquote>
+			
+			<p>It's a fantastic <em>language</em> that's easy to use and understand, while still maintaing great readability. Something not true of most (if not all) WYSIWYG-editors out there. </p>
+			
+			<p>I created a wrapper plugin trying to bring the best from two worlds: 2-column editor with live preview:</p>
+			
+			<ol>
+			<li><strong>Column 1</strong>: Edit raw source directly in a textarea with shortcuts for common tasks, such as bold and emphasized text, lists, blockquotes etc.</li>
+			<li><strong>Column 2</strong>: Shows a live preview of the text with syntax highlighting.     </li>
+			</ol>
+			
+			<p>It's based on three different plugins:</p>
+			
+			<ol>
+			<li><a href="http://pushingkarma.com/projects/jquery-wysiwym/">JQuery-Wysiwym</a> - supports Markdown, BBCode and Mediawiki. It can be used as a standalone plugin - check out the site for documentation if you don't want to use my editor plugin.</li>
+			<li><a href="http://softwaremaniacs.org/playground/showdown-highlight/">Showdown</a> - parses the Markdown syntax. </li>
+			<li><a href="http://code.google.com/p/google-code-prettify/">Prettify</a> - syntax highlighting.</li>
+			</ol>
+			
+			<p>My small <strong>$.editor</strong>-plugin combines all the three plugins. It's very easy to use:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">editor</span><span class="pun">(</span><span class="str">"license.md"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#editor-textarea"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#editor-preview"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">undefined</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>The first parameter specifies the url. In the second and third parameter you define where the textarea and live preview should be placed. You can pass a fourth parameter: <em>text</em>. If you have the content in a variable for instance and don't want to load an external site:</p>
+			
+			<pre><code><span class="kwd">var</span><span class="pln"> content </span><span class="pun">=</span><span class="pln"> </span><span class="str">"**Hello**"</span><span class="pln"><br>$</span><span class="pun">.</span><span class="pln">editor</span><span class="pun">(</span><span class="kwd">undefined</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#editor-textarea"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#editor-preview"</span><span class="pun">,</span><span class="pln"> content</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Just remember to set the url parameter to <em>undefined</em>.</p></div>
+		</div>
+	</div>
+</body>
+</html>

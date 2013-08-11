@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li class="current">
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Interactive tables</h1>
+			
+			<p>Pastel uses the Tablesorter plugin written by Christian Bach. I did however modify the pagination plugin quite heavily.
+			It's initialized automatically in the demo like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"table"</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">.</span><span class="pln">table</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">.</span><span class="pln">pagination</span><span class="pun">()</span><span class="pln"><br></span></code></pre>
+			
+			<p>In most cases that's enough! Now you can dynamically sort through large data tables with pagination enabled.</p>
+			
+			<p>If you want to sort a row in a certain way where the default initialization just doesn't suffice. Visit the <a href="http://tablesorter.com/docs/index.html#Examples">plugin's site</a>. </p>
+			
+			<p>As noted before I modified the pagination plugin a lot, it is vastly different from the original, as you don't need to provide a container for the pagination and dots are used to identify different pages. A quick note: If the default dots pagination is too simple, you can enable a more complete set of controls with the parameter <em>extended</em> like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"table"</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">.</span><span class="pln">table</span><span class="pun">()</span><span class="pln"> &nbsp; &nbsp;<br></span><span class="pun">.</span><span class="pln">pagination</span><span class="pun">({</span><span class="pln">extended</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">})</span><span class="pln"><br></span></code></pre>
+			
+			<p>Really simple, right?</p></div>
+		</div>
+	</div>
+</body>
+</html>

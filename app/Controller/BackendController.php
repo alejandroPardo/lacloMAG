@@ -243,6 +243,24 @@ class BackendController extends AppController {
 			$i++;
   		}
 
+  		$this->Paper->Behaviors->load('Containable');
+  		$papers2 = $this->Paper->find('all',
+  			array(
+  				'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
+  				'contain' => array(
+  					'PaperAuthor' => array(
+  						'fields' => array('author_id'),
+  						'conditions' => array('PaperAuthor.author_id' => $this->userID)
+					),
+					'PaperFile' => array(
+						'fields' => array('id')
+					)
+  				)
+  			)
+  		);
+
+  		//debug($papers2);
+
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
   	}

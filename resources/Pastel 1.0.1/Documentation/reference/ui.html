@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li class="current">
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>UI elements</h1>
+			
+			<h2>Color palettes</h2>
+			
+			<p>Pastel includes a few CSS color classes, which can be used on things such as cartons, input fields, chat boxes etc. Included colors: (and their classes)</p>
+			
+			<p><span class="color submarine">submarine</span>
+			<span class="color dust">dust</span>
+			<span class="color rust">rust</span>
+			<span class="color prettybaby">prettybaby</span>
+			<span class="color paris">paris</span>
+			<span class="color orangeblur">orangeblur</span>
+			<span class="color redconfetti">redconfetti</span>
+			<span class="color sugar">sugar</span>
+			<span class="color rushhour">rushhour</span>
+			<span class="color sunlit">sunlit</span>
+			<span class="color sea">sea</span>
+			<span class="color green">green</span>
+			<span class="color sail">sail</span>
+			<span class="color adrift">adrift</span>
+			<span class="color red">red</span>
+			<span class="color purple">purple</span>
+			<span class="color blue">blue</span>
+			<span class="color turkish">turkish</span>
+			<span class="color lime">lime</span>
+			<span class="color lightgrey">lightgrey</span>
+			<span class="color grey">grey</span>
+			<span class="color darkgrey">darkgrey</span>
+			<span class="color noir">noir</span>
+			<span class="color overcast">overcast</span>
+			<span class="color liquid">liquid</span>
+			<span class="color peach">peach</span></p>
+			
+			<h2>Layered lists</h2>
+			
+			<p>Supported on every <em>modern</em> browser. On WebKit browsers such as Chrome + Safari and newest Firefox version, a very nice 3D animation will be revealed.</p>
+			
+			<p>If you use the default Pastel scripts, just add this to your markup:</p>
+			
+			<pre><code><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"layer"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"todo unchecked"</span><span class="tag">&gt;</span><span class="pln">Clean up site structure</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln">The Alternative Dimension</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"layer"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"todo checked"</span><span class="tag">&gt;</span><span class="pln">Create something useful and pretty</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln">Layer 2</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"layer"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"todo unchecked"</span><span class="tag">&gt;</span><span class="pln">Laugh of a Norwegian</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln">Layer 2</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"layer"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"todo unchecked"</span><span class="tag">&gt;</span><span class="pln">Make Pastel fantastic</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln">Layer 2</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"layer"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"todo checked"</span><span class="tag">&gt;</span><span class="pln">Integrate all the charts</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln">Layer 2</span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br></span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>First a ul-&gt;li-&gt;ul --&gt; li (layer 1) &amp; li (layer 2.)</p>
+			
+			<p>Add the class todo (and either checked or unchecked) if you want it to function like a to-do list. The JS will toggle and animate automatically.</p>
+			
+			<h2>Checkboxes</h2>
+			
+			<p>Checkboxes will be replaced by an iOS-like toggle. The Pastel javascript will automatically replace every checkbox when the document initialize. If you want to change that behavior or need to call it after the document is ready you can simple do it like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#checkbox"</span><span class="pun">).</span><span class="pln">checkbox</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>Make sure this is included in your javascript so the toggle will work:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">".checkbox input"</span><span class="pun">).</span><span class="pln">change</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">parents</span><span class="pun">(</span><span class="str">"span"</span><span class="pun">).</span><span class="pln">toggleClass</span><span class="pun">(</span><span class="str">"checked"</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre>
+			
+			<p><em>Note: Remember it's included, so unless you have deleted it, no need to worry.</em></p>
+			
+			<p>The HTML markup for a checkbox:</p>
+			
+			<pre><code><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"checkbox"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Yeah that's pretty straightforward? If you want to use a certain color or style, just apply the classes you want to use:</p>
+			
+			<pre><code><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"checkbox"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"darkgrey rounded"</span><span class="pln"> </span><span class="atn">checked</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>The <em>.rounded</em>-class provides a rounded checkbox.</p>
+			
+			<h2>Progress Bars</h2>
+			
+			<p>The included progress bars are very lightweight (only CSS!) - but can of course be manipulated by javascript. </p>
+			
+			<p>A progress bar:</p>
+			
+			<pre><code><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"progress-bar stripes"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"green"</span><span class="tag">&gt;&lt;/span&gt;</span><span class="pln"><br></span><span class="tag">&lt;/span&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Notice the class <em>.stribes</em>, which adds animated stribes.</p>
+			
+			<p>Here's one with a different color and width:</p>
+			
+			<pre><code><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"progress-bar stripes"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"sail"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">60</span><span class="pun">%</span><span class="atv">"</span><span class="tag">&gt;&lt;/span&gt;</span><span class="pln"><br></span><span class="tag">&lt;/span&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>And last, a rounded progress bar. Notice the class <em>.round</em>.</p>
+			
+			<pre><code><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"progress-bar stripes round"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"adrift"</span><span class="tag">&gt;&lt;/span&gt;</span><span class="pln"><br></span><span class="tag">&lt;/span&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Input fields</h2>
+			
+			<p>Input fields are styled automatically. Just include an input field in your HTML:</p>
+			
+			<pre><code><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Username"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Every input field will fill 100% of its parent's width. If you wish to put two input fields onto one line and make the space between them seamless, apply this markup:</p>
+			
+			<pre><code><span class="tag">&lt;p</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"combine"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"First name"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Last name"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;/p&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Searchable selection</h2>
+			
+			<p>Pastel includes the plugin <em>Chosen</em> written by Harvest. It transforms any select box into a searchable and custom (CSS-styled) select box. Initialize it like this:</p>
+			
+			<p>HTML:</p>
+			
+			<pre><code><span class="tag">&lt;select&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;option&gt;</span><span class="pln">Paris</span><span class="tag">&lt;/option&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;option&gt;</span><span class="pln">Copenhagen</span><span class="tag">&lt;/option&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;option</span><span class="pln"> </span><span class="atn">selected</span><span class="pun">=</span><span class="atv">"selected"</span><span class="tag">&gt;</span><span class="pln">Berlin</span><span class="tag">&lt;/option&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;option&gt;</span><span class="pln">Amsterdam</span><span class="tag">&lt;/option&gt;</span><span class="pln"><br></span><span class="tag">&lt;/select&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Javascript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"select"</span><span class="pun">).</span><span class="pln">chosen</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Chat boxes</h2>
+			
+			<p>To create the iPhone-like chat bubbles from the demo simply apply this markup:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"com-con grey"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"comment"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;p&gt;</span><span class="pln">Hey. Copenhagen any good?</span><span class="tag">&lt;/p&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"avatar"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"http://mediacdn.disqus.com/uploads/users/404/5006/avatar92.jpg?1282753103"</span><span class="pln"> </span><span class="atn">alt</span><span class="pun">=</span><span class="atv">"avatar"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"byline"</span><span class="tag">&gt;&lt;strong&gt;</span><span class="pln">Jacques</span><span class="tag">&lt;/strong&gt;</span><span class="pln"> 4 days ago</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"com-con right sunlit"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"comment"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="tag">&lt;p&gt;</span><span class="pln">You did not just create this comment with the magic of ajax?</span><span class="tag">&lt;/p&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"avatar"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://twimg0-a.akamaihd.net/profile_images/1413825800/249936_10150196488184570_702004569_6768906_3999746_n.jpg"</span><span class="pln"> </span><span class="atn">alt</span><span class="pun">=</span><span class="atv">"avatar"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"byline"</span><span class="tag">&gt;&lt;strong&gt;</span><span class="pln">You</span><span class="tag">&lt;/strong&gt;</span><span class="pln"> An hour ago</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Want to place a comment on the right? Apply the <em>.right</em>-class. The javascript will automatically replace img-tags and style it with CSS.</p>
+			
+			<h2>Tags</h2>
+			
+			<p>Tags is a plugin by XOXCO, which can turn any input field into a tags container. Every tag separated by comma or enter will turn into a small beautiful tags. The best part? Incredibly easy to use:</p>
+			
+			<p>Input field on HTML page:</p>
+			
+			<pre><code><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"tags"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"ipad,apple,stock"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Javscript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#tags"</span><span class="pun">).</span><span class="pln">tags</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>Boom! That's it! </p>
+			
+			<p>But there's more! You can even add an autocomplete url like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#tags"</span><span class="pun">).</span><span class="pln">tags</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; autocomplete_url</span><span class="pun">:</span><span class="str">'http://myserver.com/api/autocomplete'</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you want to import predefined tags directly from javascript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#tags'</span><span class="pun">).</span><span class="pln">importTags</span><span class="pun">(</span><span class="str">'rim,google,microsoft'</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Add or remove a single tag:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#tags'</span><span class="pun">).</span><span class="pln">addTag</span><span class="pun">(</span><span class="str">'foo'</span><span class="pun">);</span><span class="pln"><br>$</span><span class="pun">(</span><span class="str">'#tags'</span><span class="pun">).</span><span class="pln">removeTag</span><span class="pun">(</span><span class="str">'bar'</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Reset tag list:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#tags'</span><span class="pun">).</span><span class="pln">importTags</span><span class="pun">(</span><span class="str">''</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Check if tag already exists: </p>
+			
+			<pre><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="str">'#tags'</span><span class="pun">).</span><span class="pln">tagExist</span><span class="pun">(</span><span class="str">'google'</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> <br>&nbsp; &nbsp; </span><span class="com">// code goes here</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Example with every parameter enabled:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#tags"</span><span class="pun">).</span><span class="pln">tags</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'autocomplete_url'</span><span class="pun">:</span><span class="pln"> url_to_autocomplete_api</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'autocomplete'</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> option</span><span class="pun">:</span><span class="pln"> value</span><span class="pun">,</span><span class="pln"> option</span><span class="pun">:</span><span class="pln"> value</span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'height'</span><span class="pun">:</span><span class="str">'100px'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'width'</span><span class="pun">:</span><span class="str">'300px'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'interactive'</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'defaultText'</span><span class="pun">:</span><span class="str">'add a tag'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'onAddTag'</span><span class="pun">:</span><span class="pln">callback_function</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'onRemoveTag'</span><span class="pun">:</span><span class="pln">callback_function</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'onChange'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> callback_function</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'removeWithBackspace'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'minChars'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'maxChars'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="com">//if not provided there is no limit,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">'placeholderColor'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'#666666'</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Validator</h2>
+			
+			<p>Pastel includes a lightweight validator plugin with the cute name Happy.js, written by Henrik Joreteg. Example from demo:</p>
+			
+			<p>HTML:</p>
+			
+			<pre><code><span class="tag">&lt;form</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"demo"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"content"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;p</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"combine"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"firstname"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"First name"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Last name"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/p&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;p&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"username"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Username"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/p&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;p&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"key"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"password"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Password"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/p&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"Submit"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span><span class="tag">&lt;/form&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Javascript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">'form#demo'</span><span class="pun">).</span><span class="pln">isHappy</span><span class="pun">({</span><span class="pln"><br>&nbsp; &nbsp; fields</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">'#firstname'</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; required</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; message</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Might we at least inquire your first name?'</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">'#username'</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; required</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; message</span><span class="pun">:</span><span class="pln"> </span><span class="str">'A username is required'</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">'#key'</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; required</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; message</span><span class="pun">:</span><span class="pln"> </span><span class="str">'A password is required'</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre>
+			
+			<p>It will only submit if every field validate. The <a href="http://happyjs.com/">happy.js documentation</a>:</p>
+			
+			<h2>File input</h2>
+			
+			<p>File inputs are hard, if not impossible, to style. The file plugin by Scott Jehl makes it easy. Example:</p>
+			
+			<p>HTML:</p>
+			
+			<pre><code><span class="pln">&lt;input type="file" name="file" data-text="Choose an </span><span class="tag">&lt;strong&gt;</span><span class="pln">avatar</span><span class="tag">&lt;/strong&gt;</span><span class="pln">" /&gt;<br></span></code></pre>
+			
+			<p>Javascript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">'input[type="file"]'</span><span class="pun">).</span><span class="pln">file</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Datepicker</h2>
+			
+			<p>The datepicker plugin is written by Gautam Lad. It can turn any input field into a complete data picker. Very simple to use.</p>
+			
+			<h3>Features</h3>
+			
+			<ul>
+			<li>forward and back navigation</li>
+			<li>current date highlight</li>
+			<li>restricting selection of dates outside of a range</li>
+			<li>restricting selection of dates beyond N-days from start date</li>
+			<li>restricting forward / backwards month navigation</li>
+			<li>individual styles per date picker (in case you have multiples on one page)</li>
+			</ul>
+			
+			<h3>Installation / Usage</h3>
+			
+			<p>Include an input box in your HTML document:</p>
+			
+			<pre><code><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"date"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Initialize the plugin with no parameters:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#date"</span><span class="pun">).</span><span class="pln">date</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>or with every parameter available:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#date"</span><span class="pun">).</span><span class="pln">date</span><span class="pun">(</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; allowOld</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; startDate</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="str">"September 5, 2011"</span><span class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; endDate</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="str">"October 26, 2011"</span><span class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; onChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">target</span><span class="pun">,</span><span class="pln"> newDate</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"You selected: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> newDate</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -89,7 +89,11 @@ $.initialize = function() {
 			}
 			e.preventDefault();
 		} else {
-			window.location.href = $(this).attr("data-href");
+			if( $(this).attr('target') === '_blank' ) { 
+				window.open($(this).attr("data-href"));
+			} else { 
+				window.location.href = $(this).attr("data-href");
+			}
 		}
 	});
 	// -------------------------------------------------------

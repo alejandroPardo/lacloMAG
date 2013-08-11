@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li class="current">
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Charts</h1>
+			
+			<p>Pastel includes two chart plugins:</p>
+			
+			<ol>
+			<li><p>One of the best jQuery plugins that has ever existed, flot.js - maintained by <strong>Ole Laursen</strong>. Flot makes handsome (client-side) charts. Best part is that it's rendered with the HTML5's canvas element. It includes a lot of features and great documentation, which is included at this very page (starts at <em>Flot Reference</em>.) I have written a few words on how to reveal colored tooltips on data point hover just below. </p></li>
+			<li><p>A tiny plugin written by me called <em>Orbit</em>. <strong>It's a tiny experiment, just for fun!</strong>  It creates four circles with a pointer that is animated by CSS (can be set in JS.) I hope it somehow can help you to visualize data in a smart way.</p></li>
+			</ol>
+			
+			<h2>Orbit charts</h2>
+			
+			<p>Only works in WebKit and newer versions of Firefox at the moment. It degrades beautifully in all browsers though, even in Internet Explorer 8 - the orbit is just a bit square. Make an orbit <em>chart</em> like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#orbit_1"</span><span class="pun">).</span><span class="pln">orbit</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; animation</span><span class="pun">:</span><span class="pln"> </span><span class="str">"rollIn"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; texture</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; one</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#F6BCAD"</span><span class="pun">,</span><span class="pln"> tooltip</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Research In Motion"</span><span class="pun">,</span><span class="pln"> speed</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; two</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#C3C48D"</span><span class="pun">,</span><span class="pln"> tooltip</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Apple"</span><span class="pun">,</span><span class="pln"> speed</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; three</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#7BB392"</span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; four</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#343738"</span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you don't pass anything on, a default orbit will just be shown. You can change the parameters color, tooltip and speed in the four orbits. For the chart itself you can disable the texture (true by default) and provide another CSS3 animation that's included with Pastel.</p>
+			
+			<h2>Color tooltips</h2>
+			
+			<p>Color tooltips, or colour tooltips as the Brits insists, are not part of the Flot.js plugin. Luckily it's very easy to listen for hover on data points, so I wrote a small plugin (<em>$.tooltipColor</em>) which automatically makes a beautiful color tooltip based on the hovered series. You need to declare colors to every data set to make it work.</p>
+			
+			<p>We make some random data:</p>
+			
+			<pre><code><span class="kwd">var</span><span class="pln"> d1 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln"><br></span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; d1</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([</span><span class="pln">i</span><span class="pun">,</span><span class="pln"> parseInt</span><span class="pun">(</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">250</span><span class="pun">)]);</span><span class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> d2 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln"><br></span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; d2</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([</span><span class="pln">i</span><span class="pun">,</span><span class="pln"> parseInt</span><span class="pun">(</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">200</span><span class="pun">)]);</span><span class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> d3 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln"><br></span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">0.4</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; d3</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([</span><span class="pln">i</span><span class="pun">,</span><span class="pln"> parseInt</span><span class="pun">(</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">140</span><span class="pun">)]);</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you want to provide the data yourself, use the following pattern:</p>
+			
+			<pre><code><span class="kwd">var</span><span class="pln"> ownData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">42</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">50</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">65</span><span class="pun">]</span><span class="pln"> </span><span class="pun">];</span><span class="pln"><br></span></code></pre>
+			
+			<p>Next we initialize the flot plugin:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="str">"#chart_linear_stack"</span><span class="pun">),</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> d1</span><span class="pun">,</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"iPhone"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#333333"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> d2</span><span class="pun">,</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"iPad"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#3B8686"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> d3</span><span class="pun">,</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Mac"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#79BD9A"</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">],</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; series</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;stack</span><span class="pun">:</span><span class="pln"> stack</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> lines</span><span class="pun">,</span><span class="pln"> fill</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.8</span><span class="pun">,</span><span class="pln"> steps</span><span class="pun">:</span><span class="pln"> steps</span><span class="pun">,</span><span class="pln"> clickable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> lineWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;bars</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> bars</span><span class="pun">,</span><span class="pln"> barWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.6</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;points</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; grid</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> hoverable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre>
+			
+			<p>A nice looking chart should now appear. If you want to enable a color tooltip for that particular chart, simply apply this to your javascript:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#chart_linear_stack"</span><span class="pun">).</span><span class="pln">tooltipColor</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you want to change the tooltip's label (the default is <em>visitors</em>) simply apply this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#chart_linear_stack"</span><span class="pun">).</span><span class="pln">tooltipColor</span><span class="pun">(</span><span class="str">"devices"</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Done deal! My little plugin actually creates a gradient with color shades a bit lighter and a bit darker together with a blurred and colored shadow. </p>
+			
+			<p>Beside bringing some beautiful alpha transparent overlays into your charts, they have a useful purpose as well. Without colors, it can be difficult to distinguish data points close to each other.</p>
+			
+			<h2>Included plugins</h2>
+			
+			<p>Whether you use the combined version of Pastel (where everything is in the app.js-file) or use the chart demo as a starting point, I've included a few plugins with the standard flot.js installation to minimize the number of HTTP requests:</p>
+			
+			<ul>
+			<li>Curved lines</li>
+			<li>Cross hair</li>
+			<li>Fill between</li>
+			<li>Navigation</li>
+			<li>Pie charts</li>
+			<li>Automatic resize</li>
+			<li>Selection</li>
+			<li>Stacked charts</li>
+			</ul>
+			
+			<h1>Flot Reference</h1>
+			
+			<p><em>Notice: This is the original flot.js documentation.</em></p>
+			
+			<p>Consider a call to the plot function:</p>
+			
+			<pre><code><span class="kwd">var</span><span class="pln"> plot </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">placeholder</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">,</span><span class="pln"> options</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>The placeholder is a jQuery object or DOM element or jQuery expression
+			that the plot will be put into. This placeholder needs to have its
+			width and height set as explained in the README (go read that now if
+			you haven't, it's short). The plot will modify some properties of the
+			placeholder so it's recommended you simply pass in a div that you
+			don't use for anything else. Make sure you check any fancy styling
+			you apply to the div, e.g. background images have been reported to be a
+			problem on IE 7.</p>
+			
+			<p>The format of the data is documented below, as is the available
+			options. The plot object returned from the call has some methods you
+			can call. These are documented separately below.</p>
+			
+			<p>Note that in general Flot gives no guarantees if you change any of the
+			objects you pass in to the plot function or get out of it since
+			they're not necessarily deep-copied.</p>
+			
+			<h2>Data Format</h2>
+			
+			<p>The data is an array of data series:</p>
+			
+			<pre><code><span class="pun">[</span><span class="pln"> series1</span><span class="pun">,</span><span class="pln"> series2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>A series can either be raw data or an object with properties. The raw
+			data format is an array of points:</p>
+			
+			<pre><code><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln">x1</span><span class="pun">,</span><span class="pln"> y1</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="pln">x2</span><span class="pun">,</span><span class="pln"> y2</span><span class="pun">],</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>E.g.</p>
+			
+			<pre><code><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14.01</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">3.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3.14</span><span class="pun">]</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>Note that to simplify the internal logic in Flot both the x and y
+			values must be numbers (even if specifying time series, see below for
+			how to do this). This is a common problem because you might retrieve
+			data from the database and serialize them directly to JSON without
+			noticing the wrong type. If you're getting mysterious errors, double
+			check that you're inputting numbers and not strings.</p>
+			
+			<p>If a null is specified as a point or if one of the coordinates is null
+			or couldn't be converted to a number, the point is ignored when
+			drawing. As a special case, a null value for lines is interpreted as a
+			line segment end, i.e. the points before and after the null value are
+			not connected.</p>
+			
+			<p>Lines and points take two coordinates. For filled lines and bars, you
+			can specify a third coordinate which is the bottom of the filled
+			area/bar (defaults to 0).</p>
+			
+			<p>The format of a single series object is as follows:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; color</span><span class="pun">:</span><span class="pln"> color </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; data</span><span class="pun">:</span><span class="pln"> rawdata<br>&nbsp; &nbsp; label</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"><br>&nbsp; &nbsp; lines</span><span class="pun">:</span><span class="pln"> specific lines options<br>&nbsp; &nbsp; bars</span><span class="pun">:</span><span class="pln"> specific bars options<br>&nbsp; &nbsp; points</span><span class="pun">:</span><span class="pln"> specific points options<br>&nbsp; &nbsp; xaxis</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; yaxis</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; clickable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; hoverable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; shadowSize</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>You don't have to specify any of them except the data, the rest are
+			options that will get default values. Typically you'd only specify
+			label and data, like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"y = 3"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">]]</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The label is used for the legend, if you don't specify one, the series
+			will not show up in the legend.</p>
+			
+			<p>If you don't specify color, the series will get a color from the
+			auto-generated colors. The color is either a CSS color specification
+			(like "rgb(255, 100, 123)") or an integer that specifies which of
+			auto-generated colors to select, e.g. 0 will get color no. 0, etc.</p>
+			
+			<p>The latter is mostly useful if you let the user add and remove series,
+			in which case you can hard-code the color index to prevent the colors
+			from jumping around between the series.</p>
+			
+			<p>The "xaxis" and "yaxis" options specify which axis to use. The axes
+			are numbered from 1 (default), so { yaxis: 2} means that the series
+			should be plotted against the second y axis.</p>
+			
+			<p>"clickable" and "hoverable" can be set to false to disable
+			interactivity for specific series if interactivity is turned on in
+			the plot, see below.</p>
+			
+			<p>The rest of the options are all documented below as they are the same
+			as the default options passed in via the options parameter in the plot
+			commmand. When you specify them for a specific data series, they will
+			override the default options for the plot for that data series.</p>
+			
+			<p>Here's a complete example of a simple data specification:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Foo"</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">17</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">14</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">30</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">]</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Bar"</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="lit">11</span><span class="pun">,</span><span class="pln"> </span><span class="lit">13</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">19</span><span class="pun">,</span><span class="pln"> </span><span class="lit">11</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">30</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">7</span><span class="pun">]</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Plot Options</h2>
+			
+			<p>All options are completely optional. They are documented individually
+			below, to change them you just specify them in an object, e.g.</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">var</span><span class="pln"> options </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; series</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; points</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">};</span><span class="pln"><br>&nbsp; $</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">placeholder</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">,</span><span class="pln"> options</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Customizing the legend</h2>
+			
+			<pre><code><span class="pln">&nbsp; legend</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; labelFormatter</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">(</span><span class="pln">fn</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">,</span><span class="pln"> series </span><span class="kwd">object</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; labelBoxBorderColor</span><span class="pun">:</span><span class="pln"> color<br>&nbsp; &nbsp; noColumns</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; position</span><span class="pun">:</span><span class="pln"> </span><span class="str">"ne"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"nw"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"se"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"sw"</span><span class="pln"><br>&nbsp; &nbsp; margin</span><span class="pun">:</span><span class="pln"> number of pixels </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">[</span><span class="pln">x margin</span><span class="pun">,</span><span class="pln"> y margin</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; backgroundColor</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> color<br>&nbsp; &nbsp; backgroundOpacity</span><span class="pun">:</span><span class="pln"> number between </span><span class="lit">0</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> </span><span class="lit">1</span><span class="pln"><br>&nbsp; &nbsp; container</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> jQuery </span><span class="kwd">object</span><span class="pun">/</span><span class="pln">DOM element</span><span class="pun">/</span><span class="pln">jQuery expression<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The legend is generated as a table with the data series labels and
+			small label boxes with the color of the series. If you want to format
+			the labels in some way, e.g. make them to links, you can pass in a
+			function for "labelFormatter". Here's an example that makes them
+			clickable:</p>
+			
+			<pre><code><span class="pln">&nbsp; labelFormatter</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">label</span><span class="pun">,</span><span class="pln"> series</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="com">// series is the series object for the label</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span class="str">'&lt;a href="#'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> label </span><span class="pun">+</span><span class="pln"> </span><span class="str">'"&gt;'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> label </span><span class="pun">+</span><span class="pln"> </span><span class="str">'&lt;/a&gt;'</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>"noColumns" is the number of columns to divide the legend table into.
+			"position" specifies the overall placement of the legend within the
+			plot (top-right, top-left, etc.) and margin the distance to the plot
+			edge (this can be either a number or an array of two numbers like [x,
+			y]). "backgroundColor" and "backgroundOpacity" specifies the
+			background. The default is a partly transparent auto-detected
+			background.</p>
+			
+			<p>If you want the legend to appear somewhere else in the DOM, you can
+			specify "container" as a jQuery object/expression to put the legend
+			table into. The "position" and "margin" etc. options will then be
+			ignored. Note that Flot will overwrite the contents of the container.</p>
+			
+			<h2>Customizing the axes</h2>
+			
+			<pre><code><span class="pln">&nbsp; xaxis</span><span class="pun">,</span><span class="pln"> yaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">/</span><span class="kwd">false</span><span class="pln"><br>&nbsp; &nbsp; position</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bottom"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"top"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"left"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"right"</span><span class="pln"><br>&nbsp; &nbsp; mode</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"time"</span><span class="pln"><br><br>&nbsp; &nbsp; color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> color spec<br>&nbsp; &nbsp; tickColor</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> color spec<br><br>&nbsp; &nbsp; min</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; max</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; autoscaleMargin</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br><br>&nbsp; &nbsp; transform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> fn</span><span class="pun">:</span><span class="pln"> number </span><span class="pun">-&gt;</span><span class="pln"> number<br>&nbsp; &nbsp; inverseTransform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> fn</span><span class="pun">:</span><span class="pln"> number </span><span class="pun">-&gt;</span><span class="pln"> number<br><br>&nbsp; &nbsp; ticks</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number </span><span class="kwd">or</span><span class="pln"> ticks array </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">(</span><span class="pln">fn</span><span class="pun">:</span><span class="pln"> range </span><span class="pun">-&gt;</span><span class="pln"> ticks array</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; tickSize</span><span class="pun">:</span><span class="pln"> number </span><span class="kwd">or</span><span class="pln"> array<br>&nbsp; &nbsp; minTickSize</span><span class="pun">:</span><span class="pln"> number </span><span class="kwd">or</span><span class="pln"> array<br>&nbsp; &nbsp; tickFormatter</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">fn</span><span class="pun">:</span><span class="pln"> number</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"><br>&nbsp; &nbsp; tickDecimals</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br><br>&nbsp; &nbsp; labelWidth</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; labelHeight</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; reserveSpace</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"><br><br>&nbsp; &nbsp; tickLength</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br><br>&nbsp; &nbsp; alignTicksWithAxis</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>All axes have the same kind of options. The following describes how to
+			configure one axis, see below for what to do if you've got more than
+			one x axis or y axis.</p>
+			
+			<p>If you don't set the "show" option (i.e. it is null), visibility is
+			auto-detected, i.e. the axis will show up if there's data associated
+			with it. You can override this by setting the "show" option to true or
+			false.</p>
+			
+			<p>The "position" option specifies where the axis is placed, bottom or
+			top for x axes, left or right for y axes. The "mode" option determines
+			how the data is interpreted, the default of null means as decimal
+			numbers. Use "time" for time series data, see the time series data
+			section.</p>
+			
+			<p>The "color" option determines the color of the labels and ticks for
+			the axis (default is the grid color). For more fine-grained control
+			you can also set the color of the ticks separately with "tickColor"
+			(otherwise it's autogenerated as the base color with some
+			transparency).</p>
+			
+			<p>The options "min"/"max" are the precise minimum/maximum value on the
+			scale. If you don't specify either of them, a value will automatically
+			be chosen based on the minimum/maximum data values. Note that Flot
+			always examines all the data values you feed to it, even if a
+			restriction on another axis may make some of them invisible (this
+			makes interactive use more stable).</p>
+			
+			<p>The "autoscaleMargin" is a bit esoteric: it's the fraction of margin
+			that the scaling algorithm will add to avoid that the outermost points
+			ends up on the grid border. Note that this margin is only applied when
+			a min or max value is not explicitly set. If a margin is specified,
+			the plot will furthermore extend the axis end-point to the nearest
+			whole tick. The default value is "null" for the x axes and 0.02 for y
+			axes which seems appropriate for most cases.</p>
+			
+			<p>"transform" and "inverseTransform" are callbacks you can put in to
+			change the way the data is drawn. You can design a function to
+			compress or expand certain parts of the axis non-linearly, e.g.
+			suppress weekends or compress far away points with a logarithm or some
+			other means. When Flot draws the plot, each value is first put through
+			the transform function. Here's an example, the x axis can be turned
+			into a natural logarithm axis with the following code:</p>
+			
+			<pre><code><span class="pln">&nbsp; xaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; transform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">v</span><span class="pun">);</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; inverseTransform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">exp</span><span class="pun">(</span><span class="pln">v</span><span class="pun">);</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Similarly, for reversing the y axis so the values appear in inverse
+			order:</p>
+			
+			<pre><code><span class="pln">&nbsp; yaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; transform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">-</span><span class="pln">v</span><span class="pun">;</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; inverseTransform</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">-</span><span class="pln">v</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Note that for finding extrema, Flot assumes that the transform
+			function does not reorder values (it should be monotone).</p>
+			
+			<p>The inverseTransform is simply the inverse of the transform function
+			(so v == inverseTransform(transform(v)) for all relevant v). It is
+			required for converting from canvas coordinates to data coordinates,
+			e.g. for a mouse interaction where a certain pixel is clicked. If you
+			don't use any interactive features of Flot, you may not need it.</p>
+			
+			<p>The rest of the options deal with the ticks.</p>
+			
+			<p>If you don't specify any ticks, a tick generator algorithm will make
+			some for you. The algorithm has two passes. It first estimates how
+			many ticks would be reasonable and uses this number to compute a nice
+			round tick interval size. Then it generates the ticks.</p>
+			
+			<p>You can specify how many ticks the algorithm aims for by setting
+			"ticks" to a number. The algorithm always tries to generate reasonably
+			round tick values so even if you ask for three ticks, you might get
+			five if that fits better with the rounding. If you don't want any
+			ticks at all, set "ticks" to 0 or an empty array.</p>
+			
+			<p>Another option is to skip the rounding part and directly set the tick
+			interval size with "tickSize". If you set it to 2, you'll get ticks at
+			2, 4, 6, etc. Alternatively, you can specify that you just don't want
+			ticks at a size less than a specific tick size with "minTickSize".
+			Note that for time series, the format is an array like [2, "month"],
+			see the next section.</p>
+			
+			<p>If you want to completely override the tick algorithm, you can specify
+			an array for "ticks", either like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; ticks</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.4</span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>Or like this where the labels are also customized:</p>
+			
+			<pre><code><span class="pln">&nbsp; ticks</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="str">"zero"</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">1.2</span><span class="pun">,</span><span class="pln"> </span><span class="str">"one mark"</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">2.4</span><span class="pun">,</span><span class="pln"> </span><span class="str">"two marks"</span><span class="pun">]]</span><span class="pln"><br></span></code></pre>
+			
+			<p>You can mix the two if you like.</p>
+			
+			<p>For extra flexibility you can specify a function as the "ticks"
+			parameter. The function will be called with an object with the axis
+			min and max and should return a ticks array. Here's a simplistic tick
+			generator that spits out intervals of pi, suitable for use on the x
+			axis for trigonometric functions:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">function</span><span class="pln"> piTickGenerator</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> res </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[],</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">floor</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">.</span><span class="pln">min </span><span class="pun">/</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">do</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> v </span><span class="pun">=</span><span class="pln"> i </span><span class="pun">*</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; res</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([</span><span class="pln">v</span><span class="pun">,</span><span class="pln"> i </span><span class="pun">+</span><span class="pln"> </span><span class="str">"\u03c0"</span><span class="pun">]);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">++</span><span class="pln">i</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">v </span><span class="pun">&lt;</span><span class="pln"> axis</span><span class="pun">.</span><span class="pln">max</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> res</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>You can control how the ticks look like with "tickDecimals", the
+			number of decimals to display (default is auto-detected).</p>
+			
+			<p>Alternatively, for ultimate control over how ticks are formatted you can
+			provide a function to "tickFormatter". The function is passed two
+			parameters, the tick value and an axis object with information, and
+			should return a string. The default formatter looks like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">function</span><span class="pln"> formatter</span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> axis</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> val</span><span class="pun">.</span><span class="pln">toFixed</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">.</span><span class="pln">tickDecimals</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The axis object has "min" and "max" with the range of the axis,
+			"tickDecimals" with the number of decimals to round the value to and
+			"tickSize" with the size of the interval between ticks as calculated
+			by the automatic axis scaling algorithm (or specified by you). Here's
+			an example of a custom formatter:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">function</span><span class="pln"> suffixFormatter</span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> axis</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1000000</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val </span><span class="pun">/</span><span class="pln"> </span><span class="lit">1000000</span><span class="pun">).</span><span class="pln">toFixed</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">.</span><span class="pln">tickDecimals</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" MB"</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val </span><span class="pun">/</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">).</span><span class="pln">toFixed</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">.</span><span class="pln">tickDecimals</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" kB"</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">else</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> val</span><span class="pun">.</span><span class="pln">toFixed</span><span class="pun">(</span><span class="pln">axis</span><span class="pun">.</span><span class="pln">tickDecimals</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" B"</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>"labelWidth" and "labelHeight" specifies a fixed size of the tick
+			labels in pixels. They're useful in case you need to align several
+			plots. "reserveSpace" means that even if an axis isn't shown, Flot
+			should reserve space for it - it is useful in combination with
+			labelWidth and labelHeight for aligning multi-axis charts.</p>
+			
+			<p>"tickLength" is the length of the tick lines in pixels. By default, the
+			innermost axes will have ticks that extend all across the plot, while
+			any extra axes use small ticks. A value of null means use the default,
+			while a number means small ticks of that length - set it to 0 to hide
+			the lines completely.</p>
+			
+			<p>If you set "alignTicksWithAxis" to the number of another axis, e.g.
+			alignTicksWithAxis: 1, Flot will ensure that the autogenerated ticks
+			of this axis are aligned with the ticks of the other axis. This may
+			improve the looks, e.g. if you have one y axis to the left and one to
+			the right, because the grid lines will then match the ticks in both
+			ends. The trade-off is that the forced ticks won't necessarily be at
+			natural places.</p>
+			
+			<h2>Multiple axes</h2>
+			
+			<p>If you need more than one x axis or y axis, you need to specify for
+			each data series which axis they are to use, as described under the
+			format of the data series, e.g. { data: [...], yaxis: 2 } specifies
+			that a series should be plotted against the second y axis.</p>
+			
+			<p>To actually configure that axis, you can't use the xaxis/yaxis options
+			directly - instead there are two arrays in the options:</p>
+			
+			<pre><code><span class="pln">&nbsp; &nbsp;xaxes</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"><br>&nbsp; &nbsp;yaxes</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"><br></span></code></pre>
+			
+			<p>Here's an example of configuring a single x axis and two y axes (we
+			can leave options of the first y axis empty as the defaults are fine):</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; xaxes</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> position</span><span class="pun">:</span><span class="pln"> </span><span class="str">"top"</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">],</span><span class="pln"><br>&nbsp; &nbsp; yaxes</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> position</span><span class="pun">:</span><span class="pln"> </span><span class="str">"right"</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The arrays get their default values from the xaxis/yaxis settings, so
+			say you want to have all y axes start at zero, you can simply specify
+			yaxis: { min: 0 } instead of adding a min parameter to all the axes.</p>
+			
+			<p>Generally, the various interfaces in Flot dealing with data points
+			either accept an xaxis/yaxis parameter to specify which axis number to
+			use (starting from 1), or lets you specify the coordinate directly as
+			x2/x3/... or x2axis/x3axis/... instead of "x" or "xaxis".</p>
+			
+			<h2>Time series data</h2>
+			
+			<p>Time series are a bit more difficult than scalar data because
+			calendars don't follow a simple base 10 system. For many cases, Flot
+			abstracts most of this away, but it can still be a bit difficult to
+			get the data into Flot. So we'll first discuss the data format.</p>
+			
+			<p>The time series support in Flot is based on Javascript timestamps,
+			i.e. everywhere a time value is expected or handed over, a Javascript
+			timestamp number is used. This is a number, not a Date object. A
+			Javascript timestamp is the number of milliseconds since January 1,
+			1970 00:00:00 UTC. This is almost the same as Unix timestamps, except it's
+			in milliseconds, so remember to multiply by 1000!</p>
+			
+			<p>You can see a timestamp like this</p>
+			
+			<pre><code><span class="pln">&nbsp; alert</span><span class="pun">((</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">()).</span><span class="pln">getTime</span><span class="pun">())</span><span class="pln"><br></span></code></pre>
+			
+			<p>Normally you want the timestamps to be displayed according to a
+			certain time zone, usually the time zone in which the data has been
+			produced. However, Flot always displays timestamps according to UTC.
+			It has to as the only alternative with core Javascript is to interpret
+			the timestamps according to the time zone that the visitor is in,
+			which means that the ticks will shift unpredictably with the time zone
+			and daylight savings of each visitor.</p>
+			
+			<p>So given that there's no good support for custom time zones in
+			Javascript, you'll have to take care of this server-side.</p>
+			
+			<p>The easiest way to think about it is to pretend that the data
+			production time zone is UTC, even if it isn't. So if you have a
+			datapoint at 2002-02-20 08:00, you can generate a timestamp for eight
+			o'clock UTC even if it really happened eight o'clock UTC+0200.</p>
+			
+			<p>In PHP you can get an appropriate timestamp with
+			<code><span class="pln">strtotime</span><span class="pun">(</span><span class="str">"2002-02-20 UTC"</span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1000</span></code>, in Python with
+			<code><span class="pln">calendar</span><span class="pun">.</span><span class="pln">timegm</span><span class="pun">(</span><span class="pln">datetime_object</span><span class="pun">.</span><span class="pln">timetuple</span><span class="pun">())</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1000</span></code>, in .NET with
+			something like:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> </span><span class="typ">GetJavascriptTimestamp</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="typ">DateTime</span><span class="pln"> input</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="typ">System</span><span class="pun">.</span><span class="typ">TimeSpan</span><span class="pln"> span </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">System</span><span class="pun">.</span><span class="typ">TimeSpan</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="typ">DateTime</span><span class="pun">.</span><span class="typ">Parse</span><span class="pun">(</span><span class="str">"1/1/1970"</span><span class="pun">).</span><span class="typ">Ticks</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="typ">System</span><span class="pun">.</span><span class="typ">DateTime</span><span class="pln"> time </span><span class="pun">=</span><span class="pln"> input</span><span class="pun">.</span><span class="typ">Subtract</span><span class="pun">(</span><span class="pln">span</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">long</span><span class="pun">)(</span><span class="pln">time</span><span class="pun">.</span><span class="typ">Ticks</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> </span><span class="lit">10000</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Javascript also has some support for parsing date strings, so it is
+			possible to generate the timestamps manually client-side.</p>
+			
+			<p>If you've already got the real UTC timestamp, it's too late to use the
+			pretend trick described above. But you can fix up the timestamps by
+			adding the time zone offset, e.g. for UTC+0200 you would add 2 hours
+			to the UTC timestamp you got. Then it'll look right on the plot. Most
+			programming environments have some means of getting the timezone
+			offset for a specific date (note that you need to get the offset for
+			each individual timestamp to account for daylight savings).</p>
+			
+			<p>Once you've gotten the timestamps into the data and specified "time"
+			as the axis mode, Flot will automatically generate relevant ticks and
+			format them. As always, you can tweak the ticks via the "ticks" option
+			- just remember that the values should be timestamps (numbers), not
+			Date objects.</p>
+			
+			<p>Tick generation and formatting can also be controlled separately
+			through the following axis options:</p>
+			
+			<pre><code><span class="pln">&nbsp; minTickSize</span><span class="pun">:</span><span class="pln"> array<br>&nbsp; timeformat</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> format </span><span class="kwd">string</span><span class="pln"><br>&nbsp; monthNames</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> array of size </span><span class="lit">12</span><span class="pln"> of strings<br>&nbsp; twelveHourClock</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br></span></code></pre>
+			
+			<p>Here "timeformat" is a format string to use. You might use it like
+			this:</p>
+			
+			<pre><code><span class="pln">&nbsp; xaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; mode</span><span class="pun">:</span><span class="pln"> </span><span class="str">"time"</span><span class="pln"><br>&nbsp; &nbsp; timeformat</span><span class="pun">:</span><span class="pln"> </span><span class="str">"%y/%m/%d"</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>This will result in tick labels like "2000/12/24". The following
+			specifiers are supported</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">%</span><span class="pln">h</span><span class="pun">:</span><span class="pln"> hours<br>&nbsp; </span><span class="pun">%</span><span class="pln">H</span><span class="pun">:</span><span class="pln"> hours </span><span class="pun">(</span><span class="pln">left</span><span class="pun">-</span><span class="pln">padded </span><span class="kwd">with</span><span class="pln"> a zero</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">M</span><span class="pun">:</span><span class="pln"> minutes </span><span class="pun">(</span><span class="pln">left</span><span class="pun">-</span><span class="pln">padded </span><span class="kwd">with</span><span class="pln"> a zero</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">S</span><span class="pun">:</span><span class="pln"> seconds </span><span class="pun">(</span><span class="pln">left</span><span class="pun">-</span><span class="pln">padded </span><span class="kwd">with</span><span class="pln"> a zero</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">d</span><span class="pun">:</span><span class="pln"> day of month </span><span class="pun">(</span><span class="lit">1</span><span class="pun">-</span><span class="lit">31</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">use</span><span class="pln"> </span><span class="pun">%</span><span class="lit">0d</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> zero</span><span class="pun">-</span><span class="pln">padding<br>&nbsp; </span><span class="pun">%</span><span class="pln">m</span><span class="pun">:</span><span class="pln"> month </span><span class="pun">(</span><span class="lit">1</span><span class="pun">-</span><span class="lit">12</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">use</span><span class="pln"> </span><span class="pun">%</span><span class="lit">0m</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> zero</span><span class="pun">-</span><span class="pln">padding<br>&nbsp; </span><span class="pun">%</span><span class="pln">y</span><span class="pun">:</span><span class="pln"> year </span><span class="pun">(</span><span class="pln">four digits</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">b</span><span class="pun">:</span><span class="pln"> month name </span><span class="pun">(</span><span class="pln">customizable</span><span class="pun">)</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">p</span><span class="pun">:</span><span class="pln"> am</span><span class="pun">/</span><span class="pln">pm</span><span class="pun">,</span><span class="pln"> additionally switches </span><span class="pun">%</span><span class="pln">h</span><span class="pun">/%</span><span class="pln">H to </span><span class="lit">12</span><span class="pln"> hour instead of </span><span class="lit">24</span><span class="pln"><br>&nbsp; </span><span class="pun">%</span><span class="pln">P</span><span class="pun">:</span><span class="pln"> AM</span><span class="pun">/</span><span class="pln">PM </span><span class="pun">(</span><span class="pln">uppercase version of </span><span class="pun">%</span><span class="pln">p</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Inserting a zero like %0m or %0d means that the specifier will be
+			left-padded with a zero if it's only single-digit. So %y-%0m-%0d
+			results in unambigious ISO timestamps like 2007-05-10 (for May 10th).</p>
+			
+			<p>You can customize the month names with the "monthNames" option. For
+			instance, for Danish you might specify:</p>
+			
+			<pre><code><span class="pln">&nbsp; monthNames</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"jan"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"feb"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"mar"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"apr"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"maj"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"jun"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"jul"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"aug"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"sep"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"okt"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"nov"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"dec"</span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you set "twelveHourClock" to true, the autogenerated timestamps
+			will use 12 hour AM/PM timestamps instead of 24 hour.</p>
+			
+			<p>The format string and month names are used by a very simple built-in
+			format function that takes a date object, a format string (and
+			optionally an array of month names) and returns the formatted string.
+			If needed, you can access it as $.plot.formatDate(date, formatstring,
+			monthNames) or even replace it with another more advanced function
+			from a date library if you're feeling adventurous.</p>
+			
+			<p>If everything else fails, you can control the formatting by specifying
+			a custom tick formatter function as usual. Here's a simple example
+			which will format December 24 as 24/12:</p>
+			
+			<pre><code><span class="pln">&nbsp; tickFormatter</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> axis</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> d </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">val</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> d</span><span class="pun">.</span><span class="pln">getUTCDate</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"/"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="pun">(</span><span class="pln">d</span><span class="pun">.</span><span class="pln">getUTCMonth</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Note that for the time mode "tickSize" and "minTickSize" are a bit
+			special in that they are arrays on the form "[value, unit]" where unit
+			is one of "second", "minute", "hour", "day", "month" and "year". So
+			you can specify</p>
+			
+			<pre><code><span class="pln">&nbsp; minTickSize</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="str">"month"</span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>to get a tick interval size of at least 1 month and correspondingly,
+			if axis.tickSize is [2, "day"] in the tick formatter, the ticks have
+			been produced with two days in-between.</p>
+			
+			<h2>Customizing the data series</h2>
+			
+			<pre><code><span class="pln">&nbsp; series</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; lines</span><span class="pun">,</span><span class="pln"> points</span><span class="pun">,</span><span class="pln"> bars</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; lineWidth</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; &nbsp; fill</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> number<br>&nbsp; &nbsp; &nbsp; fillColor</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> color</span><span class="pun">/</span><span class="pln">gradient<br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; &nbsp; points</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; radius</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; &nbsp; symbol</span><span class="pun">:</span><span class="pln"> </span><span class="str">"circle"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; &nbsp; bars</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; barWidth</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; &nbsp; align</span><span class="pun">:</span><span class="pln"> </span><span class="str">"left"</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="str">"center"</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; horizontal</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; &nbsp; lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; steps</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; &nbsp; shadowSize</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> color1</span><span class="pun">,</span><span class="pln"> color2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>The options inside "series: {}" are copied to each of the series. So
+			you can specify that all series should have bars by putting it in the
+			global options, or override it for individual series by specifying
+			bars in a particular the series object in the array of data.</p>
+			
+			<p>The most important options are "lines", "points" and "bars" that
+			specify whether and how lines, points and bars should be shown for
+			each data series. In case you don't specify anything at all, Flot will
+			default to showing lines (you can turn this off with
+			lines: { show: false }). You can specify the various types
+			independently of each other, and Flot will happily draw each of them
+			in turn (this is probably only useful for lines and points), e.g.</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">var</span><span class="pln"> options </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; series</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> fill</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> fillColor</span><span class="pun">:</span><span class="pln"> </span><span class="str">"rgba(255, 255, 255, 0.8)"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; points</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> fill</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">};</span><span class="pln"><br></span></code></pre>
+			
+			<p>"lineWidth" is the thickness of the line or outline in pixels. You can
+			set it to 0 to prevent a line or outline from being drawn; this will
+			also hide the shadow.</p>
+			
+			<p>"fill" is whether the shape should be filled. For lines, this produces
+			area graphs. You can use "fillColor" to specify the color of the fill.
+			If "fillColor" evaluates to false (default for everything except
+			points which are filled with white), the fill color is auto-set to the
+			color of the data series. You can adjust the opacity of the fill by
+			setting fill to a number between 0 (fully transparent) and 1 (fully
+			opaque).</p>
+			
+			<p>For bars, fillColor can be a gradient, see the gradient documentation
+			below. "barWidth" is the width of the bars in units of the x axis (or
+			the y axis if "horizontal" is true), contrary to most other measures
+			that are specified in pixels. For instance, for time series the unit
+			is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of
+			a day. "align" specifies whether a bar should be left-aligned
+			(default) or centered on top of the value it represents. When
+			"horizontal" is on, the bars are drawn horizontally, i.e. from the y
+			axis instead of the x axis; note that the bar end points are still
+			defined in the same way so you'll probably want to swap the
+			coordinates if you've been plotting vertical bars first.</p>
+			
+			<p>For lines, "steps" specifies whether two adjacent data points are
+			connected with a straight (possibly diagonal) line or with first a
+			horizontal and then a vertical line. Note that this transforms the
+			data by adding extra points.</p>
+			
+			<p>For points, you can specify the radius and the symbol. The only
+			built-in symbol type is circles, for other types you can use a plugin
+			or define them yourself by specifying a callback:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="kwd">function</span><span class="pln"> cross</span><span class="pun">(</span><span class="pln">ctx</span><span class="pun">,</span><span class="pln"> x</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">,</span><span class="pln"> radius</span><span class="pun">,</span><span class="pln"> shadow</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> size </span><span class="pun">=</span><span class="pln"> radius </span><span class="pun">*</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">sqrt</span><span class="pun">(</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">)</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; ctx</span><span class="pun">.</span><span class="pln">moveTo</span><span class="pun">(</span><span class="pln">x </span><span class="pun">-</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> y </span><span class="pun">-</span><span class="pln"> size</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; ctx</span><span class="pun">.</span><span class="pln">lineTo</span><span class="pun">(</span><span class="pln">x </span><span class="pun">+</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> y </span><span class="pun">+</span><span class="pln"> size</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; ctx</span><span class="pun">.</span><span class="pln">moveTo</span><span class="pun">(</span><span class="pln">x </span><span class="pun">-</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> y </span><span class="pun">+</span><span class="pln"> size</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; ctx</span><span class="pun">.</span><span class="pln">lineTo</span><span class="pun">(</span><span class="pln">x </span><span class="pun">+</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> y </span><span class="pun">-</span><span class="pln"> size</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The parameters are the drawing context, x and y coordinates of the
+			center of the point, a radius which corresponds to what the circle
+			would have used and whether the call is to draw a shadow (due to
+			limited canvas support, shadows are currently faked through extra
+			draws). It's good practice to ensure that the area covered by the
+			symbol is the same as for the circle with the given radius, this
+			ensures that all symbols have approximately the same visual weight.</p>
+			
+			<p>"shadowSize" is the default size of shadows in pixels. Set it to 0 to
+			remove shadows.</p>
+			
+			<p>The "colors" array specifies a default color theme to get colors for
+			the data series from. You can specify as many colors as you like, like
+			this:</p>
+			
+			<pre><code><span class="pln">&nbsp; colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"#d18b2c"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#dba255"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#919733"</span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>If there are more data series than colors, Flot will try to generate
+			extra colors by lightening and darkening colors in the theme.</p>
+			
+			<h2>Customizing the grid</h2>
+			
+			<pre><code><span class="pln">&nbsp; grid</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; aboveData</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; color</span><span class="pun">:</span><span class="pln"> color<br>&nbsp; &nbsp; backgroundColor</span><span class="pun">:</span><span class="pln"> color</span><span class="pun">/</span><span class="pln">gradient </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"><br>&nbsp; &nbsp; labelMargin</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; axisMargin</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; markings</span><span class="pun">:</span><span class="pln"> array of markings </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">(</span><span class="pln">fn</span><span class="pun">:</span><span class="pln"> axes </span><span class="pun">-&gt;</span><span class="pln"> array of markings</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; borderWidth</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; &nbsp; borderColor</span><span class="pun">:</span><span class="pln"> color </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"><br>&nbsp; &nbsp; minBorderMargin</span><span class="pun">:</span><span class="pln"> number </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"><br>&nbsp; &nbsp; clickable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; hoverable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; autoHighlight</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"><br>&nbsp; &nbsp; mouseActiveRadius</span><span class="pun">:</span><span class="pln"> number<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>The grid is the thing with the axes and a number of ticks. Many of the
+			things in the grid are configured under the individual axes, but not
+			all. "color" is the color of the grid itself whereas "backgroundColor"
+			specifies the background color inside the grid area, here null means
+			that the background is transparent. You can also set a gradient, see
+			the gradient documentation below.</p>
+			
+			<p>You can turn off the whole grid including tick labels by setting
+			"show" to false. "aboveData" determines whether the grid is drawn
+			above the data or below (below is default).</p>
+			
+			<p>"labelMargin" is the space in pixels between tick labels and axis
+			line, and "axisMargin" is the space in pixels between axes when there
+			are two next to each other. Note that you can style the tick labels
+			with CSS, e.g. to change the color. They have class "tickLabel".</p>
+			
+			<p>"borderWidth" is the width of the border around the plot. Set it to 0
+			to disable the border. You can also set "borderColor" if you want the
+			border to have a different color than the grid lines.
+			"minBorderMargin" controls the default minimum margin around the
+			border - it's used to make sure that points aren't accidentally
+			clipped by the canvas edge so by default the value is computed from
+			the point radius.</p>
+			
+			<p>"markings" is used to draw simple lines and rectangular areas in the
+			background of the plot. You can either specify an array of ranges on
+			the form { xaxis: { from, to }, yaxis: { from, to } } (with multiple
+			axes, you can specify coordinates for other axes instead, e.g. as
+			x2axis/x3axis/...) or with a function that returns such an array given
+			the axes for the plot in an object as the first parameter.</p>
+			
+			<p>You can set the color of markings by specifying "color" in the ranges
+			object. Here's an example array:</p>
+			
+			<pre><code><span class="pln">&nbsp; markings</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> xaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">from</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> yaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">from</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#bb0000"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you leave out one of the values, that value is assumed to go to the
+			border of the plot. So for example if you only specify { xaxis: {
+			from: 0, to: 2 } } it means an area that extends from the top to the
+			bottom of the plot in the x range 0-2.</p>
+			
+			<p>A line is drawn if from and to are the same, e.g.</p>
+			
+			<pre><code><span class="pln">&nbsp; markings</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> yaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">from</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>would draw a line parallel to the x axis at y = 1. You can control the
+			line width with "lineWidth" in the range object.</p>
+			
+			<p>An example function that makes vertical stripes might look like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; markings</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">axes</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> markings </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">floor</span><span class="pun">(</span><span class="pln">axes</span><span class="pun">.</span><span class="pln">xaxis</span><span class="pun">.</span><span class="pln">min</span><span class="pun">);</span><span class="pln"> x </span><span class="pun">&lt;</span><span class="pln"> axes</span><span class="pun">.</span><span class="pln">xaxis</span><span class="pun">.</span><span class="pln">max</span><span class="pun">;</span><span class="pln"> x </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; markings</span><span class="pun">.</span><span class="pln">push</span><span class="pun">({</span><span class="pln"> xaxis</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">from</span><span class="pun">:</span><span class="pln"> x</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">:</span><span class="pln"> x </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> markings</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you set "clickable" to true, the plot will listen for click events
+			on the plot area and fire a "plotclick" event on the placeholder with
+			a position and a nearby data item object as parameters. The coordinates
+			are available both in the unit of the axes (not in pixels) and in
+			global screen coordinates.</p>
+			
+			<p>Likewise, if you set "hoverable" to true, the plot will listen for
+			mouse move events on the plot area and fire a "plothover" event with
+			the same parameters as the "plotclick" event. If "autoHighlight" is
+			true (the default), nearby data items are highlighted automatically.
+			If needed, you can disable highlighting and control it yourself with
+			the highlight/unhighlight plot methods described elsewhere.</p>
+			
+			<p>You can use "plotclick" and "plothover" events like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="str">"#placeholder"</span><span class="pun">),</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> d </span><span class="pun">],</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> grid</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> clickable</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">});</span><span class="pln"><br><br>$</span><span class="pun">(</span><span class="str">"#placeholder"</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">"plotclick"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">event</span><span class="pun">,</span><span class="pln"> pos</span><span class="pun">,</span><span class="pln"> item</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"You clicked at "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> pos</span><span class="pun">.</span><span class="pln">x </span><span class="pun">+</span><span class="pln"> </span><span class="str">", "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> pos</span><span class="pun">.</span><span class="pln">y</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="com">// axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="com">// if you need global screen coordinates, they are pos.pageX, pos.pageY</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">item</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; highlight</span><span class="pun">(</span><span class="pln">item</span><span class="pun">.</span><span class="pln">series</span><span class="pun">,</span><span class="pln"> item</span><span class="pun">.</span><span class="pln">datapoint</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"You clicked a point!"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre>
+			
+			<p>The item object in this example is either null or a nearby object on the form:</p>
+			
+			<pre><code><span class="pln">&nbsp; item</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; datapoint</span><span class="pun">:</span><span class="pln"> the point</span><span class="pun">,</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">g</span><span class="pun">.</span><span class="pln"> </span><span class="pun">[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; dataIndex</span><span class="pun">:</span><span class="pln"> the index of the point </span><span class="kwd">in</span><span class="pln"> the data array<br>&nbsp; &nbsp; &nbsp; series</span><span class="pun">:</span><span class="pln"> the series </span><span class="kwd">object</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; seriesIndex</span><span class="pun">:</span><span class="pln"> the index of the series<br>&nbsp; &nbsp; &nbsp; pageX</span><span class="pun">,</span><span class="pln"> pageY</span><span class="pun">:</span><span class="pln"> the </span><span class="kwd">global</span><span class="pln"> screen coordinates of the point<br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>For instance, if you have specified the data like this </p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="str">"#placeholder"</span><span class="pun">),</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> label</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Foo"</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[[</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">],</span><span class="pln"> </span><span class="pun">[</span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">]]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">],</span><span class="pln"> </span><span class="pun">...);</span><span class="pln"><br></span></code></pre>
+			
+			<p>and the mouse is near the point (7, 3), "datapoint" is [7, 3],
+			"dataIndex" will be 1, "series" is a normalized series object with
+			among other things the "Foo" label in series.label and the color in
+			series.color, and "seriesIndex" is 0. Note that plugins and options
+			that transform the data can shift the indexes from what you specified
+			in the original data array.</p>
+			
+			<p>If you use the above events to update some other information and want
+			to clear out that info in case the mouse goes away, you'll probably
+			also need to listen to "mouseout" events on the placeholder div.</p>
+			
+			<p>"mouseActiveRadius" specifies how far the mouse can be from an item
+			and still activate it. If there are two or more points within this
+			radius, Flot chooses the closest item. For bars, the top-most bar
+			(from the latest specified data series) is chosen.</p>
+			
+			<p>If you want to disable interactivity for a specific data series, you
+			can set "hoverable" and "clickable" to false in the options for that
+			series, like this { data: [...], label: "Foo", clickable: false }.</p>
+			
+			<h2>Specifying gradients</h2>
+			
+			<p>A gradient is specified like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">{</span><span class="pln"> colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> color1</span><span class="pun">,</span><span class="pln"> color2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>For instance, you might specify a background on the grid going from
+			black to gray like this:</p>
+			
+			<pre><code><span class="pln">&nbsp; grid</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; backgroundColor</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"#000"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"#999"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>For the series you can specify the gradient as an object that
+			specifies the scaling of the brightness and the opacity of the series
+			color, e.g.</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="pun">{</span><span class="pln"> colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[{</span><span class="pln"> opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.8</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> brightness</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.6</span><span class="pun">,</span><span class="pln"> opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.8</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>where the first color simply has its alpha scaled, whereas the second
+			is also darkened. For instance, for bars the following makes the bars
+			gradually disappear, without outline:</p>
+			
+			<pre><code><span class="pln">&nbsp; bars</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; show</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; lineWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; fill</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; fillColor</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> colors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.8</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.1</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Flot currently only supports vertical gradients drawn from top to
+			bottom because that's what works with IE.</p>
+			
+			<h2>Plot Methods</h2>
+			
+			<p>The Plot object returned from the plot function has some methods you
+			can call:</p>
+			
+			<ul>
+			<li><p><strong>highlight(series, datapoint)</strong></p>
+			
+			<p>Highlight a specific datapoint in the data series. You can either
+			specify the actual objects, e.g. if you got them from a
+			"plotclick" event, or you can specify the indices, e.g.
+			highlight(1, 3) to highlight the fourth point in the second series
+			(remember, zero-based indexing).</p></li>
+			<li><p><strong>unhighlight(series, datapoint) or unhighlight()</strong></p>
+			
+			<p>Remove the highlighting of the point, same parameters as
+			highlight.</p>
+			
+			<p>If you call unhighlight with no parameters, e.g. as
+			plot.unhighlight(), all current highlights are removed.</p></li>
+			<li><p><strong>setData(data)</strong></p>
+			
+			<p>You can use this to reset the data used. Note that axis scaling,
+			ticks, legend etc. will not be recomputed (use setupGrid() to do
+			that). You'll probably want to call draw() afterwards.</p>
+			
+			<p>You can use this function to speed up redrawing a small plot if
+			you know that the axes won't change. Put in the new data with
+			setData(newdata), call draw(), and you're good to go. Note that
+			for large datasets, almost all the time is consumed in draw()
+			plotting the data so in this case don't bother.</p></li>
+			<li><p><strong>setupGrid()</strong></p>
+			
+			<p>Recalculate and set axis scaling, ticks, legend etc.</p>
+			
+			<p>Note that because of the drawing model of the canvas, this
+			function will immediately redraw (actually reinsert in the DOM)
+			the labels and the legend, but not the actual tick lines because
+			they're drawn on the canvas. You need to call draw() to get the
+			canvas redrawn.</p></li>
+			<li><p><strong>draw()</strong></p>
+			
+			<p>Redraws the plot canvas.</p></li>
+			<li><p><strong>triggerRedrawOverlay()</strong></p>
+			
+			<p>Schedules an update of an overlay canvas used for drawing
+			interactive things like a selection and point highlights. This
+			is mostly useful for writing plugins. The redraw doesn't happen
+			immediately, instead a timer is set to catch multiple successive
+			redraws (e.g. from a mousemove). You can get to the overlay by
+			setting up a drawOverlay hook.</p></li>
+			<li><p><strong>width()/height()</strong></p>
+			
+			<p>Gets the width and height of the plotting area inside the grid.
+			This is smaller than the canvas or placeholder dimensions as some
+			extra space is needed (e.g. for labels).</p></li>
+			<li><p><strong>offset()</strong></p>
+			
+			<p>Returns the offset of the plotting area inside the grid relative
+			to the document, useful for instance for calculating mouse
+			positions (event.pageX/Y minus this offset is the pixel position
+			inside the plot).</p></li>
+			<li><p><strong>pointOffset({ x: xpos, y: ypos })</strong></p>
+			
+			<p>Returns the calculated offset of the data point at (x, y) in data
+			space within the placeholder div. If you are working with multiple axes, you
+			can specify the x and y axis references, e.g.</p>
+			
+			<p><code class="prettyprint"><span class="pln">o </span><span class="pun">=</span><span class="pln"> pointOffset</span><span class="pun">({</span><span class="pln"> x</span><span class="pun">:</span><span class="pln"> xpos</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">:</span><span class="pln"> ypos</span><span class="pun">,</span><span class="pln"> xaxis</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> yaxis</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">})</span><span class="pln"><br></span><span class="com">// o.left and o.top now contains the offset within the div</span></code></p></li>
+			<li><p><strong>resize()</strong></p>
+			
+			<p>Tells Flot to resize the drawing canvas to the size of the
+			placeholder. You need to run setupGrid() and draw() afterwards as
+			canvas resizing is a destructive operation. This is used
+			internally by the resize plugin.</p></li>
+			<li><p><strong>shutdown()</strong></p>
+			
+			<p>Cleans up any event handlers Flot has currently registered. This
+			is used internally.</p></li>
+			</ul>
+			
+			<p>There are also some members that let you peek inside the internal
+			workings of Flot which is useful in some cases. Note that if you change
+			something in the objects returned, you're changing the objects used by
+			Flot to keep track of its state, so be careful.</p>
+			
+			<ul>
+			<li><p><strong>getData()</strong></p>
+			
+			<p>Returns an array of the data series currently used in normalized
+			form with missing settings filled in according to the global
+			options. So for instance to find out what color Flot has assigned
+			to the data series, you could do this:</p>
+			
+			<p><code class="prettyprint"><span class="kwd">var</span><span class="pln"> series </span><span class="pun">=</span><span class="pln"> plot</span><span class="pun">.</span><span class="pln">getData</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> series</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; alert</span><span class="pun">(</span><span class="pln">series</span><span class="pun">[</span><span class="pln">i</span><span class="pun">].</span><span class="pln">color</span><span class="pun">);</span></code></p>
+			
+			<p>A notable other interesting field besides color is datapoints
+			which has a field "points" with the normalized data points in a
+			flat array (the field "pointsize" is the increment in the flat
+			array to get to the next point so for a dataset consisting only of
+			(x,y) pairs it would be 2).</p></li>
+			<li><p><strong>getAxes()</strong></p>
+			
+			<p>Gets an object with the axes. The axes are returned as the
+			attributes of the object, so for instance getAxes().xaxis is the
+			x axis.</p>
+			
+			<p>Various things are stuffed inside an axis object, e.g. you could
+			use getAxes().xaxis.ticks to find out what the ticks are for the
+			xaxis. Two other useful attributes are p2c and c2p, functions for
+			transforming from data point space to the canvas plot space and
+			back. Both returns values that are offset with the plot offset.
+			Check the Flot source code for the complete set of attributes (or
+			output an axis with console.log() and inspect it).</p>
+			
+			<p>With multiple axes, the extra axes are returned as x2axis, x3axis,
+			etc., e.g. getAxes().y2axis is the second y axis. You can check
+			y2axis.used to see whether the axis is associated with any data
+			points and y2axis.show to see if it is currently shown. </p></li>
+			<li><p><strong>getPlaceholder()</strong></p>
+			
+			<p>Returns placeholder that the plot was put into. This can be useful
+			for plugins for adding DOM elements or firing events.</p></li>
+			<li><p><strong>getCanvas()</strong></p>
+			
+			<p>Returns the canvas used for drawing in case you need to hack on it
+			yourself. You'll probably need to get the plot offset too.</p></li>
+			<li><p><strong>getPlotOffset()</strong></p>
+			
+			<p>Gets the offset that the grid has within the canvas as an object
+			with distances from the canvas edges as "left", "right", "top",
+			"bottom". I.e., if you draw a circle on the canvas with the center
+			placed at (left, top), its center will be at the top-most, left
+			corner of the grid.</p></li>
+			<li><p><strong>getOptions()</strong></p>
+			
+			<p>Gets the options for the plot, normalized, with default values
+			filled in. You get a reference to actual values used by Flot, so
+			if you modify the values in here, Flot will use the new values.
+			If you change something, you probably have to call draw() or
+			setupGrid() or triggerRedrawOverlay() to see the change.</p></li>
+			</ul>
+			
+			<h2>Hooks</h2>
+			
+			<p>In addition to the public methods, the Plot object also has some hooks
+			that can be used to modify the plotting process. You can install a
+			callback function at various points in the process, the function then
+			gets access to the internal data structures in Flot.</p>
+			
+			<p>Here's an overview of the phases Flot goes through:</p>
+			
+			<ol>
+			<li>Plugin initialization, parsing options</li>
+			<li>Constructing the canvases used for drawing</li>
+			<li>Set data: parsing data specification, calculating colors,
+			 copying raw data points into internal format,
+			 normalizing them, finding max/min for axis auto-scaling</li>
+			<li>Grid setup: calculating axis spacing, ticks, inserting tick
+			 labels, the legend</li>
+			<li>Draw: drawing the grid, drawing each of the series in turn</li>
+			<li>Setting up event handling for interactive features</li>
+			<li>Responding to events, if any</li>
+			<li>Shutdown: this mostly happens in case a plot is overwritten </li>
+			</ol>
+			
+			<p>Each hook is simply a function which is put in the appropriate array.
+			You can add them through the "hooks" option, and they are also available
+			after the plot is constructed as the "hooks" attribute on the returned
+			plot object, e.g.</p>
+			
+			<pre><code><span class="pln">&nbsp; </span><span class="com">// define a simple draw hook</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span class="pln"> hellohook</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> canvascontext</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> alert</span><span class="pun">(</span><span class="str">"hello!"</span><span class="pun">);</span><span class="pln"> </span><span class="pun">};</span><span class="pln"><br><br>&nbsp; </span><span class="com">// pass it in, in an array since we might want to specify several</span><span class="pln"><br>&nbsp; </span><span class="kwd">var</span><span class="pln"> plot </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">plot</span><span class="pun">(</span><span class="pln">placeholder</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> hooks</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> draw</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">hellohook</span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">});</span><span class="pln"><br><br>&nbsp; </span><span class="com">// we can now find it again in plot.hooks.draw[0] unless a plugin</span><span class="pln"><br>&nbsp; </span><span class="com">// has added other hooks</span><span class="pln"><br></span></code></pre>
+			
+			<p>The available hooks are described below. All hook callbacks get the
+			plot object as first parameter. You can find some examples of defined
+			hooks in the plugins bundled with Flot.</p>
+			
+			<h3>processOptions  [phase 1]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> options</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Called after Flot has parsed and merged options. Useful in the
+			instance where customizations beyond simple merging of default
+			values is needed. A plugin might use it to detect that it has been
+			enabled and then turn on or off other options.</p>
+			
+			<h3>processRawData  [phase 3]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> series</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">,</span><span class="pln"> datapoints</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Called before Flot copies and normalizes the raw data for the given
+			series. If the function fills in datapoints.points with normalized
+			points and sets datapoints.pointsize to the size of the points,
+			Flot will skip the copying/normalization step for this series.</p>
+			
+			<p>In any case, you might be interested in setting datapoints.format,
+			an array of objects for specifying how a point is normalized and
+			how it interferes with axis scaling.</p>
+			
+			<p>The default format array for points is something along the lines of:</p>
+			
+			<pre><code><span class="pun">[</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="pun">{</span><span class="pln"> x</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> number</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> required</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="pun">{</span><span class="pln"> y</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> number</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> required</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">]</span><span class="pln"><br></span></code></pre>
+			
+			<p>The first object means that for the first coordinate it should be
+			taken into account when scaling the x axis, that it must be a
+			number, and that it is required - so if it is null or cannot be
+			converted to a number, the whole point will be zeroed out with
+			nulls. Beyond these you can also specify "defaultValue", a value to
+			use if the coordinate is null. This is for instance handy for bars
+			where one can omit the third coordinate (the bottom of the bar)
+			which then defaults to 0.</p>
+			
+			<h3>processDatapoints  [phase 3]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> series</span><span class="pun">,</span><span class="pln"> datapoints</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Called after normalization of the given series but before finding
+			min/max of the data points. This hook is useful for implementing data
+			transformations. "datapoints" contains the normalized data points in
+			a flat array as datapoints.points with the size of a single point
+			given in datapoints.pointsize. Here's a simple transform that
+			multiplies all y coordinates by 2:</p>
+			
+			<pre><code><span class="kwd">function</span><span class="pln"> multiply</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> series</span><span class="pun">,</span><span class="pln"> datapoints</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> points </span><span class="pun">=</span><span class="pln"> datapoints</span><span class="pun">.</span><span class="pln">points</span><span class="pun">,</span><span class="pln"> ps </span><span class="pun">=</span><span class="pln"> datapoints</span><span class="pun">.</span><span class="pln">pointsize</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> points</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">+=</span><span class="pln"> ps</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; points</span><span class="pun">[</span><span class="pln">i </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">*=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Note that you must leave datapoints in a good condition as Flot
+			doesn't check it or do any normalization on it afterwards.</p>
+			
+			<h3>drawSeries  [phase 5]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> canvascontext</span><span class="pun">,</span><span class="pln"> series</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Hook for custom drawing of a single series. Called just before the
+			standard drawing routine has been called in the loop that draws
+			each series.</p>
+			
+			<h3>draw  [phase 5]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> canvascontext</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Hook for drawing on the canvas. Called after the grid is drawn
+			(unless it's disabled or grid.aboveData is set) and the series have
+			been plotted (in case any points, lines or bars have been turned
+			on). For examples of how to draw things, look at the source code.</p>
+			
+			<h3>bindEvents  [phase 6]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> eventHolder</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Called after Flot has setup its event handlers. Should set any
+			necessary event handlers on eventHolder, a jQuery object with the
+			canvas, e.g.</p>
+			
+			<pre><code><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> eventHolder</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; eventHolder</span><span class="pun">.</span><span class="pln">mousedown</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"You pressed the mouse at "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">pageX </span><span class="pun">+</span><span class="pln"> </span><span class="str">" "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">pageY</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">});</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br></span></code></pre>
+			
+			<p>Interesting events include click, mousemove, mouseup/down. You can
+			use all jQuery events. Usually, the event handlers will update the
+			state by drawing something (add a drawOverlay hook and call
+			triggerRedrawOverlay) or firing an externally visible event for
+			user code. See the crosshair plugin for an example.</p>
+			
+			<p>Currently, eventHolder actually contains both the static canvas
+			used for the plot itself and the overlay canvas used for
+			interactive features because some versions of IE get the stacking
+			order wrong. The hook only gets one event, though (either for the
+			overlay or for the static canvas).</p>
+			
+			<p>Note that custom plot events generated by Flot are not generated on
+			eventHolder, but on the div placeholder supplied as the first
+			argument to the plot call. You can get that with
+			plot.getPlaceholder() - that's probably also the one you should use
+			if you need to fire a custom event.</p>
+			
+			<h3>drawOverlay  [phase 7]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> canvascontext</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>The drawOverlay hook is used for interactive things that need a
+			canvas to draw on. The model currently used by Flot works the way
+			that an extra overlay canvas is positioned on top of the static
+			canvas. This overlay is cleared and then completely redrawn
+			whenever something interesting happens. This hook is called when
+			the overlay canvas is to be redrawn.</p>
+			
+			<p>"canvascontext" is the 2D context of the overlay canvas. You can
+			use this to draw things. You'll most likely need some of the
+			metrics computed by Flot, e.g. plot.width()/plot.height(). See the
+			crosshair plugin for an example.</p>
+			
+			<h3>shutdown  [phase 8]</h3>
+			
+			<pre><code><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">plot</span><span class="pun">,</span><span class="pln"> eventHolder</span><span class="pun">)</span><span class="pln"><br></span></code></pre>
+			
+			<p>Run when plot.shutdown() is called, which usually only happens in
+			case a plot is overwritten by a new plot. If you're writing a
+			plugin that adds extra DOM elements or event handlers, you should
+			add a callback to clean up after you. Take a look at the section in
+			PLUGINS.txt for more info.</p>
+			
+			<h2>Plugins</h2>
+			
+			<p>Plugins extend the functionality of Flot. To use a plugin, simply
+			include its Javascript file after Flot in the HTML page.</p>
+			
+			<p>If you're worried about download size/latency, you can concatenate all
+			the plugins you use, and Flot itself for that matter, into one big file
+			(make sure you get the order right), then optionally run it through a
+			Javascript minifier such as YUI Compressor.</p>
+			
+			<p>Here's a brief explanation of how the plugin plumbings work:</p>
+			
+			<p>Each plugin registers itself in the global array $.plot.plugins. When
+			you make a new plot object with $.plot, Flot goes through this array
+			calling the "init" function of each plugin and merging default options
+			from the "option" attribute of the plugin. The init function gets a
+			reference to the plot object created and uses this to register hooks
+			and add new public methods if needed.</p>
+			
+			<p>See the PLUGINS.txt file for details on how to write a plugin. As the
+			above description hints, it's actually pretty easy.</p>
+			
+			<h2>Version number</h2>
+			
+			<p>The version number of Flot is available in $.plot.version.</p></div>
+		</div>
+	</div>
+</body>
+</html>

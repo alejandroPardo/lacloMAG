@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li class="current">
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Navigation</h1>
+			
+			<p>Pastel includes a fast navigation system, which is very easy to use.
+			In <strong>Getting Started</strong> you created your very first section. A section can in theory be placed anywhere on the page. The sections are mostly how one would navigate between different pages in the Dashboard. You have the Dashboard view:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dashboard"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"scroll con"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="com">&lt;!--Dashboard view--&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Here's how to place three new sections in the that view:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dashboard"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"scroll con"</span><span class="tag">&gt;</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"section current"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"Section 1"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section1"</span><span class="tag">&gt;</span><span class="pln">This is Section 1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"section"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"Section 2"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section3"</span><span class="tag">&gt;</span><span class="pln">This is Section 2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"section"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"Section 3"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section4"</span><span class="tag">&gt;</span><span class="pln">This is Section 3</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Notice how the first section has the class <em>current</em>. That's important to set, so the system knows where to navigate, if the URL bar doesn't contain a hash url. If a user opens the Dashboard with the hash <strong>#section2</strong>, that will be shown instead - no matter which section that has the <em>current</em> class.</p>
+			
+			<p>Now how would one navigate from a section to another? Well that's the best part, you simply link to a section like this:</p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#section2"</span><span class="tag">&gt;</span><span class="pln">Click to go to Section 2</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Couldn't be much simpler. The javascript will take of the rest - if it's a invalid link a beautiful error page will be shown (see <strong>Error pages</strong> for more information.)</p>
+			
+			<p>If you apply the attribute <em>data-reveal</em> it will instead show something that's hidden. Consider this example with small popup box with the id <em>#popop</em></p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#popup"</span><span class="pln"> </span><span class="atn">data-reveal</span><span class="tag">&gt;</span><span class="pln">Click to show #popup</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>When a user clicks the link, <em>#popup</em> will simply show and not navigate away from whatever section that's active.</p>
+			
+			<h2>Modals</h2>
+			
+			<p>If you want to create a simple modal window just use the <em>data-modal</em> attribute like this:</p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#somecontent"</span><span class="pln"> </span><span class="atn">data-modal</span><span class="tag">&gt;</span><span class="pln">Click to show modal</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>A modal will appear instantly with the content of the linked element. </p>
+			
+			<p>If you want to load an external page in a modal, well just link to it. Keep in mind you have to be on the same domain:</p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"files/ajax.html"</span><span class="pln"> </span><span class="atn">data-modal</span><span class="tag">&gt;</span><span class="pln">Click to show modal with external content</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>For more advanced options please read the <strong>Modals</strong>-section.</p>
+			
+			<h2>Tabs</h2>
+			
+			<p>If you want to have a sub-navigation system in a section (just like the documentation page) - Pastel can automatically create tabs:</p>
+			
+			<pre><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"section padding"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"Section 2 (Tabs demo)"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section2"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"current"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#tab_one"</span><span class="tag">&gt;</span><span class="pln">Name of tab 1</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;li&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#tab_two"</span><span class="tag">&gt;</span><span class="pln">Name of tab 2</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/li&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/ul&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"tab_one"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tab"</span><span class="tag">&gt;</span><span class="pln">Content of tab 1</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"tab_two"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tab"</span><span class="tag">&gt;</span><span class="pln">Content of tab 2</span><span class="tag">&lt;/div&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span><span class="tag">&lt;/div&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>Notice the added <em>padding</em> class to the section - that will remove a section's default 40px padding. Not needed of course. Otherwise everything is simply straight forward. Create a unordered list (<em>ul</em>) with all the tabs you need and remember to apply the class <em>.current</em> to the default tab. Then wrap all your tabs (with the class <em>.tab</em>) in a div with the class <em>.tabs</em>. It doesn't matter if you place the tabs in the same order as the list itself.</p>
+			
+			<h2>External links</h2>
+			
+			<p><em>New in Pastel 1.0.1</em></p>
+			
+			<p>I can't believe I forgot that in the initial release, but now it's very easy to link to something <em>outside</em> the application (a PHP page for instance.) Just add <em>rel="external"</em> to your link:</p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"http://example.com"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"external"</span><span class="tag">&gt;</span><span class="pln">Click</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li class="current">
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Modals</h1>
+			
+			<p>I wrote a very lightweight modal script for use with Pastel - it's simple and beautiful.</p>
+			
+			<p>To create a modal, use this snippet:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">modal</span><span class="pun">({</span><span class="pln"><br>&nbsp; &nbsp; url</span><span class="pun">:</span><span class="pln"> </span><span class="str">"ajax.html"</span><span class="pln"><br></span><span class="pun">})</span><span class="pln"><br></span></code></pre>
+			
+			<p>It will have the default theme, width, height and animation. 
+			Or you can simply pass an object like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#modalcontent"</span><span class="pun">).</span><span class="pln">modal</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<p>Everything is easily changeable with the following parameters:</p>
+			
+			<ul>
+			<li><strong>theme</strong>:    <em>"light"</em>   (string)    - change the theme of the modal. Can be either: light, dark, blue or you own custom CSS class.</li>
+			<li><strong>width</strong>:    <em>undefined</em> (integer)   - set a width. Don't add px or %.</li>
+			<li><strong>height</strong>:    <em>undefined</em> (integer)   - set a width. Don't add px or %.</li>
+			<li><strong>layout</strong>:    <em>undefined</em> (string)    - if set to "elastic", the modal will be elastic. If not set every width and height will be in pixels.</li>
+			<li><strong>url</strong>:        <em>undefined</em> (string)    - load url into modal. Same domain only.</li>
+			<li><strong>content</strong>    <em>false</em>     (string)    - if a object was not passed or an url not set, you can set your HTML content.</li>
+			<li><strong>padding</strong>    <em>undefined</em> (string)    - set padding of modal. This time remember px or %.</li>
+			<li><strong>animation</strong>    <em>undefined</em> (string)    - set CSS3 animation. See the Animations page for a full overview of available animations.</li>
+			</ul>
+			
+			<h2>Complete example</h2>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">modal</span><span class="pun">({</span><span class="pln"><br>&nbsp; &nbsp; theme</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="str">"dark"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; width</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="lit">80</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; height</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; </span><span class="lit">40</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; layout</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; </span><span class="str">"elastic"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; url</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="kwd">undefined</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">"&lt;strong&gt;HTML&lt;/strong&gt; content"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; padding</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">"100px"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; animation</span><span class="pun">:</span><span class="pln"> &nbsp;</span><span class="str">"fadeInDown"</span><span class="pln"><br></span><span class="pun">})</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li class="current">
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li>
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Tooltips</h1>
+			
+			<p>It's very easy to create a tooltip. Just apply the class <em>.tooltip</em> to the element where you want the tooltip to appear and write the content of the tooltip in the title-attribute. Take this link (works on every element) for instance:</p>
+			
+			<pre><code><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#some-link"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"This is a tooltip"</span><span class="tag">&gt;</span><span class="pln">A link with a tooltip</span><span class="tag">&lt;/a&gt;</span><span class="pln"><br></span></code></pre>
+			
+			<p>It will probably suffice for most. The plugin will determine the most appropriate location itself.</p>
+			
+			<p>If you need more control or just want to initialize everything from the javascript, you can do it like this:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">".tooltip"</span><span class="pun">).</span><span class="pln">tooltip</span><span class="pun">();</span><span class="pln"><br></span></code></pre>
+			
+			<h2>Options</h2>
+			
+			<ul>
+			<li><strong>activation</strong>:        <em>"hover"</em>   (string)    - determine how the tooltip should be activated. Can be set to either: hover, focus or click.</li>
+			<li><strong>maxWidth</strong>:            <em>"240px"</em>   (string)    - the max width of the tooltip can be set.      </li>
+			<li><strong>title</strong>:            <em>false</em>     (string)    - if set a title will appear over the content.</li>
+			<li><strong>edgeOffset</strong>:        <em>3</em>         (integer)   - set the edge offset of the tooltip.</li>
+			<li><strong>defaultPosition</strong>:    <em>"bottom"</em>  (string)    - change the default position. Options: bottom, top, left and right.</li>
+			<li><strong>delay</strong>:            <em>0</em>         (integer)   - Delay in milliseconds before the tooltip will show.</li>
+			<li><strong>fadeIn</strong>:            <em>100</em>       (integer)   - fadeIn duration in milliseconds.</li>
+			<li><strong>fadeOut</strong>:            <em>100</em>       (integer)   - fadeOut duration in milliseconds.</li>
+			<li><strong>attribute</strong>:        <em>"title"</em>   (string)    - change the attribute of where the tooltip content can found.</li>
+			<li><strong>theme</strong>:            <em>false</em>     (string)    - if set the parameter will be added as a class to the tooltip, allowing for easy CSS-styling.</li>
+			<li><strong>content</strong>:            <em>false</em>     (string)    - provide the content directly without an attribute.</li>
+			<li><strong>enter</strong>:            <em>undefined</em> (function)  - if function is set, it will be called, when the tooltips appear.</li>
+			<li><strong>exit</strong>:                <em>undefined</em> (function)  - if function is set, it will be called, when the tooltips disappear. </li>
+			</ul>
+			
+			<h2>Complete example</h2>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">".tooltip"</span><span class="pun">).</span><span class="pln">tooltip</span><span class="pun">({</span><span class="pln"><br>&nbsp; &nbsp; activation</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"hover"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; maxWidth</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"340px"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; title</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">"This is a title"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; edgeOffset</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">20</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; defaultPosition</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp;</span><span class="str">"right"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; delay</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">100</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; fadeIn</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="lit">500</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; fadeOut</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">500</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; attribute</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">"data-tooltip"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; theme</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">"blue"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; content</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="str">"Sample &lt;strong&gt;content&lt;/strong&gt;"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; enter</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"Enter"</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">exit</span><span class="pun">:</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert</span><span class="pun">(</span><span class="str">"Exit"</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">});</span><span class="pln"><br></span></code></pre></div>
+		</div>
+	</div>
+</body>
+</html>

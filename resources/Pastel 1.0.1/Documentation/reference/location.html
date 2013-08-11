@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../app/main.css">
+	<style>
+	#docs, .tab {
+		display: block!important;
+	}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" id="docs">
+		<ul class="tabs">
+			<li>
+				<a href="../index.html">Introduction</a>
+			</li>
+			<li>
+				<a href="getting_started.html">Getting started</a>
+			</li>
+			<li>
+				<a href="navigation.html">Navigation</a>
+			</li>
+			<li>
+				<a href="grid_layout_carton.html">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="welcome_screen.html">Welcome screen</a>
+			</li>
+			<li>
+				<a href="themes.html">Themes</a>
+			</li>
+			<li>
+				<a href="ui.html">UI elements</a>
+			</li>
+			<li>
+				<a href="cache.html">Update System</a>
+			</li>
+			<li>
+				<a href="notifications.html">Notifications</a>
+			</li>
+			<li>
+				<a href="modals.html">Modals</a>
+			</li>
+			<li>
+				<a href="tooltips.html">Tooltips</a>
+			</li>
+			<li>
+				<a href="animations.html">Animations</a>
+			</li>
+			<li>
+				<a href="charts.html">Charts</a>
+			</li>
+			<li>
+				<a href="editor.html">Editor</a>
+			</li>
+			<li>
+				<a href="gallery.html">Gallery</a>
+			</li>
+			<li>
+				<a href="icons.html">Icons</a>
+			</li>
+			<li>
+				<a href="tables.html">Tables</a>
+			</li>
+			<li>
+				<a href="error_pages.html">Error pages</a>
+			</li>
+			<li class="current">
+				<a href="location.html">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="iphone_app.html">iPhone web app</a>
+			</li>
+			<li>
+				<a href="license.html">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div class="tab"><h1>Maps &amp; Location</h1>
+			
+			<p>While there's a lot of great Google Maps plugins out there, many of them are quite heavy. I wrote a small plugin, that uses the Google Maps Image API and return high resolution maps. As default the location will be showed in a modal, but you can get the HTML output if that's what you prefer.</p>
+			
+			<p>Let's take a look on an example:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">maps</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; place</span><span class="pun">:</span><span class="pln"> </span><span class="str">"magasin du nord, kongens nytorv, copenhagen"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; caption</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Magasin du Nord, &lt;span&gt;Copenhagen&lt;/span&gt;"</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>The place parameter is quite flexible, just as the Google Maps service itself. In this case we search for a <em>famous</em> department store at King's New Square (<em>Kongens Nytorv</em>) in the Danish capital.
+			We enable a caption, which automatically will be placed in the center of the map.</p>
+			
+			<p>We can easily replace the place parameter with the user's current location, taking advantage of the HTML5 geolocation API - which works in most modern browsers (including IE9):</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">maps</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; geo</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; caption</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Your current location"</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>If you want to apply the same map to an element instead of a modal:</p>
+			
+			<pre><code><span class="pln">$</span><span class="pun">(</span><span class="str">"#somesection"</span><span class="pun">).</span><span class="pln">maps</span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; geo</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; caption</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Your current location"</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+			
+			<p>Just remember to set a height on the target element.</p>
+			
+			<h2>Options</h2>
+			
+			<ul>
+			<li><strong>coordinates</strong>    <em>"55.680839,12.585955"</em> (string)    - coordinates, if a place isn't defined.</li>
+			<li><strong>place</strong>:        <em>undefined</em>             (string)    - search for a place.</li>
+			<li><strong>texture</strong>:        <em>false</em>                 (boolean)   - whether a texture should be applied to the map or not.</li>
+			<li><strong>type</strong>:            <em>"satellite"</em>           (string)    - type of map: "satellite", "roadmap", "hybrid" and "terrain".</li>
+			<li><strong>zoom</strong>:            <em>16</em>                    (integer)   - zoom level.</li>
+			<li><strong>marker</strong>:        <em>true</em>                  (boolean)   - insert marker.</li>
+			<li><strong>geo</strong>:            <em>false</em>                 (boolean)   - get current location.</li>
+			<li><strong>caption</strong>:        <em>caption</em>               (string)    - caption the the marker.</li>
+			<li><strong>modal</strong>            <em>{padding: 0, width: 1100, close: "light"}</em> (array) - change the modal's default settings.</li>
+			<li><strong>html</strong>            <em>false</em>                 (boolean)   - if set to true, the function will return the HTML.</li>
+			</ul></div>
+		</div>
+	</div>
+</body>
+</html>

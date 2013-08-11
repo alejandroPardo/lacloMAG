@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="static/stylesheets/app.css">
+	<script src="static/scripts/library.js"></script>
+	<script src="static/scripts/base.js"></script>
+	<script src="static/scripts/table.js"></script>
+	<script src="static/scripts/initialize.js"></script>
+	<script>
+		$(document).ready(function() {
+			// Table initialization
+			$("table")
+			.table()
+			.pagination();
+		});
+	</script>
+</head>
+<body>
+	<div id="header">
+	    <ul class="con">
+	        <li class="dashboard">
+	            <a href="#home">Dashboard</a>
+	        </li>
+	        <li class="count indicator">
+	            <span data-count="8">Notifications</span>
+	        </li>
+	        <li class="messages">
+	            <span>Messages</span>
+	        </li>
+	        <li class="avatar">
+	            <img src="static/demo/avatar.jpg" alt="avatar" />
+	        </li>
+	        <li class="search">
+	            <input type="text" placeholder="Search" />
+	        </li>
+	    </ul>
+	</div>
+	<div id="stream">
+	    <div class="con">
+	        <div class="tile" id="hello">
+	            <h2><span>Hi,</span> Jacques</h2>
+	            <p>You last visited <strong>two hours</strong> ago</p>
+	            <ul class="nav">
+	                <li>
+	                    <a href="#home">u</a>
+	                </li>
+	                <li>
+	                    <a href="#icons">u</a>
+	                </li>
+	                <li>
+	                    <a href="#settings">u</a>
+	                </li>
+	                <li>
+	                    <a href="#more">u</a>
+	                </li>
+	            </ul>
+	        </div>
+	        <a class="tile" href="#link-to-something">
+	            <span class="vector">u</span>
+	            <span class="title"><strong>New</strong> article</span>
+	            <span class="desc"><strong>Text</strong> editor</span>
+	        </a>
+	        <a class="tile" href="#link-to-something">
+	            <span class="vector">u</span>
+	            <span class="title"><strong>UI</strong> elements</span>
+	            <span class="desc"><strong>Simply</strong> everything</span>
+	        </a>
+	        <a class="tile" href="#link-to-something">
+	            <span class="vector count" data-count="4">u</span>
+	            <span class="title"><strong>New</strong> comments</span>
+	            <span class="desc"><strong>Up from</strong> 68%</span>
+	        </a>
+	        <a class="tile" href="#link-to-something">
+	            <span class="vector">u</span>
+	            <span class="title"><strong>Non-IE</strong> users</span>
+	            <span class="desc"><strong>Up from</strong> 68%</span>
+	        </a>
+	        <a class="tile" href="#link-to-something">
+	            <span class="vector">u</span>
+	            <span class="title"><strong>Location</strong> sandbox</span>
+	            <span class="desc"><strong>Google Maps</strong> API</span>
+	        </a>
+	    </div>
+	</div>
+	<div id="dashboard">
+	    <div class="scroll con">
+	        <div class="section padding current" title="Tables" id="table">
+	        	<table>
+	        		<thead>
+	        			<tr>
+	        				<th>Name</th>
+	        				<th>Header 2</th>
+	        				<th style="width: 200px">Browser</th>
+	        				<th style="width: 20px; text-align: center" class="glyph sort"></th>
+	        			</tr>
+	        		</thead>
+	        		<tbody>
+	        			<tr>
+	        				<td>Arnulfo Derico</td>
+	        				<td>Neue <strong>Content</strong></td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Micha Mahomes</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sunlit" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Aldo Maycumber</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>								
+	        			</tr>
+	        			<tr>
+	        				<td>Sydney Schwarm</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="sea" type="checkbox" checked /></td>
+	        			</tr>
+	        			
+	        			<tr>
+	        				<td>Thad Wemhoff</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input class="green" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Elmo Kostis</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Wanetta Herne</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Chance Podany</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sail" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Emilia Thaler</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="adrift" type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Pearlie Ruther</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Zelma Roosevelt</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Clayton Dano</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sunlit" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Kurt Bomba</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>								
+	        			</tr>
+	        			<tr>
+	        				<td>Annabelle Morein</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="sea" type="checkbox" checked /></td>
+	        			</tr>
+	        			
+	        			<tr>
+	        				<td>Noemi Hux</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input class="green" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Tanisha Houtchens</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Malinda Brick</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Julio Yeldell</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sail" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Nita Brion</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="adrift" type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Lakeesha Wactor</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Sharron Wheelwright</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Erik Mayville</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sunlit" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Carmella Coffer</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>								
+	        			</tr>
+	        			<tr>
+	        				<td>Malinda Phegley</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="sea" type="checkbox" checked /></td>
+	        			</tr>
+	        			
+	        			<tr>
+	        				<td>Max Bibler</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input class="green" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Roslyn Glatt</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Javier Gau</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Marcie Dahlen</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sail" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Lance Sabourin</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="adrift" type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Julianne Mahle</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Jacques Halifax</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Alana Nylander</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sunlit" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Sofia Deveau</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>								
+	        			</tr>
+	        			<tr>
+	        				<td>Veola Leiby</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="sea" type="checkbox" checked /></td>
+	        			</tr>
+	        			
+	        			<tr>
+	        				<td>Usha Babers</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input class="green" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Emanuel Heyl</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Devorah Kupka</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="chrome">Chrome</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Eleonor Breden</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="firefox">Firefox</span></td>
+	        				<td><input class="sail" type="checkbox" checked /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Nu Bokman</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="ie">Internet Explorer</span></td>
+	        				<td><input class="adrift" type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Hunter Nauarro</td>
+	        				<td>row 2, cell 2</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Marcelino Taper</td>
+	        				<td>Århus</td>
+	        				<td><span class="safari">Safari</span></td>
+	        				<td><input type="checkbox" /></td>
+	        			</tr>
+	        			
+	        		</tbody>
+	        	</table>
+	        </div>
+	    </div>
+	</div>
+	<div id="footer">
+	    <div class="con">
+	        <h4>Pastel</h4>
+	    </div>
+	</div>
+</body>
+</html>

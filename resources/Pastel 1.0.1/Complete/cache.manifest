@@ -1,0 +1,76 @@
+CACHE MANIFEST
+# Version 0.9.7
+
+NETWORK:
+*
+
+CACHE:
+# css files
+static/stylesheets/app.css
+
+#html files:
+login.html
+home.html
+
+# js files
+static/scripts/library.js
+static/scripts/app.js
+static/scripts/initialize.js
+static/scripts/login.js
+static/scripts/three.js
+
+
+# images
+static/images/linen-small.png
+static/images/icon-check-white.png
+static/images/icon-check.png
+static/images/linen.png
+static/images/linen-small.png
+static/images/chosen-sprite.png
+static/images/chrome-icon.png
+static/images/safari-icon.png
+static/images/firefox-icon.png
+static/images/ie-icon.png
+static/images/icon-pin.png
+static/images/icon-plus.png
+static/images/icon-back.png
+static/images/icon-close.png
+static/images/header.png
+static/images/icon-dashboard-active.png
+static/images/indicator.png
+static/images/icon-messages.png
+static/images/icon-messages-white.png
+static/images/icon-search.png
+static/images/unread_white.png
+static/images/stream.jpg
+static/images/paper-texture.png
+static/images/icon-check-white.png
+static/images/icon-check.png
+static/images/texture-grain.png
+static/images/texture-blue.png
+static/images/scratch.png
+static/images/buttons.light.png
+static/images/mask.png
+
+#demo
+static/demo/cloud.png
+static/demo/avatar.jpg
+static/demo/avatar2.jpg
+static/demo/avatar92.jpg
+static/demo/obama.jpg
+static/demo/boy_avatar.jpg
+static/demo/iphone.png
+static/demo/iphone_small_white.png
+static/demo/iphone_small.png
+static/demo/maps.jpg
+static/demo/todo.jpg
+static/demo/screen.jpg
+static/demo/alone.jpg
+static/demo/avatar3.jpg
+static/demo/autumn.jpg
+
+# glyphs
+http://std.li/pastel/static/glyphs/original/icon.eot
+http://std.li/pastel/static/glyphs/original/icon.ttf
+http://std.li/pastel/static/glyphs/original/icon.woff
+http://std.li/pastel/static/glyphs/original/icon.svg

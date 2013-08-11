@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width" />
+	<title>Documentation</title>
+	<link rel="stylesheet" href="../static/stylesheets/app.css">
+	<script src="../static/scripts/library.js"></script>
+	<script src="../static/scripts/app.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('[title]').attr('title', function(i, title) {
+			    $(this).data('title', title).removeAttr('title');
+			});
+			
+			$('a[href]').attr('href', function(i, title) {
+			    $(this).data('href', title).removeAttr('href').attr('data-href', title);
+			});
+			$("ul.tabs").each(function() {
+				var hash = $(this).children("li.current").children("a").data("href");
+				var tab = $(this).siblings("div.tabs").children(hash);
+				if(tab.length>0) {
+					tab.addClass("current");
+				} else {
+					tab = $(this).siblings("div.tabs").children("div.tab:first-child");
+					href = "#" + tab.attr("id");
+					$(this).children("li.current").removeClass("current");
+					$('li a[data-href="'+href+'"]', this).parent("li").addClass("current");
+					tab.addClass("current");
+				}
+			});
+			
+			$('a').bind("tap", function(e) {
+				
+				if(!$(this).data("href")) {
+					return false;
+				}
+				var element = $( $(this).data("href") );
+				
+				if($(this).parents("ul.tabs").length>0) {
+					var tab = $("div.tabs > " + $(this).data("href"));
+					if(tab.length>0) {
+						$(this).parents("ul.tabs, .section").children("div.tabs").children(".tab.current").removeClass("current");
+						$(this).parents("ul.tabs, .section").children("div.tabs").children($(this).data("href")).addClass("current");
+						$(this).parents("ul.tabs").children("li.current").removeClass("current");
+						$(this).parents("li").addClass("current");
+					} else {
+						//$.info({desc: "The hash <strong>"+$(this).data("href")+"</strong> is not valid"});
+						alert("Error")
+					}
+				}
+				e.preventDefault();
+			});
+			
+			//Documentation
+			$("#docs ul.tabs li a").bind("tap", function() {
+				if(!$(this).hasAttr("data-loaded") && $(this).data("href")!="#introduction") {
+					var element = $( $(this).data("href") );
+					var reference = "reference/" + $(this).data("href").replace(/^#docs_+/, "") + ".md";
+					$(this).attr("data-loaded", "true");
+							
+					$.get(reference + "?time=" + (new Date()).getTime(), function(data){
+						var docs = new Showdown.converter();
+						
+						var text = $(docs.makeHtml(data));
+						text.find('pre').addClass('prettyprint');
+						text.find('p code').addClass('prettyprint');
+						text.find('code').each(function() {
+						    $(this).html(prettyPrintOne($(this).html()));
+						});
+						element.html(text);	
+						$(document).scrollTop(0);
+					}).error(function() {
+						$.notification( 
+							{
+								title: 'Reference was not found',
+								content: 'The reference <strong>' + reference + "</strong> was not found",
+								error: true
+							}
+						);	
+					});
+				}
+			})
+			
+			
+		});
+	</script>
+	<style>
+		#docs {
+			display: block!important;
+		}
+	</style>
+</head>
+<body class="feather">
+	<div class="section padding" title="Documentation" id="docs">
+		<ul class="tabs">
+			<li class="current">
+				<a href="#introduction">Introduction</a>
+			</li>
+			<li>
+				<a href="#docs_getting_started">Getting started</a>
+			</li>
+			<li>
+				<a href="#docs_navigation">Navigation</a>
+			</li>
+			<li>
+				<a href="#docs_grid_layout_carton">Layout, Grid &amp; Cartons</a>
+			</li>
+			<li>
+				<a href="#docs_welcome_screen">Welcome screen</a>
+			</li>
+			<li>
+				<a href="#docs_themes">Themes</a>
+			</li>
+			<li>
+				<a href="#docs_ui">UI elements</a>
+			</li>
+			<li>
+				<a href="#docs_cache">Update System</a>
+			</li>
+			<li>
+				<a href="#docs_notifications">Notifications</a>
+			</li>
+			<li>
+				<a href="#docs_modals">Modals</a>
+			</li>
+			<li>
+				<a href="#docs_tooltips">Tooltips</a>
+			</li>
+			<li>
+				<a href="#docs_animations">Animations</a>
+			</li>
+			<li>
+				<a href="#docs_charts">Charts</a>
+			</li>
+			<li>
+				<a href="#docs_editor">Editor</a>
+			</li>
+			<li>
+				<a href="#docs_gallery">Gallery</a>
+			</li>
+			<li>
+				<a href="#docs_icons">Icons</a>
+			</li>
+			<li>
+				<a href="#docs_tables">Tables</a>
+			</li>
+			<li>
+				<a href="#docs_error_pages">Error pages</a>
+			</li>
+			<li>
+				<a href="#docs_location">Maps &amp; Location</a>
+			</li>
+			<li>
+				<a href="#docs_iphone_app">iPhone web app</a>
+			</li>
+			<li>
+				<a href="#docs_license">Licenses &amp; Attributions</a>
+			</li>
+			
+		</ul>
+		<div class="tabs">
+			<div id="introduction" class="tab">
+				<h1>Introduction</h1>
+				<p>Pastel is filled with features. By time it would probably be possible to figure anything out by looking at the included demo - that's just not very user friendly. For that reason I decided to write some thorough documentation - which can be read on this page. If you decide to purchase Pastel, all documentation will be available as separate Markdown files too.</p>
+				<p>If you are having trouble with some aspects and don't think the documentation answers them clearly, don't hesitate contacting me. But please at least skim the included documentation, it's written for you!</p>
+			</div>
+			<div id="docs_getting_started" class="tab"></div>
+			<div id="docs_navigation" class="tab"></div>
+			<div id="docs_grid_layout_carton" class="tab"></div>
+			<div id="docs_welcome_screen" class="tab"></div>
+			<div id="docs_themes" class="tab"></div>
+			<div id="docs_ui" class="tab"></div>
+			<div id="docs_notifications" class="tab"></div>
+			<div id="docs_tooltips" class="tab"></div>
+			<div id="docs_modals" class="tab"></div>
+			<div id="docs_error_pages" class="tab"></div>
+			<div id="docs_license" class="tab"></div>
+			<div id="docs_animations" class="tab"></div>
+			<div id="docs_icons" class="tab"></div>
+			<div id="docs_editor" class="tab"></div>
+			<div id="docs_tables" class="tab"></div>
+			<div id="docs_gallery" class="tab"></div>
+			<div id="docs_location" class="tab"></div>
+			<div id="docs_charts" class="tab"></div>
+			<div id="docs_iphone_app" class="tab"></div>
+			<div id="docs_cache" class="tab"></div>
+		</div>
+	</div>
+</body>
+</html>
