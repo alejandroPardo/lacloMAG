@@ -8918,3 +8918,8 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 	height: 100%;
 	z-index: 10000;
 }
+
+.glyph-editor
+{
+	font-size: 48px;
+}

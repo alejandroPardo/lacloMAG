@@ -16,10 +16,8 @@
         <td><?php echo h($paper['Paper']['created']); ?>&nbsp;</td>
         <td><?php echo h($paper['Paper']['modified']); ?>&nbsp;</td>
         <td><?php echo h($paper['Paper']['status']); ?>&nbsp;</td>
-        <td class="actions">
-            <?php echo $this->Html->link(__('View'), array('action' => 'view', $paper['Paper']['id'])); ?>
-            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $paper['Paper']['id'])); ?>
-            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $paper['Paper']['id']), null, __('Are you sure you want to delete # %s?', $paper['Paper']['id'])); ?>
+        <td class="actions ">
+            <a href="../backend" rel="external"><span class="glyph write glyph-editor"><span></a>
         </td>
     </tr>
 <?php endforeach; ?>
