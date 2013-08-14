@@ -18,7 +18,10 @@
 <div class="container">
     <div class="col_6 carton alpha">
 	 	<h2>Evaluadores</h2>
-        <div class="content">Ninguno asignado</div>
+        <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
+            <div class="content"><?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '.
+            $paperEvaluator['Evaluator']['User']['last_name']); ?> </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

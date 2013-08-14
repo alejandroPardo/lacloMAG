@@ -422,7 +422,15 @@ class BackendController extends AppController {
 							'fields' => 'name'
 						)
 					),
-					'PaperEvaluator'
+					'PaperEvaluator'  => array(
+						'fields' => array('id','evaluator_id'),
+						'Evaluator' => array(
+							'fields' => array('id', 'user_id'),
+							'User' => array(
+  								'fields' => array('first_name','last_name')
+  								)
+  							)
+						)
   				),
   			)
   		);
