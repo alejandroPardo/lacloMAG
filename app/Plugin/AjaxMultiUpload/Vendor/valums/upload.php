@@ -121,7 +121,7 @@ class qqFileUploader {
         }
         
         if ($size > $this->sizeLimit) {
-            return array('error' => 'File is too large. Please ask server admin to increase the file upload limit.');
+            return array('error' => 'El archivo es muy grande.');
         }
         
         $pathinfo = pathinfo($this->file->getName());
@@ -131,7 +131,7 @@ class qqFileUploader {
 
         if($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)){
             $these = implode(', ', $this->allowedExtensions);
-            return array('error' => 'File has an invalid extension, it should be one of '. $these . '.');
+            return array('error' => 'El archivo tiene una extensión inválida, deben ser archivos '. $these . '.');
         }
         
         if(!$replaceOldFile){

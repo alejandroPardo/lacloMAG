@@ -11,8 +11,6 @@
  */
  
 class UploadHelper extends AppHelper {
-
-
 	public function view ($model, $id, $edit=false) {
 		$results = $this->listing ($model, $id);
 				
@@ -20,7 +18,7 @@ class UploadHelper extends AppHelper {
 		$baseUrl = $results['baseUrl'];
 		$files = $results['files'];
 
-		$str = "<dt>" . __("Files") . "</dt>\n<dd>";
+		$str = "<dd>";
 		$count = 0;
 		$webroot = Router::url("/") . "ajax_multi_upload";
 		foreach ($files as $file) {
@@ -28,15 +26,14 @@ class UploadHelper extends AppHelper {
 			$filesize = $this->format_bytes (filesize ($file));
 			$f = basename($file);
 			$url = $baseUrl . "/$f";
-			if ($edit) {
+			if (!$edit) {
 				$baseEncFile = base64_encode ($file);
-				$delUrl = "$webroot/uploads/delete/$baseEncFile/";			
-				$str .= "<a href='$delUrl'><img src='" . Router::url("/") . 
-					"ajax_multi_upload/img/delete.png' alt='Delete' /></a> ";
+				$delUrl = "$webroot/uploads/delete/$baseEncFile/";		
+				$str .= "<a href='$delUrl' rel='external'><img src='".Router::url("/") ."ajax_multi_upload/img/delete.png' alt='Eliminar'/></a> ";
+				$str .= "<img src='" . Router::url("/") . "ajax_multi_upload/img/fileicons/$type.png' /> ";
+				$str .= "<a href='$url' rel='external' target='_blank'>" . $f . "</a> ($filesize)";
+				$str .= "<br />\n";
 			}
-			$str .= "<img src='" . Router::url("/") . "ajax_multi_upload/img/fileicons/$type.png' /> ";
-			$str .= "<a href='$url'>" . $f . "</a> ($filesize)";
-			$str .= "<br />\n";
 		}
 		$str .= "</dd>\n"; 
 		return $str;
@@ -60,7 +57,7 @@ class UploadHelper extends AppHelper {
 		$str = $this->view ($model, $id, true);
 		$webroot = Router::url("/") . "ajax_multi_upload";
 		// Replace / with underscores for Ajax controller
-		$lastDir = str_replace ("/", "___", 
+		$lastDir = str_replace ("/", "___",
 			$this->last_dir ($model, $id));
 		$str .= <<<END
 			<br /><br />
@@ -108,7 +105,7 @@ class UploadHelper extends AppHelper {
 							});
 						}
 					}
-				window.onload = createUploader;     
+				window.onload = createUploader;
 			</script>
 END;
 		return $str;

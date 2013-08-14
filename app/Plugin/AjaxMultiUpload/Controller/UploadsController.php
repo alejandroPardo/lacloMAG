@@ -16,7 +16,7 @@ class UploadsController extends AjaxMultiUploadAppController {
 	public $uses = null;
 
 	// list of valid extensions, ex. array("jpeg", "xml", "bmp")
-	public $allowedExtensions = array();
+	public $allowedExtensions = array("pdf");
 
 	public function upload($dir=null) {
 		// max file size in bytes
@@ -54,18 +54,18 @@ class UploadsController extends AjaxMultiUploadAppController {
 	 */
 	public function delete($file = null) {
 		if(is_null($file)) {
-			$this->Session->setFlash(__('File parameter is missing'));
+			$this->Session->setFlash(__('El archivo no existe'));
 			$this->redirect($this->referer());
 		}
 		$file = base64_decode($file);
 		if(file_exists($file)) {
 			if(unlink($file)) {
-				$this->Session->setFlash(__('File deleted!'));				
+				$this->Session->setFlash(__('Archivo Eliminado!'));				
 			} else {
-				$this->Session->setFlash(__('Unable to delete File'));					
+				$this->Session->setFlash(__('No se pudo eliminar el archivo'));					
 			}
 		} else {
-			$this->Session->setFlash(__('File does not exist!'));					
+			$this->Session->setFlash(__('El archivo no existe'));					
 		}
 		
 		$this->redirect($this->referer());	

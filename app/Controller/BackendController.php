@@ -234,8 +234,7 @@ class BackendController extends AppController {
 	}
 
 	public function uploadArticle(){
-		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 13)));
-		$this->set('paper', $paper['PaperFile']['raw']);
+		$this->set('user', $this->Auth);
 	}
 
 	public function pendingAuthor() {
@@ -285,6 +284,7 @@ class BackendController extends AppController {
   				'conditions' => array(
   					'Author.id' => $this->userID
   				),
+  				'order' => array('Paper.created DESC'),
   			)
   		);
   		$i=0;
@@ -454,4 +454,15 @@ class BackendController extends AppController {
   	public function viewArticlesArchiveEditor() {
 
   	}
+
+  	/****************
+	/*
+	/*	Evaluator Functions
+	/*
+	/***************/
+
+	public function pendingEvaluator(){
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 13)));
+		$this->set('paper', $paper['PaperFile']['raw']);
+	}
 }

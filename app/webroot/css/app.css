@@ -1808,7 +1808,9 @@ tr:last-child td {
 .glyph.retweet:before {
 	content: 's';
 }
-
+.glyph.download:before {
+	content: 'H';
+}
 .glyph.tag:before {
 	content: '.';
 }
@@ -8921,5 +8923,6 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 
 .glyph-editor
 {
-	font-size: 48px;
+	font-size: 30px;
+	padding-left: 0px;
 }

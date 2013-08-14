@@ -392,7 +392,13 @@ $.author = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	} else if (lastUrl == 'uploadArticle') {
-		$.editor("../files/editor.txt", "#editor-textarea");
+		$.notification(
+			{
+				title: "NOTIFICACIÓN",
+				content: "Recuerde que debe actualizar la pagina para poder utilizar los archivos subidos.",
+				icon: "!"
+			}
+		);
 	}
 };
 

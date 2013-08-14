@@ -47,6 +47,12 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 					<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
 					<span data-count=<?php echo $pendingMessages;?>>Mensajes</span>
 						<ul>
+							<li>
+								<a href="#" rel="external">
+									<h4>Enviar Nuevo Mensaje</h4>
+									<p>Miembros de LACLOmagazine</p>
+								</a>
+							</li>
 							<?php foreach( $messages as $message ): ?>
 								<?php 
 									if($message['MappedMessage']['is_read']==0){

@@ -255,12 +255,13 @@ qq.FileUploaderBasic = function(o){
         action: '/server/upload',
         params: {},
         button: null,
-        multiple: true,
+        multiple: false,
+        autoUpload: false,
         maxConnections: 3,
         // validation        
         allowedExtensions: [],               
         sizeLimit: 0,   
-        minSizeLimit: 0,                             
+        minSizeLimit: 0,                          
         // events
         // return false to cancel submit
         onSubmit: function(id, fileName){},
@@ -269,11 +270,11 @@ qq.FileUploaderBasic = function(o){
         onCancel: function(id, fileName){},
         // messages                
         messages: {
-            typeError: "{file} has invalid extension. Only {extensions} are allowed.",
-            sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
-            minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
-            emptyError: "{file} is empty, please select files again without it.",
-            onLeave: "The files are being uploaded, if you leave now the upload will be cancelled."            
+            typeError: "El archivo {file} tiene una extensión inválida. Solo estan permitidos archivos {extensions}.",
+            sizeError: "El archivo {file} es muy grande, el tamaño máximo es {sizeLimit}.",
+            minSizeError: "El archivo {file} es muy pequeño, el tamaño mínimo es {minSizeLimit}.",
+            emptyError: "El archivo {file} esta vacio.",
+            onLeave: "Los archivos se estan subiendo, si cierras la página se cancelaran."            
         },
         showMessage: function(message){
             alert(message);
@@ -485,8 +486,8 @@ qq.FileUploader = function(o){
         listElement: null,
                 
         template: '<div class="qq-uploader">' + 
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">Upload a file</div>' +
+                '<div class="qq-upload-drop-area"><span>Suelta tu archivo aqui para subirlo</span></div>' +
+                '<div class="qq-upload-button">Subir un Archivo</div>' +
                 '<ul class="qq-upload-list"></ul>' + 
              '</div>',
 
@@ -496,7 +497,7 @@ qq.FileUploader = function(o){
                 '<span class="qq-upload-spinner"></span>' +
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
-                '<span class="qq-upload-failed-text">Failed</span>' +
+                '<span class="qq-upload-failed-text">Ocurrio un Error</span>' +
             '</li>',        
         
         classes: {
