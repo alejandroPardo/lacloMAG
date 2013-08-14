@@ -340,7 +340,7 @@ CREATE TABLE `papers` (
 --  Records of `papers`
 -- ----------------------------
 BEGIN;
-INSERT INTO `papers` VALUES ('5', 'pepepepepe', '2013-07-23 03:16:04', '2013-07-23 03:16:09', 'SENT'), ('6', 'pjasdohasd', '2013-07-23 03:16:14', '2013-07-23 03:16:23', 'SENT'), ('7', 'asdasdasdasd', '2013-07-23 03:16:27', '2013-07-23 03:16:27', 'SENT'), ('8', 'pepepepepepe', '2013-07-23 03:16:31', '2013-07-23 03:16:55', 'UNSENT');
+INSERT INTO `papers` VALUES ('5', 'pepepepepe', '2013-07-23 03:16:04', '2013-07-23 03:16:09', 'SENT','BLIND'), ('6', 'pjasdohasd', '2013-07-23 03:16:14', '2013-07-23 03:16:23', 'SENT', 'BLIND'), ('7', 'asdasdasdasd', '2013-07-23 03:16:27', '2013-07-23 03:16:27', 'SENT', 'BLIND'), ('8', 'pepepepepepe', '2013-07-23 03:16:31', '2013-07-23 03:16:55', 'UNSENT', 'BLIND');
 COMMIT;
 
 -- ----------------------------
