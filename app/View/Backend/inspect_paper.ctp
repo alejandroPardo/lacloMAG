@@ -28,11 +28,36 @@
 <div class="container">
 	<div id="buttons">
 	    <div class="col_2 alpha">
-		 	<button class="white">Asignar Nuevo Evaluador</button>
+		 	<button id="newEvaluator" class="white">Asignar Nuevo Evaluador</button>
 	    </div>
 	    <div class="col_2 alpha">
 		 	<button class="white">Cambiar Status</button>
 	    </div>
     </div>
 </div>
+
+<div id="modalContent" style="display:none">
+    <div class="wrapper">
+        <table cellpadding="0" cellspacing="0">
+    <tr>
+            <th>Nombre de Evaluador</th>
+            <th class="actions"><?php echo __('Acciones'); ?></th>
+    </tr>
+    <?php foreach ($evaluators as $evaluator): ?>
+    <tr>
+        <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
+        <td>Agregar</td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+    </div>
+</div>
+</div></div>
+<script type="text/javascript">
+var newEvaluator = document.getElementById('newEvaluator');
+newEvaluator.addEventListener('click', function () {
+    $("#modalContent").modal();
+}, false);
+</script>
 

@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator');
 	public $userID;
 
 	function beforeFilter() {
@@ -463,7 +463,17 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('paper', $paper);
-  		//debug($paper);
+
+
+
+  		$evaluators = $this->Evaluator->find('all', array(
+  			'fields' => array(
+  				'User.first_name',
+  				'User.last_name',
+  				'User.email'
+  				)
+  			));
+  		$this->set('evaluators', $evaluators);
   	}
 
   	public function viewCurrentMagEditor() {
