@@ -1832,6 +1832,12 @@ tr:last-child td {
 .glyph.star-alt:before {
 	content: 'W';
 }
+.glyph.delete:before {
+	content: 'X';
+}
+.glyph.check:before {
+	content: '=';
+}
 .glyph.star:before {
 	content: '*';
 }
@@ -8925,4 +8931,9 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 {
 	font-size: 30px;
 	padding-left: 0px;
+}
+.qq-table{
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
 }

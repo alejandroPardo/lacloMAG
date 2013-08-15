@@ -21,7 +21,6 @@
 					<br>
 					<a href="uploadArticle" rel="external" class="qq-button">Actualizar Página</a>
 					<?php echo $this->Upload->edit('Upload', $username);?>
-					
 				</div>
 			</div>
 		</div>

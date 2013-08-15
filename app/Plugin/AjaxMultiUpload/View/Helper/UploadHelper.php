@@ -18,7 +18,10 @@ class UploadHelper extends AppHelper {
 		$baseUrl = $results['baseUrl'];
 		$files = $results['files'];
 
-		$str = "<dd>";
+		$str = "&nbsp;";
+		if(!$edit){
+			$str = "<div id='table' class='tab padding'><table class='qq-table'><thead><tr><th>Nombre del Paper</th><th>Tamaño</th><th>Acciones</th></tr></thead><tbody>";
+		}
 		$count = 0;
 		$webroot = Router::url("/") . "ajax_multi_upload";
 		foreach ($files as $file) {
@@ -29,13 +32,19 @@ class UploadHelper extends AppHelper {
 			if (!$edit) {
 				$baseEncFile = base64_encode ($file);
 				$delUrl = "$webroot/uploads/delete/$baseEncFile/";		
-				$str .= "<a href='$delUrl' rel='external'><img src='".Router::url("/") ."ajax_multi_upload/img/delete.png' alt='Eliminar'/></a> ";
-				$str .= "<img src='" . Router::url("/") . "ajax_multi_upload/img/fileicons/$type.png' /> ";
-				$str .= "<a href='$url' rel='external' target='_blank'>" . $f . "</a> ($filesize)";
-				$str .= "<br />\n";
+				$str .= "<tr><td>$f</td><td><strong>$filesize</strong></td>";
+				$str .= "<td style='text-align: center; width:120px;'><a href='$delUrl' rel='external'><span class='glyph delete glyph-editor'><span></a> ";
+				$str .= "<a href='$url' rel='external' target='_blank'><span class='glyph download glyph-editor'><span></a> ";
+				$str .= "<a href='pdfToText/$f' rel='external'><span class='glyph check glyph-editor'><span></a> ";
+				//$str .= "<img src='" . Router::url("/") . "ajax_multi_upload/img/fileicons/$type.png' /> ";
+				//$str .= "<a href='$url' rel='external' target='_blank'>" . $f . "</a> ($filesize)";
+				$str .= "</td></tr>\n";
 			}
 		}
-		$str .= "</dd>\n"; 
+		if(!$edit){
+			$str .= "</tbody></table></div>\n";
+		}
+
 		return $str;
 	}
 
