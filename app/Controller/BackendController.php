@@ -222,10 +222,27 @@ class BackendController extends AppController {
 	  				),
 	  			)
 	  		);
-		if (!empty($paper)) {
-			$this->set('content', $paper['PaperFile']['0']['raw']);
-			$this->set('name', $paper['PaperFile']['0']['name']);
-			$this->set('preview', $paper['Paper']['id']);
+		$paper3 = $this->Paper->PaperAuthor->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.status' => array('UNSENT'),
+	  					'Author.id' => $this->userID
+	  				),
+	  			)
+	  		);
+		$paper2 = $this->PaperFile->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperFile.paper_id' => array($paper3['Paper']['id']),
+	  				),
+	  			)
+	  		);
+		//debug($paper2);
+		//die();
+		if (!empty($paper2)) {
+			$this->set('content', $paper2['PaperFile']['raw']);
+			$this->set('name', $paper2['PaperFile']['name']);
+			$this->set('preview', $paper3['Paper']['id']);
 		} else {
 			$this->set('content', '<h1>Bienvenido al Creador de Artículos LACLOmagazine</h1><p>En el menú superior puede agregar fotos, tablas, cambiar colores de letra y fondo en las letras, cambiar la alineación del texto, agregar lineas horizontales y sangrías.</p><blockquote><span style="color: rgb(119, 119, 119); font-style: italic; line-height: 1.45em; -webkit-text-stroke-color: transparent;">Puede utilizar citas textuales remarcadas con este estilo.</span></blockquote><p></p><ol><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">También</span><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">&nbsp;puede numerar&nbsp;</span><br></li><li><span style="color: rgb(85, 85, 85); line-height: 1.45em; -webkit-text-stroke-color: transparent;">su contenido.</span><br></li></ol><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;"><ul><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">O agregarle una viñeta.</span><br></li><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">Utilizar <b>negritas</b>, <i>cursivas</i> o <strike>letras tachadas.</strike></span></li></ul></span><p></p>');
 			$this->set('name', '');
