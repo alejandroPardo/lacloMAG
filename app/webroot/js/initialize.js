@@ -340,6 +340,33 @@ $.admin = function(lastUrl) {
 /********************************************
 //
 //
+// FUNCIONES GENERALES BACKEND
+//
+/********************************************/
+
+$.general = function(lastUrl) {
+	if (lastUrl == 'notifications') {
+		$("table")
+			.table()
+			.pagination({extended: true});
+	}
+	$("table")
+		.table()
+		.pagination({extended: true});
+	// MODAL MESSAGES
+	$("#modals message").bind("tap", function() {
+		var attr = $(this).attr("data-function");
+		var options;
+
+		options =  { animation: "flipInX", theme: "dark", url: "newMessage" };
+		
+		$().modal(options);
+	});
+};
+
+/********************************************
+//
+//
 // FUNCIONES DE EDITOR BACKEND
 //
 /********************************************/
@@ -364,6 +391,10 @@ $.editor = function(lastUrl) {
 		       }
 		});
 		/////// END PIECHART 
+	} else if(lastUrl == 'viewPendingArticlesEditor'){ // DASHBOARD DE AUTHOR
+		$("table")
+		.table()
+		.pagination({extended: true});
 	}
 };
 
@@ -383,7 +414,7 @@ $.author = function(lastUrl) {
 		$('#redactor_content').redactor({
 			imageUpload: 'uploadImage'
 		});
-	} else if (lastUrl == 'pendingAuthor') {
+	} /*else if (lastUrl == 'pendingAuthor') {
 		$("table")
 			.table()
 			.pagination({extended: true});
@@ -391,7 +422,7 @@ $.author = function(lastUrl) {
 		$("table")
 			.table()
 			.pagination({extended: true});
-	} else if (lastUrl == 'uploadArticle') {
+	}*/ else if (lastUrl == 'uploadArticle') {
 		$.notification(
 			{
 				title: "NOTIFICACIÓN",
@@ -1093,6 +1124,8 @@ $(document).ready(function() {
 	var url = window.location.pathname.split("/");
     var lastUrl = url[url.length - 1];
     var role = document.getElementById('role').value;
+
+	$.general(lastUrl);
 
     if(role == 'Administrador'){
     	$.admin(lastUrl);

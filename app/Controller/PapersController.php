@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Paper $Paper
  */
 class PapersController extends AppController {
-    public $uses = array('Paper', 'PaperFile', 'User', 'PaperAuthor');
+    public $uses = array('Paper', 'PaperFile', 'User', 'PaperAuthor', 'Logbook', 'RequestHandler');
 
     public function index() {
     }
@@ -65,11 +65,12 @@ class PapersController extends AppController {
     public function createPaper() {
         if ($this->request->is('post')) {
             $this->Paper->create();
-
             if($this->data['send']=='Enviar'){
                 $data = array('name' => $this->data['name'], 'status' => 'SENT');
+                $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha enviado el paper <strong>'. $this->data['name'].'</strong> a edición.');
             } else {
                 $data = array('name' => $this->data['name'], 'status' => 'UNSENT');
+                $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha guardado el paper <strong>'. $this->data['name'].'</strong> en borrador.');
             }
             if($this->data['preview']==0){
                 if ($this->Paper->save($data)) {
@@ -80,34 +81,44 @@ class PapersController extends AppController {
                         $this->PaperFile->create();
                         $data3 = array('paper_id' => $paperInserted, 'raw' => $this->data['content'], 'name' => $this->data['name'], 'type' => 'text/html', 'url' => 'DB');
                         if ($this->PaperFile->save($data3)) {
-                            $this->Session->setFlash(__('The PaperFile has been saved'));
-                            $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
+                            $this->Logbook->create();
+                            if ($this->Logbook->save($data4)) {
+                                $this->Session->setFlash(__('¡El Paper fue guardado exitosamente!'));
+                                $this->redirect(array("controller" => "backend", "action" => "author"));
+                            } else {   
+                                $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
+                                $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
+                            }
                         } else {
-                            $this->Session->setFlash(__('The PaperFile has not been saved '));
+                            $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
                             $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                         }
                     } else {
-                        $this->Session->setFlash(__('The PaperAuthor has not been saved '));
+                        $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
                         $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                     }
                 } else {
-                    $this->Session->setFlash(__('The Paper has not been saved '));
+                    $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
                     $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                 }
             } else {
                 $paperFile = $this->PaperFile->find('first', array('conditions' => array('PaperFile.paper_id' => $this->data['preview'])));
+                $data['id'] = $this->data['preview'];
+                $this->Paper->save($data);
 
-                    $data['id'] = $this->data['preview'];
-                    $this->Paper->save($data);
+                $data2['id'] = $paperFile['PaperFile']['id'];
+                $data2['name'] = $this->data['name'];
+                $data2['raw'] = $this->data['content'];
 
-                    $data2['id'] = $paperFile['PaperFile']['id'];
-                    $data2['name'] = $this->data['name'];
-                    $data2['raw'] = $this->data['content'];
+                $this->PaperFile->save($data2);
 
-                    $this->PaperFile->save($data2);
+                $this->Logbook->create();
+                $this->Logbook->save($data4);
 
-                    $this->Session->setFlash(__('The PaperFile has been saved'));
-                    $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
+                $this->Session->setFlash(__('¡El Paper fue guardado exitosamente!'));
+
+                
+                $this->redirect(array("controller" => "backend", "action" => "author"));
                 
             }
         }

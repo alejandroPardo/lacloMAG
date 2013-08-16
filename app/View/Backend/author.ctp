@@ -30,8 +30,8 @@
 		<div id="tasks" class="col fourty last">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Notificaciones</span> recientes</h4>
-					<span><a href='#' rel='external'>Últimas notificaciones recibidas</a></span>
+					<h4><span>Últimas</span> notificaciones</h4>
+					<span><a href='notifications' rel='external'>Últimas notificaciones recibidas</a></span>
 				</div>
 				<div class="wrapper" style="left: 1px; right: 1px; top: 141px; bottom: 0px;">
 					<ul>

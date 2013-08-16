@@ -113,7 +113,7 @@ class BackendController extends AppController {
   		$rejected = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('REJECTED'),'Author.id' => $this->userID)));
   		$editing = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('ASSIGNED', 'ONREVISION', 'SENT'),'Author.id' => $this->userID)));
   		$unsent = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('UNSENT'),'Author.id' => $this->userID)));
-  		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => array('NOTIFICATION'),'Logbook.user_id' => $this->Auth->user('id'))));
+  		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
   		$this->set('approved', $approved);
   		$this->set('published', $published);
   		$this->set('rejected', $rejected);
@@ -206,6 +206,15 @@ class BackendController extends AppController {
 		}
 	}
 
+	public function notifications() {
+		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
+  		$this->set('notifications', $notifications);
+  		if(empty($notifications)){
+  			$this->Session->setFlash(__('No tiene ninguna notificación en el sistema.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+  		}
+	}
+
 	/****************
 	/*
 	/*	Authors Functions
@@ -222,7 +231,8 @@ class BackendController extends AppController {
 	  				),
 	  			)
 	  		);
-		$paper3 = $this->Paper->PaperAuthor->find('first',
+		if($paper>0){
+			$paper3 = $this->Paper->PaperAuthor->find('first',
 	  			array(
 	  				'conditions' => array(
 	  					'Paper.status' => array('UNSENT'),
@@ -230,15 +240,14 @@ class BackendController extends AppController {
 	  				),
 	  			)
 	  		);
-		$paper2 = $this->PaperFile->find('first',
+			$paper2 = $this->PaperFile->find('first',
 	  			array(
 	  				'conditions' => array(
 	  					'PaperFile.paper_id' => array($paper3['Paper']['id']),
 	  				),
 	  			)
 	  		);
-		//debug($paper2);
-		//die();
+		}
 		if (!empty($paper2)) {
 			$this->set('content', $paper2['PaperFile']['raw']);
 			$this->set('name', $paper2['PaperFile']['name']);
@@ -272,26 +281,12 @@ class BackendController extends AppController {
 			$i++;
   		}
 
-  		$this->Paper->Behaviors->load('Containable');
-  		$papers2 = $this->Paper->find('all',
-  			array(
-  				'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
-  				'contain' => array(
-  					'PaperAuthor' => array(
-  						'fields' => array('author_id'),
-  						'conditions' => array('PaperAuthor.author_id' => $this->userID)
-					),
-					'PaperFile' => array(
-						'fields' => array('id')
-					)
-  				)
-  			)
-  		);
-
-  		//debug($papers2);
-
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+		}
   	}
 
 
@@ -317,6 +312,10 @@ class BackendController extends AppController {
 
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo creado.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+		}
   	}
 
   	public function renderArticle(){
@@ -328,7 +327,7 @@ class BackendController extends AppController {
 		$this->autoRender = false;
 
 		// files storage folder
-		$dir = APP.'webroot/files/';
+		$dir = APP.'webroot'.DS.'files'.DS;
 		
 		$_FILES['file']['type'] = strtolower($_FILES['file']['type']);
 		 
@@ -347,7 +346,7 @@ class BackendController extends AppController {
 
 		    // displaying file    
 			$array = array(
-				'filelink' => '../files'.DS.$filename
+				'filelink' => '../files/'.$filename
 			);
 			
 			echo stripslashes(json_encode($array));   
