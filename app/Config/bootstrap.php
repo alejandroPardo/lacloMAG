@@ -98,12 +98,12 @@ Configure::write('Dispatcher.filters', array(
 
 Configure::write('CakePdf', array(
     'engine' => 'CakePdf.WkHtmlToPdf',
-    'orientation' => 'portrait',
-    'pagesize' => 'A4',
-    'download' => true
-));
-
-Configure::write('WkHtmlToPdf.binary', APP . 'Vendor/wkhtmltopdf.app/Contents/MacOS/wkhtmltopdf');
+    'download'=>false,
+    'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf'.DS.'wkhtmltopdf.exe', //Windows
+    //'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf.app'.DS.'Contents'.DS.'MacOS'.DS.'wkhtmltopdf', //OSX
+    //'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf-amd64', //Linux
+    'orientation'=>'portrait',
+    'pagesize'=>'Letter'));
 
 /**
  * Configures default file logging options

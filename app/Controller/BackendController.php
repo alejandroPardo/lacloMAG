@@ -357,12 +357,13 @@ class BackendController extends AppController {
 
   	public function pdfToText($id=null){
   		include(APP.'Vendor'.DS.'pdf2text.php');
-  		$path = 'file://'.APP.'webroot'.DS.'files'.DS.'Upload'.DS.$this->Auth->user('username').DS.$id.'.pdf';
+  		//$path = 'file:'.DS.DS.DS.APP.'webroot'.DS.'files'.DS.'Upload'.DS.$this->Auth->user('username').DS.$id.'.pdf';
+  		$path = '..'.DS.'..'.DS.'files'.DS.'Upload'.DS.$this->Auth->user('username').DS.$id.'.pdf';
 		$a = new PDF2Text();
 		$a->setFilename($path); //grab the test file at http://www.newyorklivearts.org/Videographer_RFP.pdf
 		$a->decodePDF();
-		//debug($path);
-		debug( $a);
+		debug($path);
+		debug($a);
 		die(); 
   	}
 
