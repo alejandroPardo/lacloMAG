@@ -466,15 +466,14 @@ class BackendController extends AppController {
   		$this->set('paper', $paper);
 
 
-
-  		$evaluators = $this->Evaluator->find('all', array(
-  			'fields' => array(
-  				'User.first_name',
-  				'User.last_name',
-  				'User.email'
-  				)
-  			));
+  		$this->Evaluator->Behaviors->load('Containable');
+		$evaluators = $this->Evaluator->PaperEvaluator->find('all', array(
+			'conditions' => array(
+				'PaperEvaluator.paper_id !=' => $id
+			)
+		));
   		$this->set('evaluators', $evaluators);
+  		
   	}
 
   	public function viewCurrentMagEditor() {

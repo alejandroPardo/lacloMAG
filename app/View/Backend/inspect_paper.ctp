@@ -38,19 +38,22 @@
 
 <div id="modalContent" style="display:none">
     <div class="wrapper">
+        <?php if (!empty($evaluators)): ?>
         <table cellpadding="0" cellspacing="0">
-    <tr>
-            <th>Nombre de Evaluador</th>
-            <th class="actions"><?php echo __('Acciones'); ?></th>
-    </tr>
-    <?php foreach ($evaluators as $evaluator): ?>
-    <tr>
-        <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
-        <td>Agregar</td>
-    </tr>
-    <?php endforeach; ?>
-</table>
-
+            <tr>
+                    <th>Nombre de Evaluador</th>
+                    <th class="actions"><?php echo __('Acciones'); ?></th>
+            </tr>
+            <?php foreach ($evaluators as $evaluator): ?>
+            <tr>
+                <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
+                <td>Agregar</td>
+            </tr>
+             <?php endforeach; ?>
+        </table>
+        <?php else: ?>
+            <p>No hay Evaluadores</p>
+        <?php endif; ?>
     </div>
 </div>
 </div></div>
