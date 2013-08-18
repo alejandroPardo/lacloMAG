@@ -5324,24 +5324,25 @@ Showdown.converter = function () {
 			
 			function dots(table) {
 				var c = table.config;
-
-				if(c.container.children('ul.round.table').length>0) {
-					c.container.children('ul.round.table').remove();
+				if (c) {
+					if(c.container.children('ul.round.table').length>0) {
+						c.container.children('ul.round.table').remove();
+					}
+					
+					c.container.append('<ul class="round table" />')
+					for (var i = 0; i < c.totalPages; i ++) {
+						c.container.children('ul.round.table').append("<li>"+i+"</li>");
+					}
+					
+					c.container.children("ul.round.table").children("li:first-child").addClass("current");
+					
+					$(c.container + "ul.round.table li").live("tap", function() {
+						c.page = parseInt($(this).text());
+						moveToPage(table);
+						$(this).parents("ul.round").children(".current").removeClass("current");
+						$(this).addClass("current");
+					});
 				}
-				
-				c.container.append('<ul class="round table" />')
-				for (var i = 0; i < c.totalPages; i ++) {
-					c.container.children('ul.round.table').append("<li>"+i+"</li>");
-				}
-				
-				c.container.children("ul.round.table").children("li:first-child").addClass("current");
-				
-				$(c.container + "ul.round.table li").live("tap", function() {
-					c.page = parseInt($(this).text());
-					moveToPage(table);
-					$(this).parents("ul.round").children(".current").removeClass("current");
-					$(this).addClass("current");
-				});
 			}
 			
 			function setPageSize(table,size) {
