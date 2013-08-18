@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator');
 	public $userID;
 
 	function beforeFilter() {
@@ -466,12 +466,26 @@ class BackendController extends AppController {
 
 
   		$this->Evaluator->Behaviors->load('Containable');
-		$evaluators = $this->Evaluator->PaperEvaluator->find('all', array(
-			'conditions' => array(
-				'PaperEvaluator.paper_id !=' => $id
+		$evaluators = $this->Evaluator->find('all', array(
+			'contain' => array(
+				'PaperEvaluator' => array(
+					'conditions' => array(
+						'PaperEvaluator.paper_id ' => $id
+					)
+				),
+				'User'
 			)
 		));
-  		$this->set('evaluators', $evaluators);
+
+		$availableEvaluators = array();
+		foreach ($evaluators as $evaluator) {
+			if (empty($evaluator['PaperEvaluator'])) {
+				array_push($availableEvaluators, $evaluator);	
+			}
+		}
+  		$this->set('evaluators', $availableEvaluators);
+  		//debug($availableEvaluators);
+
   		
   	}
 
