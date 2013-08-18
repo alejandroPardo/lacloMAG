@@ -17,11 +17,24 @@
 </div>
 <div class="container">
     <div class="col_6 carton alpha">
-	 	<h2>Evaluadores</h2>
-        <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
-            <div class="content"><?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '.
-            $paperEvaluator['Evaluator']['User']['last_name']); ?> </div>
-        <?php endforeach; ?>
+        <h2>Evaluadores</h2>
+        <table  class="noTableConf" id="hola" cellpadding="0" cellspacing="0">
+    	 	<tr>
+                    <th>Nombre de Evaluador</th>
+                    <th class="actions">Status</th>
+                    <th>Acciones</th>
+            </tr>
+            <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
+                <tr>
+                    <td>
+                        <?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '. $paperEvaluator['Evaluator']['User']['last_name']); ?>
+                    </td>
+                    <td>
+                        <?php echo h($paperEvaluator['status']); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
 </div>
 
@@ -39,7 +52,7 @@
 <div id="modalContent" style="display:none">
     <div class="wrapper">
         <?php if (!empty($evaluators)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table id="hola" cellpadding="0" cellspacing="0">
             <tr>
                     <th>Nombre de Evaluador</th>
                     <th class="actions"><?php echo __('Acciones'); ?></th>
@@ -47,7 +60,16 @@
             <?php foreach ($evaluators as $evaluator): ?>
             <tr>
                 <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
-                <td>Agregar</td>
+                <td ><?php echo $this->Html->link(__('Agregar'), array(
+                    'controller' => 'backend', 
+                    'action' => 'addEvaluator', 
+                    $evaluator['Evaluator']['id'],
+                    $id),
+                    array( 
+                        'rel' => 'external', 
+                        'class' => 'addEval'
+                    ));?>
+                </td>
             </tr>
              <?php endforeach; ?>
         </table>
@@ -58,9 +80,12 @@
 </div>
 </div></div>
 <script type="text/javascript">
-var newEvaluator = document.getElementById('newEvaluator');
-newEvaluator.addEventListener('click', function () {
-    $("#modalContent").modal();
-}, false);
+    var newEvaluator = document.getElementById('newEvaluator');
+    newEvaluator.addEventListener('click', function () {
+        $("#modalContent").modal();
+        $('.addEval').bind("click", function(e) {
+            window.location.href = $(this).attr("data-href");
+        });
+    }, false);
+   
 </script>
-
