@@ -6,7 +6,7 @@
 					<h4><span>Ver</span> artículos</h4>
 					<span>Aquí puede visualizar todos sus artículos creados.</span>
 				</div>
-				<div id="table" class="tab padding">
+				<div id="table" class="tab padding pagTable">
 					<table>
 						<thead>
 							<tr>

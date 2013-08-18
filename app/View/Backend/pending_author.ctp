@@ -6,7 +6,7 @@
 					<h4><span>Artículos</span> pendientes</h4>
 					<span>Aquí puede visualizar sus artículos pendientes por revisión o las correcciones de los mismos.</span>
 				</div>
-				<div id="table" class="tab padding">
+				<div id="table" class="tab padding pagTable">
 					<table>
 						<thead>
 							<tr>

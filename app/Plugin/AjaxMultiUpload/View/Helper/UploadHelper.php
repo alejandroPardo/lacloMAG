@@ -20,7 +20,7 @@ class UploadHelper extends AppHelper {
 
 		$str = "&nbsp;";
 		if(!$edit){
-			$str = "<div id='table' class='tab padding'><table class='qq-table'><thead><tr><th>Nombre del Paper</th><th>Tamaño</th><th>Acciones</th></tr></thead><tbody>";
+			$str = "<div id='table' class='tab padding'><table class='qq-table pagTable'><thead><tr><th>Nombre del Paper</th><th>Tamaño</th><th>Acciones</th></tr></thead><tbody>";
 		}
 		$count = 0;
 		$webroot = Router::url("/") . "ajax_multi_upload";
