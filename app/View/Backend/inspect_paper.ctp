@@ -18,7 +18,7 @@
 <div class="container">
     <div class="col_6 carton alpha">
         <h2>Evaluadores</h2>
-        <table  class="noTableConf" id="hola" cellpadding="0" cellspacing="0">
+        <table id="hola" cellpadding="0" cellspacing="0">
     	 	<tr>
                     <th>Nombre de Evaluador</th>
                     <th class="actions">Status</th>
