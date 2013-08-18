@@ -451,7 +451,7 @@ class BackendController extends AppController {
 						)
 					),
 					'PaperEvaluator'  => array(
-						'fields' => array('id','evaluator_id'),
+						'fields' => array('id','evaluator_id', 'status'),
 						'Evaluator' => array(
 							'fields' => array('id', 'user_id'),
 							'User' => array(
@@ -463,7 +463,7 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('paper', $paper);
-
+  		//debug($paper);
 
   		$this->Evaluator->Behaviors->load('Containable');
 		$evaluators = $this->Evaluator->find('all', array(
@@ -484,9 +484,27 @@ class BackendController extends AppController {
 			}
 		}
   		$this->set('evaluators', $availableEvaluators);
+  		$this->set('id', $id);
   		//debug($availableEvaluators);
-
+  	}
+  	public function addEvaluator($evaluatorId,$paperId) {
   		
+  		$evaluatorData = array();
+  		$evaluatorData['PaperEvaluator']['paper_id'] = $paperId;
+  		$evaluatorData['PaperEvaluator']['evaluator_id'] = $evaluatorId;
+	 
+        $this->PaperEvaluator->create();
+
+        if ($this->PaperEvaluator->save($evaluatorData)) {
+            $this->Session->setFlash(__('El evaluador ha sido asignado'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        } else {
+            $this->Session->setFlash(__('The article category could not be saved. Please, try again.'));
+        }
+		
   	}
 
   	public function viewCurrentMagEditor() {
