@@ -350,9 +350,10 @@ $.general = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	}
-	$("table")
+	$(".pagTable")
 		.table()
 		.pagination({extended: true});
+	//$(".noTableConf").table().pagination();
 	// MODAL MESSAGES
 	$("#modals message").bind("tap", function() {
 		var attr = $(this).attr("data-function");
