@@ -32,6 +32,9 @@
                     <td>
                         <?php echo h($paperEvaluator['status']); ?>
                     </td>
+                    <td>
+                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'deleteEvaluator', $paperEvaluator['id'],$id), null, __('Esta seguro que quiere Eliminarlo?')); ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>

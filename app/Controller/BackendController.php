@@ -506,6 +506,28 @@ class BackendController extends AppController {
         }
 		
   	}
+ 	
+ 	public function deleteEvaluator($evaluatorId,$paperId) {
+		$this->PaperEvaluator->id = $evaluatorId;
+        if (!$this->PaperEvaluator->exists()) {
+            throw new NotFoundException(__('Invalid article'));
+        }
+
+        if ($this->PaperEvaluator->delete()) {
+            $this->Session->setFlash(__('Se ha eliminado la asignacion'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        }
+        $this->Session->setFlash(__('No se ha eliminado la asignación, intente nuevamente.'));
+        $this->redirect(array(
+			'action' => 'inspectPaper',
+			$paperId
+		));  		
+  	}
+
+
 
   	public function viewCurrentMagEditor() {
   		$magazines = $this->Magazine->MagazineEditor->find('first',
