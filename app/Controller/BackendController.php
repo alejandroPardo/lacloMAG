@@ -563,12 +563,25 @@ class BackendController extends AppController {
   		if (!$this->Paper->exists($paperId)) {
             throw new NotFoundException(__('Invalid Paper'));
         }
+
+		$magazine = $this->Magazine->find('first', array(
+			'conditions' => array(
+				'Magazine.status' => 'ACTUAL'
+			)
+		));
+
   		$this->Paper->read(null, $paperId);
 		$this->Paper->set(array(
 			'status' => 'PUBLISHED'
 		));
 
-		if ($this->Paper->save()) {
+		$this->MagazinePaper->create();
+		$this->MagazinePaper->set(array(
+			'paper_id' => $paperId,
+			'magazine_id' => $magazine['Magazine']['id']
+		));
+		
+		if ($this->Paper->save() && $this->MagazinePaper->save()) {
             $this->Session->setFlash(__('El articulo ha sido agregado a la revista'));
             $this->redirect(array(
 				'action' => 'index',
