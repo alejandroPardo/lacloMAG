@@ -43,7 +43,7 @@ class BackendController extends AppController {
 			$markers = $this->Paper->PaperAuthor->find('count',
 	  			array(
 	  				'conditions' => array(
-	  					'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
+	  					'PaperAuthor.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
 	  					'Author.id' => $this->userID
 	  				),
 	  			)
@@ -68,6 +68,11 @@ class BackendController extends AppController {
 			$this->set('role', 'Editor');
 		} else if($this->Auth->user('role') == 'evaluator'){
 			$this->set('role', 'Evaluador');
+			$this->userID = $this->Evaluator->find('all', array(
+			    'conditions' => array('user_id'=>$this->Auth->user('id')),
+			    'fields' => array('id')
+			));
+			$this->userID = $this->userID['0']['Evaluator']['id'];
 		}
     }
 
@@ -606,4 +611,32 @@ class BackendController extends AppController {
 		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 13)));
 		$this->set('paper', $paper['PaperFile']['raw']);
 	}
+
+	public function articleEvaluator() {
+  		$papers = $this->Paper->PaperEvaluator->find('all',
+  			array(
+  				'conditions' => array(
+  					'Evaluator.id' => $this->userID
+  				),
+  				'order' => array('Paper.created DESC'),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+
+  		//debug($papers);
+
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo asignado.'));
+			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
+		}
+  	}
 }
