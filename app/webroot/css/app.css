@@ -8937,3 +8937,20 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
     margin-right: auto;
     margin-left: auto;
 }
+
+.glyph-inspector
+{
+	font-size: 30px;
+}
+
+.tableDisplay
+{
+    display: table;
+}
+
+.tableDisplay > *
+{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

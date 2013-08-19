@@ -405,6 +405,9 @@ class BackendController extends AppController {
   		$this->Paper->Behaviors->load('Containable');
   		$papers = $this->Paper->find('all',
   			array(
+  				'conditions' => array(
+  					'Paper.status' => 'SENT'
+  				),
   				'contain' => array(
   					'PaperAuthor' =>array(
   						'fields' => array('author_id'),
@@ -431,9 +434,9 @@ class BackendController extends AppController {
   	}
 
   	public function inspectPaper ($id) {
-  		$this->set('id', $id);
   		$paper = $this->Paper->find('first',
   			array(
+  				'conditions' => array('Paper.id' => $id),
   				'contain' => array(
   					'PaperAuthor' =>array(
   						'fields' => array('author_id'),
@@ -463,7 +466,7 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('paper', $paper);
-  		//debug($paper);
+  		
 
   		$this->Evaluator->Behaviors->load('Containable');
 		$evaluators = $this->Evaluator->find('all', array(
@@ -484,7 +487,7 @@ class BackendController extends AppController {
 			}
 		}
   		$this->set('evaluators', $availableEvaluators);
-  		$this->set('id', $id);
+  		$this->set('paperId', $id);
   		//debug($availableEvaluators);
   	}
   	public function addEvaluator($evaluatorId,$paperId) {
@@ -527,19 +530,66 @@ class BackendController extends AppController {
 		));  		
   	}
 
+  	public function changeEvaluationType($paperId, $evaluationType) {
+  		if (!$this->Paper->exists($paperId)) {
+            throw new NotFoundException(__('Invalid Paper'));
+        }
+  		$this->Paper->read(null, $paperId);
+		$this->Paper->set(array(
+			'evaluation_type' => $evaluationType
+		));
 
+  		if ($this->Paper->save()) {
+            $this->Session->setFlash(__('El Tipo de Evaluacion ha sido Cambiada'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        } else {
+            $this->Session->setFlash(__('El tipo no pudo ser cambiado por favor intente nuevamente'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        }
+  	}
+
+	 public function addArticleToMag($paperId) {
+  		if (!$this->Paper->exists($paperId)) {
+            throw new NotFoundException(__('Invalid Paper'));
+        }
+  		$this->Paper->read(null, $paperId);
+		$this->Paper->set(array(
+			'status' => 'PUBLISHED'
+		));
+
+		if ($this->Paper->save()) {
+            $this->Session->setFlash(__('El articulo ha sido agregado a la revista'));
+            $this->redirect(array(
+				'action' => 'index',
+				$paperId
+			));
+        } else {
+            $this->Session->setFlash(__('Hubo un error en la publicacion por favor intente nuevamente'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        }
+
+  	}
 
   	public function viewCurrentMagEditor() {
-  		$magazines = $this->Magazine->MagazineEditor->find('first',
+  		$magazine = $this->Magazine->find('first',
   			array(
   				'conditions' => array(
-  					'Magazine.status' => array('ACTUAL'),
-  					'Editor.user_id' =>$this->Auth->user('id'),
+  					/*'Magazine.status' => array('ACTUAL'),
+  					'Editor.user_id' =>$this->Auth->user('id'),*/
   				),
-  				//'recursive' => 2
   			)
   		);
-  		$this->set('magazine', $magazines);
+  		//debug($magazine);
+  		$this->set('magazine', $magazine);
   	}
 
   	public function viewArticlesArchiveEditor() {
