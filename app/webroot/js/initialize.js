@@ -476,7 +476,11 @@ $.evaluator = function(lastUrl) {
 		       }
 		});
 		/////// END PIECHART 
-	}
+	} else if(lastUrl == 'pendingEvaluator'){ // DASHBOARD DE AUTHOR
+		$.editor("../img/demo/editor.txt", "#editor-textarea");
+		//$.change("#text");
+	} 
+
 };
 
 
