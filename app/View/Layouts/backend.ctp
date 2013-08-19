@@ -36,13 +36,23 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			echo "</script>";
 		}
 	?>
-			
+
 	<div id="container">
 		<div id="content">
 			<div id="header">
 				<ul class="con">
 					<li class="dashboard">
-						<a href="index" rel='external' alt='Inicio'>&nbsp;</a>
+						<?php 
+							echo $this->Html->link(
+								'&nbsp;',
+							array(
+								'controller' => 'backend', 
+								'action' => 'index'),
+							array( 
+								'rel' => 'external', 
+								'escape'=> false)
+							);
+						?>
 					</li>
 					<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
 					<span data-count=<?php echo $pendingMessages;?>>Mensajes</span>
@@ -74,19 +84,35 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 						</ul>
 					</li>
 					<li class="avatar">
-						<img src="../img/avatar.jpg" alt="avatar" />
+						<?php echo $this->Html->image('avatar.jpg', array('alt' => 'avatar'));?>
 						<ul>
 							<li>
-								<a href="profile" rel="external">
-									<h4><?php echo $fullName;?></h4>
-									<p>Editar tu perfil</p>
-								</a>
+								<?php 
+									echo $this->Html->link(
+										'<h4>'.$fullName.'</h4>
+										<p>Editar tu perfil</p>',
+									array(
+										'controller' => 'backend', 
+										'action' => 'profile'),
+									array( 
+										'rel' => 'external', 
+										'escape'=> false)
+									);
+								?>
 							</li>
 							<li>
-								<a href='logout' rel='external'>
-									<h4>Desconectarse</h4>
-									<p>Salir de la aplicación</p>
-								</a>
+								<?php 
+									echo $this->Html->link(
+										'<h4>Desconectarse</h4>
+										<p>Salir de la aplicación</p>',
+									array(
+										'controller' => 'backend', 
+										'action' => 'logout'),
+									array( 
+										'rel' => 'external', 
+										'escape'=> false)
+									);
+								?>
 							</li>
 						</ul>
 					</li>
