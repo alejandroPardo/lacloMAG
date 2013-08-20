@@ -3,17 +3,19 @@
 		<div id="pie" class="col full">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Ver</span> artículos</h4>
-					<span>Aquí puede visualizar todos sus artículos creados.</span>
+					<h4><span>Aceptar</span> revisiones</h4>
+					<span>Aquí aparecen los artículos que le fueron asignados, puede aceptar revisarlos o negar la revisión.</span>
 				</div>
 				<div id="table" class="tab padding pagTable">
 					<table>
 						<thead>
 							<tr>
 								<th>Nombre del Paper</th>
-								<th>Creado</th>
+								<th>Autor</th>
 								<th>Status</th>
-								<th style="width: 20px">Descargar</th>
+								<th style="width: 20px">Visualizar</th>
+								<th style="width: 20px">Aceptar</th>
+								<th style="width: 20px">Negar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -22,13 +24,21 @@
 								foreach ($papers as $paper):
 								echo '<tr>';
 									echo "<td>".$paper['Paper']['name']."</td>";
-									echo "<td>".$paper['Paper']['created']."</td>";
+									echo "<td>".$author[$index]['0']['User']['first_name']." ".$author[$index]['0']['User']['last_name']."</td>";
 									echo "<td><strong>";
-											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}  elseif($paper['Paper']['status']=="UNSENT"){echo 'Por Enviar a Edición';}  elseif($paper['Paper']['status']=="ONREVISION"){echo 'Por Revisar';}  elseif($paper['Paper']['status']=="RECEIVED"){echo 'Recibido en Edición';}  elseif($paper['Paper']['status']=="CONFIRMED"){echo 'Aceptado y Publicado';}
+											if($paper['PaperEvaluator']['status']=="ASIGNED"){echo 'Asignado';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
 										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
+									echo "</td>";
+									echo "<td style='text-align: center;'>";
+										$file = "acceptEvaluator/".$paper['PaperEvaluator']['id'];
+										echo '<a href='.$file.' rel="external"><span class="glyph check glyph-editor"><span></a>';
+									echo "</td>";
+									echo "<td style='text-align: center;'>";
+										$file = "denyEvaluator/".$paper['PaperEvaluator']['id'];
+										echo '<a href='.$file.' rel="external"><span class="glyph delete glyph-editor"><span></a>';
 									echo "</td>";
 								echo "</tr>";
 								$index++;
