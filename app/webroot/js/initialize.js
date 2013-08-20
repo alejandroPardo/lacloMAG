@@ -460,22 +460,7 @@ function formBtn(){
 $.evaluator = function(lastUrl) {
 
 	if(lastUrl == 'evaluator'){ // DASHBOARD DE AUTHOR
-		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
-		var data = [];
-		var series = Math.floor(Math.random()*7)+1;
-		for( var i = 0; i<series; i++) {
-			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
-		}
 		
-		$.plot($("#pie_chart"), data,
-		{
-		       series: {
-		           pie: { 
-		               show: true
-		           }
-		       }
-		});
-		/////// END PIECHART 
 	} else if(lastUrl == 'pendingEvaluator'){ // DASHBOARD DE AUTHOR
 		$.editor("../img/demo/editor.txt", "#editor-textarea");
 		//$.change("#text");

@@ -27,38 +27,69 @@
 	);
 ?>
 <?php 
-	echo $this->Html->link(
-		'<span class="vector">L</span>
-		<span class="title"><strong>Aceptar</strong> revisiones</span>
-		<span class="desc"><strong>Aceptar</strong>/rechazar</span>',
-	array(
-		'controller' => 'backend', 
-		'action' => 'approvedEvaluator'),
-	array( 
-		'class' =>'tile',
-		'rel' => 'external', 
-		'escape'=> false)
-	);
+	if($pendingArticles==0){
+		echo $this->Html->link(
+			'<span class="vector">L</span>
+			<span class="title"><strong>Aceptar</strong> revisiones</span>
+			<span class="desc"><strong>Aceptar</strong>/rechazar</span>',
+		array(
+			'controller' => 'backend', 
+			'action' => 'approvedEvaluator'),
+		array( 
+			'class' =>'tile',
+			'rel' => 'external', 
+			'escape'=> false)
+		);
+	} else {
+		echo $this->Html->link(
+			'<span class="vector count" data-count="'.$pendingArticles.'">L</span>
+			<span class="title"><strong>Aceptar</strong> revisiones</span>
+			<span class="desc"><strong>Aceptar</strong>/rechazar</span>',
+		array(
+			'controller' => 'backend', 
+			'action' => 'approvedEvaluator'),
+		array( 
+			'class' =>'tile',
+			'rel' => 'external', 
+			'escape'=> false)
+		);
+	}
 ?>
 <?php 
-	echo $this->Html->link(
-		'<span class="vector count" data-count="7">=</span>
-	<span class="title"><strong>Artículos</strong> pendientes</span>
-	<span class="desc"><strong>Revisiones</strong>/Aprovaciones</span>',
-	array(
-		'controller' => 'backend', 
-		'action' => 'pendingEvaluator'),
-	array( 
-		'class' =>'tile',
-		'rel' => 'external', 
-		'escape'=> false)
-	);
+	if($papersPreviews==0){
+		echo $this->Html->link(
+			'<span class="vector">=</span>
+			<span class="title"><strong>Artículos</strong> pendientes</span>
+			<span class="desc"><strong>Revisiones</strong>/Aprobaciones</span>',
+		array(
+			'controller' => 'backend', 
+			'action' => 'pendingEvaluator'),
+		array( 
+			'class' =>'tile',
+			'rel' => 'external', 
+			'escape'=> false)
+		);
+	} else {
+		echo $this->Html->link(
+			'<span class="vector count" data-count="'.$papersPreviews.'">=</span>
+			<span class="title"><strong>Artículos</strong> pendientes</span>
+			<span class="desc"><strong>Revisiones</strong>/Aprobaciones</span>',
+		array(
+			'controller' => 'backend', 
+			'action' => 'pendingEvaluator'),
+		array( 
+			'class' =>'tile',
+			'rel' => 'external', 
+			'escape'=> false)
+		);
+	}
+	
 ?>
 <?php 
 	echo $this->Html->link(
 		'<span class="vector">N</span>
 		<span class="title"><strong>Artículos</strong> corregidos</span>
-		<span class="desc"><strong>Comentarios</strong>/aprovaciones</span>',
+		<span class="desc"><strong>Comentarios</strong>/aprobaciones</span>',
 	array(
 		'controller' => 'backend', 
 		'action' => 'currentEvaluator'),

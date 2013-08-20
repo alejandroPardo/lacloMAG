@@ -73,6 +73,26 @@ class BackendController extends AppController {
 			    'fields' => array('id')
 			));
 			$this->userID = $this->userID['0']['Evaluator']['id'];
+
+			$markers = $this->Paper->PaperEvaluator->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperEvaluator.status' => array('ASIGNED'),
+	  					'Evaluator.id' => $this->userID
+	  				),
+	  			)
+	  		);
+
+			$papersPreviews = $this->Paper->PaperEvaluator->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperEvaluator.status' => array('ACCEPT'),
+	  					'Evaluator.id' => $this->userID
+	  				),
+	  			)
+	  		);
+			$this->set('papersPreviews', $papersPreviews);
+			$this->set('pendingArticles', $markers);
 		}
     }
 
@@ -132,6 +152,19 @@ class BackendController extends AppController {
 		if($this->Auth->user('role') != 'evaluator'){
 			$this->redirect(array("controller" => "users", "action" => "logout"));
 		}
+		$accepted = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('ACCEPT'),'Evaluator.id' => $this->userID)));
+  		$rejected = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('REJECT'),'Evaluator.id' => $this->userID)));
+  		$approved = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('APPROVE'),'Evaluator.id' => $this->userID)));
+  		$changes = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('MINORCHANGE', 'AUTHORCHANGE'),'Evaluator.id' => $this->userID)));
+  		$denied = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('DENIED'),'Evaluator.id' => $this->userID)));
+  		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
+  		$this->set('accepted', $accepted);
+  		$this->set('rejected', $rejected);
+  		$this->set('approved', $approved);
+  		$this->set('changes', $changes);
+  		$this->set('denied', $denied);
+  		$this->set('total', $accepted+$rejected+$approved+$changes+$denied);
+  		$this->set('notifications', $notifications);
 	}
 
 	public function logout() {
@@ -216,7 +249,7 @@ class BackendController extends AppController {
   		$this->set('notifications', $notifications);
   		if(empty($notifications)){
   			$this->Session->setFlash(__('No tiene ninguna notificación en el sistema.'));
-			$this->redirect(array("controller" => "backend", "action" => "author"));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
   		}
 	}
 
@@ -676,7 +709,7 @@ class BackendController extends AppController {
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
 		if(empty($papers)){
-			$this->Session->setFlash(__('Usted no tiene ningun Artículo aceptado para revisión.'));
+			$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
 			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
 		}
   	}
@@ -697,17 +730,27 @@ class BackendController extends AppController {
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
 			    'fields' => array('id')
 			));
+			$author[$i] = $this->Paper->PaperAuthor->find('all',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.id' => $paper['Paper']['id']
+	  				)
+	  			)
+  			);
+  			$user[$i] = $this->User->find('all', array(
+			    'conditions' => array('id'=>$author[$i]['0']['Author']['user_id']),
+			    'fields' => array('User.first_name', 'User.last_name')
+			));
 			$i++;
   		}
 
-  		//debug($papers);
-
-		$this->set('papers', $papers);
-		$this->set('paperFiles', $paperFiles);
-		if(empty($papers)){
-			$this->Session->setFlash(__('Usted no tiene ningun Artículo asignado.'));
+  		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningún Artículo asignado sin aceptar.'));
 			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
 		}
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
+		$this->set('author', $user);
   	}
 
   	public function currentEvaluator() {
@@ -734,8 +777,42 @@ class BackendController extends AppController {
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
 		if(empty($papers)){
-			$this->Session->setFlash(__('Usted aun no tiene ningun Artículo corregido.'));
+			$this->Session->setFlash(__('Usted aún no tiene ningún Artículo corregido.'));
 			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
 		}
+  	}
+
+  	public function acceptEvaluator($id=null) {
+  		$this->PaperEvaluator->id = $id;
+        if (!$this->PaperEvaluator->exists()) {
+            throw new NotFoundException(__('Invalid invoice'));
+        }
+        $papername = $this->Paper->PaperEvaluator->find('first',array('conditions' => array('PaperEvaluator.id' => $id)));
+		$paper['PaperEvaluator']['id'] =  $id;
+		$paper['PaperEvaluator']['status'] = 'ACCEPT';
+
+		if ($this->PaperEvaluator->save($paper)) {
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Usted ha aceptado evaluar el artículo <strong>'. $papername['Paper']['name'].'</strong>.');
+			$this->Logbook->save($data4);
+			$this->Session->setFlash(__('¡El Artículo fue aceptado exitosamente!.'));
+ 			$this->redirect(array("controller" => "backend", "action" => "index"));
+ 		}
+  	}
+
+  	public function denyEvaluator($id=null) {
+  		$this->PaperEvaluator->id = $id;
+        if (!$this->PaperEvaluator->exists()) {
+            throw new NotFoundException(__('Invalid invoice'));
+        }
+        $papername = $this->Paper->PaperEvaluator->find('first',array('conditions' => array('PaperEvaluator.id' => $id)));
+		$paper['PaperEvaluator']['id'] =  $id;
+		$paper['PaperEvaluator']['status'] = 'REJECT';
+
+		if ($this->PaperEvaluator->save($paper)) {
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Usted se ha negado a evaluar el artículo <strong>'. $papername['Paper']['name'].'</strong>.');
+			$this->Logbook->save($data4);
+			$this->Session->setFlash(__('Usted se nego a evaluar el artículo.'));
+ 			$this->redirect(array("controller" => "backend", "action" => "index"));
+ 		}
   	}
 }
