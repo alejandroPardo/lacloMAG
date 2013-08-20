@@ -598,6 +598,7 @@ class BackendController extends AppController {
   	}
 
   	public function viewCurrentMagEditor() {
+  		$this->MagazinePaper->Behaviors->load('Containable');
   		$magazine = $this->Magazine->find('first',
   			array(
   				'conditions' => array(
@@ -606,8 +607,34 @@ class BackendController extends AppController {
   				),
   			)
   		);
+  		$magazineId = $magazine['Magazine']['id'];
+
+  		$magazinePapers = $this->MagazinePaper->find('all',
+  			array(
+  				'contain' => array(
+  					'Paper' => array(
+  						'fields' => array('id','name','created','evaluation_type'),
+  						'PaperEvaluator' => array(
+  							'fields' => array('paper_id', 'evaluator_id'),
+  							'Evaluator' => array(
+  								'User' => array(
+  									'fields' => array('first_name', 'last_name')
+  								)
+  							)
+  						),
+  					)
+  				),
+  				'conditions' => array(
+  						'MagazinePaper.magazine_id' => $magazineId
+  				),
+  			)
+  		);
+
   		//debug($magazine);
   		$this->set('magazine', $magazine);
+  		$this->set('magazinePapers', $magazinePapers);
+  		//debug($magazinePapers);
+
   	}
 
   	public function viewArticlesArchiveEditor() {
