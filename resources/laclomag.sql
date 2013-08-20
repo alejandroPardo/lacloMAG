@@ -330,7 +330,7 @@ CREATE TABLE `papers` (
   `name` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `status` enum('UNSENT','SENT','ASIGNED','ONREVISION','REJECTED','APPROVED','PUBLISHED') NOT NULL DEFAULT 'UNSENT',
+  `status` enum('UNSENT','SENT','ASIGNED','ONREVISION','REJECTED','APPROVED','PUBLISHED','UNPUBLISHED') NOT NULL DEFAULT 'UNSENT',
   `evaluation_type` enum('BLIND', 'OPEN', 'DOUBLEBLIND'),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
