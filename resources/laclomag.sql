@@ -82,6 +82,7 @@ CREATE TABLE `evaluators` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `evaluators_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `laclomag`.`evaluators` (`id`, `user_id`) VALUES (NULL, '1'), (NULL, '2');
 
 -- ----------------------------
 --  Table structure for `logbooks`
