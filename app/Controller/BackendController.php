@@ -444,7 +444,7 @@ class BackendController extends AppController {
   		$papers = $this->Paper->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => 'SENT'
+  					'Paper.status' => array('SENT','UNPUBLISHED')
   				),
   				'contain' => array(
   					'PaperAuthor' =>array(
@@ -592,7 +592,7 @@ class BackendController extends AppController {
         }
   	}
 
-	 public function addArticleToMag($paperId) {
+ 	public function addArticleToMag($paperId) {
   		if (!$this->Paper->exists($paperId)) {
             throw new NotFoundException(__('Invalid Paper'));
         }
@@ -628,6 +628,29 @@ class BackendController extends AppController {
 			));
         }
 
+  	}
+
+  	public function removePaperfromMag($magazinePaperId) {
+
+		$this->MagazinePaper->id = $magazinePaperId;
+		$magazinePaper = $this->MagazinePaper->find('first',array(
+			'conditions' => array('MagazinePaper.id' => $magazinePaperId)
+		));
+
+		$this->Paper->read(null, $magazinePaper['MagazinePaper']['paper_id']);
+		$this->Paper->set(array(
+			'status' => 'UNPUBLISHED'
+		));
+
+		if ($this->MagazinePaper->delete()) {
+			if ($this->Paper->save()) {
+				$this->Session->setFlash('El Paper fue desasignado');
+				$this->redirect(array('action' => 'viewCurrentMagEditor'));
+			}
+		} else {
+			$this->Session->setFlash('Hubo un error eliminado el Paper');
+			$this->redirect(array('action' => 'viewCurrentMagEditor'));
+		}
   	}
 
   	public function viewCurrentMagEditor() {
