@@ -437,9 +437,6 @@ class BackendController extends AppController {
 
   		$this->paginate = array(
   			'Paper' => array(
-  				'conditions' => array(
-  					'Paper.status' => array('SENT','UNPUBLISHED')
-  				), 
   				'contain' => array(
   					'PaperAuthor' =>array(
   						'fields' => array('author_id'),
@@ -457,12 +454,44 @@ class BackendController extends AppController {
 						)
 					)
   				)
+  			),
+  			'PaperAuthor' => array(
+  				'contain' => array(
+  					'Author' => array(
+						'fields' => array('id'),
+						'User' => array(
+							'fields' => array('first_name','last_name')
+						)
+					)
+				)	
   			)
   		);
+
+  		/*$this->paginate = array(
+  			'PaperAuthor' => array(
+  				'contain' => array(
+  					'Paper' =>array(
+  						'fields' => array('author_id'),
+  						'Author' => array(
+  							'fields' => array('id'),
+  							'User' => array(
+  								'fields' => array('first_name','last_name')
+  								)
+  							)
+  						),
+					'MagazinePaper' => array(
+						'fields' => array('id'),
+						'Magazine' => array(
+							'fields' => 'name'
+						)
+					)
+  				)
+  			)
+  		);*/
 		$papersPaginate = $this->paginate('Paper');
 
   		$this->set('papers', $papersPaginate);
-  		//debug($papers);
+  		//debug($papersPaginate);
   	}
 
   	public function viewPendingArticlesEditor() {

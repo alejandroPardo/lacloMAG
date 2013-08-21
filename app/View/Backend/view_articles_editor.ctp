@@ -1,12 +1,12 @@
 <table cellpadding="0" cellspacing="0">
     <tr>
             <th><?php echo $this->Paginator->sort('id',null, array('rel' => 'external')); ?></th>
-            <th>Nombre de paper </th>
-            <th>Nombre de Autores</th>
-            <th>Creado</th>
-            <th>Modificado</th>
+            <th><?php echo $this->Paginator->sort('Paper.name',null, array('rel' => 'external')); ?></th>
+            <th><?php echo $this->Paginator->sort('author_id',null, array('rel' => 'external')); ?></th>
+            <th><?php echo $this->Paginator->sort('created',null, array('rel' => 'external')); ?></th>
+            <th><?php echo $this->Paginator->sort('modified',null, array('rel' => 'external')); ?></th>
             <th>Revista</th>
-            <th>Status</th>
+            <th><?php echo $this->Paginator->sort('status',null, array('rel' => 'external')); ?></th>
             <th class="actions"><?php echo __('Acciones'); ?></th>
     </tr>
     <?php foreach ($papers as $paper): ?>
