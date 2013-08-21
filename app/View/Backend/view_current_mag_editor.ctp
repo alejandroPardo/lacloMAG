@@ -27,12 +27,12 @@
 						</li>
 						<li class="">
 							<ul>
-								<li class=" "><button  class="white">No se</button></li>
+								<li class=" "><button  class="white">Vista Previa</button></li>
 							</ul>
 						</li>
 						<li class="">
 							<ul>
-								<li class=" "><button class="white">Archivar</button></li>
+								<li class=" "><button class="white">Cambiar Revista</button></li>
 							</ul>
 						</li>							
 					</ul>
@@ -64,7 +64,21 @@
 	                		<p><?php echo $paperEvaluator['Evaluator']['User']['first_name'].' '.$paperEvaluator['Evaluator']['User']['last_name']; ?></p>
 	                	<?php endforeach; ?>
 	                </td>
-	                <td>Eliminar</td>
+	                <td>
+                	 	<?php 
+		                    echo $this->Html->link(
+		                        'Eliminar',
+		                    array(
+		                        'controller' => 'backend', 
+		                        'action' => 'removePaperfromMag',
+		                        $magazinePaper['MagazinePaper']['id']),
+		                    array( 
+		                        'class' => 'removePaper',
+		                        'rel' => 'external', 
+		                        'escape'=> false)
+		                    );
+		                ?>
+	                </td>
 	            </tr>
 	             <?php endforeach; ?>
 	        </table>
@@ -77,9 +91,9 @@
     var viewArticlesMag = document.getElementById('viewArticlesMag');
     viewArticlesMag.addEventListener('click', function () {
         $("#modalArticles").modal();
-        /*$('.addEval').bind("click", function(e) {
+        $('.removePaper').bind("click", function(e) {
             window.location.href = $(this).attr("data-href");
-        });*/
+        });
     }, false);
 
 </script>

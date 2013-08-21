@@ -124,4 +124,11 @@ class PapersController extends AppController {
         }
     }
 
+    public function savePaper() {
+        if ($this->request->is('post')) {
+            debug($this->data);
+            die();
+        }
+    }
+
 }

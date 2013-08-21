@@ -435,7 +435,33 @@ class BackendController extends AppController {
   			)
   		);
 
-  		$this->set('papers', $papers);
+  		$this->paginate = array(
+  			'Paper' => array(
+  				'conditions' => array(
+  					'Paper.status' => array('SENT','UNPUBLISHED')
+  				), 
+  				'contain' => array(
+  					'PaperAuthor' =>array(
+  						'fields' => array('author_id'),
+  						'Author' => array(
+  							'fields' => array('id'),
+  							'User' => array(
+  								'fields' => array('first_name','last_name')
+  								)
+  							)
+  						),
+					'MagazinePaper' => array(
+						'fields' => array('id'),
+						'Magazine' => array(
+							'fields' => 'name'
+						)
+					)
+  				)
+  			)
+  		);
+		$papersPaginate = $this->paginate('Paper');
+
+  		$this->set('papers', $papersPaginate);
   		//debug($papers);
   	}
 
@@ -444,7 +470,7 @@ class BackendController extends AppController {
   		$papers = $this->Paper->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => 'SENT'
+  					'Paper.status' => array('SENT','UNPUBLISHED')
   				),
   				'contain' => array(
   					'PaperAuthor' =>array(
@@ -462,12 +488,11 @@ class BackendController extends AppController {
 							'fields' => 'name'
 						)
 					)
-  				),
+  				)
   			)
   		);
-
   		$this->set('papers', $papers);
-  		//debug($papers);
+
 
   	}
 
@@ -592,7 +617,7 @@ class BackendController extends AppController {
         }
   	}
 
-	 public function addArticleToMag($paperId) {
+ 	public function addArticleToMag($paperId) {
   		if (!$this->Paper->exists($paperId)) {
             throw new NotFoundException(__('Invalid Paper'));
         }
@@ -628,6 +653,29 @@ class BackendController extends AppController {
 			));
         }
 
+  	}
+
+  	public function removePaperfromMag($magazinePaperId) {
+
+		$this->MagazinePaper->id = $magazinePaperId;
+		$magazinePaper = $this->MagazinePaper->find('first',array(
+			'conditions' => array('MagazinePaper.id' => $magazinePaperId)
+		));
+
+		$this->Paper->read(null, $magazinePaper['MagazinePaper']['paper_id']);
+		$this->Paper->set(array(
+			'status' => 'UNPUBLISHED'
+		));
+
+		if ($this->MagazinePaper->delete()) {
+			if ($this->Paper->save()) {
+				$this->Session->setFlash('El Paper fue desasignado');
+				$this->redirect(array('action' => 'viewCurrentMagEditor'));
+			}
+		} else {
+			$this->Session->setFlash('Hubo un error eliminado el Paper');
+			$this->redirect(array('action' => 'viewCurrentMagEditor'));
+		}
   	}
 
   	public function viewCurrentMagEditor() {
@@ -672,6 +720,7 @@ class BackendController extends AppController {
 
   	public function viewArticlesArchiveEditor() {
 
+
   	}
 
   	/****************
@@ -683,7 +732,41 @@ class BackendController extends AppController {
 	public function pendingEvaluator(){
 		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
 		$this->set('paper', $paper['PaperFile']['raw']);
+
+		$papers = $this->Paper->PaperEvaluator->find('all',
+  			array(
+  				'conditions' => array(
+  					'Evaluator.id' => $this->userID,
+  					'PaperEvaluator.status' => 'ACCEPT'
+  				),
+  				'order' => array('Paper.created DESC'),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+
+  		//debug($papers);
+
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
+		}
 	}
+
+	public function evaluatePaper($id=null){
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
+		$bodytag = str_replace("../files", "../../files", $paper['PaperFile']['raw']);
+		$this->set('paper', $bodytag);
+	}
+
 
 	public function articleEvaluator() {
   		$papers = $this->Paper->PaperEvaluator->find('all',
@@ -743,7 +826,6 @@ class BackendController extends AppController {
 			));
 			$i++;
   		}
-
   		if(empty($papers)){
 			$this->Session->setFlash(__('Usted no tiene ningún Artículo asignado sin aceptar.'));
 			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
@@ -814,5 +896,12 @@ class BackendController extends AppController {
 			$this->Session->setFlash(__('Usted se nego a evaluar el artículo.'));
  			$this->redirect(array("controller" => "backend", "action" => "index"));
  		}
+  	}
+
+  	public function savePaper() {
+  		if ($this->request->is('post')) {
+			debug($this->data);
+			die();
+		}
   	}
 }

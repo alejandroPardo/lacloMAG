@@ -3,26 +3,46 @@
 		<div id="pie" class="col full">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Ver</span> artículos</h4>
-					<span>Aquí puede visualizar todos sus artículos creados.</span>
+					<h4><span>Evaluar</span> artículos</h4>
+					<span>Aquí aparecen los artículos aceptados por usted, con revisiones pendientes por realizar.</span>
 				</div>
-				<div class="section current padding" title="Text" id="text">
-					<div class="carton container border">
-						<div id="editor-textarea" class="column">
-						</div>
-						<div id="editor-preview" class="column right">
-							<div class="redactor_box redactor_editor">
-								<?php echo $paper; ?>
-							</div>
-						</div>
-					</div>
+				<div id="table" class="tab padding pagTable">
+					<table>
+						<thead>
+							<tr>
+								<th>Nombre del Paper</th>
+								<th>Tipo de Revisión</th>
+								<th>Autor</th>
+								<th style="width: 20px;">Visualizar</th>
+								<th style="width: 20px;">Evaluar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+								$index = 0;
+								foreach ($papers as $paper):
+								echo '<tr>';
+									echo "<td>".$paper['Paper']['name']."</td>";
+									if($paper['Paper']['evaluation_type']=='OPEN'){echo "<td><strong>Abierta</strong></td>";}else if($paper['Paper']['evaluation_type']=='BLIND'){echo "<td><strong>Ciega</strong></td>";}else if($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){echo "<td><strong>Doble Ciega</strong></td>";}
+									if($paper['Paper']['evaluation_type']=='OPEN'){
+										echo "<td>".$author[$index]['0']['User']['first_name']." ".$author[$index]['0']['User']['last_name']."</td>";
+									} else {
+										echo "<td>Oculto por tipo de revisión</td>";
+									}
+									echo "<td style='text-align: center;'>";
+										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
+										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
+									echo "</td>";
+									echo "<td style='text-align: center;'>";
+										$file = "evaluatePaper/".$paper['PaperEvaluator']['id'];
+										echo '<a href='.$file.' rel="external"><span class="glyph check glyph-editor"><span></a>';
+									echo "</td>";
+								echo "</tr>";
+								$index++;
+			                endforeach; ?>
+						</tbody>
+					</table>
 				</div>
-			</div>
-			<div class="content">
-				<br><br>
-				<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onclick="return formBtn()" /> 
-					<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"  onClick="return formBtn();"/>
-					<br><br>
 			</div>
 		</div>
 	</div>

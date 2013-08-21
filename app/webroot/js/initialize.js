@@ -461,10 +461,15 @@ $.evaluator = function(lastUrl) {
 
 	if(lastUrl == 'evaluator'){ // DASHBOARD DE AUTHOR
 		
-	} else if(lastUrl == 'pendingEvaluator'){ // DASHBOARD DE AUTHOR
-		$.editor("../img/demo/editor.txt", "#editor-textarea");
-		//$.change("#text");
-	} 
+	} else {
+		var url = window.location.pathname.split("/");
+    	var lastUrl2 = url[url.length - 2];
+    	if(lastUrl2 == 'evaluatePaper'){
+    		$.editor("../../img/demo/editor.txt", "#editor-textarea");
+			$("select").chosen();
+    	}
+		
+	}
 
 };
 
