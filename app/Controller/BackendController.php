@@ -706,7 +706,41 @@ class BackendController extends AppController {
 	public function pendingEvaluator(){
 		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
 		$this->set('paper', $paper['PaperFile']['raw']);
+
+		$papers = $this->Paper->PaperEvaluator->find('all',
+  			array(
+  				'conditions' => array(
+  					'Evaluator.id' => $this->userID,
+  					'PaperEvaluator.status' => 'ACCEPT'
+  				),
+  				'order' => array('Paper.created DESC'),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+
+  		//debug($papers);
+
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
+		}
 	}
+
+	public function evaluatePaper($id=null){
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
+		$bodytag = str_replace("../files", "../../files", $paper['PaperFile']['raw']);
+		$this->set('paper', $bodytag);
+	}
+
 
 	public function articleEvaluator() {
   		$papers = $this->Paper->PaperEvaluator->find('all',
@@ -766,7 +800,6 @@ class BackendController extends AppController {
 			));
 			$i++;
   		}
-
   		if(empty($papers)){
 			$this->Session->setFlash(__('Usted no tiene ningún Artículo asignado sin aceptar.'));
 			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
@@ -837,5 +870,12 @@ class BackendController extends AppController {
 			$this->Session->setFlash(__('Usted se nego a evaluar el artículo.'));
  			$this->redirect(array("controller" => "backend", "action" => "index"));
  		}
+  	}
+
+  	public function savePaper() {
+  		if ($this->request->is('post')) {
+			debug($this->data);
+			die();
+		}
   	}
 }

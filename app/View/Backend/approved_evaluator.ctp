@@ -11,11 +11,11 @@
 						<thead>
 							<tr>
 								<th>Nombre del Paper</th>
+								<th>Tipo de Revisión</th>
 								<th>Autor</th>
-								<th>Status</th>
-								<th style="width: 20px">Visualizar</th>
-								<th style="width: 20px">Aceptar</th>
-								<th style="width: 20px">Negar</th>
+								<th style="width: 20px;">Visualizar</th>
+								<th style="width: 20px;">Aceptar</th>
+								<th style="width: 20px;">Negar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -24,10 +24,12 @@
 								foreach ($papers as $paper):
 								echo '<tr>';
 									echo "<td>".$paper['Paper']['name']."</td>";
-									echo "<td>".$author[$index]['0']['User']['first_name']." ".$author[$index]['0']['User']['last_name']."</td>";
-									echo "<td><strong>";
-											if($paper['PaperEvaluator']['status']=="ASIGNED"){echo 'Asignado';}
-									echo "</strong></td>";
+									if($paper['Paper']['evaluation_type']=='OPEN'){echo "<td><strong>Abierta</strong></td>";}else if($paper['Paper']['evaluation_type']=='BLIND'){echo "<td><strong>Ciega</strong></td>";}else if($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){echo "<td><strong>Doble Ciega</strong></td>";}
+									if($paper['Paper']['evaluation_type']=='OPEN'){
+										echo "<td>".$author[$index]['0']['User']['first_name']." ".$author[$index]['0']['User']['last_name']."</td>";
+									} else {
+										echo "<td>Oculto por tipo de revisión</td>";
+									}
 									echo "<td style='text-align: center;'>";
 										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
