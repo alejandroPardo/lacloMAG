@@ -435,7 +435,33 @@ class BackendController extends AppController {
   			)
   		);
 
-  		$this->set('papers', $papers);
+  		$this->paginate = array(
+  			'Paper' => array(
+  				'conditions' => array(
+  					'Paper.status' => array('SENT','UNPUBLISHED')
+  				), 
+  				'contain' => array(
+  					'PaperAuthor' =>array(
+  						'fields' => array('author_id'),
+  						'Author' => array(
+  							'fields' => array('id'),
+  							'User' => array(
+  								'fields' => array('first_name','last_name')
+  								)
+  							)
+  						),
+					'MagazinePaper' => array(
+						'fields' => array('id'),
+						'Magazine' => array(
+							'fields' => 'name'
+						)
+					)
+  				)
+  			)
+  		);
+		$papersPaginate = $this->paginate('Paper');
+
+  		$this->set('papers', $papersPaginate);
   		//debug($papers);
   	}
 
@@ -462,12 +488,11 @@ class BackendController extends AppController {
 							'fields' => 'name'
 						)
 					)
-  				),
+  				)
   			)
   		);
-
   		$this->set('papers', $papers);
-  		//debug($papers);
+
 
   	}
 
@@ -694,6 +719,7 @@ class BackendController extends AppController {
   	}
 
   	public function viewArticlesArchiveEditor() {
+
 
   	}
 

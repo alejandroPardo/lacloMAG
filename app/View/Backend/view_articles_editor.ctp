@@ -1,7 +1,7 @@
 <table cellpadding="0" cellspacing="0">
     <tr>
-            <th>id</th>
-            <th>Nombre de paper</th>
+            <th><?php echo $this->Paginator->sort('id',null, array('rel' => 'external')); ?></th>
+            <th>Nombre de paper </th>
             <th>Nombre de Autores</th>
             <th>Creado</th>
             <th>Modificado</th>
@@ -22,9 +22,21 @@
         <td><?php echo h($paper['Paper']['created']); ?>&nbsp;</td>
         <td><?php echo h($paper['Paper']['modified']); ?>&nbsp;</td>
         <td>
-            <?php foreach ($paper['MagazinePaper'] as $magazinePapers): ?>&nbsp;
-                <?php echo h($magazinePapers['Magazine']['name']); ?> </br>
-            <?php endforeach; ?>
+            <?php if(!empty($paper['MagazinePaper'])): ?>
+                <?php foreach ($paper['MagazinePaper'] as $magazinePapers): ?>&nbsp;
+                    <?php
+                        if($magazinePapers['Magazine']['name'] != ''){
+                            echo h($magazinePapers['Magazine']['name']); 
+                        } else {
+                            echo'Sin Asignar';
+                        }
+                    ?> 
+                 </br>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Sin Asignar</p>
+            <?php endif; ?>
+
         </td>
         <td><?php echo h($paper['Paper']['status']); ?>&nbsp;</td>
         <td class="actions">

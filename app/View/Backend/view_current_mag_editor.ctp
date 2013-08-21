@@ -27,12 +27,12 @@
 						</li>
 						<li class="">
 							<ul>
-								<li class=" "><button  class="white">No se</button></li>
+								<li class=" "><button  class="white">Vista Previa</button></li>
 							</ul>
 						</li>
 						<li class="">
 							<ul>
-								<li class=" "><button class="white">Archivar</button></li>
+								<li class=" "><button class="white">Cambiar Revista</button></li>
 							</ul>
 						</li>							
 					</ul>
