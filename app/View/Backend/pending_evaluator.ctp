@@ -34,7 +34,7 @@
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
 									echo "</td>";
 									echo "<td style='text-align: center;'>";
-										$file = "evaluatePaper/".$paper['PaperEvaluator']['id'];
+										$file = "evaluatePaper/".$paperFiles[$index]['0']['PaperFile']['id'];
 										echo '<a href='.$file.' rel="external"><span class="glyph check glyph-editor"><span></a>';
 									echo "</td>";
 								echo "</tr>";

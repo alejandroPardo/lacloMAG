@@ -791,7 +791,7 @@ class BackendController extends AppController {
 	}
 
 	public function evaluatePaper($id=null){
-		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
+		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => $id)));
 		$bodytag = str_replace("../files", "../../files", $paper['PaperFile']['raw']);
 		$this->set('paper', $bodytag);
 	}
