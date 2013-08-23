@@ -6506,7 +6506,7 @@ $.editor = function(url, textarea, preview, text) {
 			return false;
 		}
 		
-		var textareaCon = $('<textarea />');
+		var textareaCon = $('<textarea name="editor" />');
 		var previewCon = $('<div class="preview">');
 		
 		$(textarea).html('');
@@ -6518,7 +6518,7 @@ $.editor = function(url, textarea, preview, text) {
 		previewCon.appendTo($(preview));
 		preview = previewCon;
 		
-		if(url!=undefined) {
+		/*if(url!=undefined) {
 			$.get(url, function(data){
 				textarea.val(data);
 			}).error(
@@ -6532,9 +6532,9 @@ $.editor = function(url, textarea, preview, text) {
 						);
 					}
 				);
-		} else {
-			textarea.val(text);
-		}
+		} else {*/
+			textarea.val(url);
+		//}
 		
 		
 		textarea.wysiwym(Wysiwym.Markdown, {helpEnabled: false});
