@@ -1,3 +1,50 @@
+
+<div class="container">
+    <div id="buttons">
+        <div class="col_2 alpha">
+            <?php echo $this->Paginator->sort('Paper.name','<button class="white">Ordenar por Nombre de paper</button>', array('rel' => 'external', 'escape'=> false)); ?>
+
+        </div>
+        <div class="col_2 alpha">
+            <?php 
+                echo $this->Html->link(
+                    '<button class="white">Ordenar Por Autor</button>',
+                array(
+                    'controller' => 'backend', 
+                    'action' => 'viewArticlesEditor',
+                    '?' => array(
+                        'order' => 'author'
+                        )
+                    ),
+                array( 
+                    'rel' => 'external', 
+                    'escape'=> false)
+                );
+            ?>
+        </div>
+        <div class="col_2 alpha">
+            <?php echo $this->Paginator->sort('status','<button class="white">Ordenar por Estatus</button>', array('rel' => 'external', 'escape'=> false)); ?>
+        </div>
+        <div class="col_2 alpha">
+            <?php 
+                echo $this->Html->link(
+                    '<button class="white">Ordenar Por Revista</button>',
+                array(
+                    'controller' => 'backend', 
+                    'action' => 'viewArticlesEditor',
+                    '?' => array(
+                        'order' => 'mag'
+                        )
+                    ),
+                array( 
+                    'rel' => 'external', 
+                    'escape'=> false)
+                );
+            ?>
+        </div>
+    </div>
+</div>
+
 <table cellpadding="0" cellspacing="0">
     <tr>
             <th><?php echo $this->Paginator->sort('id',null, array('rel' => 'external')); ?></th>
@@ -6,7 +53,7 @@
             <th><?php echo $this->Paginator->sort('created',null, array('rel' => 'external')); ?></th>
             <th><?php echo $this->Paginator->sort('modified',null, array('rel' => 'external')); ?></th>
             <th>Revista</th>
-            <th><?php echo $this->Paginator->sort('status',null, array('rel' => 'external')); ?></th>
+            <th></th>
             <th class="actions"><?php echo __('Acciones'); ?></th>
     </tr>
     <?php foreach ($papers as $paper): ?>

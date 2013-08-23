@@ -410,88 +410,76 @@ class BackendController extends AppController {
 	/*
 	/***************/
 
+
+
   	public function viewArticlesEditor () {
 
   		$this->Paper->Behaviors->load('Containable');
-  		$papers = $this->Paper->find('all',
-  			array(
-  				'contain' => array(
-  					'PaperAuthor' =>array(
-  						'fields' => array('author_id'),
-  						'Author' => array(
-  							'fields' => array('id'),
-  							'User' => array(
-  								'fields' => array('first_name','last_name')
-  								)
-  							)
-  						),
-					'MagazinePaper' => array(
-						'fields' => array('id'),
-						'Magazine' => array(
-							'fields' => 'name'
-						)
-					)
-  				),
-  			)
-  		);
+  		$this->PaperAuthor->Behaviors->load('Containable');
 
   		$this->paginate = array(
   			'Paper' => array(
   				'contain' => array(
-  					'PaperAuthor' =>array(
-  						'fields' => array('author_id'),
-  						'Author' => array(
-  							'fields' => array('id'),
-  							'User' => array(
-  								'fields' => array('first_name','last_name')
-  								)
-  							)
-  						),
+	  				'PaperAuthor' =>array(
+	  						'fields' => array('author_id'),
+	  						'Author' => array(
+	  							'fields' => array('id'),
+	  							'User' => array(
+	  								'fields' => array('first_name','last_name')
+	  								)
+	  							)
+	  						),
 					'MagazinePaper' => array(
 						'fields' => array('id'),
 						'Magazine' => array(
 							'fields' => 'name'
 						)
 					)
-  				)
-  			),
-  			'PaperAuthor' => array(
-  				'contain' => array(
-  					'Author' => array(
-						'fields' => array('id'),
-						'User' => array(
-							'fields' => array('first_name','last_name')
-						)
-					)
-				)	
+				)
   			)
   		);
 
-  		/*$this->paginate = array(
-  			'PaperAuthor' => array(
-  				'contain' => array(
-  					'Paper' =>array(
-  						'fields' => array('author_id'),
-  						'Author' => array(
-  							'fields' => array('id'),
-  							'User' => array(
-  								'fields' => array('first_name','last_name')
-  								)
-  							)
-  						),
-					'MagazinePaper' => array(
-						'fields' => array('id'),
-						'Magazine' => array(
-							'fields' => 'name'
-						)
-					)
-  				)
-  			)
-  		);*/
-		$papersPaginate = $this->paginate('Paper');
 
-  		$this->set('papers', $papersPaginate);
-  		//debug($papersPaginate);
+  		$paperPaginate = $this->paginate('Paper');
+  		$orderType = !empty($this->request->query) ? $this->request->query['order'] : null;
+		
+		if(isset($orderType) && (strpos($this->request->url,'sort') === false) ) {
+			switch ($orderType) {
+			    case 'author':
+			        usort($paperPaginate, function ($a, $b) {
+
+					   $lastName1 = !empty($a['PaperAuthor']) ? $a['PaperAuthor'][0]['Author']['User']['last_name'] : '';
+					   $lastName2= !empty($b['PaperAuthor']) ? $b['PaperAuthor'][0]['Author']['User']['last_name'] : '';
+
+					   if ($lastName1 == $lastName2)
+					       return 0;
+					   else
+					      return ($lastName1 < $lastName2 ? 1 : -1);
+
+					});
+			        break;
+			
+			    case 'mag':
+		       		usort($paperPaginate, function ($a, $b) {
+
+					   $name1 = !empty($a['MagazinePaper']) ? $a['MagazinePaper'][0]['Magazine']['name'] : '';
+					   $name2 = !empty($b['MagazinePaper']) ? $b['MagazinePaper'][0]['Magazine']['name'] : '';
+
+					   if ($name1 == $name2)
+					       return 0;
+					   else
+					      return ($name1 < $name2 ? 1 : -1);
+
+					});
+			        break;
+			}
+		}
+
+		//debug($paperPaginate);
+
+  		$this->set('papers', $paperPaginate);
+
+  		
   	}
 
   	public function viewPendingArticlesEditor() {
@@ -748,7 +736,12 @@ class BackendController extends AppController {
   	}
 
   	public function viewArticlesArchiveEditor() {
-
+  		$this->Magazine->find('all', array(
+  			'conditions' => array(
+				'Magazine.status' => 'ARCHIVED'
+			)
+  		));
+  		$this->set('magazines', $magazines);
 
   	}
 
