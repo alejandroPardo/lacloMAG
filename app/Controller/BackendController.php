@@ -793,7 +793,20 @@ class BackendController extends AppController {
 	public function evaluatePaper($id=null){
 		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => $id)));
 		$bodytag = str_replace("../files", "../../files", $paper['PaperFile']['raw']);
+		$paperEvaluator = $this->PaperEvaluator->find('first', 
+            array('conditions' => 
+                array('PaperEvaluator.paper_id' => $paper['PaperFile']['paper_id'], 'PaperEvaluator.evaluator_id' => $this->userID)
+            )
+        );
+
+        if(empty($paperEvaluator['PaperEvaluator']['comment'])){ 
+        	$this->set('comment', '\n\n======================\nAREA PARA CORRECCIONES\n======================\n\n\nAquí puede escribir todos los comentarios sobre la revisión del artículo a su derecha.');
+        } else {
+        	$cadena = eregi_replace("[\n|\r|\n\r]", '\n', $paperEvaluator['PaperEvaluator']['comment']);
+        	$this->set('comment', $cadena);
+        }
 		$this->set('paper', $bodytag);
+		$this->set('evaluatorid', $paperEvaluator['PaperEvaluator']['id']);
 	}
 
 
@@ -925,12 +938,5 @@ class BackendController extends AppController {
 			$this->Session->setFlash(__('Usted se nego a evaluar el artículo.'));
  			$this->redirect(array("controller" => "backend", "action" => "index"));
  		}
-  	}
-
-  	public function savePaper() {
-  		if ($this->request->is('post')) {
-			debug($this->data);
-			die();
-		}
   	}
 }

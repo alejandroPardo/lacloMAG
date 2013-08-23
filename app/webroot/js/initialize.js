@@ -427,7 +427,7 @@ $.author = function(lastUrl) {
 		$.notification(
 			{
 				title: "NOTIFICACIÓN",
-				content: "Recuerde que debe actualizar la pagina para poder utilizar los archivos subidos.",
+				content: "Recuerde que debe actualizar la página para poder utilizar los archivos subidos.",
 				icon: "!"
 			}
 		);
@@ -465,15 +465,20 @@ $.evaluator = function(lastUrl) {
 		var url = window.location.pathname.split("/");
     	var lastUrl2 = url[url.length - 2];
     	if(lastUrl2 == 'evaluatePaper'){
-    		$.editor("../../img/demo/editor.txt", "#editor-textarea");
+    		//$.editor("../../files/texto_correcciones.txt", "#editor-textarea");
 			$("select").chosen();
+			$.notification(
+				{
+					title: "NOTIFICACION",
+					content: "Recuerde seleccionar el estado del paper y enviar sus observaciones al editor al finalizar.",
+					icon: "!"
+				}
+			);
     	}
 		
 	}
 
 };
-
-
 
 
 
