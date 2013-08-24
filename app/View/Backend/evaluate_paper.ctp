@@ -25,17 +25,17 @@
 						<p>Estado de revisión de Artículo</p>
 						<p>
 							<select name="selection">
-							    <option selected="selected">Todavía en Corrección</option>
 							    <option>Aprobado</option>
-							    <option>Rechazado</option>
+							    <option selected="selected">Rechazado</option>
 							    <option>El Editor necesita hacer cambios menores</option>
 							    <option>El Autor necesita hacer cambios</option>
 							</select>
 						</p>
 						<p>Enviar o Guardar Evaluación</p>
-						<p>
+						<p><button id="changeRevision" class="white">Cambiar Revision</button>
 							<input type="hidden" name="evaluatorid" value="<?php echo $evaluatorid;?>">
-							<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm"/> 
+							<input type="hidden" name="veredict" value="">
+							<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnSend" onclick="return btnSend()"/> 
 							<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"/>
 						</p>
 					</div>
@@ -44,6 +44,7 @@
 		</div>
 	</div>
 </form>
+
 <script>
 	$(document).ready(function(){
 		$.editor("<?php echo $comment;?>", "#editor-textarea");

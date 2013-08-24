@@ -145,7 +145,7 @@ class PapersController extends AppController {
                 $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han enviado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> al editor con status <strong>'. $status.'</strong>.');
             } else {
                 $data = array('id' => $this->data['evaluatorid'], 'comment' => $this->data['editor'], 'status' => 'ACCEPT');
-                $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han enviado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> en borrador');
+                $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han guardado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> en borrador');
             }
             $this->PaperEvaluator->save($data);
             $this->Logbook->create();

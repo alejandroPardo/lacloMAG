@@ -470,7 +470,7 @@ $.evaluator = function(lastUrl) {
 			$.notification(
 				{
 					title: "NOTIFICACION",
-					content: "Recuerde seleccionar el estado del paper y enviar sus observaciones al editor al finalizar.",
+					content: "Recuerde seleccionar el estado del paper y enviar sus observaciones al editor al finalizar, este estado solo aplica al enviarlo al editor.",
 					icon: "!"
 				}
 			);
@@ -479,10 +479,6 @@ $.evaluator = function(lastUrl) {
 	}
 
 };
-
-
-
-
 
 /****** DEMO PARA USAR COMO REFERENCIA MIENTRAS TRABAJAMOS ********/
 
