@@ -46,7 +46,7 @@ $.initialize = function() {
 	}
 	
 	// --------------- Navigation ----------------------------
-	$('a').bind("tap", function(e) {
+	$('a').bind("click", function(e) {
 		if($(this).attr("rel") != "external") {
 			if(!$(this).data("href")) {
 				return false;
@@ -170,7 +170,7 @@ $.initialize = function() {
 	
 	
 	// --------------- Menu elements -------------------------
-	$("#header > ul > li").bind("tap", function() {
+	$("#header > ul > li").bind("click", function() {
 		var menu = $(this).children("ul");
 		$("#header").removeClass("inactive");
 		
