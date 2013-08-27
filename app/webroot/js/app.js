@@ -6506,7 +6506,7 @@ $.editor = function(url, textarea, preview, text) {
 			return false;
 		}
 		
-		var textareaCon = $('<textarea name="editor" />');
+		var textareaCon = $('<textarea name="editor" id="editor"/>');
 		var previewCon = $('<div class="preview">');
 		
 		$(textarea).html('');

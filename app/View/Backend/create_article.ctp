@@ -19,7 +19,7 @@
 						<input type="hidden" name="userid" value="<?php echo $author;?>" />
 						<input type="hidden" name="preview" value="<?php echo $preview;?>" />
 					</p>
-					<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onclick="return formBtn()" /> 
+					<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onclick="return formBtn();" /> 
 					<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"  onClick="return formBtn();"/>
 					<br><br>
 				</form>

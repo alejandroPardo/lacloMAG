@@ -465,15 +465,6 @@ $.evaluator = function(lastUrl) {
 		var url = window.location.pathname.split("/");
     	var lastUrl2 = url[url.length - 2];
     	if(lastUrl2 == 'evaluatePaper'){
-    		//$.editor("../../files/texto_correcciones.txt", "#editor-textarea");
-			$("select").chosen();
-			$.notification(
-				{
-					title: "NOTIFICACION",
-					content: "Recuerde seleccionar el estado del paper y enviar sus observaciones al editor al finalizar, este estado solo aplica al enviarlo al editor.",
-					icon: "!"
-				}
-			);
     	}
 		
 	}
