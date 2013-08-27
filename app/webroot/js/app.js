@@ -12,7 +12,7 @@ jQuery.event.special.tap = {
         }
     },
     click: function (a) {
-        a.type = "tap";
+        a.type = "click";
         jQuery.event.handle.apply(this, arguments)
     },
     teardown: function (a) {
@@ -32,7 +32,7 @@ jQuery.event.special.tap = {
     },
     onTouchEnd: function (a) {
         if (!this.moved) {
-            a.type = "tap";
+            a.type = "click";
             jQuery.event.handle.apply(this, arguments)
         }
     }
@@ -5336,7 +5336,7 @@ Showdown.converter = function () {
 					
 					c.container.children("ul.round.table").children("li:first-child").addClass("current");
 					
-					$(c.container + "ul.round.table li").live("tap", function() {
+					$(c.container + "ul.round.table li").live("click", function() {
 						c.page = parseInt($(this).text());
 						moveToPage(table);
 						$(this).parents("ul.round").children(".current").removeClass("current");
@@ -5527,7 +5527,7 @@ Showdown.converter = function () {
 								$('.number', pager).append('<span>' + views[i] + '</span>'); 
 							}
 						}
-						$('.number > span',pager).bind("tap", function() {
+						$('.number > span',pager).bind("click", function() {
 							setPageSize( table, parseInt( $(this).text() ) );
 						});
 					}
@@ -5803,11 +5803,11 @@ $.fn.modal = function(options) {
 	}
 	
 	
-	modal.live("tap", function() {
+	modal.live("click", function() {
 		return false;
 	});
 	
-	$("#overlays.dark .modal .hide").live("tap", function() {
+	$("#overlays.dark .modal .hide").live("click", function() {
 		remove(modal);
 	});
 	
