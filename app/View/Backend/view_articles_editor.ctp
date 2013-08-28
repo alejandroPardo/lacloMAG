@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<table cellpadding="0" cellspacing="0">
+<table class="pagTable" cellpadding="0" cellspacing="0">
     <tr>
             <th><?php echo $this->Paginator->sort('id',null, array('rel' => 'external')); ?></th>
             <th><?php echo $this->Paginator->sort('Paper.name',null, array('rel' => 'external')); ?></th>
