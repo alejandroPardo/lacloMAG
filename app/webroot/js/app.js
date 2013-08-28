@@ -12,7 +12,7 @@ jQuery.event.special.tap = {
         }
     },
     click: function (a) {
-        a.type = "click";
+        a.type = "tap";
         jQuery.event.handle.apply(this, arguments)
     },
     teardown: function (a) {
@@ -32,7 +32,7 @@ jQuery.event.special.tap = {
     },
     onTouchEnd: function (a) {
         if (!this.moved) {
-            a.type = "click";
+            a.type = "tap";
             jQuery.event.handle.apply(this, arguments)
         }
     }
@@ -5803,7 +5803,7 @@ $.fn.modal = function(options) {
 	}
 	
 	
-	modal.live("click", function() {
+	modal.live("tap", function() {
 		return false;
 	});
 	
@@ -6207,7 +6207,7 @@ $.fn.modal = function(options) {
 		
 		$("#overlays .wrapper").addClass("animated fadeInDown");
 		
-		$(".particles").live("tap", function() {
+		$(".particles").live("click", function() {
 			remove();
 		});
 		

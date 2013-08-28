@@ -795,7 +795,8 @@ class BackendController extends AppController {
         if(empty($paperEvaluator['PaperEvaluator']['comment'])){ 
         	$this->set('comment', '\n\n======================\nAREA PARA CORRECCIONES\n======================\n\n\nAquí puede escribir todos los comentarios sobre la revisión del artículo a su derecha.');
         } else {
-        	$cadena = eregi_replace("[\n|\r|\n\r]", '\n', $paperEvaluator['PaperEvaluator']['comment']);
+        	//$cadena = preg_replace("/\r\n+|\r+|\n+|\t+/i", '', $paperEvaluator['PaperEvaluator']['comment']);
+        	$cadena = str_replace('.s.e.p.', '\n', $paperEvaluator['PaperEvaluator']['comment']);
         	$this->set('comment', $cadena);
         }
 		$this->set('paper', $bodytag);

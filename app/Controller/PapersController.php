@@ -126,32 +126,26 @@ class PapersController extends AppController {
 
     public function saveEvaluation() {
         if ($this->request->is('post')) {
-            $bodytag = str_replace('\n', "chota", $this->data['editor']);
-            debug($this->data);
-            die();
-            $paperEvaluator = $this->PaperEvaluator->find('first', 
+
+            $paperEvaluator = $this->PaperEvaluator->find('first',
                 array('conditions' => 
                     array('PaperEvaluator.id' => $this->data['evaluatorid'])
                 )
             );
-            $status = "ACCEPT";
-            if($this->data['selection'] == "Aprobado"){$status="APPROVE";} 
-            else if($this->data['selection'] == "Rechazado"){$status="DENIED";}
-            else if($this->data['selection'] == "El Editor necesita hacer cambios menores"){$status="MINORCHANGE";} 
-            else if($this->data['selection'] == "El Autor necesita hacer cambios"){$status="AUTHORCHANGE";}
-
+            $cadena=preg_replace("/\r\n+|\r+|\n+|\t+/i", '.s.e.p.', $this->data['editor']);
             if($this->data['send']=='Enviar'){
-                $data = array('id' => $this->data['evaluatorid'], 'comment' => $this->data['editor'], 'status' => $status);
-                $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han enviado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> al editor con status <strong>'. $status.'</strong>.');
+                $data = array('id' => $this->data['evaluatorid'], 'comment' => $cadena, 'status' => $this->data['selection']);
+                $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han enviado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> al editor con status <strong>'. $this->data['selection'].'</strong>.');
+                $this->Session->setFlash(__('¡Las correcciones del paper fueron enviadas exitosamente!'));
             } else {
-                $data = array('id' => $this->data['evaluatorid'], 'comment' => $this->data['editor'], 'status' => 'ACCEPT');
+                $data = array('id' => $this->data['evaluatorid'], 'comment' => $cadena, 'status' => 'ACCEPT');
                 $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han guardado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> en borrador');
+                $this->Session->setFlash(__('¡Las correcciones del paper fueron guardadas exitosamente!'));
             }
             $this->PaperEvaluator->save($data);
             $this->Logbook->create();
             $this->Logbook->save($dataNotification);
 
-            $this->Session->setFlash(__('¡Las correcciones del paper fueron guardadas exitosamente!'));
             $this->redirect(array("controller" => "backend", "action" => "pendingEvaluator"));
         }
     }
