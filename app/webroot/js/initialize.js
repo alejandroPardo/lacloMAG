@@ -350,9 +350,9 @@ $.general = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	}
-	$(".pagTable")
+	/*$(".pagTable")
 		.table()
-		.pagination({extended: true});
+		.pagination({extended: true});*/
 	//$(".noTableConf").table().pagination();
 	// MODAL MESSAGES
 	$("#modals message").bind("tap", function() {
@@ -415,7 +415,7 @@ $.author = function(lastUrl) {
 		$('#redactor_content').redactor({
 			imageUpload: 'uploadImage'
 		});
-	} /*else if (lastUrl == 'pendingAuthor') {
+	} else if (lastUrl == 'pendingAuthor') {
 		$("table")
 			.table()
 			.pagination({extended: true});
@@ -423,7 +423,7 @@ $.author = function(lastUrl) {
 		$("table")
 			.table()
 			.pagination({extended: true});
-	}*/ else if (lastUrl == 'uploadArticle') {
+	} else if (lastUrl == 'uploadArticle') {
 		$.notification(
 			{
 				title: "NOTIFICACIÓN",
