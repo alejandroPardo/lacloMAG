@@ -1,7 +1,7 @@
 $.initialize = function() {
 	// --------------- Overlay initialization ----------------
 	$("body").append('<div id="overlays"></div>');
-	$("#overlays.dark").live("tap", function() {
+	$("#overlays.dark").live("click tap", function() {
 		$(this).removeClass("dark");
 		$("#overlays .modal").remove();
 	});
@@ -46,7 +46,7 @@ $.initialize = function() {
 	}
 	
 	// --------------- Navigation ----------------------------
-	$('a').bind("click", function(e) {
+	$('a').bind("click tap", function(e) {
 		if($(this).attr("rel") != "external") {
 			if(!$(this).data("href")) {
 				return false;
@@ -170,7 +170,7 @@ $.initialize = function() {
 	
 	
 	// --------------- Menu elements -------------------------
-	$("#header > ul > li").bind("click", function() {
+	$("#header > ul > li").bind("click tap", function() {
 		var menu = $(this).children("ul");
 		$("#header").removeClass("inactive");
 		
@@ -461,6 +461,22 @@ $.evaluator = function(lastUrl) {
 
 	if(lastUrl == 'evaluator'){ // DASHBOARD DE AUTHOR
 		
+	} else if(lastUrl == 'articleEvaluator'){ // DASHBOARD DE AUTHOR
+		$("table")
+			.table()
+			.pagination({extended: true});
+	} else if(lastUrl == 'current_evaluator'){ // DASHBOARD DE AUTHOR
+		$("table")
+			.table()
+			.pagination({extended: true});
+	} else if(lastUrl == 'pendingEvaluator'){ // DASHBOARD DE AUTHOR
+		$("table")
+			.table()
+			.pagination({extended: true});
+	} else if(lastUrl == 'approvedEvaluator'){ // DASHBOARD DE AUTHOR
+		$("table")
+			.table()
+			.pagination({extended: true});
 	} else {
 		var url = window.location.pathname.split("/");
     	var lastUrl2 = url[url.length - 2];

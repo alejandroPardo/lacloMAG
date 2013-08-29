@@ -126,7 +126,6 @@ class PapersController extends AppController {
 
     public function saveEvaluation() {
         if ($this->request->is('post')) {
-
             $paperEvaluator = $this->PaperEvaluator->find('first',
                 array('conditions' => 
                     array('PaperEvaluator.id' => $this->data['evaluatorid'])

@@ -50,7 +50,7 @@
 
 				editor = editor.replace(new RegExp("/\r\n+|\r+|\n+|\t+/i", "m"), ".s.e.p.");
 
-				var contenido = '<h1>Estado de revisión de Artículo</h1><?php echo $this->Form->create("Paper", array("action" => "saveEvaluation"));?><textarea style="display:none;" name="editor">'+editor+'</textarea><input type="hidden" name="evaluatorid" value="<?php echo $evaluatorid;?>"/><input type="submit" id="approve" name="selection" value="APPROVE" class="lime full"><br/><br/><button id="denied" name="selection" value="DENIED" class="sugar full">Rechazar Paper</button><br/><br/><button rel="external" id="minorchange" name="selection" value="MINORCHANGE" class="sunlit full">El Editor necesita hacer cambios menores</button><br/><br/><button id="authorchange" name="selection" value="AUTHORCHANGE" class="redconfetti full">El Autor necesita hacer cambios</button></form>';
+				var contenido = '<h1>Estado de revisión de Artículo</h1><?php echo $this->Form->create("Paper", array("action" => "saveEvaluation"));?><textarea style="display:none;" name="editor">'+editor+'</textarea><input type="hidden" name="evaluatorid" value="<?php echo $evaluatorid;?>"/><button id="approve" name="selection" value="APPROVE" class="lime full">Aprobar Paper</button><br/><br/><button id="denied" name="selection" value="DENIED" class="sugar full">Rechazar Paper</button><br/><br/><button rel="external" id="minorchange" name="selection" value="MINORCHANGE" class="sunlit full">El Editor necesita hacer cambios menores</button><br/><br/><button id="authorchange" name="selection" value="AUTHORCHANGE" class="redconfetti full">El Autor necesita hacer cambios</button></form>';
 
 				options =  { animation: "flipInX", theme: "dark", content: contenido};
 			
