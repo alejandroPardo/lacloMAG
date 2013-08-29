@@ -465,7 +465,7 @@ $.evaluator = function(lastUrl) {
 		$("table")
 			.table()
 			.pagination({extended: true});
-	} else if(lastUrl == 'current_evaluator'){ // DASHBOARD DE AUTHOR
+	} else if(lastUrl == 'currentEvaluator'){ // DASHBOARD DE AUTHOR
 		$("table")
 			.table()
 			.pagination({extended: true});

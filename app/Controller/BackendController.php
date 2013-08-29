@@ -154,7 +154,7 @@ class BackendController extends AppController {
 		}
 		$accepted = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('ACCEPT'),'Evaluator.id' => $this->userID)));
   		$rejected = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('REJECT'),'Evaluator.id' => $this->userID)));
-  		$approved = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('APPROVE'),'Evaluator.id' => $this->userID)));
+  		$approved = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('APPROVED'),'Evaluator.id' => $this->userID)));
   		$changes = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('MINORCHANGE', 'AUTHORCHANGE'),'Evaluator.id' => $this->userID)));
   		$denied = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('DENIED'),'Evaluator.id' => $this->userID)));
   		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
@@ -765,6 +765,10 @@ class BackendController extends AppController {
   			)
   		);
   		$i=0;
+  		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
+		}
   		foreach ($papers as $paper) {
   			$paperFiles[$i] = $this->PaperFile->find('all', array(
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
@@ -777,10 +781,6 @@ class BackendController extends AppController {
 
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
-		if(empty($papers)){
-			$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
-			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
-		}
 	}
 
 	public function evaluatePaper($id=null){
@@ -876,12 +876,16 @@ class BackendController extends AppController {
   			array(
   				'conditions' => array(
   					'Evaluator.id' => $this->userID,
-  					'PaperEvaluator.status' => array('APPROVE', 'DENIED', 'MINORCHANGE', 'MAJORCHANGE')
+  					'PaperEvaluator.status' => array('APPROVED', 'DENIED', 'MINORCHANGE', 'MAJORCHANGE')
   				),
   				'order' => array('Paper.created DESC'),
   			)
   		);
   		$i=0;
+  		if(empty($papers)){
+			$this->Session->setFlash(__('Usted aún no tiene ningún Artículo corregido.'));
+			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
+		}
   		foreach ($papers as $paper) {
   			$paperFiles[$i] = $this->PaperFile->find('all', array(
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
@@ -891,13 +895,9 @@ class BackendController extends AppController {
   		}
 
   		//debug($papers);
-
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
-		if(empty($papers)){
-			$this->Session->setFlash(__('Usted aún no tiene ningún Artículo corregido.'));
-			$this->redirect(array("controller" => "backend", "action" => "evaluator"));
-		}
+		
   	}
 
   	public function acceptEvaluator($id=null) {

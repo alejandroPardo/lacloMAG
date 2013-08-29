@@ -11,7 +11,7 @@
 						<?php 
 							echo "<script>";
 							echo "$(document).ready(function(){";
-								echo "var data = [{ label: 'Artículos Aceptados para Corregir: $accepted', data: $accepted }, { label: 'Artículos Rechazados para Corregir: $rejected', data: $rejected },{ label: 'Artículos Aprovados: $approved ', data: $approved },{ label: 'Artículos Negados: $denied ', data: $denied },{ label: 'Artículos que necesitan cambios: $changes ', data: $changes }];";
+								echo "var data = [{ label: 'Artículos Aceptados para Corregir: $accepted', data: $accepted }, { label: 'Artículos Rechazados para Corregir: $rejected', data: $rejected },{ label: 'Artículos Negados: $denied ', data: $denied },{ label: 'Artículos que necesitan cambios: $changes ', data: $changes },{ label: 'Artículos Aprovados: $approved ', data: $approved }];";
 								echo "$.plot($('#pie_chart'), data,{";	
 		       						echo "series: {";
 		           						echo "pie: {"; 
