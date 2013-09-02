@@ -3,7 +3,7 @@ jQuery.event.special.tap = {
     setup: function (a, b) {
         var c = this,
             d = jQuery(c);
-        d.bind("click", jQuery.event.special.tap.click)
+        d.bind("tap", jQuery.event.special.tap.click)
     },
     click: function (a) {
         a.type = "click";
@@ -215,7 +215,7 @@ $.initializeLogin = function() {
 	$("body").addClass("welcome").append('<div id="overlays"></div>');
 
 	// --------------- Overlay initialization ----------------
-	$("#overlays.dark").live("click", function() {
+	$("#overlays.dark").live("tap", function() {
 		$(this).removeClass("dark");
 		$("#overlays .modal").remove();
 	});
@@ -236,7 +236,7 @@ $.initializeLogin = function() {
 	$("#password").addClass("animated flipInY").show();
 	$("#password .input.username input").focus();
 	
-	$("#password #boton").bind("click", function() {
+	$("#password #boton").bind("click tap", function() {
 		forgot();
 	});
 	
@@ -247,7 +247,7 @@ $.initializeLogin = function() {
 	});
 
 	// MODAL FORGOT PASSWORD
-	$("#modals button").bind("click", function() {
+	$("#modals button").bind("click tap", function() {
 		var attr = $(this).attr("data-function");
 		var options;
 
@@ -256,7 +256,7 @@ $.initializeLogin = function() {
 		$().modal(options);
 	});
 
-	$("#btnForgot").live("click", function() {
+	$("#btnForgot").live("click tap", function() {
 		if($("#forgot .forEmail input").attr("value")=='') {
 			$.notification( 
 				{
@@ -305,7 +305,7 @@ $.initializeLogin = function() {
 		
 	});
 
-	$("#btnForgotCancel").live("click", function() {
+	$("#btnForgotCancel").live("tap click", function() {
 		$("#overlays").removeClass("dark");
 		$("#overlays .modal").remove();
 	});
@@ -390,7 +390,7 @@ $.initializeReset = function() {
 		}
 	});
 
-	$("#btnRecover").bind("click", function() {
+	$("#btnRecover").bind("click tap", function() {
 		forgotpwd();
 	});
 

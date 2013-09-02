@@ -2041,6 +2041,7 @@ body.welcome #notifications {
 }
 .notification .hide:before, .modal .hide:before {
 	content: "x";
+	overflow:hidden;
 }
 .notification .hide:hover {
 	opacity: 1;
@@ -3818,6 +3819,7 @@ ul.icons li ul li:before {
 	top: 50%;
 	margin-left: -410px;
 	margin-top: -195px;
+	overflow:hidden;
 }
 .modal.dark {
 	background: #111 url(../img/texture-grain.png) repeat;
@@ -3825,6 +3827,7 @@ ul.icons li ul li:before {
 	-moz-box-shadow: rgba(0,0,0,0.88) 0px 1px 140px;
 	box-shadow: rgba(0,0,0,0.88) 0px 1px 140px;
 	color: white;
+	overflow:hidden;
 }
 .modal.blue {
 	background: #4890f1 url(../img/texture-blue.png) repeat;
@@ -3884,6 +3887,7 @@ ul.icons li ul li:before {
 	margin-left: 60px;
 	margin-right: 60px;
 	border-radius: 4px;
+	overflow:hidden;
 }
 
 

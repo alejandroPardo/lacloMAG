@@ -3,8 +3,8 @@
 		<div id="pie" class="col full">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Ver</span> artículos</h4>
-					<span>Aquí puede visualizar todos sus artículos creados.</span>
+					<h4><span>Historial</span> del Evaluador</h4>
+					<span>Aquí puede visualizar todos sus artículos corregidos.</span>
 				</div>
 				<div id="table" class="tab padding pagTable">
 					<table>
@@ -24,7 +24,7 @@
 									echo "<td>".$paper['Paper']['name']."</td>";
 									echo "<td>".$paper['Paper']['created']."</td>";
 									echo "<td><strong>";
-											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}  elseif($paper['Paper']['status']=="UNSENT"){echo 'Por Enviar a Edición';}  elseif($paper['Paper']['status']=="ONREVISION"){echo 'Por Revisar';}  elseif($paper['Paper']['status']=="RECEIVED"){echo 'Recibido en Edición';}  elseif($paper['Paper']['status']=="CONFIRMED"){echo 'Aceptado y Publicado';}
+											if($paper['PaperEvaluator']['status']=="APPROVED"){echo 'Aprobado';} elseif($paper['PaperEvaluator']['status']=="DENIED"){echo 'Rechazado';} elseif($paper['PaperEvaluator']['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paper['PaperEvaluator']['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
 										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";

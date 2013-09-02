@@ -126,14 +126,13 @@ class PapersController extends AppController {
 
     public function saveEvaluation() {
         if ($this->request->is('post')) {
-
             $paperEvaluator = $this->PaperEvaluator->find('first',
                 array('conditions' => 
                     array('PaperEvaluator.id' => $this->data['evaluatorid'])
                 )
             );
             $cadena=preg_replace("/\r\n+|\r+|\n+|\t+/i", '.s.e.p.', $this->data['editor']);
-            if($this->data['send']=='Enviar'){
+            if(empty($this->data['send'])){
                 $data = array('id' => $this->data['evaluatorid'], 'comment' => $cadena, 'status' => $this->data['selection']);
                 $dataNotification = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han enviado las correcciones del paper <strong>'. $paperEvaluator['Paper']['name'].'</strong> al editor con status <strong>'. $this->data['selection'].'</strong>.');
                 $this->Session->setFlash(__('¡Las correcciones del paper fueron enviadas exitosamente!'));
@@ -146,7 +145,7 @@ class PapersController extends AppController {
             $this->Logbook->create();
             $this->Logbook->save($dataNotification);
 
-            $this->redirect(array("controller" => "backend", "action" => "pendingEvaluator"));
+            $this->redirect(array("controller" => "backend", "action" => "evaluator"));
         }
     }
 

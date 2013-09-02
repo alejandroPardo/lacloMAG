@@ -8,7 +8,7 @@ jQuery.event.special.tap = {
             d.bind("touchmove", jQuery.event.special.tap.onTouchMove);
             d.bind("touchend", jQuery.event.special.tap.onTouchEnd)
         } else {
-            d.bind("click", jQuery.event.special.tap.click)
+            d.bind("tap", jQuery.event.special.tap.click)
         }
     },
     click: function (a) {
@@ -21,7 +21,7 @@ jQuery.event.special.tap = {
             $elem.unbind("touchmove", jQuery.event.special.tap.onTouchMove);
             $elem.unbind("touchend", jQuery.event.special.tap.onTouchEnd)
         } else {
-            $elem.unbind("click", jQuery.event.special.tap.click)
+            $elem.unbind("tap", jQuery.event.special.tap.click)
         }
     },
     onTouchStart: function (a) {
@@ -5807,7 +5807,7 @@ $.fn.modal = function(options) {
 		return false;
 	});
 	
-	$("#overlays.dark .modal .hide").live("click", function() {
+	$("#overlays.dark .modal .hide").live("tap", function() {
 		remove(modal);
 	});
 	
