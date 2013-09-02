@@ -30,8 +30,8 @@
 <a id="Media"></a>
 <div class="contentsection yellow clearfix s2">
 	<div class="content">
-		<h2>Media</h2>
-		<p>Last year we had a huge turnout. We reached a new milestone and involved the community like never before. See videos and photos from last year's event below! <img class="flashing" src="img/stripe.gif" alt=""></p>
+		<h2>Ejemplares de LACLO Magazine</h2>
+		<p>Aquí se pueden ver todos los ejemplares de LACLO Magazine. Descargalos o visualízalos en linea.<img class="flashing" src="img/stripe.gif" alt=""></p>
 		<div class="videoplayer">
 			<iframe src="http://player.vimeo.com/video/37410423" width="1000" height="570"></iframe>
 		</div>
@@ -52,8 +52,8 @@
 <div class="contentsection clearfix beige">
 	<div class="content">
 		<div class="sectioninfo relative">
-			<h2>Agenda</h2>
-			<p>We have a bunch of fun things to do at this conference. Our volunteers and staff carefully selected events that will promote a rich and engaging experience. <a href="#">Register Now</a></p>
+			<h2>Noticias</h2>
+			<p>Sección con noticias de todo el mundo de los Objetos de Aprendizaje y las tecnologías educativas. Para que te mantengas al tanto de todo lo que sucede.</p>
 			<p><img src="img/notepad.png" alt=""></p>
 		</div>
 		<div class="normalcontent">
@@ -80,16 +80,6 @@
 							<p class="time">12:00pm - 1:00pm </p>
 							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit.</p>
 						</div>
-						<div class="session">
-							<h3>HTML5 and the future</h3>
-							<p class="time">1:30pm - 4:00pm</p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-						<div class="session">
-							<h3>The Mobile Web</h3>
-							<p class="time">4:30pm - 6:00pm </p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
 					</div>
 				</div>
 				<div class="agendaitem">
@@ -104,16 +94,6 @@
 							<p class="time">8:00am - 10:00am</p>
 							<p>Nulla facilisi. In vel sem. Morbi id urna in diam digni feugiat. Proin molestie tortor eu velit.</p>
 						</div>
-						<div class="session">
-							<h3>Social Media Marketing in 2013</h3>
-							<p class="time">10:00am - 12:00pm</p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-						<div class="session">
-							<h3>Conference Dinner</h3>
-							<p class="time">4:30pm - 6:00pm </p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -124,8 +104,8 @@
 <div class="contentsection dark clearfix s1">
 	<div class="content">
 		<div class="sectioninfo relative">
-			<h2>Speakers</h2>
-			<p>Learn from experienced professionals who work in the field everyday. Each attendee includes a free tee shirt and subscription to our magazine. <a href="#">Learn about registration.</a></p>
+			<h2>LACLO</h2>
+			<p>Conoce quienes somos, nuestras conferencias anuales, nuestros miembros y repositorios.</a></p>
 			<p><img src="img/loudspeaker.png" alt=""></p>
 		</div>
 		<div class="normalcontent">
@@ -187,8 +167,8 @@
 <div class="contentsection clearfix red">
 	<div class="content">
 		<div class="sectioninfo relative">
-			<h2>Registration</h2>
-			<p>Sign up on our mailing list to get updates.</p>
+			<h2>¿Quiéres Formar Parte?</h2>
+			<p>Envíanos tus datos y te responderemos lo mas pronto posible para que seas parte de la familia de LACLO Magazine.</p>
 		</div>
 		<div class="normalcontent">
 			<form action="process.php" method="post" accept-charset="utf-8">
@@ -206,7 +186,7 @@
 				<p><input class="submit" type="submit" value="Continue &rarr;"></p>
 			</form>
 			<div class="sponsors">
-				<h3>Sponsors</h3>
+				<h3>Páginas de Interés</h3>
 				<img alt="client" src="img/l1.jpg">
 				<img alt="client" src="img/l2.jpg">
 				<img alt="client" src="img/l3.jpg">
@@ -217,6 +197,6 @@
 </div>
 <div id="footer">
 	<div class="footercontent">
-		<p>&copy; Copyright Red Stripe Template</p>
+		<p>&copy; Copyright LACLOmagazine 2013 - UCV <br>Caracas, Venezuela.</p>
 	</div>
 </div>
