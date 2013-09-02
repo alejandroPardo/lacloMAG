@@ -12,8 +12,8 @@
 </div>
 <div class="contentsection" id="header">
 	<div class="content">
-		<h1>LACLOmagazine<span class="stripe">_</span></h1>
-		<p class="subtext">Aquí va el logo</p>
+		<h1><img src="img/logoFrontend.png" alt="LACLO Magazine"/></h1>
+		<p class="subtext">Último Ejemplar</p>
 		<div id="lineset" class="clearfix">
 			<div id="linesleft"></div>
 			<div id="dates">
@@ -183,16 +183,6 @@
 	</div>
 	<div class="filter"></div>
 </div>
-<!--<a id="Location"></a>
-<div class="contentsection dark clearfix">
-	<div class="content">
-		<h2>Location</h2>
-		<p>We have a bunch of fun things to do at this conference. Our volunteers and staff carefully selected events that will promote a rich and engaging experience.</p>
-			<p><a href="#" class="getLocation">Click here to put things into perspective.</a></p>
-		<div id="map_canvas" data-lat="38.796908" data-long="-77.135925"></div>
-	</div>
-	<div class="filter"></div>
-</div>-->
 <a id="Registration"></a>
 <div class="contentsection clearfix red">
 	<div class="content">

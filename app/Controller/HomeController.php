@@ -5,14 +5,17 @@ App::uses('AppController', 'Controller');
  *
  * @property PaperFile $PaperFile
  */
-class FrontendController extends AppController {
+class HomeController extends AppController {
 	public $uses = array('Logbook', 'User','Magazine','MagazinePaper');
 
 	function beforeFilter() {
 		parent::beforeFilter();
-        $this->layout = 'frontend';
     }
 	public function index() {
-		
+		$this->layout = 'frontend';
+	}
+
+	public function magazine(){
+		$this->layout = 'magazine';
 	}
 }

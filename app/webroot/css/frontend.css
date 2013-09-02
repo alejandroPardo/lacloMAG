@@ -263,7 +263,7 @@ p {
 /* Yellow */
 
 .yellow {
-	background-color:#FDBD12;
+	background-color:#f7931e;
 	padding-top:80px;
 }
 
@@ -278,7 +278,7 @@ p {
 /* Red */
 
 .red {
-	background-color:#A9071E;
+	background-color:#be1e2d;
 	padding-top:80px;
 }
 
@@ -772,15 +772,19 @@ img {
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 480px) {
 	
 	#header.contentsection .content p {
 		font-size:23px;
 		line-height:34px;
 	}
-	
+
 	#header.contentsection {
 		padding-bottom:20px;
+	}
+
+	#header.contentsection h1{
+		font-size: 60px;
 	}
 	
 	#header .arrow {
@@ -807,6 +811,13 @@ img {
 	.normalcontent form input {
 		width:87%;
 	}
+}
+
+
+
+/* QUERIES FOR IHONE/SMARTPHONES */
+@media only screen and (max-width: 767px), only screen and (max-device-width: 480px), only screen and (max-width: 767px) {
+
 }
 
 /*
