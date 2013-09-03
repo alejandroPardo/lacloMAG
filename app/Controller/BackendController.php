@@ -759,11 +759,11 @@ class BackendController extends AppController {
   			'conditions' => array(
 				'Magazine.status' => 'ARCHIVED'
 			
-			)
+			),
+			'recursive' => 2
   		));
 
-  		$papers = $this->Paper->find('list');
-  		debug($magazines);
+  		//debug($magazines);
   		$this->set('magazines', $magazines);
   	}
 
