@@ -509,8 +509,6 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('papers', $papers);
-
-
   	}
 
   	public function inspectPaper ($id) {
@@ -587,7 +585,6 @@ class BackendController extends AppController {
         } else {
             $this->Session->setFlash(__('The article category could not be saved. Please, try again.'));
         }
-		
   	}
  	
  	public function deleteEvaluator($evaluatorId,$paperId) {
@@ -742,7 +739,7 @@ class BackendController extends AppController {
 			)
   		));
   		$this->set('magazines', $magazines);
-
+ 
   	}
 
   	/****************
