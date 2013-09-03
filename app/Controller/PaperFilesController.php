@@ -26,9 +26,13 @@ class PaperFilesController extends AppController {
 
         $html = $this->PaperFile->findById($id);
         if(substr($this->here,-4) == '.pdf'){
-            $bodytag = str_replace("../files", "file:".DS.DS.WWW_ROOT."files", $html['PaperFile']['raw']);
+            if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
+                $bodytag = str_replace("../../files", "FILE:".DS.DS.WWW_ROOT."files", $html['PaperFile']['raw']);
+            } else {  //WINDOWS
+                $bodytag = str_replace("../../files", "FILE:".DS.DS.DS.WWW_ROOT."files", $html['PaperFile']['raw']);
+            }
         } else {
-            $bodytag = str_replace("../files", "../../files", $html['PaperFile']['raw']);
+            $bodytag = $html['PaperFile']['raw'];
         }
         $this->set('htm', $bodytag);
         /*'file:///Users/alejandropardo/Sites/LACLOmag/app/webroot/'
