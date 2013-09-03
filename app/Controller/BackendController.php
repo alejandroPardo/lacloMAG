@@ -43,7 +43,7 @@ class BackendController extends AppController {
 			$markers = $this->Paper->PaperAuthor->find('count',
 	  			array(
 	  				'conditions' => array(
-	  					'Paper.status' => array('SENT','REJECTED','APPROVED'),
+	  					'Paper.status' => array('SENT','ASSIGNED','ONREVISION','REJECTED','APPROVED'),
 	  					'Author.id' => $this->userID
 	  				),
 	  			)
@@ -259,22 +259,21 @@ class BackendController extends AppController {
 	/*
 	/***************/
 
-	public function createArticle(){
+	public function createArticle($id=null){
 		$this->set('author', $this->userID);
-		$paper = $this->Paper->PaperAuthor->find('count',
-	  			array(
-	  				'conditions' => array(
-	  					'Paper.status' => array('UNSENT'),
-	  					'Author.id' => $this->userID
-	  				),
-	  			)
-	  		);
-		if($paper>0){
+		if($id==null){
+			$this->redirect(array("controller" => "backend", "action" => "createArticle/0"));
+		} elseif($id=='0') {
+			$this->set('content', '<h1>Bienvenido al Creador de Artículos LACLOmagazine</h1><p>En el menú superior puede agregar fotos, tablas, cambiar colores de letra y fondo en las letras, cambiar la alineación del texto, agregar lineas horizontales y sangrías.</p><blockquote><span style="color: rgb(119, 119, 119); font-style: italic; line-height: 1.45em; -webkit-text-stroke-color: transparent;">Puede utilizar citas textuales remarcadas con este estilo.</span></blockquote><p></p><ol><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">También</span><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">&nbsp;puede numerar&nbsp;</span><br></li><li><span style="color: rgb(85, 85, 85); line-height: 1.45em; -webkit-text-stroke-color: transparent;">su contenido.</span><br></li></ol><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;"><ul><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">O agregarle una viñeta.</span><br></li><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">Utilizar <b>negritas</b>, <i>cursivas</i> o <strike>letras tachadas.</strike></span></li></ul></span><p></p>');
+			$this->set('name', '');
+			$this->set('preview', '0');
+		} else {
 			$paper3 = $this->Paper->PaperAuthor->find('first',
 	  			array(
 	  				'conditions' => array(
-	  					'Paper.status' => array('UNSENT'),
-	  					'Author.id' => $this->userID
+	  					'Paper.id' => $id,
+	  					'Author.id' => $this->userID,
+	  					'Paper.status' => array('UNSENT', 'REJECTED')
 	  				),
 	  			)
 	  		);
@@ -285,27 +284,19 @@ class BackendController extends AppController {
 	  				),
 	  			)
 	  		);
-		}
-		if (!empty($paper2)) {
-			$this->set('content', $paper2['PaperFile']['raw']);
-			$this->set('name', $paper2['PaperFile']['name']);
-			$this->set('preview', $paper3['Paper']['id']);
-		} else {
-			$this->set('content', '<h1>Bienvenido al Creador de Artículos LACLOmagazine</h1><p>En el menú superior puede agregar fotos, tablas, cambiar colores de letra y fondo en las letras, cambiar la alineación del texto, agregar lineas horizontales y sangrías.</p><blockquote><span style="color: rgb(119, 119, 119); font-style: italic; line-height: 1.45em; -webkit-text-stroke-color: transparent;">Puede utilizar citas textuales remarcadas con este estilo.</span></blockquote><p></p><ol><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">También</span><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent; color: rgb(85, 85, 85);">&nbsp;puede numerar&nbsp;</span><br></li><li><span style="color: rgb(85, 85, 85); line-height: 1.45em; -webkit-text-stroke-color: transparent;">su contenido.</span><br></li></ol><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;"><ul><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">O agregarle una viñeta.</span><br></li><li><span style="line-height: 1.45em; -webkit-text-stroke-color: transparent;">Utilizar <b>negritas</b>, <i>cursivas</i> o <strike>letras tachadas.</strike></span></li></ul></span><p></p>');
-			$this->set('name', '');
-			$this->set('preview', '0');
+			if (!empty($paper2)) {
+				$this->set('content', $paper2['PaperFile']['raw']);
+				$this->set('name', $paper2['PaperFile']['name']);
+				$this->set('preview', $paper3['Paper']['id']);
+			}
 		}
 	}
 
 	public function uploadArticle(){
-		$this->set('user', $this->Auth);
-	}
-
-	public function pendingAuthor() {
 		$papers = $this->Paper->PaperAuthor->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => array('SENT','ASIGNED','REJECTED','APPROVED'),
+  					'Paper.status' => array('UNSENT','REJECTED'),
   					'Author.id' => $this->userID
   				),
   			)
@@ -318,7 +309,37 @@ class BackendController extends AppController {
 			));
 			$i++;
   		}
+  		
+  		//debug($papers);
+  		//die();
+		$this->set('papers', $papers);
+		$this->set('paperFiles', $paperFiles);
+		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por enviar.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+		}
+	}
 
+	public function pendingAuthor() {
+		$papers = $this->Paper->PaperAuthor->find('all',
+  			array(
+  				'conditions' => array(
+  					'Paper.status' => array('SENT','ASIGNED','ONREVISION','REJECTED','APPROVED'),
+  					'Author.id' => $this->userID
+  				),
+  			)
+  		);
+  		$i=0;
+  		foreach ($papers as $paper) {
+  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+			    'fields' => array('id')
+			));
+			$i++;
+  		}
+  		
+  		//debug($papers);
+  		//die();
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
 		if(empty($papers)){
@@ -384,7 +405,7 @@ class BackendController extends AppController {
 
 		    // displaying file    
 			$array = array(
-				'filelink' => '../files/'.$filename
+				'filelink' => '../../files/'.$filename
 			);
 			
 			echo stripslashes(json_encode($array));   

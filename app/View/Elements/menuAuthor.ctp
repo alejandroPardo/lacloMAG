@@ -13,14 +13,10 @@
 	);
 ?>
 <?php 
-	if ($papersPreviews != '0') { 
-		$paperMessage = 'class= "vector count" data-count="'.$papersPreviews.'"';
-	} else { 
-		$paperMessage = 'class="vector"';
-	}
+	
 
 	echo $this->Html->link(
-		'<span '.$paperMessage.'>C</span>
+		'<span class="vector">C</span>
 		<span class="title"><strong>Crear</strong> artículo</span>
 		<span class="desc"><strong>Nuevos</strong>/artículos</span>',
 	array(
@@ -33,10 +29,16 @@
 	);
 ?>
 <?php 
+	if ($papersPreviews != '0') { 
+		$paperMessage = 'class= "vector count" data-count="'.$papersPreviews.'"';
+	} else { 
+		$paperMessage = 'class="vector"';
+	}
 	echo $this->Html->link(
-		'<span class="vector">I</span>
-		<span class="title"><strong>Subir</strong> artículo</span>
-		<span class="desc"><strong>Archivo PDF</strong> solo texto</span>',
+		'
+		<span '.$paperMessage.'>I</span>
+		<span class="title"><strong>Articulos</strong> por Enviar</span>
+		<span class="desc"><strong>Devoluciones</strong>/Borradores</span>',
 	array(
 		'controller' => 'backend', 
 		'action' => 'uploadArticle'),

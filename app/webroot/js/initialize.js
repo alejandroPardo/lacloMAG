@@ -404,13 +404,13 @@ $.editor = function(lastUrl) {
 
 
 $.author = function(lastUrl) {
-
+	$('#redactor_content').redactor({
+			imageUpload: '../uploadImage'
+		});
 	if(lastUrl == 'author'){ // DASHBOARD DE AUTHOR
 		
 	} else if (lastUrl == 'createArticle') {
-		$('#redactor_content').redactor({
-			imageUpload: 'uploadImage'
-		});
+		
 	} else if (lastUrl == 'pendingAuthor') {
 		$("table")
 			.table()
@@ -420,13 +420,9 @@ $.author = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	} else if (lastUrl == 'uploadArticle') {
-		$.notification(
-			{
-				title: "NOTIFICACIÓN",
-				content: "Recuerde que debe actualizar la página para poder utilizar los archivos subidos.",
-				icon: "!"
-			}
-		);
+		$("table")
+			.table()
+			.pagination({extended: true});
 	}
 };
 

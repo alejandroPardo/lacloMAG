@@ -13,6 +13,7 @@
 								<th>Nombre del Paper</th>
 								<th>Creado</th>
 								<th>Status</th>
+								<th>Tipo de Revisión</th>
 								<th style="width: 20px">Descargar</th>
 							</tr>
 						</thead>
@@ -24,7 +25,10 @@
 									echo "<td>".$paper['Paper']['name']."</td>";
 									echo "<td>".$paper['Paper']['created']."</td>";
 									echo "<td><strong>";
-											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}
+											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ONREVISION"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}
+									echo "</strong></td>";
+									echo "<td><strong>";
+											if($paper['Paper']['status']=="ONREVISION"){ if($paper['Paper']['evaluation_type']=='BLIND'){echo 'Ciega';} elseif($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){ echo 'Doble Ciega';}else{echo 'Abierta';}} else{echo 'Aun no ha sido asignado';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
 										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
