@@ -350,9 +350,9 @@ $.general = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	}
-	/*$(".pagTable")
+	$(".paginationTable")
 		.table()
-		.pagination({extended: true});*/
+		.pagination({extended: true});
 	//$(".noTableConf").table().pagination();
 	// MODAL MESSAGES
 	$("#modals message").bind("tap", function() {
@@ -392,10 +392,6 @@ $.editor = function(lastUrl) {
 		       }
 		});
 		/////// END PIECHART 
-	} else if(lastUrl == 'viewPendingArticlesEditor'){ // DASHBOARD DE AUTHOR
-		$("table")
-		.table()
-		.pagination({extended: true});
 	}
 };
 

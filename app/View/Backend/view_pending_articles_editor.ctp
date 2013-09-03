@@ -1,11 +1,13 @@
-<table cellpadding="0" cellspacing="0">
-    <tr>
-            <th>id</th>
-            <th>name Paper</th>
-            <th>name Author</th>
-            <th>status</th>
-            <th class="actions"><?php echo __('Actions'); ?></th>
-    </tr>
+<table class="paginationTable" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+                <th>id</th>
+                <th>name Paper</th>
+                <th>name Author</th>
+                <th>status</th>
+                <th class="actions"><?php echo __('Actions'); ?></th>
+        </tr>
+    </thead>
     <?php foreach ($papers as $paper): ?>
     <tr>
         <td><?php echo h($paper['Paper']['id']); ?>&nbsp;</td>
