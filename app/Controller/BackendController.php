@@ -677,9 +677,7 @@ class BackendController extends AppController {
 		if ($this->Paper->save() && $this->MagazinePaper->save()) {
             $this->Session->setFlash(__('El articulo ha sido agregado a la revista'));
             $this->redirect(array(
-				'action' => 'index',
-				$paperId
-			));
+				'action' => 'viewCurrentMagEditor'			));
         } else {
             $this->Session->setFlash(__('Hubo un error en la publicacion por favor intente nuevamente'));
             $this->redirect(array(

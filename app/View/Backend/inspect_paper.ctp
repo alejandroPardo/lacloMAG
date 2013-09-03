@@ -60,14 +60,14 @@
 	    <div class="col_2 alpha">
             <?php 
                 echo $this->Form->postLink(
-                    '<button class="white">Asignar a Revista</button>',
+                    '<button class="white">Asignar a Revista Actual</button>',
                 array(
                     'controller' => 'backend', 
                     'action' => 'addArticleToMag',
                     $paperId),
                 array( 
                     'escape'=> false),
-                __('Asignar a Revista?')
+                __('Asignar a Revista Actual?')
                 );
             ?>
 	    </div>

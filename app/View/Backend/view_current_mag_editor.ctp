@@ -77,13 +77,14 @@
 		                        'rel' => 'external', 
 		                        'escape'=> false)
 		                    );
+
 		                ?>
 	                </td>
 	            </tr>
 	             <?php endforeach; ?>
 	        </table>
 	        <?php else: ?>
-	            <p>No hay Evaluadores</p>
+	            <p>No hay Articulos</p>
 	        <?php endif; ?>
     	</div>
 </div>
@@ -91,8 +92,12 @@
     var viewArticlesMag = document.getElementById('viewArticlesMag');
     viewArticlesMag.addEventListener('click', function () {
         $("#modalArticles").modal();
+        $('.removePaper').unbind();
         $('.removePaper').bind("click", function(e) {
-            window.location.href = $(this).attr("data-href");
+            var a = confirm('Remover Paper?');
+            if (a) {
+            	window.location.href = $(this).attr("data-href");
+        	}
         });
     }, false);
 
