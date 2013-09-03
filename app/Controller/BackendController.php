@@ -754,13 +754,17 @@ class BackendController extends AppController {
   	}
 
   	public function viewArticlesArchiveEditor() {
-  		$this->Magazine->find('all', array(
+  		
+  		$magazines = $this->Magazine->find('all', array(
   			'conditions' => array(
 				'Magazine.status' => 'ARCHIVED'
+			
 			)
   		));
+
+  		$papers = $this->Paper->find('list');
+  		debug($magazines);
   		$this->set('magazines', $magazines);
- 
   	}
 
   	/****************
