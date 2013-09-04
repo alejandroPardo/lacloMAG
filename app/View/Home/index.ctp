@@ -101,7 +101,7 @@
 	</div>
 </div>
 <a id="Location"></a>
-<div class="contentsection dark clearfix s1">
+<div class="contentsection dark clearfix">
 	<div class="content">
 		<div class="sectioninfo relative">
 			<h2>LACLO</h2>

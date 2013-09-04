@@ -123,9 +123,9 @@ DROP TABLE IF EXISTS `magazine_files`;
 CREATE TABLE `magazine_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `magazine_id` int(11) DEFAULT NULL,
-  `file` longblob,
+  `content` mediumtext,
   `name` varchar(50) DEFAULT NULL,
-  `type` varchar(20) DEFAULT NULL,
+  `type` enum('COVER', 'INDEX', 'EDITORIAL'),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `magazine_id_idx` (`magazine_id`),
@@ -331,7 +331,7 @@ CREATE TABLE `papers` (
   `name` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `status` enum('UNSENT','SENT','ASIGNED','ONREVISION','REJECTED','APPROVED','PUBLISHED','UNPUBLISHED') NOT NULL DEFAULT 'UNSENT',
+  `status` enum('UNSENT','SENT','ASIGNED','ONREVISION','REJECTED','APPROVED','PUBLISHED','UNPUBLISHED','REVIEW') NOT NULL DEFAULT 'UNSENT',
   `evaluation_type` enum('BLIND', 'OPEN', 'DOUBLEBLIND'),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
