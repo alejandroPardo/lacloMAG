@@ -276,7 +276,7 @@ class BackendController extends AppController {
 	  				'conditions' => array(
 	  					'Paper.id' => $id,
 	  					'Author.id' => $this->userID,
-	  					'Paper.status' => array('UNSENT', 'REJECTED')
+	  					'Paper.status' => array('UNSENT', 'REVIEW')
 	  				),
 	  			)
 	  		);
@@ -306,16 +306,37 @@ class BackendController extends AppController {
   		);
   		$i=0;
   		foreach ($papers as $paper) {
+  			$evaluators[$i] = $this->PaperEvaluator->find('all', array(
+			    'conditions' => array('paper_id'=>$paper['Paper']['id'])
+			));
   			$paperFiles[$i] = $this->PaperFile->find('all', array(
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
 			    'fields' => array('id')
 			));
 			$i++;
   		}
-  		
-  		//debug($papers);
-  		//die();
+  		$i=0;
+  		$evals = '<h1>Correcciones del Artículo</h1>';
+  		foreach ($evaluators as $evaluator) {
+  			if(empty($evaluator)){
+  				$evalsTable[$i] = 'No hay revisiones';
+  			} else {
+  				$index = 1;
+  				foreach ($evaluator as $eval) {
+  					$comms = str_replace('.s.e.p.', ' ', $eval['PaperEvaluator']['comment']);
+  					$evals .= '<h3>Comentario '.$index.': '.$comms.'</h3><br>';
+  					$index++;
+  				}
+  				$evalsTable[$i] = '<a href="#" class="evals"><span class="glyph info glyph-editor"></span></a>';
+  			}
+  			$i++;
+  		}
+  		/*debug($evals);
+  		debug($evalsTable);
+		die();*/
 		$this->set('papers', $papers);
+		$this->set('evalsTable', $evalsTable);
+		$this->set('evals', $evals);
 		$this->set('paperFiles', $paperFiles);
 		if(empty($papers)){
 			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por enviar.'));
