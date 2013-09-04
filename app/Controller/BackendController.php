@@ -810,6 +810,21 @@ class BackendController extends AppController {
   		
   	}
 
+  	public function newMag() {
+		if ($this->request->is('post')) {
+			//adding Mag...
+			//debug($this->request->data);
+			$this->Magazine->create($this->request->data['Magazine']);
+
+			if ($this->Magazine->save()) {
+				$this->Session->setFlash(__('Revista Creada'));
+				$this->redirect(array(
+					'action' => 'viewCurrentMagEditor'
+				));
+			}
+		}
+  	}
+
   	/****************
 	/*
 	/*	Evaluator Functions

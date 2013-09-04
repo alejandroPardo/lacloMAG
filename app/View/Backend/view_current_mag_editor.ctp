@@ -29,8 +29,6 @@
 			<div class="content">
 				<div class="heading">
 					<h4><span>Acciones</span></h4>
-					<span><a href='lasActivities' rel='external'>Últimas actividades realizadas</a></span>
-
 				</div>
 
 				<div id="buttons"class="wrapper" style="left: 1px; right: 1px; top: 141px; bottom: 0px;">
@@ -39,6 +37,7 @@
 							<ul>
 								<li class=" ">
 									<button id="viewArticlesMag" class="white">Ver Articulos Asignados</button>
+									
 								</li>
 							</ul>
 						</li>
@@ -49,6 +48,19 @@
 						</li>
 						<li class="">
 							<ul>
+								<li class=" ">
+								<?php 
+				                    echo $this->Html->link(
+				                        '<button  class="white">Nueva Revista</button>',
+				                    array(
+				                        'controller' => 'backend', 
+				                        'action' => 'newMag'),
+				                    array( 
+				                        'rel' => 'external', 
+				                        'escape'=> false)
+				                    );
+				                ?>
+				                </li>
 							</ul>
 						</li>							
 					</ul>
