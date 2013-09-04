@@ -131,10 +131,11 @@
 </div>
 <script type="text/javascript">
     var viewArticlesMag = document.getElementById('viewArticlesMag');
+    
     viewArticlesMag.addEventListener('click', function () {
         $("#modalArticles").modal();
-        $('.removePaper').unbind();
-        $('.removePaper').bind("click", function(e) {
+        //$('.removePaper').unbind();
+        $('.removePaper').on("click", function(e) {
             var a = confirm('Remover Paper?');
             if (a) {
             	window.location.href = $(this).attr("data-href");

@@ -780,25 +780,32 @@ class BackendController extends AppController {
   				'fields' => 'Magazine.id'
   			));
 
-  			$this->Magazine->read(null, $magazine['Magazine']['id']);
-  			$this->Magazine->set(array(
-  				'status' => 'ARCHIVED'
-  			));
+  			$this->Magazine->id = $magazine['Magazine']['id'];
+  			$mag['Magazine']['status'] = 'ARCHIVED';
 
-  			if ($this->Magazine->save()) {
+  			if ($this->Magazine->save($mag)) {
 
-	  			$mag = $this->Magazine->read(null, $magId);
-				$this->Magazine->set(array(
-					'status' => 'ACTUAL'
-				));
+	  			$this->Magazine->id = $magId;
+	  			$newMag['Magazine']['status'] = 'ACTUAL';
 
-				if ($this->Magazine->save()) {
-					$actualMag = $mag;
+				if ($this->Magazine->save($newMag)) {
+					
+					$actualMag = $this->Magazine->find('first', array(
+		  				'conditions' => array('status' => 'ACTUAL')
+		  			));
+
 					$this->Session->setFlash(__('Revista Actualizada'));
 					$this->redirect(array(
 						'action' => 'viewCurrentMagEditor'
 					));
 				}
+
+  			} else{
+
+  				$this->Session->setFlash(__('Error. intente nuevamente'));
+				$this->redirect(array(
+					'action' => 'viewCurrentMagEditor'
+				));
   			}
   		} else {
   			$this->Session->setFlash(__('No se proporciono un id valido'));
