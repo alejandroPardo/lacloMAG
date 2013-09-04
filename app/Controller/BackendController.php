@@ -297,7 +297,7 @@ class BackendController extends AppController {
 		$papers = $this->Paper->PaperAuthor->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => array('UNSENT','REJECTED'),
+  					'Paper.status' => array('UNSENT','REVIEW'),
   					'Author.id' => $this->userID
   				),
   			)
@@ -380,7 +380,6 @@ class BackendController extends AppController {
 
   	public function renderArticle(){
   		debug(intval($this->params['url']['file']));
-  		
   	}
 
   	public function uploadImage() {
