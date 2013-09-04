@@ -29,8 +29,7 @@
 											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}elseif($paper['Paper']['status']=="UNSENT"){echo 'Por Enviar a Edición';}elseif($paper['Paper']['status']=="REVIEW"){echo 'Por Realizar Correcciones';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
-										$file = "createArticle/".$paper['Paper']['id'];
-										echo '<a href='.$file.' rel="external"><span class="glyph info glyph-editor"><span></a>';
+										echo $evalsTable[$index];
 									echo "</td>";
 									echo "<td style='text-align: center;'>";
 										$file = "createArticle/".$paper['Paper']['id'];
@@ -50,3 +49,17 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+	$(document).ready(function(){
+		$(".evals").on('click', function (e) {
+
+			var contenido = "<?php echo $evals;?>";
+
+			options =  { animation: "flipInX", theme: "dark", content: contenido};
+		
+			$().modal(options);
+		});
+	});
+</script>

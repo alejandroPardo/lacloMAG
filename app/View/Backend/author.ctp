@@ -12,7 +12,7 @@
 						<?php 
 							echo "<script>";
 							echo "$(document).ready(function(){";
-								echo "var data = [{ label: 'Artículos Aprovados: $approved', data: $approved }, { label: 'Artículos Rechazados: $rejected', data: $rejected },{ label: 'Artículos Publicados: $published ', data: $published },{ label: 'Artículos en Edición: $editing ', data: $editing },{ label: 'Artículos sin Enviar: $unsent ', data: $unsent }];";
+								echo "var data = [{ label: 'Artículos Aprovados: $approved', data: $approved }, { label: 'Artículos Rechazados: $rejected', data: $rejected },{ label: 'Artículos Publicados: $published ', data: $published },{ label: 'Artículos en Edición: $editing ', data: $editing },{ label: 'Artículos sin Enviar: $unsent ', data: $unsent },{ label: 'Artículos devueltos: $review ', data: $review }];";
 								echo "$.plot($('#pie_chart'), data,{";	
 		       						echo "series: {";
 		           						echo "pie: {"; 

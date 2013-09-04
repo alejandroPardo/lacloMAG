@@ -102,6 +102,23 @@ class PapersController extends AppController {
                     $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                 }
             } else {
+                $evaluators = $this->PaperEvaluator->find('all', array(
+                    'conditions' => array('paper_id'=>$this->data['preview'])
+                ));
+                if(!empty($evaluators)){
+                    foreach ($evaluators as $evaluator) {
+                        $evalData = array('id' => $evaluator['PaperEvaluator']['id'], 'status' => 'CORRECTED');
+                        $this->PaperEvaluator->save($evalData);
+                    }
+                    if($this->data['send']=='Enviar'){
+                        $data = array('name' => $this->data['name'], 'status' => 'SENT');
+                        $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha enviado el paper <strong>'. $this->data['name'].'</strong> a edición nuevamente.');
+                    } else {
+                        $data = array('name' => $this->data['name'], 'status' => 'REVIEW');
+                        $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha guardado el paper <strong>'. $this->data['name'].'</strong> en borrador.');
+                    }
+                }
+
                 $paperFile = $this->PaperFile->find('first', array('conditions' => array('PaperFile.paper_id' => $this->data['preview'])));
                 $data['id'] = $this->data['preview'];
                 $this->Paper->save($data);
