@@ -64,34 +64,12 @@ $(function() {
 	
 	
 	var directionsDisplay;
-	var directionsService = new google.maps.DirectionsService();
+
 	var marker;
 	var map;
 	
 
 	function initialize() {
-		directionsDisplay = new google.maps.DirectionsRenderer();
-		var mapOptions = {
-	    	zoom: 8,
-		  	scrollwheel: false,
-			mapTypeControl: false,
-			disableDoubleClickZoom: true,
-			disableDefaultUI: true,
-			draggable: true,
-			center: true,
-		    center: new google.maps.LatLng($("#map_canvas").data("lat"), $("#map_canvas").data("long")),
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
-
-	    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-	    marker = new google.maps.Marker({
-	    	map:map,
-	    	draggable:true,
-	   		animation: google.maps.Animation.DROP,
-	   		position: new google.maps.LatLng($("#map_canvas").data("lat"), $("#map_canvas").data("long")),
-	    });
-	 	google.maps.event.addListener(marker, 'click', toggleBounce);
-		directionsDisplay.setMap(map);
 	}
 
 	function toggleBounce() {
@@ -100,48 +78,5 @@ $(function() {
 	   	} else {
 	    	marker.setAnimation(google.maps.Animation.BOUNCE);
 		}
-	}
-	
-	google.maps.event.addDomListener(window, 'load', initialize);
-	
-	function getLocation() {
-	  if (navigator.geolocation) {
-	  	navigator.geolocation.getCurrentPosition(showPosition);
-	  }
-	  else {
-		alert("Geolocation is not supported by this browser.");
-	  }
-	}
-	
-	function showPosition(position) {
-		marker = new google.maps.Marker({
-	    	map:map,
-	    	draggable:true,
-	    	animation: google.maps.Animation.DROP,
-	    	position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-	    });
-	    google.maps.event.addListener(marker, 'click', toggleBounce);
-		map.panTo(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
-		calcRoute(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng($("#map_canvas").data("lat"), $("#map_canvas").data("long")));
-	}
-	
-	$(".getLocation").click(function(event){
-		event.preventDefault();
-		getLocation();
-	});
-	
-	function calcRoute(thestart,theend) {
-	  var start = thestart;
-	  var end = theend;
-	  var request = {
-	    origin:start,
-	    destination:end,
-	    travelMode: google.maps.TravelMode.DRIVING
-	  };
-	  directionsService.route(request, function(result, status) {
-	    if (status == google.maps.DirectionsStatus.OK) {
-	      directionsDisplay.setDirections(result);
-	    }
-	  });
 	}
 }); 

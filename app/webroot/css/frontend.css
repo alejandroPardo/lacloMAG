@@ -421,7 +421,9 @@ img {
 }
   /* flip the pane when hovered */
   .person:hover .flipper, .person.hover .flipper {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
   }
 
 .person, .front, .back {
@@ -432,14 +434,19 @@ img {
 
 /* flip speed goes here */
 .flipper {
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
   transition: 0.6s;
   transform-style: preserve-3d;
-
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
   position: relative;
 }
 
 /* hide back of pane during swap */
 .front, .back {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
 
   position: absolute;
@@ -454,6 +461,8 @@ img {
 
 /* back, initially hidden pane */
 .back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
   background-color:#000;
 }

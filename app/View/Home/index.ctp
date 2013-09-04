@@ -105,56 +105,106 @@
 	<div class="content">
 		<div class="sectioninfo relative">
 			<h2>LACLO</h2>
-			<p>Conoce quienes somos, nuestras conferencias anuales, nuestros miembros y repositorios.</a></p>
+			<p>Somos una comunidad abierta, integrada por personas e instituciones interesadas en la investigación, desarrollo y aplicación de las tecnologías relacionadas con Objetos de Aprendizaje en el sector educativo Latinoamericano.</a></p>
 			<p><img src="img/loudspeaker.png" alt=""></p>
 		</div>
 		<div class="normalcontent">
+			<br>
+			<h2>CONFERENCIAS</h2>
 			<div id="people" class="clearfix">
-				<!-- speaker -->
+				<!-- conference -->
 				<div class="person" >
 					<div class="flipper">
 						<div class="front">
-							<img class="staff" alt="staff" src="img/doe3.jpg">
+							<img class="staff" alt="staff" src="img/laclo2013.jpg">
 							<img src="img/flip.png" class="flipicon" alt="">
 						</div>
 						<div class="back">
-					    	<p><span class="name">James Doe</span><span class="title">CEO/Founder, Stark Industries</span></p>
+					    	<p><span class="name">LACLO2013</span><span class="title">21 al 25 de Octubre</span><span class="title">Valdivia, Chile</span></p>
 						</div>
 					</div>
 				</div>
-				<!-- speaker -->
+				<!-- conference -->
 				<div class="person" >
 					<div class="flipper">
 						<div class="front">
-							<img alt="staff" src="img/doe1.jpg">
+							<img class="staff" alt="staff" src="img/laclo2012.jpg">
 							<img src="img/flip.png" class="flipicon" alt="">
 						</div>
 						<div class="back">
-					    	<p><span class="name">Jane Madison</span><span class="title">Marketing Director, Waterways Inc</span></p>
+					    	<p><span class="name">LACLO2012</span><span class="title">08 al 12 de Octubre</span><span class="title">Guayaquil, Ecuador</span></p>
 						</div>
 					</div>
 				</div>
-				<!-- speaker -->
+				<!-- conference -->
 				<div class="person" >
 					<div class="flipper">
 						<div class="front">
-							<img alt="staff" src="img/doe2.jpg">
+							<img class="staff" alt="staff" src="img/laclo2011.jpg">
 							<img src="img/flip.png" class="flipicon" alt="">
 						</div>
 						<div class="back">
-					    	<p><span class="name">Harry Renolds</span><span class="title">Designer, Pilsnar Media</span></p>
+					    	<p><span class="name">LACLO2011</span><span class="title">11 al 14 de Octubre</span><span class="title">Montevideo, Uruguay</span></p>
 						</div>
 					</div>
 				</div>
-				<!-- speaker -->
+				<!-- conference -->
 				<div class="person" >
 					<div class="flipper">
 						<div class="front">
-							<img alt="staff" src="img/doe3.jpg">
+							<img class="staff" alt="staff" src="img/laclo2010.jpg">
 							<img src="img/flip.png" class="flipicon" alt="">
 						</div>
 						<div class="back">
-					    	<p><span class="name">Adam Pierce</span><span class="title">Account Executive, Orion Media</span></p>
+					    	<p><span class="name">LACLO2010</span><span class="title">27 de Septiembre al 01 de Octubre</span><span class="title">São Paulo, Brasil</span></p>
+						</div>
+					</div>
+				</div>
+				<!-- conference -->
+				<div class="person" >
+					<div class="flipper">
+						<div class="front">
+							<img class="staff" alt="staff" src="img/laclo2009.jpg">
+							<img src="img/flip.png" class="flipicon" alt="">
+						</div>
+						<div class="back">
+					    	<p><span class="name">LACLO2009</span><span class="title">06 al 10 de Julio</span><span class="title">Mérida y Chichen Itza, Yucatán, Mexico</span></p>
+						</div>
+					</div>
+				</div>
+				<!-- conference -->
+				<div class="person" >
+					<div class="flipper">
+						<div class="front">
+							<img class="staff" alt="staff" src="img/laclo2008.jpg">
+							<img src="img/flip.png" class="flipicon" alt="">
+						</div>
+						<div class="back">
+					    	<p><span class="name">LACLO2008</span><span class="title">27 al 31 de Octubre</span><span class="title">Aguascalientes, Mexico</span></p>
+						</div>
+					</div>
+				</div>
+				<!-- conference -->
+				<div class="person" >
+					<div class="flipper">
+						<div class="front">
+							<img class="staff" alt="staff" src="img/laclo2007.jpg">
+							<img src="img/flip.png" class="flipicon" alt="">
+						</div>
+						<div class="back">
+					    	<p><span class="name">LACLO2007</span><span class="title">22 al 25 de Octubre</span><span class="title">Santiago, Chile</span></p>
+						</div>
+					</div>
+				</div>
+				<!-- conference -->
+				<div class="person" >
+					<div class="flipper">
+						<div class="front">
+							<img class="staff" alt="staff" src="img/laclo2006.jpg">
+							<img src="img/flip.png" class="flipicon" alt="">
+						</div>
+						<div class="back">
+					    	<p><span class="name">LACLO2006</span><span class="title">23 al 27 de Octubre</span><span class="title">Guayaquil, Ecuador</span></p>
 						</div>
 					</div>
 				</div>
@@ -172,25 +222,28 @@
 		</div>
 		<div class="normalcontent">
 			<form action="process.php" method="post" accept-charset="utf-8">
-				<label>Name</label>
+				<label>Nombre y Apellido</label>
 				<input type="text" name="name">
 				
-				<label>Email</label>
+				<label>Correo Electrónico</label>
 				<input type="text" name="email">
 				<input type="hidden" name="myemail" value="Your-Email-Goes-Here">
 				<input type="hidden" name="redirecturl" value="">
 				
-				<label>Phone</label>
+				<label>¿Deseas unirte como Autor o Evaluador?</label>
 				<input type="text" name="phone">
+
+				<label>Curriculum Vitae o Trabajos Realizados</label>
+				<input type="file" name="cv">
 
 				<p><input class="submit" type="submit" value="Continue &rarr;"></p>
 			</form>
 			<div class="sponsors">
 				<h3>Páginas de Interés</h3>
-				<img alt="client" src="img/l1.jpg">
-				<img alt="client" src="img/l2.jpg">
-				<img alt="client" src="img/l3.jpg">
-				<img alt="client" src="img/l1.jpg">
+				<a href="backend/" target="_blank"><img alt="client" src="img/backend.jpg"></a>
+				<a href="http://www.laclo.org" target="_blank"><img alt="client" src="img/laclo.jpg"></a>
+				<a href="http://www.ucv.ve" target="_blank"><img alt="client" src="img/ucv.jpg"></a>
+				<a href="http://www.laclo.org/index.php?option=com_content&view=article&id=48&Itemid=100058&lang=es" target="_blank"><img alt="client" src="img/repos.jpg"></a>
 			</div>
 		</div>
 	</div>
