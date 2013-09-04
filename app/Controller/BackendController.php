@@ -661,9 +661,15 @@ class BackendController extends AppController {
 
 		$magazine = $this->Magazine->find('first', array(
 			'conditions' => array(
-				'Magazine.status' => 'ACTUAL'
+				'Magazine.status' => 'ONCONSTRUCTION'
 			)
 		));
+
+		$totalArticles = $this->MagazinePaper->find('count', array(
+			'conditions' => array('MagazinePaper.magazine_id' => $magazine['Magazine']['id'])
+		));
+
+
 
   		$this->Paper->read(null, $paperId);
 		$this->Paper->set(array(
@@ -673,7 +679,8 @@ class BackendController extends AppController {
 		$this->MagazinePaper->create();
 		$this->MagazinePaper->set(array(
 			'paper_id' => $paperId,
-			'magazine_id' => $magazine['Magazine']['id']
+			'magazine_id' => $magazine['Magazine']['id'],
+			'order' => $totalArticles + 1
 		));
 		
 		if ($this->Paper->save() && $this->MagazinePaper->save()) {
@@ -718,7 +725,7 @@ class BackendController extends AppController {
   		$magazine = $this->Magazine->find('first',
   			array(
   				'conditions' => array(
-  					'Magazine.status' => array('ACTUAL')
+  					'Magazine.status' => array('ONCONSTRUCTION')
   				),
   			)
   		);
@@ -742,8 +749,10 @@ class BackendController extends AppController {
   				'conditions' => array(
   						'MagazinePaper.magazine_id' => $magazineId
   				),
+  				'order' => array('MagazinePaper.order ASC'),
   			)
   		);
+
   		$magazineList = $this->Magazine->find('list', array(
   			'fields' => array('Magazine.name'),
   		));

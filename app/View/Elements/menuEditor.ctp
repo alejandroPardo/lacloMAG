@@ -43,7 +43,7 @@
 <?php 
 	echo $this->Html->link(
 		'<span class="vector">N</span>
-		<span class="title"><strong>Ejemplar</strong> actual</span>
+		<span class="title"><strong>Proximo</strong> Ejemplar</span>
 		<span class="desc"><strong>Revisar</strong>/actualizar</span>',
 	array(
 		'controller' => 'backend', 

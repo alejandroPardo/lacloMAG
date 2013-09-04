@@ -8962,3 +8962,9 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
     vertical-align: middle;
     text-align: center;
 }
+
+.dropdownMag
+{
+	position: relative;
+	top: 30%;
+}

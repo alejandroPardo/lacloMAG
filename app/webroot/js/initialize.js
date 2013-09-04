@@ -1,10 +1,12 @@
 $.initialize = function() {
 	// --------------- Overlay initialization ----------------
 	$("body").append('<div id="overlays"></div>');
-	$("#overlays.dark").live("click tap", function() {
+	$("#overlays").on("click", function() {
 		$(this).removeClass("dark");
 		$("#overlays .modal").remove();
 	});
+	
+	
 	// -------------------------------------------------------
 		
 	// Update
