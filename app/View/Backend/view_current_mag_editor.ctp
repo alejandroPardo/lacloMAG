@@ -5,9 +5,24 @@
 				<div class=" col_4 heading alpha">
 					<h4><span>Revista</span> Actual</h4>
 				</div>
-				<div class="col_4 heading omega">
+				<div class="col_4 heading omega ">
 					<h4><?php echo h($magazine['Magazine']['name']);?></h4>
 				</div>
+				<div class="container">
+
+					<div class="col_6 ">
+						<?php
+						echo $this->Form->create(false, array('controller' => 'backend', 'action' => 'changeActualMag', 'id'=>'changeActualMag'));
+						echo $this->Form->input('magId', array('options' => $magazineList, 'empty' => 'Escoja una'));
+						?>
+					</div>
+					<div class="col_6">
+						<?php echo $this->Form->end('Cambiar Revista Actual'); ?>
+						
+					</div>
+				</div>
+				
+				
 			</div>
 		</div>
 		<div id="tasks" class="col quarter last">
@@ -15,7 +30,9 @@
 				<div class="heading">
 					<h4><span>Acciones</span></h4>
 					<span><a href='lasActivities' rel='external'>Últimas actividades realizadas</a></span>
+
 				</div>
+
 				<div id="buttons"class="wrapper" style="left: 1px; right: 1px; top: 141px; bottom: 0px;">
 					<ul>
 						<li class="">
@@ -32,11 +49,11 @@
 						</li>
 						<li class="">
 							<ul>
-								<li class=" "><button class="white">Cambiar Revista</button></li>
 							</ul>
 						</li>							
 					</ul>
 				</div>
+
 			</div>
 		</div>
 	</div>	
@@ -88,6 +105,18 @@
 	        <?php endif; ?>
     	</div>
 </div>
+<div id="modalMag" style="display:none">
+	<div class="container">
+		<div class="wrapper">
+		 	<div class=" col_6 alpha">
+		 		
+            </div>
+            <div class=" col_6 omega">
+               
+            </div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
     var viewArticlesMag = document.getElementById('viewArticlesMag');
     viewArticlesMag.addEventListener('click', function () {
@@ -100,5 +129,12 @@
         	}
         });
     }, false);
+
+
+    var changeMag = document.getElementById('changeMag');
+    modalMag.addEventListener('click', function () {
+    	var changeActualMagForm = document.getElementById('changeActualMag');
+    	
+    }, false); 
 
 </script>

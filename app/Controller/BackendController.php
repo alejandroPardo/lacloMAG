@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class BackendController extends AppController {
 	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator');
 	public $userID;
+	public $actualMag;
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -716,8 +717,7 @@ class BackendController extends AppController {
   		$magazine = $this->Magazine->find('first',
   			array(
   				'conditions' => array(
-  					/*'Magazine.status' => array('ACTUAL'),
-  					'Editor.user_id' =>$this->Auth->user('id'),*/
+  					'Magazine.status' => array('ACTUAL')
   				),
   			)
   		);
@@ -743,8 +743,13 @@ class BackendController extends AppController {
   				),
   			)
   		);
+  		$magazineList = $this->Magazine->find('list', array(
+  			'fields' => array('Magazine.name'),
+  		));
 
   		//debug($magazine);
+  		//debug($magazineList);
+  		$this->set('magazineList', $magazineList);
   		$this->set('magazine', $magazine);
   		$this->set('magazinePapers', $magazinePapers);
   		//debug($magazinePapers);
@@ -763,6 +768,46 @@ class BackendController extends AppController {
 
   		//debug($magazines);
   		$this->set('magazines', $magazines);
+  	}
+
+  	public function changeActualMag () {
+  		$magId = $this->request->data['magId'];
+
+  		if ($magId !== '') {
+
+  			$magazine = $this->Magazine->find('first', array(
+  				'conditions' => array('status' => 'ACTUAL'),
+  				'fields' => 'Magazine.id'
+  			));
+
+  			$this->Magazine->read(null, $magazine['Magazine']['id']);
+  			$this->Magazine->set(array(
+  				'status' => 'ARCHIVED'
+  			));
+
+  			if ($this->Magazine->save()) {
+
+	  			$mag = $this->Magazine->read(null, $magId);
+				$this->Magazine->set(array(
+					'status' => 'ACTUAL'
+				));
+
+				if ($this->Magazine->save()) {
+					$actualMag = $mag;
+					$this->Session->setFlash(__('Revista Actualizada'));
+					$this->redirect(array(
+						'action' => 'viewCurrentMagEditor'
+					));
+				}
+  			}
+  		} else {
+  			$this->Session->setFlash(__('No se proporciono un id valido'));
+			$this->redirect(array(
+				'action' => 'viewCurrentMagEditor'
+			));
+
+  		}
+  		
   	}
 
   	/****************
