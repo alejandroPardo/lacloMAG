@@ -842,6 +842,35 @@ class BackendController extends AppController {
 		}
   	}
 
+  	public function reorderMagpapers() {
+  		
+  		
+  		$newPaperOrders = $this->request->data;
+  		$orderedPapers = array();
+  		$unorderedPapers = array();
+  		
+  		foreach ($newPaperOrders as $paperMagId => $paperOrderValue) {
+  			if ($paperOrderValue !== '' && is_numeric($paperOrderValue)) {
+  				$orderedPapers[$paperMagId] = $paperOrderValue;
+  			} else {
+  				$unorderedPapers[$paperMagId] = $paperOrderValue;
+  			}
+  		}
+
+  		arsort($orderedPapers);
+		$k = array_keys($orderedPapers);
+		$v = array_values($orderedPapers);
+		$rv = array_reverse($v);
+
+		$orderedPapers = array_combine($k, $rv);
+		
+		foreach ($unorderedPapers as $unorderedPaper) {
+			array_push($orderedPapers, $unorderedPaper);
+		}
+		debug($orderedPapers);
+		die();
+  	}
+
   	/****************
 	/*
 	/*	Evaluator Functions

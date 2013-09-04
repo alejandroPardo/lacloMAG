@@ -116,7 +116,7 @@
 <div id="modalArticles" style="display:none">
 	<div class="wrapper">
 		<?php if (!empty($magazinePapers)): ?>
-			<?php echo $this->Form->create(false, array('controller' => 'backend', 'action' => 'changeActualMag', 'id'=>'changeActualMag')); ?>
+			<?php echo $this->Form->create(false, array('controller' => 'backend', 'action' => 'reorderMagPapers')); ?>
 	        <table  cellpadding="0" cellspacing="0">
 	            <tr>
 	                    <th>Nombre de Paper</th>
@@ -125,7 +125,7 @@
 	            <?php foreach ($magazinePapers as $magazinePaper): ?>
 	            <tr>
 	                <td><?php echo $magazinePaper['Paper']['name']; ?></td>
-	                <td><?php echo $this->Form->input('order-'.$magazinePaper['MagazinePaper']['id']); ?></td>
+	                <td><?php echo $this->Form->input($magazinePaper['MagazinePaper']['id'],array()); ?></td>
 	            </tr>
 	             <?php endforeach; ?>
 	        </table>
