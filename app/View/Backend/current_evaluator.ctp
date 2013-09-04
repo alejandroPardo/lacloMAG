@@ -24,7 +24,7 @@
 									echo "<td>".$paper['Paper']['name']."</td>";
 									echo "<td>".$paper['Paper']['created']."</td>";
 									echo "<td><strong>";
-											if($paper['PaperEvaluator']['status']=="APPROVED"){echo 'Aprobado';} elseif($paper['PaperEvaluator']['status']=="DENIED"){echo 'Rechazado';} elseif($paper['PaperEvaluator']['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paper['PaperEvaluator']['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';}
+											if($paper['PaperEvaluator']['status']=="APPROVED"){echo 'Aprobado';} elseif($paper['PaperEvaluator']['status']=="DENIED"){echo 'Rechazado';} elseif($paper['PaperEvaluator']['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paper['PaperEvaluator']['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paper['PaperEvaluator']['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
 										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";

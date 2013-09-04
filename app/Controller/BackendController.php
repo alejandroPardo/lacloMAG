@@ -53,7 +53,7 @@ class BackendController extends AppController {
 			$papersPreviews = $this->Paper->PaperAuthor->find('count',
 	  			array(
 	  				'conditions' => array(
-	  					'Paper.status' => array('UNSENT'),
+	  					'Paper.status' => array('UNSENT', 'REVIEW'),
 	  					'Author.id' => $this->userID
 	  				),
 	  			)
@@ -139,12 +139,14 @@ class BackendController extends AppController {
   		$rejected = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('REJECTED'),'Author.id' => $this->userID)));
   		$editing = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('ASSIGNED', 'ONREVISION', 'SENT'),'Author.id' => $this->userID)));
   		$unsent = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('UNSENT'),'Author.id' => $this->userID)));
+  		$review = $this->Paper->PaperAuthor->find('count',array('conditions' => array('Paper.status' => array('REVIEW'),'Author.id' => $this->userID)));
   		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
   		$this->set('approved', $approved);
   		$this->set('published', $published);
   		$this->set('rejected', $rejected);
   		$this->set('editing', $editing);
   		$this->set('unsent', $unsent);
+  		$this->set('review', $review);
   		$this->set('total', $unsent+$editing+$rejected+$published+$approved);
   		$this->set('notifications', $notifications);
 	}
@@ -156,7 +158,7 @@ class BackendController extends AppController {
 		$accepted = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('ACCEPT'),'Evaluator.id' => $this->userID)));
   		$rejected = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('REJECT'),'Evaluator.id' => $this->userID)));
   		$approved = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('APPROVED'),'Evaluator.id' => $this->userID)));
-  		$changes = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('MINORCHANGE', 'AUTHORCHANGE'),'Evaluator.id' => $this->userID)));
+  		$changes = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('MINORCHANGE', 'AUTHORCHANGE', 'CORRECTED'),'Evaluator.id' => $this->userID)));
   		$denied = $this->Paper->PaperEvaluator->find('count',array('conditions' => array('PaperEvaluator.status' => array('DENIED'),'Evaluator.id' => $this->userID)));
   		$notifications = $this->Logbook->find('all',array('conditions' => array('Logbook.type' => 'NOTIFICATION','Logbook.user_id' => $this->Auth->user('id')),'order' => array('Logbook.created DESC'),));
   		$this->set('accepted', $accepted);
@@ -838,9 +840,6 @@ class BackendController extends AppController {
 	/***************/
 
 	public function pendingEvaluator(){
-		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => 15)));
-		$this->set('paper', $paper['PaperFile']['raw']);
-
 		$papers = $this->Paper->PaperEvaluator->find('all',
   			array(
   				'conditions' => array(
@@ -871,7 +870,7 @@ class BackendController extends AppController {
 
 	public function evaluatePaper($id=null){
 		$paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => $id)));
-		$bodytag = str_replace("../files", "../../files", $paper['PaperFile']['raw']);
+		$bodytag = $paper['PaperFile']['raw'];
 		$paperEvaluator = $this->PaperEvaluator->find('first', 
             array('conditions' => 
                 array('PaperEvaluator.paper_id' => $paper['PaperFile']['paper_id'], 'PaperEvaluator.evaluator_id' => $this->userID)
@@ -962,7 +961,7 @@ class BackendController extends AppController {
   			array(
   				'conditions' => array(
   					'Evaluator.id' => $this->userID,
-  					'PaperEvaluator.status' => array('APPROVED', 'DENIED', 'MINORCHANGE', 'MAJORCHANGE')
+  					'PaperEvaluator.status' => array('APPROVED', 'DENIED', 'MINORCHANGE', 'AUTHORCHANGE', 'CORRECTED')
   				),
   				'order' => array('Paper.created DESC'),
   			)
