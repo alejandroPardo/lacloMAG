@@ -110,7 +110,7 @@
 		</div>
 		<div class="normalcontent">
 			<br>
-			<h2>CONFERENCIAS</h2>
+			<h2>Conferencias</h2>
 			<div id="people" class="clearfix">
 				<!-- conference -->
 				<div class="person" >
@@ -217,6 +217,7 @@
 <div class="contentsection clearfix red">
 	<div class="content">
 		<div class="sectioninfo relative">
+			<br>
 			<h2>¿Quiéres Formar Parte?</h2>
 			<p>Envíanos tus datos y te responderemos lo mas pronto posible para que seas parte de la familia de LACLO Magazine.</p>
 		</div>
