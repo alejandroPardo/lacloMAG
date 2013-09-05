@@ -887,7 +887,7 @@ class BackendController extends AppController {
 
   	public function reorderMagpapers() {
   		
-  		
+  		debug($this->request->data);
   		$newPaperOrders = $this->request->data;
   		$orderedPapers = array();
   		$unorderedPapers = array();
@@ -901,17 +901,33 @@ class BackendController extends AppController {
   		}
 
   		arsort($orderedPapers);
-		$k = array_keys($orderedPapers);
-		$v = array_values($orderedPapers);
-		$rv = array_reverse($v);
+  		$orderedPapers = array_reverse($orderedPapers, true); 
 
-		$orderedPapers = array_combine($k, $rv);
-		
-		foreach ($unorderedPapers as $unorderedPaper) {
-			array_push($orderedPapers, $unorderedPaper);
-		}
-		debug($orderedPapers);
-		die();
+  		foreach ($unorderedPapers as $unorderedPaper) {
+  			array_push($orderedPapers, $unorderedPaper);
+  		}
+
+  		$i=0;
+  		foreach ($orderedPapers as $orderedPaperId => $orderedPaperValue) {
+  			$this->MagazinePaper->id = $orderedPaperId;	
+  			$magPaper['MagazinePaper']['order'] = $i;
+  			$i++;
+
+  			if(!$this->MagazinePaper->save($magPaper)) { 
+ 				$this->Session->setFlash(__('Error'));
+				$this->redirect(array(
+					'action' => 'viewCurrentMagEditor'
+				)); 				
+  			}
+  		}
+
+  		$this->Session->setFlash(__('Orden Cambiado'));
+		$this->redirect(array(
+			'action' => 'viewCurrentMagEditor'
+		));
+
+
+  	
   	}
 
   	/****************
