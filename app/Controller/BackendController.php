@@ -772,40 +772,44 @@ class BackendController extends AppController {
   				),
   			)
   		);
-  		$magazineId = $magazine['Magazine']['id'];
+  		
+  		if ($magazine) {
 
-  		$magazinePapers = $this->MagazinePaper->find('all',
-  			array(
-  				'contain' => array(
-  					'Paper' => array(
-  						'fields' => array('id','name','created','evaluation_type'),
-  						'PaperEvaluator' => array(
-  							'fields' => array('paper_id', 'evaluator_id'),
-  							'Evaluator' => array(
-  								'User' => array(
-  									'fields' => array('first_name', 'last_name')
-  								)
-  							)
-  						),
-  					)
-  				),
-  				'conditions' => array(
-  						'MagazinePaper.magazine_id' => $magazineId
-  				),
-  				'order' => array('MagazinePaper.order ASC'),
-  			)
-  		);
+	  		$magazineId = $magazine['Magazine']['id'];
 
-  		$magazineList = $this->Magazine->find('list', array(
+	  		$magazinePapers = $this->MagazinePaper->find('all',
+	  			array(
+	  				'contain' => array(
+	  					'Paper' => array(
+	  						'fields' => array('id','name','created','evaluation_type'),
+	  						'PaperEvaluator' => array(
+	  							'fields' => array('paper_id', 'evaluator_id'),
+	  							'Evaluator' => array(
+	  								'User' => array(
+	  									'fields' => array('first_name', 'last_name')
+	  								)
+	  							)
+	  						),
+	  					)
+	  				),
+	  				'conditions' => array(
+	  						'MagazinePaper.magazine_id' => $magazineId
+	  				),
+	  				'order' => array('MagazinePaper.order ASC'),
+	  			)
+	  		);
+
+	  		
+	  		$this->set('magazine', $magazine);
+	  		$this->set('magazinePapers', $magazinePapers);
+  		}
+  		/*$magazineList = $this->Magazine->find('list', array(
   			'fields' => array('Magazine.name'),
   		));
-
+  		$this->set('magazineList', $magazineList);*/
   		//debug($magazine);
   		//debug($magazineList);
-  		$this->set('magazineList', $magazineList);
-  		$this->set('magazine', $magazine);
-  		$this->set('magazinePapers', $magazinePapers);
-  		//debug($magazinePapers);
+  		
 
   	}
 
@@ -874,6 +878,7 @@ class BackendController extends AppController {
 		if ($this->request->is('post')) {
 			//adding Mag...
 			//debug($this->request->data);
+			$this->request->data['Magazine']['status'] = 'ONCONSTRUCTION';
 			$this->Magazine->create($this->request->data['Magazine']);
 
 			if ($this->Magazine->save()) {
@@ -925,9 +930,23 @@ class BackendController extends AppController {
 		$this->redirect(array(
 			'action' => 'viewCurrentMagEditor'
 		));
+  	}
 
+  	public function publishMag () {
+  		debug($this->request->data);
+  		$magId = $this->request->data['magId'];
 
-  	
+  		$this->Magazine->id = $magId;
+  		$mag['Magazine']['status'] = 'ACTUAL';
+
+  		if ($this->Magazine->save($mag)) {
+  			$this->Session->setFlash(__('Ya se ha publicado la revista'));
+			$this->redirect(array(
+				'action' => 'viewCurrentMagEditor'
+			)); 
+  		}
+
+  		die();
   	}
 
   	/****************
