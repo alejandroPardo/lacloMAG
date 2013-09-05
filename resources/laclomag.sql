@@ -166,7 +166,7 @@ CREATE TABLE `magazine_papers` (
 --  Records of `magazine_papers`
 -- ----------------------------
 BEGIN;
-INSERT INTO `magazine_papers` VALUES ('1', '1', '11'), ('2', '1', '12'), ('3', '1', '13'), ('4', '1', '10');
+INSERT INTO `magazine_papers` VALUES ('1', '1', '11', '1'), ('2', '1', '12', '2'), ('3', '1', '13', '3'), ('4', '1', '10', '4');
 COMMIT;
 
 -- ----------------------------
@@ -189,7 +189,7 @@ CREATE TABLE `magazines` (
 --  Records of `magazines`
 -- ----------------------------
 BEGIN;
-INSERT INTO `magazines` VALUES ('1', 'Mag Agosto', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'AugustMag', '1', 'ACTUAL'), ('2', 'Mag Julio', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'Mag Julio', '1234', 'ONCONSTRUCTION'), ('3', 'hola', '2013-09-04 18:07:36', '2013-09-04 18:07:36', 'hola', null, 'ONCONSTRUCTION');
+INSERT INTO `magazines` VALUES ('1', 'Mag Agosto', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'AugustMag', '1', 'ONCONSTRUCTION'), ('2', 'Mag Julio', '2013-08-03 00:00:00', '2013-08-03 00:00:00', 'Mag Julio', '1234', 'ARCHIVED'), ('3', 'hola', '2013-09-04 18:07:36', '2013-09-04 18:07:36', 'hola', null, 'ARCHIVED');
 COMMIT;
 
 -- ----------------------------
