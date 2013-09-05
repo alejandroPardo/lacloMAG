@@ -153,7 +153,7 @@ CREATE TABLE `magazine_papers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `magazine_id` int(11) DEFAULT NULL,
   `paper_id` int(11) DEFAULT NULL,
-  `paper_id` int(11),
+  `order` int(11),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `magazine_id_idx` (`magazine_id`),
