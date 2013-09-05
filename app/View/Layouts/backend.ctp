@@ -83,6 +83,27 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 							<?php endforeach; ?>
 						</ul>
 					</li>
+					<?php if($role=='Editor'){?>
+						<li>
+							<span>Noticias</span>
+							<ul>
+								<li>
+									<?php 
+										echo $this->Html->link(
+											'<h4>Redactar Nueva Noticia</h4>
+											<p>Publicar en LACLOmagazine</p>',
+										array(
+											'controller' => 'backend', 
+											'action' => 'news'),
+										array( 
+											'rel' => 'external', 
+											'escape'=> false)
+										);
+									?>
+								</li>
+							</ul>
+						</li>
+					<?php } ?>
 					<li class="avatar">
 						<?php echo $this->Html->image('avatar.jpg', array('alt' => 'avatar'));?>
 						<ul>

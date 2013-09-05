@@ -27,8 +27,13 @@
 	);
 ?>
 <?php 
+	if ($papersPreviews != 0) { 
+		$paperMessage = 'class= "vector count" data-count="'.$papersPreviews.'"';
+	} else { 
+		$paperMessage = 'class="vector"';
+	}
 	echo $this->Html->link(
-		'<span class="vector count" data-count="7">=</span>
+		'<span '.$paperMessage.'>=</span>
 		<span class="title"><strong>Artículos</strong> pendientes</span>
 		<span class="desc"><strong>Revisiones</strong>/Asignaciones</span>',
 	array(
