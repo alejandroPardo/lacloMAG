@@ -47,7 +47,7 @@ class AppController extends Controller {
     );
 
     public function beforeFilter(){
-        $this->Auth->allow('index', 'passForgot', 'magazine');
+        $this->Auth->allow('index', 'passForgot', 'magazine', 'news');
     }
 
 

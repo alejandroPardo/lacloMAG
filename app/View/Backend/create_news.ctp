@@ -7,19 +7,27 @@
 					<span>Escriba su noticia en nuestro editor de texto.</span>
 				</div>
 				<?php echo $this->Form->create('News', array('action' => 'createNews', 'enctype' => 'multipart/form-data')); ?>
+					<p style="margin-left:5%;" >Título de la Noticia (50 caracteres)</p>
+					<p>
+						<input name="title" type="text" placeholder="Título de la noticia" maxlength="50" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" id="paper" />
+					</p>
+					<p style="margin-left:5%;" >Resumen de la Noticia (140 caracteres)</p>
+					<p>
+						<input name="summary" type="text" placeholder="Resumen de la noticia" maxlength="140" value="<?php echo $headline;?>" style="width:80%;margin-left:10%;" id="paper" />
+					</p>
+					<p style="margin-left:5%;" >Contenido de la Noticia</p>
 					<div class="carton container">
 						<textarea id="redactor_content" name="content">
 							<?php echo $content;?>
 						</textarea>
 					</div>
 					<br>
-					<p style="margin-left:5%;" >Nombre del Paper</p>
+					<p style="margin-left:5%;" >Hipervínculo de Video de la Noticia</p>
 					<p>
-						<input name="name" type="text" placeholder="Nombre del Paper" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" id="paper" />
+						<input name="video" type="text" placeholder="Hipervínculo del video" value="<?php echo $video;?>" style="width:80%;margin-left:10%;" id="video" />
 						<input type="hidden" name="preview" value="<?php echo $preview;?>" />
 					</p>
-					<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onclick="return formBtn();" /> 
-					<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"  onClick="return formBtn();"/>
+					<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onClick="return formBtnNews();" />
 					<br><br>
 				</form>
 			</div>

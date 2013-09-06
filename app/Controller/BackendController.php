@@ -996,7 +996,7 @@ class BackendController extends AppController {
 		if($id==null){
 			$this->redirect(array("controller" => "backend", "action" => "createNews/0"));
 		} elseif($id=='0') {
-			$this->set('content', '<h1>Bienvenido al Creador de Noticias LACLOmagazine</h1>');
+			$this->set('content', '<h1>Contenido de la Noticia</h1><br><br><br>');
 			$this->set('name', '');
 			$this->set('headline', '');
 			$this->set('preview', '0');

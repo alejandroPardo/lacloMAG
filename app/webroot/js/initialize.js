@@ -352,6 +352,9 @@ $.general = function(lastUrl) {
 			.table()
 			.pagination({extended: true});
 	}
+	$('#redactor_content').redactor({
+		imageUpload: '../uploadImage'
+	});
 	$(".paginationTable")
 		.table()
 		.pagination({extended: true});
@@ -376,27 +379,25 @@ $.general = function(lastUrl) {
 
 
 $.editor = function(lastUrl) {
-
-	if(lastUrl == 'editor'){ // DASHBOARD DE AUTHOR
-		/////// PIE CHART DEL HISTORIAL EN EL DASHBOARD
-		var data = [];
-		var series = Math.floor(Math.random()*7)+1;
-		for( var i = 0; i<series; i++) {
-			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
-		}
-		
-		$.plot($("#pie_chart"), data,
-		{
-		       series: {
-		           pie: { 
-		               show: true
-		           }
-		       }
-		});
-		/////// END PIECHART 
-	}
+	$('#redactor_content').redactor({
+			imageUpload: '../uploadImage'
+	});
 };
 
+function formBtnNews(){
+	if($("#paper").attr("value")=='') {
+		$.notification(
+			{
+				title: "Datos Incompletos",
+				content: "Debe introducir un nombre y un resumen para la noticia.",
+				icon: "!"
+			}
+		);
+		event.preventDefault();
+		return false;
+	}
+	return true;
+}
 /********************************************
 //
 //
@@ -406,9 +407,6 @@ $.editor = function(lastUrl) {
 
 
 $.author = function(lastUrl) {
-	$('#redactor_content').redactor({
-			imageUpload: '../uploadImage'
-		});
 	if(lastUrl == 'author'){ // DASHBOARD DE AUTHOR
 		
 	} else if (lastUrl == 'createArticle') {
