@@ -716,10 +716,21 @@ class BackendController extends AppController {
 
   		if ($this->Paper->save()) {
             $this->Session->setFlash(__('El Tipo de Evaluacion ha sido Cambiada'));
+            
+            $paperEvaluators = $this->PaperEvaluator->find('all', array(
+            	'conditions' => array('PaperEvaluator.paper_id' => $paperId)
+            ));
+
+            foreach ($paperEvaluators as $paperEvaluator) {
+            	$data4 = array('user_id' => $paperEvaluator['Evaluator']['user_id'], 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'se ha cambiado el tipo de evaluación a tipo '. $evaluationType.' del paper '. $paperEvaluator['Paper']['name'].'</strong>.');
+				$this->Logbook->save($data4);
+            }
+
             $this->redirect(array(
 				'action' => 'inspectPaper',
 				$paperId
 			));
+
         } else {
             $this->Session->setFlash(__('El tipo no pudo ser cambiado por favor intente nuevamente'));
             $this->redirect(array(
