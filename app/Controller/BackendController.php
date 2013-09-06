@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator', 'News');
 	public $userID;
 	public $actualMag;
 
@@ -948,6 +948,47 @@ class BackendController extends AppController {
 
   		die();
   	}
+
+  	public function createNews($id=null){
+		if($id==null){
+			$this->redirect(array("controller" => "backend", "action" => "createNews/0"));
+		} elseif($id=='0') {
+			$this->set('content', '<h1>Bienvenido al Creador de Noticias LACLOmagazine</h1>');
+			$this->set('name', '');
+			$this->set('headline', '');
+			$this->set('preview', '0');
+			$this->set('video', '');
+		} else {
+			$news = $this->News->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'News.id' => $id,
+	  				),
+	  			)
+	  		);
+			if (!empty($news)) {
+				$this->set('content', $news['News']['content']);
+				$this->set('name', $news['News']['headline']);
+				$this->set('preview', $news['News']['id']);
+				$this->set('headline', $news['News']['summary']);
+				$this->set('video', $news['News']['video_url']);
+			}
+		}
+	}
+
+	public function viewNews(){
+		$news = $this->News->find('all',
+  			array(
+  				'order' => array('News.created DESC'),
+  			)
+  		);
+  		$i=0;
+  		if(empty($news)){
+			$this->Session->setFlash(__('No hay ninguna noticia creada.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+		$this->set('news', $news);
+	}
 
   	/****************
 	/*

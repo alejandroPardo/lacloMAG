@@ -94,7 +94,21 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 											<p>Publicar en LACLOmagazine</p>',
 										array(
 											'controller' => 'backend', 
-											'action' => 'news'),
+											'action' => 'createNews'),
+										array( 
+											'rel' => 'external', 
+											'escape'=> false)
+										);
+									?>
+								</li>
+								<li>
+									<?php 
+										echo $this->Html->link(
+											'<h4>Ver Noticias</h4>
+											<p>Administrar noticias</p>',
+										array(
+											'controller' => 'backend', 
+											'action' => 'viewNews'),
 										array( 
 											'rel' => 'external', 
 											'escape'=> false)
