@@ -501,7 +501,8 @@ class BackendController extends AppController {
 							'fields' => 'name'
 						)
 					)
-				)
+				),
+				'conditions' => array('Paper.status' => array('SENT','ONREVISION', 'REJECTED', 'APPROVED', 'PUBLISHED'))
   			)
   		);
 
