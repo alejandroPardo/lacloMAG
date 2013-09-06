@@ -33,7 +33,7 @@
                         <?php echo h($paperEvaluator['status']); ?>
                     </td>
                     <td>
-                        <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperId), array('escape'=> false), __('Esta seguro que quiere Eliminarlo?')); ?>
+                        <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Esta seguro que quiere Eliminarlo?')); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

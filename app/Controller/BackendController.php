@@ -644,6 +644,21 @@ class BackendController extends AppController {
         $this->PaperEvaluator->create();
 
         if ($this->PaperEvaluator->save($evaluatorData)) {
+
+            $evaluator = $this->Evaluator->find('first', array(
+            	'conditions' => array('Evaluator.id' => $evaluatorId),
+            	'fields' => array('user_id')
+            ));
+
+            $paper = $this->Paper->find('first', array(
+            	'conditions' => array('Paper.id' => $paperId),
+            	'fields' => array('Paper.name')
+            ));
+			
+			$data4 = array('user_id' => $evaluator['Evaluator']['user_id'], 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha asiginado el articulo '. $paper['Paper']['name'].' para evaluar</strong>.');
+			$this->Logbook->save($data4);
+            //$evaluator['E']
+
             $this->Session->setFlash(__('El evaluador ha sido asignado'));
             $this->redirect(array(
 				'action' => 'inspectPaper',
@@ -654,14 +669,30 @@ class BackendController extends AppController {
         }
   	}
  	
- 	public function deleteEvaluator($evaluatorId,$paperId) {
-		$this->PaperEvaluator->id = $evaluatorId;
-        if (!$this->PaperEvaluator->exists()) {
+ 	public function deleteEvaluator($paperEvaluatorId, $evaluatorId,$paperId) {
+ 		$this->PaperEvaluator->id = $paperEvaluatorId;
+	    if (!$this->PaperEvaluator->exists()) {
             throw new NotFoundException(__('Invalid article'));
-        }
+	   }
+
 
         if ($this->PaperEvaluator->delete()) {
             $this->Session->setFlash(__('Se ha eliminado la asignacion'));
+            	
+            $evaluator = $this->Evaluator->find('first', array(
+            	'conditions' => array('Evaluator.id' => $evaluatorId),
+            	'fields' => array('user_id')
+            ));
+
+            $paper = $this->Paper->find('first', array(
+            	'conditions' => array('Paper.id' => $paperId),
+            	'fields' => array('Paper.name')
+            ));
+			
+			$data4 = array('user_id' => $evaluator['Evaluator']['user_id'], 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha removido el articulo '. $paper['Paper']['name'].' de su lista de evaluación</strong>.');
+			$this->Logbook->save($data4);
+
+
             $this->redirect(array(
 				'action' => 'inspectPaper',
 				$paperId
