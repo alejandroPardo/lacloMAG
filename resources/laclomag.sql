@@ -238,7 +238,7 @@ CREATE TABLE `news` (
   `more_info_url` varchar(255) DEFAULT NULL,
   `video_url` varchar(255) DEFAULT NULL,
   `author` varchar(50) DEFAULT NULL,
-  `order` int(11) DEFAULT NULL,
+  `order` varchar(20) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)

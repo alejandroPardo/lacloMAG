@@ -24,7 +24,7 @@
 									echo "<td style='text-align: center;'>";
 										$file = "createNews/".$new['News']['id'];
 										echo '<a href='.$file.' rel="external" ><span class="glyph check glyph-editor"><span></a>';
-										$file = "../news/view/".$new['News']['id'];
+										$file = "../home/news/".$new['News']['id'];
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
 										$file = "../news/delete/".$new['News']['id'];
 										echo '<a href='.$file.' rel="external"><span class="glyph delete glyph-editor"><span></a>';

@@ -33,4 +33,6 @@ class HomeController extends AppController {
         $this->set('content', $news['News']['content']);
         $this->set('video', $news['News']['video_url']);
 	}
+
+
 }

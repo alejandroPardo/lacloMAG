@@ -22,11 +22,7 @@
 						</textarea>
 					</div>
 					<br>
-					<p style="margin-left:5%;" >Hipervínculo de Video de la Noticia</p>
-					<p>
-						<input name="video" type="text" placeholder="Hipervínculo del video" value="<?php echo $video;?>" style="width:80%;margin-left:10%;" id="video" />
-						<input type="hidden" name="preview" value="<?php echo $preview;?>" />
-					</p>
+					<input type="hidden" name="preview" value="<?php echo $preview;?>" />
 					<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnForm" onClick="return formBtnNews();" />
 					<br><br>
 				</form>

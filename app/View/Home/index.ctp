@@ -54,48 +54,31 @@
 		<div class="sectioninfo relative">
 			<h2>Noticias</h2>
 			<p>Sección con noticias de todo el mundo de los Objetos de Aprendizaje y las tecnologías educativas. Para que te mantengas al tanto de todo lo que sucede.</p>
-			<p><img src="img/notepad.png" alt=""></p>
 		</div>
 		<div class="normalcontent">
 			<div class="agenda">
-				<div class="agendaitem">
-					<div class="agendaday">
-						<div class="agendadaydate">
-							<span class="month">June</span>
-							<span class="bignumber">23</span>
-							<div class="filter"></div>
-						</div>
-						<div class="session">
-							<h3>Welcome and Breakfast</h3>
-							<p class="time">8:00am - 10:00am</p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam digni feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-						<div class="session">
-							<h3>Social Media Marketing in 2013</h3>
-							<p class="time">10:00am - 12:00pm</p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-						<div class="session">
-							<h3>Networking and Lunch</h3>
-							<p class="time">12:00pm - 1:00pm </p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-					</div>
-				</div>
-				<div class="agendaitem">
-					<div class="agendaday">
-						<div class="agendadaydate">
-							<span class="month">June</span>
-							<span class="bignumber">24</span>
-							<div class="filter"></div>
-						</div>
-						<div class="session">
-							<h3>Welcome and Breakfast</h3>
-							<p class="time">8:00am - 10:00am</p>
-							<p>Nulla facilisi. In vel sem. Morbi id urna in diam digni feugiat. Proin molestie tortor eu velit.</p>
-						</div>
-					</div>
-				</div>
+				<?php
+					$aux=null;
+					foreach ($news as $new) {
+						if($aux != $new['News']['order']){
+							$aux=$new['News']['order'];
+							$month = explode(" ", $new['News']['order']);
+							echo '<div class="agendaitem">';
+								echo '<div class="agendaday">';
+									echo '<div class="agendadaydate">';
+										echo '<span class="month">'.$month[0].'</span>';
+										echo '<span class="bignumber">'.$month[1].'</span>';
+										echo '<div class="filter"></div>';
+									echo '</div>';
+						}
+									echo '<div class="session">';
+										echo '<a href="home/news/'.$new['News']['id'].'" target="_blank"><h3>'.$new['News']['headline'].'</h3></a>';
+										echo '<p>'.$new['News']['summary'].'</p>';
+									echo '</div>';
+								echo '</div>';
+							echo '</div>';
+					}
+				?>
 			</div>
 		</div>
 	</div>
