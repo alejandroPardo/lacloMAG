@@ -12,8 +12,6 @@
 /app/Config/database.php
 
 
-#Plugin
-app/Plugin/CakePdf
 
 # OS generated files #
 ######################
