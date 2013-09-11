@@ -10,7 +10,7 @@
 /dist
 /tags
 /app/Config/database.php
-
+/app/Config/bootstrap.php
 
 #Plugin
 /app/Plugin/CakePdf
