@@ -487,22 +487,26 @@ class BackendController extends AppController {
   			'Paper' => array(
   				'contain' => array(
 	  				'PaperAuthor' =>array(
-	  						'fields' => array('author_id'),
-	  						'Author' => array(
-	  							'fields' => array('id'),
-	  							'User' => array(
-	  								'fields' => array('first_name','last_name')
-	  								)
-	  							)
-	  						),
+  						'fields' => array('author_id'),
+  						'Author' => array(
+  							'fields' => array('id'),
+  							'User' => array(
+  								'fields' => array('first_name','last_name')
+							)
+						)
+					),
 					'MagazinePaper' => array(
 						'fields' => array('id'),
 						'Magazine' => array(
 							'fields' => 'name'
 						)
-					)
+					), 
+					'PaperFile' => array(
+					
+					), 
 				),
-				'conditions' => array('Paper.status' => array('SENT','ONREVISION', 'REJECTED', 'APPROVED', 'PUBLISHED'))
+				'conditions' => array('Paper.status' => array('SENT','ONREVISION', 'REJECTED', 'APPROVED', 'PUBLISHED')),
+				'order' => array('Paper.created DESC'),
   			)
   		);
 
@@ -544,6 +548,11 @@ class BackendController extends AppController {
 
 		//debug($paperPaginate);
 
+		if(empty($papers)){
+			$this->Session->setFlash(__('Aun no se ha recibido ningún artículo.'));
+			$this->redirect(array("controller" => "backend", "action" => "editor"));
+		}
+
   		$this->set('papers', $paperPaginate);
 
   		
@@ -576,6 +585,10 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('papers', $papers);
+  		if(empty($papers)){
+			$this->Session->setFlash(__('No hay ningún artículo pendiente por revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "editor"));
+		}
   	}
 
   	public function inspectPaper ($id) {
