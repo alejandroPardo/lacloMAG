@@ -689,3 +689,36 @@ body .redactor_toolbar li a.redactor_btn_alignment	 		{ background-position: -62
     background: #f4f4ee;
     border-color: #e0e5d6;
 }
+
+div .cover{
+	margin: 0 auto;
+	min-width: 8.5in;
+	min-height: 11.0in;
+	max-width: 8.5in;
+	max-height: 11.0in;
+}
+
+div .cover img{
+	width: 100%;
+}
+
+div .cover h1{
+	font-size: 100px !important;
+	line-height: 100px !important;
+	text-align: right;
+	margin-right: 20px !important;
+}
+
+div .cover h2{
+	font-size: 50px !important;
+	line-height: 50px !important;
+	text-align: left;
+	margin-left: 20px !important;
+	width: 60%;
+}
+
+div .cover h3{
+	font-size: 25px !important;
+	line-height: 25px !important;
+	text-align: center;
+}

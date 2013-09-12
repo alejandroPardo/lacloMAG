@@ -19,7 +19,8 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 		echo $this->Html->script('library');
 		echo $this->Html->script('initialize');
 		echo $this->Html->script('app');
-		echo $this->Html->script('redactor');		
+		echo $this->Html->script('redactor');
+		echo $this->Html->script('jscolor');
 		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

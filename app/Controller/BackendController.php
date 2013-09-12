@@ -505,7 +505,7 @@ class BackendController extends AppController {
 					
 					), 
 				),
-				'conditions' => array('Paper.status' => array('SENT','ONREVISION', 'REJECTED', 'APPROVED', 'PUBLISHED')),
+				'conditions' => array('Paper.status' => array('SENT','ONREVISION', 'REJECTED', 'APPROVED', 'PUBLISHED', 'UNPUBLISHED')),
 				'order' => array('Paper.created DESC'),
   			)
   		);
@@ -548,7 +548,7 @@ class BackendController extends AppController {
 
 		//debug($paperPaginate);
 
-		if(empty($papers)){
+		if(empty($paperPaginate)){
 			$this->Session->setFlash(__('Aun no se ha recibido ningún artículo.'));
 			$this->redirect(array("controller" => "backend", "action" => "editor"));
 		}
@@ -1046,6 +1046,35 @@ class BackendController extends AppController {
 		$this->set('news', $news);
 	}
 
+	public function cover($id=null){
+		if($id==null){
+			$this->Session->setFlash(__('Debe seleccionar una revista para cambiar la portada.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+
+		$magazine = $this->Magazine->find('first', array('conditions' => array('Magazine.id' => $id)));
+		if(empty($magazine)){
+			$this->Session->setFlash(__('La revista seleccionada es inválida.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+
+		if($magazine['Magazine']['status']!='ONCONSTRUCTION'){
+			$this->Session->setFlash(__('La revista seleccionada es inválida.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+
+		$this->set('magazine', $magazine);
+		//debug($magazine);
+	}
+
+	public function previewCover($id=null){
+		if ($this->request->is('post')) {
+            $file = $this->data;
+            $this->layout = 'backend';
+            $this->set('magazine', $this->data);
+        }
+	}
+	
   	/****************
 	/*
 	/*	Evaluator Functions

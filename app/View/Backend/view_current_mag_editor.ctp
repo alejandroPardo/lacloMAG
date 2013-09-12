@@ -107,7 +107,6 @@
 							<ul>
 								<li class=" ">
 									<button id="viewArticlesMag" class="white">Reordenar Articulos</button>
-									
 								</li>
 							</ul>
 						</li>
@@ -122,11 +121,12 @@
 							</ul>
 						</li>				
 						<li class="">
-							
+							<ul>
+								<li class=" "><a href="cover/<?php echo $magazine['Magazine']['id'];?>" id="createCoverButton" class="white" rel="external">Crear Portada</button></li>
+							</ul>
 						</li>
 					</ul>
 				</div>
-
 			</div>
 		</div>
 	</div>	
