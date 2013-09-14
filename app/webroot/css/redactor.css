@@ -726,11 +726,6 @@ div .cover h2{
 div .cover h3 {
 	bottom: 0;
 	font-size: 18px !important;
-	line-height: 25px !important;
+	line-height: 0px !important;
 	text-align: center;
-}
-
-div .coverFooter {
-	padding-bottom: 0px;
-	margin-bottom: -5844px;
 }

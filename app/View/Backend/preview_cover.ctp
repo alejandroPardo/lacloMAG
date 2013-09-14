@@ -11,8 +11,12 @@
 						<div class="carton container">
 							<div class="column full">
 								<div class='cover' style='background: #<?php echo $magazine["color"];?> !important;'>
-									<br/><br/><br/>
-									<?php echo $this->Html->image('bannercover.jpg', array('alt' => 'logo'));?>
+									<br/>
+									<h3 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
+										<?php echo $magazine['edicion'];?>
+									</h3>
+									<br/>
+									<img src="/laclomag/img/bannercover.jpg" alt="logo">
 									<h1 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['title'];?>
 									</h1>
@@ -20,11 +24,6 @@
 									<h2 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['desc'];?>
 									</h2>
-									<div class="coverFooter">
-									<h3 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
-										<?php echo $magazine['edicion'];?>
-									</h3>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -33,11 +32,16 @@
 				<div class="content">
 					<br><br>
 					<div class="profileData">
-						<p>Enviar o Guardar Evaluación</p>
+						<p>Guardar o Volver</p>
 						<p> 
-							<input type="hidden" name="evaluatorid" value=""/>
-							<input type="submit" value="Enviar" name="send" class="lime twenty" style="margin-left:5%;" id="btnSend"/> 
-							<input type="submit" value="Guardar Previo" name="send" class="lime twenty" id="btnForm"/>
+							<input type="hidden" name="magazineid" value="<?php echo $magazine['magazine'];?>"/>
+							<input type="hidden" name="color" value="<?php echo $magazine['color'];?>"/>
+							<input type="hidden" name="fontColor" value="<?php echo $magazine['fontcolor'];?>"/>
+							<input type="hidden" name="title" value="<?php echo $magazine['title'];?>"/>
+							<input type="hidden" name="edicion" value="<?php echo $magazine['edicion'];?>"/>
+							<input type="hidden" name="desc" value="<?php echo $magazine['desc'];?>"/>
+							<input type="submit" value="Guardar" name="send" class="lime twenty" style="margin-left:5%;" id="btnSend"/> 
+							<input type="submit" value="Volver" name="send" class="lime twenty" id="btnForm"/>
 						</p>
 					</div>
 				</div>

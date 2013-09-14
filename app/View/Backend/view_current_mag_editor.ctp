@@ -122,7 +122,7 @@
 						</li>				
 						<li class="">
 							<ul>
-								<li class=" "><a href="cover/<?php echo $magazine['Magazine']['id'];?>" id="createCoverButton" class="white" rel="external">Crear Portada</button></li>
+								<li class=" "><button id="coverMagButton" class="white">Crear Portada</button></li>
 							</ul>
 						</li>
 					</ul>
@@ -209,6 +209,10 @@
     	
     }, false);
 
-    
+    var coverMag = document.getElementById('coverMagButton');
+    coverMag.addEventListener('click', function () {
+    	document.location.href="cover/<?php echo $magazine['Magazine']['id'];?>";
+    	
+    }, false);
 
 </script>
