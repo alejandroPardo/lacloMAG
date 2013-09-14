@@ -4,12 +4,12 @@
 			<div id="pie" class="col full">
 				<div class="content">
 					<div class="heading">
-						<h4><span>Revisión</span> de Artículos</h4>
-						<span>Aquí puede colocar observaciones o correcciones sobre el artículo a corregir.</span>
+						<h4><span>Portada</span> de Revista</h4>
+						<span>Visualización de la portada de la revista a Publicar.</span>
 					</div>
 					<div class="section current padding" title="Text" id="text">
-						<div class="carton container border">
-							<div class="redactor_box redactor_editor">
+						<div class="carton container">
+							<div class="column full">
 								<div class='cover' style='background: #<?php echo $magazine["color"];?> !important;'>
 									<br/><br/><br/>
 									<?php echo $this->Html->image('bannercover.jpg', array('alt' => 'logo'));?>
@@ -20,10 +20,12 @@
 									<h2 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['desc'];?>
 									</h2>
+									<div class="coverFooter">
 									<h3 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
-										<?php echo $magazine['desc'];?>
+										<?php echo $magazine['edicion'];?>
 									</h3>
-								</div/>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

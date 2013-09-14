@@ -691,11 +691,17 @@ body .redactor_toolbar li a.redactor_btn_alignment	 		{ background-position: -62
 }
 
 div .cover{
-	margin: 0 auto;
+	width: 8.5in;
+	height: 8.5in;
 	min-width: 8.5in;
 	min-height: 11.0in;
 	max-width: 8.5in;
 	max-height: 11.0in;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-webkit-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
+	-moz-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
+	box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
 }
 
 div .cover img{
@@ -717,8 +723,14 @@ div .cover h2{
 	width: 60%;
 }
 
-div .cover h3{
-	font-size: 25px !important;
+div .cover h3 {
+	bottom: 0;
+	font-size: 18px !important;
 	line-height: 25px !important;
 	text-align: center;
+}
+
+div .coverFooter {
+	padding-bottom: 0px;
+	margin-bottom: -5844px;
 }

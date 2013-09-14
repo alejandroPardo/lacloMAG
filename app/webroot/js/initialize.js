@@ -237,7 +237,7 @@ $.initialize = function() {
 	
 	
 	// --------------- Pull to refresh -----------------------
-	if ($.browser.webkit && navigator.platform=='MacIntel') {
+	/*if ($.browser.webkit && navigator.platform=='MacIntel') {
 		var distance;
 		var pulled = false;
 		$('body').append('<div class="pull"><span class="icon">w</span><div>Pull <span>to refresh</span></div></div>');
@@ -250,7 +250,7 @@ $.initialize = function() {
 					$("#stream").removeClass("hide");
 					if(pulled){
 						$(window).delay(2000);
-						location.reload();
+						//location.reload();
 					}
 				}
 				if(distance > 62) {
@@ -273,7 +273,7 @@ $.initialize = function() {
 				$("dashboard").css("-webkit-transform", "translateY(0)");
 			}
 		});
-	}
+	}*/
 	// -------------------------------------------------------
 };
 
