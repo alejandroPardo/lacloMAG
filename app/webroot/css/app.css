@@ -706,7 +706,7 @@ div.tagsinput div {
 	float: center;
 	margin-left: auto;
 	margin-right: auto;
-	width: 80%;
+	width: 80% !important;
 	position: relative;
 }
 .column.fortyBtn {
@@ -8981,4 +8981,28 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 {
 	position: relative;
 	top: 30%;
+}
+
+.buttonHref { 
+	height: 65px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	padding-left: 20px;
+	padding-right: 20px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,0.4);
+	font: normal 14px HelveticaNeue, Helvetica, Arial, sans-serif;
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+	background-image: -moz-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+	-webkit-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, white 0px 1px 0px;
+	-moz-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, white 0px 1px 0px;
+	box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, white 0px 1px 0px;
+	color: #333;
+	text-shadow: white 0px 1px 0px;
+	cursor: pointer;
+	margin: 0px;
+	margin-right: 2px;
+	margin-bottom: 5px;
 }
