@@ -6,7 +6,7 @@
 	<script type="text/javascript" href=<?php echo 'file:'.DS.DS.WWW_ROOT.'js'.DS.'redactor.js';?>></script>
 </head>
 <body>
-	<div class="redactor_box redactor_editor" style='overflow:hidden;'>
+	<div style='overflow:hidden;'>
 		<?php echo $this->fetch('content');?>
 	</div>
 </body>

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakePdf', 'CakePdf.Pdf');
 /**
  * PaperFiles Controller
  *
@@ -35,6 +36,86 @@ class MagazinesController extends AppController {
                 $this->redirect(array("controller" => "backend", "action" => "viewCurrentMagEditor"));
 			}
         }
+	}
+
+	public function view($id=null){
+		$this->layout = 'cover';
+
+        $this->MagazinePaper->Behaviors->load('Containable');
+        $magazine = $this->Magazine->find('first',
+            array(
+                'conditions' => array(
+                    'Magazine.status' => array('ONCONSTRUCTION')
+                ),
+            )
+        );
+        $id = $magazine['MagazineFile']['id'];
+        
+        if ($magazine) {
+            $magazineId = $magazine['Magazine']['id'];
+            $magazinePapers = $this->MagazinePaper->find('all',
+                array(
+                    'contain' => array(
+                        'Paper' => array(
+                            'fields' => array('id','name','created','evaluation_type'),
+                            'PaperAuthor' => array(
+                                'fields' => array('paper_id', 'author_id'),
+                                'Author' => array(
+                                    'User' => array(
+                                        'fields' => array('first_name', 'last_name')
+                                    )
+                                )
+                            ),'PaperFile' => array(
+                            )
+                        )
+                    ),
+                    'conditions' => array(
+                            'MagazinePaper.magazine_id' => $magazineId
+                    ),
+                    'order' => array('MagazinePaper.order ASC'),
+                )
+            );
+            $magazineFile = $this->MagazineFiles->find('count',
+                array(
+                    'conditions' => array(
+                            'MagazineFiles.magazine_id' => $magazineId,
+                            'MagazineFiles.type' => 'COVER'
+                    ),
+                )
+            );
+            $this->set('magazine', $magazine);
+            $this->set('magazinePapers', $magazinePapers);
+            $this->set('magazineFile', $magazineFile);
+
+        }
+
+        $this->pdfConfig = array(
+            'orientation' => 'portrait',
+            'filename' => 'MagazineCover_' . $id,
+            'download' => false,
+            'no-outline',         // Make Chrome not complain
+            'margin' => array(
+                'bottom' => 0,
+                'left' => 0,
+                'right' => 0,
+                'top' => 0
+            ),
+            'pageSize' => 'Letter',
+            'options' => array('')
+        );
+
+        $html = $this->MagazineFiles->findById($id);
+        
+        if(substr($this->here,-4) == '.pdf'){
+            if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
+                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+            } else {  //WINDOWS
+                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+            }
+        } else {
+            $bodytag = $html['MagazineFile']['file'];
+        }
+        $this->set('htm', $bodytag);
 	}
 }
 	

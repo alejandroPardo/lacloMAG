@@ -814,8 +814,23 @@ class BackendController extends AppController {
 				$this->redirect(array('action' => 'viewCurrentMagEditor'));
 			}
 		} else {
-			$this->Session->setFlash('Hubo un error eliminado el Paper');
+			$this->Session->setFlash('Hubo un error eliminando el Paper');
 			$this->redirect(array('action' => 'viewCurrentMagEditor'));
+		}
+  	}
+
+  	public function removeCoverfromMag($id = null) {
+		$this->MagazineFiles->id = $id;
+		$magazineFiles = $this->MagazineFiles->find('first',array(
+			'conditions' => array('MagazineFiles.id' => $id, 'MagazineFiles.type' => 'COVER')
+		));
+
+		if ($this->MagazineFiles->delete()) {
+			$this->Session->setFlash('La portada de la revista fue eliminada.');
+			$this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash('Hubo un error eliminando la portada.');
+			$this->redirect(array('action' => 'index'));
 		}
   	}
 

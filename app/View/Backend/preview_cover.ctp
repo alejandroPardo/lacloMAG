@@ -10,7 +10,7 @@
 					<div class="section current padding" title="Text" id="text">
 						<div class="carton container">
 							<div class="column full">
-								<div class='cover' style='background: #<?php echo $magazine["color"];?> !important;'>
+								<div class='cover' style='background: #<?php echo $magazine["color"];?> !important; margin-top:10px; margin-bottom:10px;'>
 									<br/>
 									<h3 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['edicion'];?>

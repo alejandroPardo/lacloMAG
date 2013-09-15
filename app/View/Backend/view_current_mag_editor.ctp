@@ -15,32 +15,32 @@
 		                    <th style="width:150px;">Orden en Revista</th>
 		                    <th style="width:80px;">Acciones</th>
 			            </tr>
-			            <tr>
-		                    <td>PORTADA</td>
-		                    <td></td>
-		                    <td></td>
-		                    <td></td>
-		                    <td style='text-align: center;'>
-		                	 	<?php 
-				                    echo $this->Html->link(
-				                        '<span class="glyph delete glyph-editor"><span>',
-				                    array(
-				                        'controller' => 'backend', 
-				                        'action' => 'removeCoverfromMag',
-				                        $magazine['Magazine']['id']),
-				                    array( 
-				                        'rel' => 'external', 
-				                        'escape'=> false)
-				                    );
-				                ?>
-				                <?php 
-				                	//$file = "../paperfiles/view/".$magazinePaper['Paper']['PaperFile']['0']['id'].".pdf";
-				                	$file = 'jaja';
-									echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
-				                ?>
-			                </td>
-			            </tr>
-
+			            <?php if($magazineFile == 1){?>
+				            <tr>
+			                    <td>PORTADA</td>
+			                    <td></td>
+			                    <td></td>
+			                    <td></td>
+			                    <td style='text-align: center;'>
+			                	 	<?php 
+					                    echo $this->Html->link(
+					                        '<span class="glyph delete glyph-editor"><span>',
+					                    array(
+					                        'controller' => 'backend', 
+					                        'action' => 'removeCoverfromMag',
+					                        $magazine['Magazine']['id']),
+					                    array( 
+					                        'rel' => 'external', 
+					                        'escape'=> false)
+					                    );
+					                ?>
+					                <?php 
+					                	$file = "../magazineFiles/view/".$magazine['MagazineFile']['id'].".pdf";
+										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
+					                ?>
+				                </td>
+				            </tr>
+				        <?php } ?>
 			            <?php foreach ($magazinePapers as $magazinePaper): ?>
 			            <tr>
 			                <td><?php echo $magazinePaper['Paper']['name']; ?></td>
@@ -79,8 +79,10 @@
 					<button id="previewMag" class="sugar twenty" style="height:65px;">Vista Previa</button>
 					<?php if($magazineFile == 0){?>
 						<button id="coverMagButton" class="sugar twenty" style="height:65px;">Crear Portada</button>
+						<button id="publishMagButton" class="sugar twenty" style="height:65px; display:none;">Publicar revista</button> 
 					<?php } else { ?>
 						<button id="publishMagButton" class="sugar twenty" style="height:65px;">Publicar revista</button>
+						<button id="coverMagButton" class="sugar twenty" style="height:65px; display:none;">Crear Portada</button>
 					<?php } ?>
 					<br><br>
 				</form>
@@ -171,6 +173,12 @@
     var coverMag = document.getElementById('coverMagButton');
     coverMag.addEventListener('click', function () {
     	document.location.href="cover/<?php echo $magazine['Magazine']['id'];?>";
+    	
+    }, false);
+
+    var previewMag = document.getElementById('previewMag');
+    previewMag.addEventListener('click', function () {
+    	document.location.href="../magazines/view/<?php echo $magazine['Magazine']['id'];?>";
     	
     }, false);
 
