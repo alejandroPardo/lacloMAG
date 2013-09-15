@@ -1,135 +1,92 @@
 <div class="section current">
 	<div class="row widgets">
-		<div id="pie" class="col seventyfive">
-			<div class="content">
-				
-				<?php if (isset($magazine)): ?>
-					<div class=" col_4  alpha">
-						<h4><span>Revista</span> en construcción</h4>
-					</div>
-					<div class="col_4  omega ">
-						<h4><?php echo h($magazine['Magazine']['name']);?></h4>
-					</div>
-					<?php if (!empty($magazinePapers)): ?>
-				        <table  cellpadding="0" cellspacing="0">
-				            <tr>
-				                    <th>Nombre de Paper</th>
-				                    <th>Fecha Creacion</th>
-				                    <th>Tipo de Evaluación</th>
-				                    <th>Autores</th>
-				                    <th>orden</th>
-				                    <th class="actions"><?php echo __('Acciones'); ?></th>
-				            </tr>
-				            <?php foreach ($magazinePapers as $magazinePaper): ?>
-				            <tr>
-				                <td><?php echo $magazinePaper['Paper']['name']; ?></td>
-				                <td><?php echo $magazinePaper['Paper']['created']; ?></td>
-				                <td><?php echo $magazinePaper['Paper']['evaluation_type']; ?></td>
-
-				                <td>
-				                	<?php foreach ($magazinePaper['Paper']['PaperEvaluator'] as $paperEvaluator): ?>
-				                		<p><?php echo $paperEvaluator['Evaluator']['User']['first_name'].' '.$paperEvaluator['Evaluator']['User']['last_name']; ?></p>
-				                	<?php endforeach; ?>
-				                </td>
-				                <td><?php echo $magazinePaper['MagazinePaper']['order']; ?></td>	
-				                <td>
-			                	 	<?php 
-					                    echo $this->Html->link(
-					                        'Eliminar',
-					                    array(
-					                        'controller' => 'backend', 
-					                        'action' => 'removePaperfromMag',
-					                        $magazinePaper['MagazinePaper']['id']),
-					                    array( 
-					                        'class' => 'removePaper',
-					                        'rel' => 'external', 
-					                        'escape'=> false)
-					                    );
-
-					                ?>
-				                </td>
-				            </tr>
-				             <?php endforeach; ?>
-				        </table>
-			        <?php else: ?>
-			            <p>No hay Articulos</p>
-			        <?php endif; ?>
-			    <?php else: ?>
-				    <div class="heading">
-						<h4>No existe una revista en construcción</h4>
-					</div>
-		    		<ul style="	list-style-type: none;">
-						<li class=" ">
-							<div class="wrapper">
-								<div class="col_12">
-									<?php 
-					                    echo $this->Html->link(
-					                        '<button  class="white">Nueva Revista</button>',
-					                    array(
-					                        'controller' => 'backend', 
-					                        'action' => 'newMag'),
-					                    array( 
-					                        'rel' => 'external', 
-					                        'escape'=> false)
-					                    );
-					                ?>
-				                </div>
-				            
-		                	</div>
-		                </li>
-					</ul>
-
-			    <?php endif; ?>
-		       <!--  <div class="col_6 ">
-						<?php
-						/*echo $this->Form->create(false, array('controller' => 'backend', 'action' => 'changeActualMag', 'id'=>'changeActualMag'));
-						echo $this->Form->input('magId', array('options' => $magazineList, 'empty' => 'Escoja una'));*/
-						?>
-					</div>
-					<div class="col_6">
-						<?php /*echo $this->Form->end('Cambiar Revista Actual');*/ ?>
-						
-					</div> -->
-		        
-				
-				
-			</div>
-		</div>
-		<div id="tasks" class="col quarter last">
+		<div id="pie" class="col full">
 			<div class="content">
 				<div class="heading">
-					<h4><span>Acciones</span></h4>
+					<h4><span>Revista en Construcción: </span><?php echo $magazine['Magazine']['name'];?></h4>
+					<span>Artículos y publicación de próximo ejemplar de LACLOmag</span>
 				</div>
+				<div class="carton container">
+			        <table>
+			            <tr>
+		                    <th>Nombre de Artículo</th>
+		                    <th>Creado</th>
+		                    <th>Autor</th>
+		                    <th style="width:150px;">Orden en Revista</th>
+		                    <th style="width:80px;">Acciones</th>
+			            </tr>
+			            <tr>
+		                    <td>PORTADA</td>
+		                    <td></td>
+		                    <td></td>
+		                    <td></td>
+		                    <td style='text-align: center;'>
+		                	 	<?php 
+				                    echo $this->Html->link(
+				                        '<span class="glyph delete glyph-editor"><span>',
+				                    array(
+				                        'controller' => 'backend', 
+				                        'action' => 'removeCoverfromMag',
+				                        $magazine['Magazine']['id']),
+				                    array( 
+				                        'rel' => 'external', 
+				                        'escape'=> false)
+				                    );
+				                ?>
+				                <?php 
+				                	//$file = "../paperfiles/view/".$magazinePaper['Paper']['PaperFile']['0']['id'].".pdf";
+				                	$file = 'jaja';
+									echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
+				                ?>
+			                </td>
+			            </tr>
 
-				<div id="buttons"class="wrapper" style="left: 1px; right: 1px; top: 141px; bottom: 0px;">
-					<ul>
-						<li class="">
-							<ul>
-								<li class=" ">
-									<button id="viewArticlesMag" class="white">Reordenar Articulos</button>
-								</li>
-							</ul>
-						</li>
-						<li class="">
-							<ul>
-								<li class=" "><button  class="white">Vista Previa</button></li>
-							</ul>
-						</li>
-						<li class="">
-							<ul>
-								<li class=" "><button id="publishMagButton" class="white">Publicar revista</button></li>
-							</ul>
-						</li>				
-						<li class="">
-							<ul>
-								<li class=" "><button id="coverMagButton" class="white">Crear Portada</button></li>
-							</ul>
-						</li>
-					</ul>
+			            <?php foreach ($magazinePapers as $magazinePaper): ?>
+			            <tr>
+			                <td><?php echo $magazinePaper['Paper']['name']; ?></td>
+			                <td><?php echo $magazinePaper['Paper']['created']; ?></td>
+			                <td>
+			                	<?php foreach ($magazinePaper['Paper']['PaperAuthor'] as $paperEvaluator): ?>
+			                		<p><?php echo $paperEvaluator['Author']['User']['first_name'].' '.$paperEvaluator['Author']['User']['last_name']; ?></p>
+			                	<?php endforeach; ?>
+			                </td>
+			                <td><?php echo $magazinePaper['MagazinePaper']['order']; ?></td>	
+			                <td style='text-align: center;'>
+		                	 	<?php 
+				                    echo $this->Html->link(
+				                        '<span class="glyph delete glyph-editor"><span>',
+				                    array(
+				                        'controller' => 'backend', 
+				                        'action' => 'removePaperfromMag',
+				                        $magazinePaper['MagazinePaper']['id']),
+				                    array( 
+				                        'class' => 'removePaper',
+				                        'rel' => 'external', 
+				                        'escape'=> false)
+				                    );
+				                ?>
+				                <?php 
+				                	$file = "../paperfiles/view/".$magazinePaper['Paper']['PaperFile']['0']['id'].".pdf";
+									echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
+				                ?>
+			                </td>
+			            </tr>
+			             <?php endforeach; ?>
+			        </table>
 				</div>
+					<br>
+					<button id="viewArticlesMag" class="sugar twenty" style="height:65px;margin-left:2%;">Reordenar Articulos</button>
+					<button id="previewMag" class="sugar twenty" style="height:65px;">Vista Previa</button>
+					<?php if($magazineFile == 0){?>
+						<button id="coverMagButton" class="sugar twenty" style="height:65px;">Crear Portada</button>
+					<?php } else { ?>
+						<button id="publishMagButton" class="sugar twenty" style="height:65px;">Publicar revista</button>
+					<?php } ?>
+					<br><br>
+				</form>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <div id="modalArticles" style="display:none">
@@ -171,8 +128,10 @@
     var viewArticlesMag = document.getElementById('viewArticlesMag');
     
     viewArticlesMag.addEventListener('click', function () {
-        $("#modalArticles").modal();
-        //$('.removePaper').unbind();
+        $('#modalArticles').modal({
+    		animation: "flipInX", 
+    		theme: "dark"
+    	});
         $('.removePaper').on("click", function(e) {
             var a = confirm('Remover Paper?');
             if (a) {

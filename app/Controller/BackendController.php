@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator', 'News');
+	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator', 'News', 'MagazineFiles');
 	public $userID;
 	public $actualMag;
 
@@ -820,6 +820,7 @@ class BackendController extends AppController {
   	}
 
   	public function viewCurrentMagEditor() {
+  		$this->Session->setFlash(__('Elige el orden de los artículos en la revista y crea la portada para poder publicarla.'));
   		$this->MagazinePaper->Behaviors->load('Containable');
   		$magazine = $this->Magazine->find('first',
   			array(
@@ -838,14 +839,15 @@ class BackendController extends AppController {
 	  				'contain' => array(
 	  					'Paper' => array(
 	  						'fields' => array('id','name','created','evaluation_type'),
-	  						'PaperEvaluator' => array(
-	  							'fields' => array('paper_id', 'evaluator_id'),
-	  							'Evaluator' => array(
+	  						'PaperAuthor' => array(
+	  							'fields' => array('paper_id', 'author_id'),
+	  							'Author' => array(
 	  								'User' => array(
 	  									'fields' => array('first_name', 'last_name')
 	  								)
 	  							)
-	  						),
+	  						),'PaperFile' => array(
+	  						)
 	  					)
 	  				),
 	  				'conditions' => array(
@@ -854,19 +856,27 @@ class BackendController extends AppController {
 	  				'order' => array('MagazinePaper.order ASC'),
 	  			)
 	  		);
-
-	  		
+	  		$magazineFile = $this->MagazineFiles->find('count',
+	  			array(
+	  				'conditions' => array(
+	  						'MagazineFiles.magazine_id' => $magazineId,
+	  						'MagazineFiles.type' => 'COVER'
+	  				),
+	  			)
+	  		);
 	  		$this->set('magazine', $magazine);
 	  		$this->set('magazinePapers', $magazinePapers);
-  		}
-  		/*$magazineList = $this->Magazine->find('list', array(
-  			'fields' => array('Magazine.name'),
-  		));
-  		$this->set('magazineList', $magazineList);*/
-  		//debug($magazine);
-  		//debug($magazineList);
-  		
+	  		$this->set('magazineFile', $magazineFile);
 
+  		}
+  		if(empty($magazine)){
+			$this->Session->setFlash(__('Es necesario crear el próximo ejemplar.'));
+			$this->redirect(array("controller" => "backend", "action" => "newMag"));
+		}
+		if(empty($magazinePapers)){
+			$this->Session->setFlash(__('Debe asignar un artículo a la revista para poder editarla.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
   	}
 
   	public function viewArticlesArchiveEditor() {
