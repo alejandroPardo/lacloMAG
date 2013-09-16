@@ -617,9 +617,10 @@ class BackendController extends AppController {
 							'fields' => array('id', 'user_id'),
 							'User' => array(
   								'fields' => array('first_name','last_name')
-  								)
   							)
-						)
+  						)
+					), 
+					'PaperFile' => array()
   				),
   			)
   		);
@@ -826,6 +827,9 @@ class BackendController extends AppController {
 		));
 
 		if ($this->MagazineFiles->delete()) {
+			$this->Logbook->create();
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Usted ha eliminado la portada de la revista en construcción.');
+			$this->Logbook->save($data4);
 			$this->Session->setFlash('La portada de la revista fue eliminada.');
 			$this->redirect(array('action' => 'index'));
 		} else {
