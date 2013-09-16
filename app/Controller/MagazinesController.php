@@ -65,7 +65,7 @@ class MagazinesController extends AppController {
                                         'fields' => array('first_name', 'last_name')
                                     )
                                 )
-                            ),'PaperFile' => array(
+                            ), 'PaperFile' => array(
                             )
                         )
                     ),
@@ -104,18 +104,30 @@ class MagazinesController extends AppController {
             'options' => array('')
         );
 
-        $html = $this->MagazineFiles->findById($id);
         
         if(substr($this->here,-4) == '.pdf'){
             if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
-                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+                $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
+                $bodytag = str_replace("../../files", "FILE:".DS.DS.WWW_ROOT."files", $html['PaperFile']['raw']);
             } else {  //WINDOWS
-                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+                $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
             }
         } else {
             $bodytag = $html['MagazineFile']['file'];
         }
-        $this->set('htm', $bodytag);
+
+        $papers=null;
+        $index=0;
+        foreach ($magazinePapers as $magazinePaper) {
+            if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
+                $papers[$index] = str_replace("../../files", "FILE:".DS.DS.WWW_ROOT."files", $magazinePaper['Paper']['PaperFile']['raw']);
+            } else {  //WINDOWS
+                $papers[$index] = str_replace("../../files", "FILE:".DS.DS.DS.WWW_ROOT."files", $magazinePaper['Paper']['PaperFile']['0']['raw']);
+            }
+        }
+
+        $this->set('cover', $cover);
+        $this->set('papers', $papers);
 	}
 }
 	

@@ -22,12 +22,12 @@
                             <div class="col_6 carton alpha color rushhour col_11" style="margin-top:10px;margin-left:25px;">
                                 <h2>Tipo revision</h2>
                                 <div class="content">
-                                    <div class="col_4 alpha">
-                                        <h2><?php echo $paper['Paper']['evaluation_type'];?></h2>
-                                    </div>
-                                    <div class="col_4 omega">
-                                        <button id="changeRevision" class="white">Cambiar Revision</button>
-                                    </div>
+                                    <?php 
+                                        if($paper['Paper']['evaluation_type'] == 'OPEN'){ echo '<h2>Abierta</h2><br><h3>Los evaluadores y los autores son conocidos publicamente.</h3>';
+                                        } elseif($paper['Paper']['evaluation_type'] == 'BLIND'){ echo '<h2>Ciega</h2><br><h3>No se le da a conocer a los evaluadores el nombre de los autores del artículo.</h3>';
+                                        } elseif($paper['Paper']['evaluation_type'] == 'DOUBLEBLIND'){ echo '<h2>Doble Ciega</h2><br><h3>No se le da a conocer a los evaluadores el nombre de los autores del artículo ni a los autores el nombre de los evaluadores.</h3>';
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <div class="col_6 carton alpha col_11" style="margin-top:10px;margin-left:25px;">
@@ -81,6 +81,7 @@
                             __('Asignar a Revista en Construcción?')
                             );
                         ?>
+                        <button id="changeRevision" class="white">Cambiar Revision</button>
                     </p>
                 </div>
             </div>
