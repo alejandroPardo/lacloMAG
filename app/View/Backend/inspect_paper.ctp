@@ -1,78 +1,89 @@
-<div class="container">
-    <div class="col_4 carton alpha">
-	 	<h2>Nombre del Articulo</h2>
-        <div class="content"><?php echo $paper['Paper']['name'];?></div>
-    </div>
-    <div class="col_4 carton ">
-	 	<h2>Autores</h2>
-     	<?php foreach ($paper['PaperAuthor'] as $paperAuthors): ?>
-            <div class="content"><?php echo h($paperAuthors['Author']['User']['first_name'].' '.
-            $paperAuthors['Author']['User']['last_name']); ?> </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="col_4 carton omega">
-	 	<h2>Fecha de Creación</h2>
-        <div class="content"><?php echo $paper['Paper']['created'];?></div>
-    </div>
-</div>
-<div class="container">
-    <div class="col_6 carton alpha">
-        <h2>Evaluadores</h2>
-        <table id="hola" cellpadding="0" cellspacing="0">
-    	 	<tr>
-                    <th>Nombre de Evaluador</th>
-                    <th class="actions">Status</th>
-                    <th>Acciones</th>
-            </tr>
-            <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
-                <tr>
-                    <td>
-                        <?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '. $paperEvaluator['Evaluator']['User']['last_name']); ?>
-                    </td>
-                    <td>
-                        <?php echo h($paperEvaluator['status']); ?>
-                    </td>
-                    <td>
-                        <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Esta seguro que quiere Eliminarlo?')); ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
-    <div class="col_6 carton alpha">
-        <h2>Tipo revision</h2>
-        <div class="content">
-            <div class="col_4 alpha">
-                <h2><?php echo $paper['Paper']['evaluation_type'];?></h2>
+<div class="section current">
+    <div class="row widgets">
+        <div id="pie" class="col full">
+            <div class="content">
+                <div class="heading">
+                    <h4><span>Detalle de Artículo</span> <?php echo $paper['Paper']['name'];?></h4>
+                    <span>Aquí puede agregar los evaluadores al artículo seleccionado y asignarlo a revista en contrucción.</span>
+                </div>
+                <div class="section current padding" title="Text" id="text">
+                    <div class="carton container border">
+                        <div id="editor-textarea" class="column">
+                            <div class="col_11 carton alpha color sail" style="margin-top:10px;margin-left:25px;">
+                                <h2>Nombre del Articulo: <strong><?php echo $paper['Paper']['name'];?></strong></h2>
+                                <div class="content">
+                                    <?php foreach ($paper['PaperAuthor'] as $paperAuthors): ?>
+                                        <h3>Autor: <strong><?php echo $paperAuthors['Author']['User']['first_name'].' '.$paperAuthors['Author']['User']['last_name'];?></strong></h3>
+                                        
+                                    <?php endforeach; ?>
+                                    <h3>Creado: <strong><?php echo $paper['Paper']['created'];?></strong></h3>
+                                </div>
+                            </div>
+                            <div class="col_6 carton alpha color rushhour col_11" style="margin-top:10px;margin-left:25px;">
+                                <h2>Tipo revision</h2>
+                                <div class="content">
+                                    <div class="col_4 alpha">
+                                        <h2><?php echo $paper['Paper']['evaluation_type'];?></h2>
+                                    </div>
+                                    <div class="col_4 omega">
+                                        <button id="changeRevision" class="white">Cambiar Revision</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col_6 carton alpha col_11" style="margin-top:10px;margin-left:25px;">
+                                <table id="hola" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                            <th>Nombre de Evaluador</th>
+                                            <th class="actions">Status de Revisión</th>
+                                            <th style="width:10px;">Acciones</th>
+                                    </tr>
+                                    <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '. $paperEvaluator['Evaluator']['User']['last_name']); ?>
+                                            </td>
+                                            <?php 
+                                            echo "<td><strong>";
+                                                if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';}
+                                            echo "</strong></td>";
+                                            ?>
+                                            <td style="text-align:center;">
+                                                <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Esta seguro que quiere Eliminarlo?')); ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="editor-preview" class="column right">
+                            <div class="redactor_box redactor_editor">
+                                <?php echo $paper['PaperFile']['0']['raw'];?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col_4 omega">
-                <button id="changeRevision" class="white">Cambiar Revision</button>
+            <div class="content">
+                <br><br>
+                <div class="profileData">
+                    <p>Agregar Evaluadores o Asignar a Revista</p>
+                    <p> 
+                        <button id="newEvaluator" class="lime twenty" style="margin-left:5%; height:65px;">Asignar Nuevo Evaluador</button>
+                        <?php 
+                            echo $this->Form->postLink(
+                                '<button style="height:65px;" class="lime twenty">Asignar a Revista en Construcción</button>',
+                            array(
+                                'controller' => 'backend', 
+                                'action' => 'addArticleToMag',
+                                $paperId),
+                            array( 
+                                'escape'=> false),
+                            __('Asignar a Revista en Construcción?')
+                            );
+                        ?>
+                    </p>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-	<div id="buttons">
-	    <div class="col_2 alpha">
-		 	<button id="newEvaluator" class="white">Asignar Nuevo Evaluador</button>
-	    </div>
-	    <div class="col_2 alpha">
-            <?php 
-                echo $this->Form->postLink(
-                    '<button class="white">Asignar a Revista en Construcción</button>',
-                array(
-                    'controller' => 'backend', 
-                    'action' => 'addArticleToMag',
-                    $paperId),
-                array( 
-                    'escape'=> false),
-                __('Asignar a Revista en Construcción?')
-                );
-            ?>
-	    </div>
-        <div class="col_2 alpha">
-            <button class="white"></button>
         </div>
     </div>
 </div>

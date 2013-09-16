@@ -41,7 +41,7 @@
                                      </br>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <p>Sin Asignar</p>
+                                    Sin Asignar
                                 <?php endif; ?>
 
                             </td>
@@ -52,7 +52,7 @@
                                 echo "<td style='text-align: center;'>";
                                         $file = "../paperfiles/view/".$paper['PaperFile']['0']['id'].".pdf";
                                         echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
-                                        echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'delete',$paper['Paper']['id']), array('escape'=> false), __('¿Estas seguro de eliminar el artículo %s?', $paper['Paper']['name'])); ?>
+                                        /*echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'delete',$paper['Paper']['id']), array('escape'=> false), __('¿Estas seguro de eliminar el artículo %s?', $paper['Paper']['name'])); */?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
