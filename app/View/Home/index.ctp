@@ -23,13 +23,15 @@
 		<p class="subtext">Último Ejemplar</p>
 		<div id="lineset" class="clearfix">
 			<div id="linesleft"></div>
-			<div id="dates">
-				<span class="month">June</span>
-				<span class="bignumber">23</span>
-			</div>
+			<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>">
+				<div id="dates" style='background:#<?php echo $actual["MagazineFile"]["color"];?>'>
+					<span class="month">LACLOmag</span>
+					<span class="bignumber"><?php echo $actual["Magazine"]["id"];?></span>
+				</div>
+			</a>
 			<div id="linesright"></div>
 		</div>
-		<p class="location">Aquí va el<br>último ejemplar</p>
+		<p class="location"><?php echo $actual["MagazineFile"]["name"];?><br><?php echo $actual["MagazineFile"]["edition"];?></p>
 		<p class="intro"></p>
 		<p class="arrow"><a href="#Media"><img src="img/arrow.png" alt=""></a></p>
 	</div>
