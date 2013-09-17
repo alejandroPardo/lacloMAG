@@ -70,7 +70,7 @@ class BackendController extends AppController {
 			$papersPreviews = $this->Paper->find('count',
 	  			array(
 	  				'conditions' => array(
-	  					'Paper.status' => array('SENT', 'UNPUBLISHED'),
+	  					'Paper.status' => array('SENT', 'UNPUBLISHED','ONREVISION','APPROVED'),
 	  				),
 	  			)
 	  		);
@@ -563,7 +563,7 @@ class BackendController extends AppController {
   		$papers = $this->Paper->find('all',
   			array(
   				'conditions' => array(
-  					'Paper.status' => array('SENT','UNPUBLISHED')
+  					'Paper.status' => array('SENT','UNPUBLISHED','ONREVISION','APPROVED')
   				),
   				'contain' => array(
   					'PaperAuthor' =>array(
@@ -666,8 +666,9 @@ class BackendController extends AppController {
 
             $paper = $this->Paper->find('first', array(
             	'conditions' => array('Paper.id' => $paperId),
-            	'fields' => array('Paper.name')
             ));
+            $paperData = array('id' => $paperId, 'status' => 'ONREVISION');
+            $this->Paper->save($paperData);
 			
 			$data4 = array('user_id' => $evaluator['Evaluator']['user_id'], 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha asiginado el articulo '. $paper['Paper']['name'].' para evaluar</strong>.');
 			$this->Logbook->save($data4);

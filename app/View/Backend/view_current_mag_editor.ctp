@@ -178,7 +178,8 @@
 
     var previewMag = document.getElementById('previewMag');
     previewMag.addEventListener('click', function () {
-    	document.location.href="../magazines/view/<?php echo $magazine['Magazine']['id'];?>";
+    	window.open("../magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf", '_blank');
+    	//document.location.href="../magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf";
     	
     }, false);
 

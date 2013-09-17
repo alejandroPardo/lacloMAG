@@ -40,6 +40,7 @@ class MagazinesController extends AppController {
 
 	public function view($id=null){
 		$this->layout = 'cover';
+        ini_set('memory_limit', '-1');
 
         $this->MagazinePaper->Behaviors->load('Containable');
         $magazine = $this->Magazine->find('first',
@@ -58,14 +59,8 @@ class MagazinesController extends AppController {
                     'contain' => array(
                         'Paper' => array(
                             'fields' => array('id','name','created','evaluation_type'),
-                            'PaperAuthor' => array(
-                                'fields' => array('paper_id', 'author_id'),
-                                'Author' => array(
-                                    'User' => array(
-                                        'fields' => array('first_name', 'last_name')
-                                    )
-                                )
-                            ),'PaperFile' => array(
+                            'PaperFile' => array(
+                                'fields' => array('raw')
                             )
                         )
                     ),
@@ -75,18 +70,6 @@ class MagazinesController extends AppController {
                     'order' => array('MagazinePaper.order ASC'),
                 )
             );
-            $magazineFile = $this->MagazineFiles->find('count',
-                array(
-                    'conditions' => array(
-                            'MagazineFiles.magazine_id' => $magazineId,
-                            'MagazineFiles.type' => 'COVER'
-                    ),
-                )
-            );
-            $this->set('magazine', $magazine);
-            $this->set('magazinePapers', $magazinePapers);
-            $this->set('magazineFile', $magazineFile);
-
         }
 
         $this->pdfConfig = array(
@@ -104,18 +87,34 @@ class MagazinesController extends AppController {
             'options' => array('')
         );
 
-        $html = $this->MagazineFiles->findById($id);
         
         if(substr($this->here,-4) == '.pdf'){
             if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
-                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+                $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
             } else {  //WINDOWS
-                $bodytag = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $html['MagazineFiles']['file']);
+                $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
             }
         } else {
-            $bodytag = $html['MagazineFile']['file'];
+            $cover = $magazine['MagazineFile']['file'];
         }
-        $this->set('htm', $bodytag);
+
+        $papers=null;
+        $index=0;
+        foreach ($magazinePapers as $magazinePaper) {
+            if(substr($this->here,-4) == '.pdf'){
+                if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
+                    $papers[$index] = str_replace("../../files", "FILE:".DS.DS.WWW_ROOT."files", $magazinePaper['Paper']['PaperFile']['0']['raw']);
+                } else {  //WINDOWS
+                    $papers[$index] = str_replace("../../files", "FILE:".DS.DS.DS.WWW_ROOT."files", $magazinePaper['Paper']['PaperFile']['0']['raw']);
+                }
+            } else {
+                $papers[$index] = $magazinePaper['Paper']['PaperFile']['0']['raw'];
+            }
+            $index++;
+        }
+
+        $this->set('cover', $cover);
+        $this->set('papers', $papers);
 	}
 }
 	

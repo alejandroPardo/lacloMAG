@@ -12,7 +12,7 @@
                         <tr>
                                 <th>Nombre de Artículo</th>
                                 <th>Autor</th>
-                                <th><?php echo $this->Paginator->sort('Creado',null, array('rel' => 'external')); ?></th>
+                                <th>Creado</th>
                                 <th>Revista</th>
                                 <th>Status</th>
                                 <th>Acciones</th>

@@ -27,7 +27,7 @@
     		),
     		'role' => array(
     			'valid' => array(
-    				'rule' => array('inList', array('admin', 'author', 'editor', 'evaluator', 'reader')),
+    				'rule' => array('inList', array('PREVIOUS', 'author', 'editor', 'evaluator', 'reader')),
     				'message' => 'Introduzca un rol valido',
     				'allowEmpty' => false
     			)
