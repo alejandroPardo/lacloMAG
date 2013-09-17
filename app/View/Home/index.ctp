@@ -10,6 +10,13 @@
 		</ul>
 	</div>
 </div>
+<?php 
+	if($this->Session->check('Message.flash')){
+		echo '<div id="nav2">';
+			echo '<p>'.$this->Session->flash().'</p>';
+		echo '</div>';
+	}
+?>
 <div class="contentsection" id="header">
 	<div class="content">
 		<h1><img src="img/logoFrontend.png" alt="LACLO Magazine"/></h1>
@@ -205,22 +212,17 @@
 			<p>Envíanos tus datos y te responderemos lo mas pronto posible para que seas parte de la familia de LACLO Magazine.</p>
 		</div>
 		<div class="normalcontent">
-			<form action="process.php" method="post" accept-charset="utf-8">
+			<form action="home/process" method="post" accept-charset="utf-8">
 				<label>Nombre y Apellido</label>
-				<input type="text" name="name">
+				<input type="text" name="name" placeholder="Nombre y Apellido" required>
 				
 				<label>Correo Electrónico</label>
-				<input type="text" name="email">
-				<input type="hidden" name="myemail" value="Your-Email-Goes-Here">
-				<input type="hidden" name="redirecturl" value="">
+				<input type="email" name="email" placeholder="Correo Electrónico" required>
 				
 				<label>¿Deseas unirte como Autor o Evaluador?</label>
-				<input type="text" name="phone">
+				<input type="text" name="type" placeholder="Autor // Evaluador" required pattern="Autor|Evaluador|autor|evaluador">
 
-				<label>Curriculum Vitae o Trabajos Realizados</label>
-				<input type="file" name="cv">
-
-				<p><input class="submit" type="submit" value="Continue &rarr;"></p>
+				<p><input class="submit" type="submit" value="Enviar &rarr;"></p>
 			</form>
 			<div class="sponsors">
 				<h3>Páginas de Interés</h3>

@@ -34,5 +34,25 @@ class HomeController extends AppController {
         $this->set('video', $news['News']['video_url']);
 	}
 
+	public function process(){
+		if ($this->request->is('post')) {
+			$user = $this->User->find('count', array('conditions' => array('User.username' => $this->data['email'])));
+			if($user == 0){
+				$data = array('username' => $this->data['email'], 'email' => $this->data['email'], 'password' => 'hbsdfkjgdskf5344454sdf4sdf4588', 'role' => 'PREVIOUS', 'first_name' => $this->data['name'], 'last_name' => $this->data['type']); 
+				if($this->User->save($data)){
+					$this->Session->setFlash(__('¡Se ha enviado exitosamente, espere un correo con la respuesta!'));
+	            	$this->redirect(array("controller" => "home", "action" => "index"));
+				} else {
+					$this->Session->setFlash(__('No se ha podido enviar.'));
+	            	$this->redirect(array("controller" => "home", "action" => "index"));
+				}	
+			} else {
+				$this->Session->setFlash(__('El usuario con ese correo electrónico ya está a la espera de una solicitud, espere su respuesta.'));
+	            $this->redirect(array("controller" => "home", "action" => "index"));
+			}
+			
+        }
+	}
+
 
 }

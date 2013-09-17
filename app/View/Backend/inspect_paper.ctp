@@ -34,8 +34,8 @@
                                 <table id="hola" cellpadding="0" cellspacing="0">
                                     <tr>
                                             <th>Nombre de Evaluador</th>
-                                            <th class="actions">Status de Revisión</th>
-                                            <th style="width:10px;">Acciones</th>
+                                            <th>Status de Revisión</th>
+                                            <th>Acciones</th>
                                     </tr>
                                     <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
                                         <tr>
@@ -44,11 +44,12 @@
                                             </td>
                                             <?php 
                                             echo "<td><strong>";
-                                                if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';}
+                                                if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';} elseif($paperEvaluator['status']=="ASIGNED"){echo 'Asignado a Evaluador';} elseif($paperEvaluator['status']=="ACCEPT"){echo 'Evaluación Aceptada';} elseif($paperEvaluator['status']=="DENIED"){echo 'Evaluación Rechazada';}
                                             echo "</strong></td>";
                                             ?>
                                             <td style="text-align:center;">
-                                                <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Esta seguro que quiere Eliminarlo?')); ?>
+                                                <a id="viewCorrections"><span class="glyph info glyph-editor"></span></a>
+                                                <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Está seguro de que quiere Eliminarlo?')); ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -68,20 +69,10 @@
                 <div class="profileData">
                     <p>Agregar Evaluadores o Asignar a Revista</p>
                     <p> 
-                        <button id="newEvaluator" class="lime twenty" style="margin-left:5%; height:65px;">Asignar Nuevo Evaluador</button>
-                        <?php 
-                            echo $this->Form->postLink(
-                                '<button style="height:65px;" class="lime twenty">Asignar a Revista en Construcción</button>',
-                            array(
-                                'controller' => 'backend', 
-                                'action' => 'addArticleToMag',
-                                $paperId),
-                            array( 
-                                'escape'=> false),
-                            __('Asignar a Revista en Construcción?')
-                            );
-                        ?>
-                        <button id="changeRevision" class="white">Cambiar Revision</button>
+                        <button id="newEvaluator" class="lime twenty" style="margin-left:5%; height:65px;">Asignar o Cambiar Evaluadores</button>
+                        <button id="newEvaluator" class="lime twenty" style="height:65px;">Aceptar o Rechazar Artículo</button>
+                        <button id="toMagazine" class="lime twenty" style="height:65px;">Asignar a Revista en Construcción</button>
+                        <button id="changeRevision" class="lime twenty" style="height:65px;">Cambiar Tipo de Revisión</button>
                     </p>
                 </div>
             </div>
@@ -92,10 +83,10 @@
 <div id="modalContent" style="display:none">
     <div class="wrapper">
         <?php if (!empty($evaluators)): ?>
-        <table id="hola" cellpadding="0" cellspacing="0">
+        <table>
             <tr>
                     <th>Nombre de Evaluador</th>
-                    <th class="actions"><?php echo __('Acciones'); ?></th>
+                    <th>Acciones</th>
             </tr>
             <?php foreach ($evaluators as $evaluator): ?>
             <tr>
@@ -173,6 +164,12 @@
         </div>
     </div>
 </div>
+<div id="modalCorrections" style="display:none">
+    <div class="container">
+        aqui van a salir en algun momento las correcciones
+    </div>
+</div>
+
 </div></div>
 <script type="text/javascript">
     var newEvaluator = document.getElementById('newEvaluator');
@@ -183,11 +180,21 @@
         });
     }, false);
 
+    var viewCorrections = document.getElementById('viewCorrections');
+    viewCorrections.addEventListener('click', function () {
+        $("#modalCorrections").modal();
+    }, false);
+
     var changeRevision = document.getElementById('changeRevision');
     changeRevision.addEventListener('click', function () {
         $("#modalRevision").modal();
         $('.changeBtn').bind("click", function(e) {
             window.location.href = $(this).attr("data-href");
         });
+    }, false);
+
+    var toMagazine = document.getElementById('toMagazine');
+    toMagazine.addEventListener('click', function () {
+            window.location.href = '../addArticleToMag/<?php echo $paperId;?>';
     }, false);
 </script>
