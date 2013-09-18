@@ -43,7 +43,8 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
         'RequestHandler',
-        'AjaxMultiUpload.Upload'
+        'AjaxMultiUpload.Upload',
+        'Email'
     );
 
     public function beforeFilter(){

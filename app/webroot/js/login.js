@@ -434,7 +434,7 @@ $.initializeReset = function() {
 					success: function(response) {
 						// Response was a success
 						if (response.success) {
-							document.location.href = "../login/success";
+							document.location.href = "../login";
 						// Response contains errors
 						} else {
 							$("#password").removeClass().addClass("animated wobble").delay(1000).queue(function(){ 

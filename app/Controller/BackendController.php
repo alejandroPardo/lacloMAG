@@ -16,20 +16,6 @@ class BackendController extends AppController {
         $this->set('username', $this->Auth->user('username'));
 		$this->set('fullName', $this->Auth->user('first_name').' '.$this->Auth->user('last_name'));
 		$this->set('firstName', $this->Auth->user('first_name'));
-		
-		$messages = $this->MappedMessage->find('all', array(
-		    'conditions' => array('MappedMessage.user_id' => $this->Auth->user('id')), //array of conditions
-		    //'fields' => array('Model.field1', 'DISTINCT Model.field2'), //array of field names
-		    'order' => array('MappedMessage.message_id'), //string or array defining order
-		    //'group' => array('Model.field'), //fields to GROUP BY
-		    //'limit' => n, //int
-		    //'page' => n, //int
-		    //'offset' => n, //int
-		    //'callbacks' => true //other possible values are false, 'before', 'after'
-		));
-		$pendingMessages = $this->MappedMessage->find('count', array('conditions' => array('MappedMessage.is_read' => 0, 'MappedMessage.user_id' => $this->Auth->user('id'))));
-    	$this->set('pendingMessages', $pendingMessages);
-		$this->set('messages', $messages);
 
 		if($this->Auth->user('role') == 'admin'){
 			$this->set('role', 'Administrador');
@@ -74,6 +60,26 @@ class BackendController extends AppController {
 	  				),
 	  			)
 	  		);
+
+	  		$newCount = $this->User->find('count',
+	  			array(
+	  				'conditions' => array(
+	  					'User.role' => array('PREVIOUS'),
+	  				),
+	  			)
+	  		);
+	  		$newUsers = $this->User->find('all',
+	  			array(
+	  				'conditions' => array(
+	  					'User.role' => array('PREVIOUS'),
+	  				),
+	  			)
+	  		);
+
+	  		$this->set('newCount', $newCount);
+	  		$this->set('newUsers', $newUsers);
+
+
 			$this->set('papersPreviews', $papersPreviews);
 		} else if($this->Auth->user('role') == 'evaluator'){
 			$this->set('role', 'Evaluador');
@@ -277,6 +283,99 @@ class BackendController extends AppController {
 			$this->redirect(array("controller" => "backend", "action" => "index"));
   		}
 	}
+
+	public function addUser($id=null) {
+		if($this->Auth->user('role') == 'editor'){
+			$user = null;
+			if($id != null){
+				$user = $this->User->find('first',array('conditions' => array('User.id' => $id)));
+				if(empty($user)){
+		  			$this->Session->setFlash(__('Ocurrió un error. Intentelo nuevamente.'));
+					$this->redirect(array("controller" => "backend", "action" => "index"));
+		  		}
+			}
+			$this->set('user', $user);
+		} else {
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+	}
+
+	public function addNewUser($id=null) {
+		$this->autoRender = false;
+		if($this->Auth->user('role') == 'editor'){
+			if ($this->request->is('post')) {
+				if ($this->data['submit'] == "Aceptar Usuario") {
+					if($this->data['id']){
+						$data = array('id' => $this->data['id'], 'username' => $this->data['username'], 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
+						$this->User->save($data);
+					} else {
+						$this->User->create();
+						$data = array('username' => $this->data['username'], 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
+						$this->User->save($data);
+					}
+		           	$fu=$this->User->find('first',array('conditions'=>array('User.email'=>$this->data['email'])));
+
+		            $key = Security::hash(String::uuid(),'sha512',true);
+	                $hash=sha1($fu['User']['username'].rand(0,100));
+	                $url = Router::url(array('controller'=>'users','action'=>'reset'), true).'/'.$key.'#'.$hash;
+	                $ms=$url;
+	                $ms=wordwrap($ms,1000);
+	                //debug($url);
+	                $fu['User']['tokenhash']=$key;
+	                $this->User->id=$fu['User']['id'];
+	                if($this->User->saveField('tokenhash',$fu['User']['tokenhash'])){
+	                    //============Email================//
+
+	                    /* SMTP Options */
+
+	                    $this->Email->smtpOptions = array(
+	                        'port'=>'465',
+	                        'host' => 'ssl://smtp.gmail.com',
+	                        'username'=>'laclomag@gmail.com',
+	                        'password'=>'Laclo1234'
+	                    );
+
+	                    $this->Email->template = 'newuser';
+	                    $this->Email->from    = 'LACLO Magazine <laclomag@gmail.com>';
+	                    $this->Email->to      = $fu['User']['first_name'].'<'.$fu['User']['email'].'>';
+	                    $this->Email->subject = 'Solicitud de Ingreso LACLO Magazine';
+	                    $this->Email->sendAs = 'both';
+
+	                    $this->Email->delivery = 'smtp';
+	                    $this->set('ms', $ms);
+	                    $this->set('user', $fu['User']['first_name']);
+	                    $this->set('username', $fu['User']['username']);
+	                    $this->Email->send();
+	                    $this->set('smtp_errors', $this->Email->smtpError);
+
+	                    $this->Session->setFlash("El usuario se ha guardado exitosamente");
+	                    $this->redirect(array("controller" => "backend", "action" => "index"));
+
+	                    //============EndEmail=============//
+	                } else {
+	                    $this->Session->setFlash("Ocurrio un error guardando el usuario");
+	                    $this->redirect(array("controller" => "backend", "action" => "index"));
+	                }
+	            } elseif ($this->data['submit'] == "Agregar Usuario") {
+		        	$this->redirect(array("controller" => "backend", "action" => "index"));
+		        } elseif ($this->data['submit'] == "Rechazar Usuario") {
+		        	$this->User->id = $this->data['id'];
+				    if (!$this->User->exists()) {
+				        $this->Session->setFlash(__('Ocurrio un error.'));
+			            $this->redirect(array("controller" => "backend", "action" => "index"));
+					}
+			        if ($this->User->delete()) {
+			            $this->Session->setFlash(__('Se ha eliminado la petición de ingreso.'));
+			            $this->redirect(array("controller" => "backend", "action" => "index"));
+			        }
+			        $this->redirect(array("controller" => "backend", "action" => "index"));
+		        }
+	        }
+		} else {
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
+	}
+
 
 	/****************
 	/*

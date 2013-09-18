@@ -56,30 +56,20 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 						?>
 					</li>
 					<?php if($role=='Editor'){?>
-						<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
-						<span data-count=<?php echo $pendingMessages;?>>Nuevos Usuarios</span>
+						<?php if($newCount>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
+						<span data-count=<?php echo $newCount;?>>Nuevos Usuarios</span>
 							<ul>
 								<li>
-									<a href="#" rel="external">
-										<h4>Enviar Nuevo Mensaje</h4>
-										<p>Miembros de LACLOmagazine</p>
+									<a href="addUser/0" rel="external">
+										<h4>Agregar Nuevo Usuario</h4>
+										<p>LACLOmagazine</p>
 									</a>
 								</li>
-								<?php foreach( $messages as $message ): ?>
-									<?php 
-										if($message['MappedMessage']['is_read']==0){
-											echo "<li class='unread'>";
-										} else {
-											echo "<li>";
-										}
-									?>
-								    	<a href="ajax" data-modal>
-											<h4>De: 
-												<?php 
-													echo ($message['User']['username']);
-												?>
-											</h4>
-											<p><?php echo ($message['Message']['content']);?></p>
+								<?php foreach( $newUsers as $newUser ): ?>
+									<li>
+								    	<a href="addUser/<?php echo ($newUser['User']['id']);?>" rel="external">
+											<h4>Agregar Nuevo: <?php echo ($newUser['User']['last_name']);?></h4>
+											<p><?php echo ($newUser['User']['first_name']);?> // <?php echo ($newUser['User']['email']);?></p>
 										</a>
 									</li>
 								<?php endforeach; ?>
@@ -119,6 +109,20 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 							</ul>
 						</li>
 					<?php } ?>
+					<li >
+						<?php 
+							echo $this->Html->link(
+								'<span>Ir al FrontEnd</span>',
+							array(
+								'controller' => 'home', 
+								'action' => 'index'),
+							array( 
+								'rel' => 'external', 
+								'target' => '_blank',
+								'escape'=> false)
+							);
+						?>
+					</li>
 					<li class="avatar">
 						<?php echo $this->Html->image('avatar.jpg', array('alt' => 'avatar'));?>
 						<ul>
