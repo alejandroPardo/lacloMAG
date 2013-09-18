@@ -287,7 +287,7 @@ class BackendController extends AppController {
 	public function addUser($id=null) {
 		if($this->Auth->user('role') == 'editor'){
 			$user = null;
-			if($id != null){
+			if($id != '0'){
 				$user = $this->User->find('first',array('conditions' => array('User.id' => $id)));
 				if(empty($user)){
 		  			$this->Session->setFlash(__('Ocurrió un error. Intentelo nuevamente.'));
@@ -305,14 +305,9 @@ class BackendController extends AppController {
 		if($this->Auth->user('role') == 'editor'){
 			if ($this->request->is('post')) {
 				if ($this->data['submit'] == "Aceptar Usuario") {
-					if($this->data['id']){
-						$data = array('id' => $this->data['id'], 'username' => $this->data['username'], 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
-						$this->User->save($data);
-					} else {
-						$this->User->create();
-						$data = array('username' => $this->data['username'], 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
-						$this->User->save($data);
-					}
+					$data = array('id' => $this->data['id'], 'username' => $this->data['username'], 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
+					$this->User->save($data);
+					
 		           	$fu=$this->User->find('first',array('conditions'=>array('User.email'=>$this->data['email'])));
 
 		            $key = Security::hash(String::uuid(),'sha512',true);
@@ -357,7 +352,50 @@ class BackendController extends AppController {
 	                    $this->redirect(array("controller" => "backend", "action" => "index"));
 	                }
 	            } elseif ($this->data['submit'] == "Agregar Usuario") {
-		        	$this->redirect(array("controller" => "backend", "action" => "index"));
+		        	$this->User->create();
+					$data = array('username' => $this->data['username'], 'password' => 'jbasd54asd7g8df65f468sd4f68sdf58654g', 'email' => $this->data['email'], 'role' => $this->data['role'], 'first_name' => $this->data['first_name'], 'last_name' => $this->data['last_name']);
+					$this->User->save($data);
+
+		        	$fu=$this->User->find('first',array('conditions'=>array('User.email'=>$this->data['email'])));
+
+		            $key = Security::hash(String::uuid(),'sha512',true);
+	                $hash=sha1($fu['User']['username'].rand(0,100));
+	                $url = Router::url(array('controller'=>'users','action'=>'reset'), true).'/'.$key.'#'.$hash;
+	                $ms=$url;
+	                $ms=wordwrap($ms,1000);
+	                //debug($url);
+	                $fu['User']['tokenhash']=$key;
+	                $this->User->id=$fu['User']['id'];
+	                if($this->User->saveField('tokenhash',$fu['User']['tokenhash'])){
+	                    //============Email================//
+
+	                    /* SMTP Options */
+
+	                    $this->Email->smtpOptions = array(
+	                        'port'=>'465',
+	                        'host' => 'ssl://smtp.gmail.com',
+	                        'username'=>'laclomag@gmail.com',
+	                        'password'=>'Laclo1234'
+	                    );
+
+	                    $this->Email->template = 'newuser';
+	                    $this->Email->from    = 'LACLO Magazine <laclomag@gmail.com>';
+	                    $this->Email->to      = $fu['User']['first_name'].'<'.$fu['User']['email'].'>';
+	                    $this->Email->subject = 'Solicitud de Ingreso LACLO Magazine';
+	                    $this->Email->sendAs = 'both';
+
+	                    $this->Email->delivery = 'smtp';
+	                    $this->set('ms', $ms);
+	                    $this->set('user', $fu['User']['first_name']);
+	                    $this->set('username', $fu['User']['username']);
+	                    $this->Email->send();
+	                    $this->set('smtp_errors', $this->Email->smtpError);
+
+	                    $this->Session->setFlash("El usuario se ha guardado exitosamente");
+	                    $this->redirect(array("controller" => "backend", "action" => "index"));
+
+	                    //============EndEmail=============//
+	                }
 		        } elseif ($this->data['submit'] == "Rechazar Usuario") {
 		        	$this->User->id = $this->data['id'];
 				    if (!$this->User->exists()) {

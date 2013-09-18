@@ -50,8 +50,19 @@
 							<p>
 								<input id="username" name="username" type="text" placeholder="Nombre de Usuario" required/>
 							</p>
-							<input type="submit" name="submit" value="Aceptar Usuario" class="col full sugar twenty" style="margin-left:5%;"/>
-							<input type="submit" name="submit" value="Rechazar Usuario" class="col full sugar twenty"/>
+							<p>Username</p>
+							<p>
+								<select name='role'>
+									<option value="author" selected="selected">Autor</option>
+									<option value="evaluator">Evaluador</option>
+								</select>
+							</p>
+							<?php if(!empty($user)){?>
+								<input type="submit" name="submit" value="Aceptar Usuario" class="col full sugar twenty" style="margin-left:5%;"/>
+								<input type="submit" name="submit" value="Rechazar Usuario" class="col full sugar twenty"/>
+							<?php } else { ?>
+								<input type="submit" name="submit" value="Agregar Usuario" class="col full sugar twenty" style="margin-left:5%;"/>
+							<?php } ?>
 						</div>
 					</form>
 			</div>
