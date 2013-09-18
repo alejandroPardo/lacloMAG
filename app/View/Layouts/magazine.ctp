@@ -14,6 +14,8 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 		echo $this->Html->meta('icon');
 		echo $this->Html->meta('viewport', null, array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'),false);
 		echo $this->Html->css('magazine');
+		echo $this->Html->css('redactor');
+
 
 		echo $this->Html->script('modernizr.custom');
 		

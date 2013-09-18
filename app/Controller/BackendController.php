@@ -903,7 +903,7 @@ class BackendController extends AppController {
   		
   		$magazines = $this->Magazine->find('all', array(
   			'conditions' => array(
-				'Magazine.status' => 'ARCHIVED'
+				'Magazine.status' => array('ARCHIVED', 'ACTUAL')
 			
 			),
 			'recursive' => 2

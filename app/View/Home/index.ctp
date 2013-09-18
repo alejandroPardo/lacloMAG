@@ -23,13 +23,15 @@
 		<p class="subtext">Último Ejemplar</p>
 		<div id="lineset" class="clearfix">
 			<div id="linesleft"></div>
-			<div id="dates">
-				<span class="month">June</span>
-				<span class="bignumber">23</span>
-			</div>
+			<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>">
+				<div id="dates" style='background:#<?php echo $actual["MagazineFile"]["color"];?>'>
+					<span class="month">LACLOmag</span>
+					<span class="bignumber"><?php echo $actual["Magazine"]["id"];?></span>
+				</div>
+			</a>
 			<div id="linesright"></div>
 		</div>
-		<p class="location">Aquí va el<br>último ejemplar</p>
+		<p class="location"><?php echo $actual["MagazineFile"]["name"];?><br><?php echo $actual["MagazineFile"]["edition"];?></p>
 		<p class="intro"></p>
 		<p class="arrow"><a href="#Media"><img src="img/arrow.png" alt=""></a></p>
 	</div>
@@ -39,19 +41,14 @@
 	<div class="content">
 		<h2>Ejemplares de LACLO Magazine</h2>
 		<p>Aquí se pueden ver todos los ejemplares de LACLO Magazine. Descargalos o visualízalos en linea.<img class="flashing" src="img/stripe.gif" alt=""></p>
-		<div class="videoplayer">
-			<iframe src="http://player.vimeo.com/video/37410423" width="1000" height="570"></iframe>
+		<div class="videoplayer" style="background:#<?php echo $actual['MagazineFile']['color'];?>;">
+
+			
 		</div>
 		<div id="projects" class="clearfix">
-			<div class="project"><a class="example_group" href="img/port/1.jpg"><img alt="project" src="img/port/1.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/2.jpg"><img alt="project" src="img/port/2.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/3.jpg"><img alt="project" src="img/port/3.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/4.jpg"><img alt="project" src="img/port/4.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/5.jpg"><img alt="project" src="img/port/5.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/6.jpg"><img alt="project" src="img/port/6.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/7.jpg"><img alt="project" src="img/port/7.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/8.jpg"><img alt="project" src="img/port/8.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
-			<div class="project"><a class="example_group" href="img/port/9.jpg"><img alt="project" src="img/port/9.jpg"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
+			<?php foreach ($magazines as $magazine) { ?>
+				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="#"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
+			<?php } ?>
 		</div>
 	</div>
 </div>
