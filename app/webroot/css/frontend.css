@@ -483,6 +483,8 @@ img {
 	margin-top:30px;
 	margin-bottom:30px;
 	border: solid 12px #FCC949;
+	width: 96.5%;
+	height: 270px;
 }
 
 .videoplayer iframe {
@@ -830,6 +832,10 @@ img {
 	
 	.normalcontent form input {
 		width:87%;
+	}
+
+	.videoplayer{
+		width: 93%;
 	}
 }
 
