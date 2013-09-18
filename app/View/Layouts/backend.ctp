@@ -55,36 +55,36 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 							);
 						?>
 					</li>
-					<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
-					<span data-count=<?php echo $pendingMessages;?>>Mensajes</span>
-						<ul>
-							<li>
-								<a href="#" rel="external">
-									<h4>Enviar Nuevo Mensaje</h4>
-									<p>Miembros de LACLOmagazine</p>
-								</a>
-							</li>
-							<?php foreach( $messages as $message ): ?>
-								<?php 
-									if($message['MappedMessage']['is_read']==0){
-										echo "<li class='unread'>";
-									} else {
-										echo "<li>";
-									}
-								?>
-							    	<a href="ajax" data-modal>
-										<h4>De: 
-											<?php 
-												echo ($message['User']['username']);
-											?>
-										</h4>
-										<p><?php echo ($message['Message']['content']);?></p>
+					<?php if($role=='Editor'){?>
+						<?php if($pendingMessages>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
+						<span data-count=<?php echo $pendingMessages;?>>Nuevos Usuarios</span>
+							<ul>
+								<li>
+									<a href="#" rel="external">
+										<h4>Enviar Nuevo Mensaje</h4>
+										<p>Miembros de LACLOmagazine</p>
 									</a>
 								</li>
-							<?php endforeach; ?>
-						</ul>
-					</li>
-					<?php if($role=='Editor'){?>
+								<?php foreach( $messages as $message ): ?>
+									<?php 
+										if($message['MappedMessage']['is_read']==0){
+											echo "<li class='unread'>";
+										} else {
+											echo "<li>";
+										}
+									?>
+								    	<a href="ajax" data-modal>
+											<h4>De: 
+												<?php 
+													echo ($message['User']['username']);
+												?>
+											</h4>
+											<p><?php echo ($message['Message']['content']);?></p>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</li>
 						<li>
 							<span>Noticias</span>
 							<ul>
