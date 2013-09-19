@@ -23,9 +23,9 @@
                                 <h2>Tipo revision</h2>
                                 <div class="content">
                                     <?php 
-                                        if($paper['Paper']['evaluation_type'] == 'OPEN'){ echo '<h2>Abierta</h2><br><h3>Los evaluadores y los autores son conocidos publicamente.</h3>';
-                                        } elseif($paper['Paper']['evaluation_type'] == 'BLIND'){ echo '<h2>Ciega</h2><br><h3>No se le da a conocer a los evaluadores el nombre de los autores del artículo.</h3>';
-                                        } elseif($paper['Paper']['evaluation_type'] == 'DOUBLEBLIND'){ echo '<h2>Doble Ciega</h2><br><h3>No se le da a conocer a los evaluadores el nombre de los autores del artículo ni a los autores el nombre de los evaluadores.</h3>';
+                                        if($paper['Paper']['evaluation_type'] == 'OPEN'){ echo '<strong>Abierta</strong><br>Los evaluadores y los autores son conocidos publicamente.';
+                                        } elseif($paper['Paper']['evaluation_type'] == 'BLIND'){ echo '<strong>Ciega</strong><br>No se le da a conocer a los evaluadores el nombre de los autores del artículo.';
+                                        } elseif($paper['Paper']['evaluation_type'] == 'DOUBLEBLIND'){ echo '<strong>Doble Ciega</strong><br>No se le da a conocer a los evaluadores el nombre de los autores del artículo ni a los autores el nombre de los evaluadores.';
                                         }
                                     ?>
                                 </div>
@@ -34,13 +34,17 @@
                                 <table id="hola" cellpadding="0" cellspacing="0">
                                     <tr>
                                             <th>Nombre de Evaluador</th>
+                                            <th>Tipo de Evaluador</th>
                                             <th>Status de Revisión</th>
-                                            <th>Acciones</th>
+                                            <th style="width:70px;">Acciones</th>
                                     </tr>
                                     <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
                                         <tr>
                                             <td>
                                                 <?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '. $paperEvaluator['Evaluator']['User']['last_name']); ?>
+                                            </td>
+                                            <td>
+                                                <?php if($paperEvaluator['type']=="PRINCIPAL"){echo 'Principal';} elseif($paperEvaluator['type']=="SURROGATE"){echo 'Suplente';}?>
                                             </td>
                                             <?php 
                                             echo "<td><strong>";
@@ -69,10 +73,18 @@
                 <div class="profileData">
                     <p>Agregar Evaluadores o Asignar a Revista</p>
                     <p> 
-                        <button id="newEvaluator" class="lime twenty" style="margin-left:5%; height:65px;">Asignar o Cambiar Evaluadores</button>
-                        <button id="newEvaluator" class="lime twenty" style="height:65px;">Aceptar o Rechazar Artículo</button>
-                        <button id="toMagazine" class="lime twenty" style="height:65px;">Asignar a Revista en Construcción</button>
-                        <button id="changeRevision" class="lime twenty" style="height:65px;">Cambiar Tipo de Revisión</button>
+                        <button id="acceptArticle" class="lime twenty" style="height:65px;margin-left:5%;">Aceptar o Rechazar Artículo</button>
+                        <?php if($paper['Paper']['status'] == 'ACCEPTED'){
+                            echo '<button id="toMagazine" class="lime twenty" style="height:65px;">Asignar a Revista en Construcción</button>';
+                        } else {
+                            echo '<button id="changeRevision" class="lime twenty" style="height:65px;">Cambiar Tipo de Revisión</button>';
+                            if($principalCount<2){
+                                echo '<button id="newEvaluator" class="lime twenty" style="height:65px;">Asignar Evaluadores Principales</button>';
+                            }
+                            if($surrogateCount==0) {
+                                echo '<button id="newSurrogate" class="lime twenty" style="height:65px;">Asignar Evaluador Suplente</button>';
+                            }
+                        }?>
                     </p>
                 </div>
             </div>
@@ -91,11 +103,43 @@
             <?php foreach ($evaluators as $evaluator): ?>
             <tr>
                 <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
+                <td><?php echo $this->Html->link('<span class="glyph check glyph-editor"></span>', array(
+                    'controller' => 'backend', 
+                    'action' => 'addEvaluator', 
+                    $evaluator['Evaluator']['id'],
+                    $paperId,
+                    'PRINCIPAL'),
+                    array( 
+                        'escape' => false,
+                        'rel' => 'external', 
+                        'class' => 'addEval'
+                    ));?>
+                </td>
+            </tr>
+             <?php endforeach; ?>
+        </table>
+        <?php else: ?>
+            <h4><span>No hay evaluadores</span> disponibles</h4>
+        <?php endif; ?>
+    </div>
+</div>
+<div id="modalSurrogate" style="display:none">
+    <div class="wrapper">
+        <?php if (!empty($evaluators)): ?>
+        <table>
+            <tr>
+                <th>Nombre de Evaluador</th>
+                <th>Acciones</th>
+            </tr>
+            <?php foreach ($evaluators as $evaluator): ?>
+            <tr>
+                <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
                 <td><?php echo $this->Html->link(__('Agregar'), array(
                     'controller' => 'backend', 
                     'action' => 'addEvaluator', 
                     $evaluator['Evaluator']['id'],
-                    $paperId),
+                    $paperId,
+                    'SURROGATE'),
                     array( 
                         'rel' => 'external', 
                         'class' => 'addEval'
@@ -105,65 +149,61 @@
              <?php endforeach; ?>
         </table>
         <?php else: ?>
-            <p>No hay Evaluadores</p>
+            <h4><span>No hay evaluadores</span> disponibles</h4>
         <?php endif; ?>
     </div>
 </div>
 
 <div id="modalRevision" style="display:none">
-    <div class="container">
-        <div id="buttons">
-            <div class=" col_4 alpha">
-                <?php 
-                    echo $this->Html->link(
-                        '<button id="" class="white">BLIND</button>',
-                    array(
-                        'controller' => 'backend', 
-                        'action' => 'changeEvaluationType',
-                        $paperId,
-                        'BLIND'),
-                    array( 
-                        'class' => 'changeBtn',
-                        'rel' => 'external', 
-                        'escape'=> false)
-                    );
-                ?>
-            </div>
-            <div class=" col_4 alpha">
-                <?php 
-                    echo $this->Html->link(
-                        '<button id="" class="white">OPEN</button>',
-                    array(
-                        'controller' => 'backend', 
-                        'action' => 'changeEvaluationType',
-                        $paperId,
-                        'OPEN'),
-                    array( 
-                        'class' => 'changeBtn',
-                        'rel' => 'external', 
-                        'escape'=> false)
-                    );
-                ?>
-            </div>
-            <div class=" col_4 alpha">
-                <?php 
-                    echo $this->Html->link(
-                        '<button id="" class="white">DOUBLEBLIND</button>',
-                    array(
-                        'controller' => 'backend', 
-                        'action' => 'changeEvaluationType',
-                        $paperId,
-                        'DOUBLEBLIND'),
-                    array( 
-                        'class' => 'changeBtn',
-                        'rel' => 'external', 
-                        'escape'=> false)
-                    );
-                ?>
-            </div>
-        </div>
-    </div>
+    <h1>Cambiar Tipo de Revisión</h1>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="lime full">Revisión Ciega</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'changeEvaluationType',
+            $paperId,
+            'BLIND'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
+    <br/>
+    <br/>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="sugar full">Revisión Abierta</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'changeEvaluationType',
+            $paperId,
+            'OPEN'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
+    <br/>
+    <br/>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="sunlit full">Revisión Doble Ciega</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'changeEvaluationType',
+            $paperId,
+            'DOUBLEBLIND'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
 </div>
+
 <div id="modalCorrections" style="display:none">
     <div class="container">
         aqui van a salir en algun momento las correcciones
@@ -172,29 +212,75 @@
 
 </div></div>
 <script type="text/javascript">
-    var newEvaluator = document.getElementById('newEvaluator');
-    newEvaluator.addEventListener('click', function () {
-        $("#modalContent").modal();
-        $('.addEval').bind("click", function(e) {
-            window.location.href = $(this).attr("data-href");
-        });
-    }, false);
+    
+    if ($("#newEvaluator").length > 0){
+        var newEvaluator = document.getElementById('newEvaluator');
+        newEvaluator.addEventListener('click', function () {
+            $('#modalContent').modal({
+                animation: "flipInX", 
+            });
+            $('.addEval').on("click", function(e) {
+                var a = confirm('Agregar Evaluador al Artículo?');
+                if (a) {
+                    window.location.href = $(this).attr("data-href");
+                }
+            });
+            $(".modal").on("click", function(e) {
+                e.stopPropagation();
+            });
 
-    var viewCorrections = document.getElementById('viewCorrections');
-    viewCorrections.addEventListener('click', function () {
-        $("#modalCorrections").modal();
-    }, false);
+        }, false);
+    }
 
-    var changeRevision = document.getElementById('changeRevision');
-    changeRevision.addEventListener('click', function () {
-        $("#modalRevision").modal();
-        $('.changeBtn').bind("click", function(e) {
-            window.location.href = $(this).attr("data-href");
-        });
-    }, false);
+    if ($("#newSurrogate").length > 0){
+        var newSurrogate = document.getElementById('newSurrogate');
+        newSurrogate.addEventListener('click', function () {
+            $('#modalSurrogate').modal({
+                animation: "flipInX", 
+            });
+            $('.addEval').on("click", function(e) {
+                var a = confirm('Agregar Evaluador al Artículo?');
+                if (a) {
+                    window.location.href = $(this).attr("data-href");
+                }
+            });
+            $(".modal").on("click", function(e) {
+                e.stopPropagation();
+            });
 
-    var toMagazine = document.getElementById('toMagazine');
-    toMagazine.addEventListener('click', function () {
-            window.location.href = '../addArticleToMag/<?php echo $paperId;?>';
-    }, false);
+        }, false);
+    }
+
+    if ($("#viewCorrections").length > 0){
+        var viewCorrections = document.getElementById('viewCorrections');
+        viewCorrections.addEventListener('click', function () {
+            $("#modalCorrections").modal();
+        }, false);
+    }
+
+    if ($("#changeRevision").length > 0){
+        var changeRevision = document.getElementById('changeRevision');
+        changeRevision.addEventListener('click', function () {
+            $('#modalRevision').modal({
+                animation: "flipInX",
+                theme: "dark" 
+            });
+            $('.changeBtn').bind("click", function(e) {
+                window.location.href = $(this).attr("data-href");
+            });
+            $(".modal").on("click", function(e) {
+                e.stopPropagation();
+            });
+
+        }, false);
+    }
+
+
+
+    if ($("#toMagazine").length > 0){
+        var toMagazine = document.getElementById('toMagazine');
+        toMagazine.addEventListener('click', function () {
+                window.location.href = '../addArticleToMag/<?php echo $paperId;?>';
+        }, false);
+    }
 </script>

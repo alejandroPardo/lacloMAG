@@ -60,10 +60,18 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 						<span data-count=<?php echo $newCount;?>>Nuevos Usuarios</span>
 							<ul>
 								<li>
-									<a href="addUser/0" rel="external">
-										<h4>Agregar Nuevo Usuario</h4>
-										<p>LACLOmagazine</p>
-									</a>
+									<?php 
+										echo $this->Html->link(
+											'<h4>Agregar Nuevo Usuario</h4>
+											<p>LACLOmagazine</p>',
+										array(
+											'controller' => 'backend', 
+											'action' => 'addUser', '0'),
+										array( 
+											'rel' => 'external', 
+											'escape'=> false)
+										);
+									?>
 								</li>
 								<?php foreach( $newUsers as $newUser ): ?>
 									<li>

@@ -50,13 +50,15 @@
 							<p>
 								<input id="username" name="username" type="text" placeholder="Nombre de Usuario" required/>
 							</p>
-							<p>Username</p>
-							<p>
-								<select name='role'>
-									<option value="author" selected="selected">Autor</option>
-									<option value="evaluator">Evaluador</option>
-								</select>
-							</p>
+							<?php if(empty($user)){?>
+								<p>Rol en el Sistema</p>
+								<p>
+									<select name='role'>
+										<option value="author" selected="selected">Autor</option>
+										<option value="evaluator">Evaluador</option>
+									</select>
+								</p>
+							<?php } ?>
 							<?php if(!empty($user)){?>
 								<input type="submit" name="submit" value="Aceptar Usuario" class="col full sugar twenty" style="margin-left:5%;"/>
 								<input type="submit" name="submit" value="Rechazar Usuario" class="col full sugar twenty"/>

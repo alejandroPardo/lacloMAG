@@ -310,6 +310,17 @@ class BackendController extends AppController {
 					
 		           	$fu=$this->User->find('first',array('conditions'=>array('User.email'=>$this->data['email'])));
 
+		           	if($fu['User']['role']=='evaluator'){
+		           		$this->Evaluator->create();
+						$data = array('user_id' => $fu['User']['id']);
+						$this->Evaluator->save($data);
+		           	} else {
+		           		$this->Author->create();
+						$data = array('user_id' => $fu['User']['id']);
+						$this->Author->save($data);
+		           	}
+
+
 		            $key = Security::hash(String::uuid(),'sha512',true);
 	                $hash=sha1($fu['User']['username'].rand(0,100));
 	                $url = Router::url(array('controller'=>'users','action'=>'reset'), true).'/'.$key.'#'.$hash;
@@ -357,6 +368,16 @@ class BackendController extends AppController {
 					$this->User->save($data);
 
 		        	$fu=$this->User->find('first',array('conditions'=>array('User.email'=>$this->data['email'])));
+
+		        	if($fu['User']['role']=='evaluator'){
+		           		$this->Evaluator->create();
+						$data = array('user_id' => $fu['User']['id']);
+						$this->Evaluator->save($data);
+		           	} else {
+		           		$this->Author->create();
+						$data = array('user_id' => $fu['User']['id']);
+						$this->Author->save($data);
+		           	}
 
 		            $key = Security::hash(String::uuid(),'sha512',true);
 	                $hash=sha1($fu['User']['username'].rand(0,100));
@@ -749,7 +770,7 @@ class BackendController extends AppController {
 						)
 					),
 					'PaperEvaluator'  => array(
-						'fields' => array('id','evaluator_id', 'status'),
+						'fields' => array('id','evaluator_id', 'status', 'type'),
 						'Evaluator' => array(
 							'fields' => array('id', 'user_id'),
 							'User' => array(
@@ -762,6 +783,11 @@ class BackendController extends AppController {
   			)
   		);
   		$this->set('paper', $paper);
+
+  		if(empty($paper)){
+			$this->Session->setFlash(__('El artículo no existe.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		}
   		
 
   		$this->Evaluator->Behaviors->load('Containable');
@@ -782,16 +808,26 @@ class BackendController extends AppController {
 				array_push($availableEvaluators, $evaluator);	
 			}
 		}
+
+		$principalCount = $this->PaperEvaluator->find('count', array(
+        	'conditions' => array('PaperEvaluator.paper_id' => $id, 'PaperEvaluator.type' => 'PRINCIPAL'),
+        ));
+
+        $surrogateCount = $this->PaperEvaluator->find('count', array(
+        	'conditions' => array('PaperEvaluator.paper_id' => $id, 'PaperEvaluator.type' => 'SURROGATE'),
+        ));
   		$this->set('evaluators', $availableEvaluators);
+  		$this->set('principalCount', $principalCount);
+  		$this->set('surrogateCount', $surrogateCount);
   		$this->set('paperId', $id);
-  		//debug($availableEvaluators);
   	}
-  	public function addEvaluator($evaluatorId,$paperId) {
+  	public function addEvaluator($evaluatorId,$paperId,$evaluatorType) {
   		
   		$evaluatorData = array();
   		$evaluatorData['PaperEvaluator']['paper_id'] = $paperId;
   		$evaluatorData['PaperEvaluator']['evaluator_id'] = $evaluatorId;
-	 
+  		$evaluatorData['PaperEvaluator']['type'] = $evaluatorType;
+
         $this->PaperEvaluator->create();
 
         if ($this->PaperEvaluator->save($evaluatorData)) {
