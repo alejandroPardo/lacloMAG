@@ -13,6 +13,7 @@
 								<th>Nombre del Paper</th>
 								<th>Creado</th>
 								<th>Status</th>
+								<th>Evaluadores</th>
 								<th>Tipo de Revisión</th>
 								<th style="width: 20px">Descargar</th>
 							</tr>
@@ -27,6 +28,20 @@
 									echo "<td><strong>";
 											if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ONREVISION"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}
 									echo "</strong></td>";
+									echo "<td>";
+										if($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){ echo 'Ocultos por tipo de Revisión';} else { 
+											$numero=1;
+											foreach ($paperEvaluators[$index] as $paperEvaluator) {
+												if($paperEvaluator['PaperEvaluator']['type']=='PRINCIPAL'){
+													echo 'Principal #'.$numero.': '.$paperEvaluator['Evaluator']['User']['first_name'].' '.$paperEvaluator['Evaluator']['User']['last_name'].'<br>';
+													$numero++;
+												} else {
+													echo 'Suplente: ';
+													echo $paperEvaluator['Evaluator']['User']['first_name'].' '.$paperEvaluator['Evaluator']['User']['last_name'];
+												}
+											}
+										}
+									echo "</td>";
 									echo "<td><strong>";
 											if($paper['Paper']['status']=="ONREVISION"){ if($paper['Paper']['evaluation_type']=='BLIND'){echo 'Ciega';} elseif($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){ echo 'Doble Ciega';}else{echo 'Abierta';}} else{echo 'Aun no ha sido asignado';}
 									echo "</strong></td>";

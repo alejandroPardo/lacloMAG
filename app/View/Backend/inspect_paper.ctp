@@ -14,7 +14,6 @@
                                 <div class="content">
                                     <?php foreach ($paper['PaperAuthor'] as $paperAuthors): ?>
                                         <h3>Autor: <strong><?php echo $paperAuthors['Author']['User']['first_name'].' '.$paperAuthors['Author']['User']['last_name'];?></strong></h3>
-                                        
                                     <?php endforeach; ?>
                                     <h3>Creado: <strong><?php echo $paper['Paper']['created'];?></strong></h3>
                                 </div>
@@ -36,7 +35,9 @@
                                             <th>Nombre de Evaluador</th>
                                             <th>Tipo de Evaluador</th>
                                             <th>Status de Revisión</th>
-                                            <th style="width:70px;">Acciones</th>
+                                            <?php if($paper['Paper']['status'] != 'APPROVED'){?>
+                                                <th style="width:70px;">Acciones</th>
+                                            <?php } ?>
                                     </tr>
                                     <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
                                         <tr>
@@ -51,10 +52,11 @@
                                                 if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';} elseif($paperEvaluator['status']=="ASIGNED"){echo 'Asignado a Evaluador';} elseif($paperEvaluator['status']=="ACCEPT"){echo 'Evaluación Aceptada';} elseif($paperEvaluator['status']=="DENIED"){echo 'Evaluación Rechazada';}
                                             echo "</strong></td>";
                                             ?>
-                                            <td style="text-align:center;">
-                                                <a id="viewCorrections"><span class="glyph info glyph-editor"></span></a>
-                                                <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Está seguro de que quiere Eliminarlo?')); ?>
-                                            </td>
+                                            <?php if($paper['Paper']['status'] != 'APPROVED'){?>
+                                                <td style="text-align:center;">
+                                                    <?php echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'deleteEvaluator', $paperEvaluator['id'],$paperEvaluator['evaluator_id'],$paperId), array('escape'=> false), __('Está seguro de que quiere Eliminarlo?')); ?>
+                                                </td>
+                                            <?php } ?>
                                         </tr>
                                     <?php endforeach; ?>
                                 </table>
@@ -73,16 +75,20 @@
                 <div class="profileData">
                     <p>Agregar Evaluadores o Asignar a Revista</p>
                     <p> 
-                        <button id="acceptArticle" class="lime twenty" style="height:65px;margin-left:5%;">Aceptar o Rechazar Artículo</button>
-                        <?php if($paper['Paper']['status'] == 'ACCEPTED'){
+                        <?php if($paper['Paper']['status'] == 'APPROVED'){
                             echo '<button id="toMagazine" class="lime twenty" style="height:65px;">Asignar a Revista en Construcción</button>';
                         } else {
+                            echo '<button id="acceptArticle" class="lime twenty" style="height:65px;margin-left:5%;">Aceptar o Rechazar Artículo</button>';
                             echo '<button id="changeRevision" class="lime twenty" style="height:65px;">Cambiar Tipo de Revisión</button>';
+                            echo '<button id="modifyArticle" class="lime twenty" style="height:65px;">Realizar Cambios al Artículo</button>';
                             if($principalCount<2){
                                 echo '<button id="newEvaluator" class="lime twenty" style="height:65px;">Asignar Evaluadores Principales</button>';
                             }
-                            if($surrogateCount==0) {
+                            if($principalCount==2 && $surrogateCount==0) {
                                 echo '<button id="newSurrogate" class="lime twenty" style="height:65px;">Asignar Evaluador Suplente</button>';
+                            }
+                            if($principalCount==2 && $surrogateCount==1){
+                                echo '<button id="viewCorrections" class="lime twenty" style="height:65px;">Visualizar Correcciones Realizadas</button>';
                             }
                         }?>
                     </p>
@@ -98,11 +104,14 @@
         <table>
             <tr>
                     <th>Nombre de Evaluador</th>
+                    <th>Carga Actual</th>
                     <th>Acciones</th>
             </tr>
-            <?php foreach ($evaluators as $evaluator): ?>
+
+            <?php $index=0; foreach ($evaluators as $evaluator): ?>
             <tr>
-                <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name'] ?></td>
+                <td><?php echo $evaluator['User']['first_name'].' '.$evaluator['User']['last_name']; ?></td>
+                <td><strong><?php echo $assignedPapers[$index].' Artículos'; ?></strong></td>
                 <td><?php echo $this->Html->link('<span class="glyph check glyph-editor"></span>', array(
                     'controller' => 'backend', 
                     'action' => 'addEvaluator', 
@@ -113,7 +122,8 @@
                         'escape' => false,
                         'rel' => 'external', 
                         'class' => 'addEval'
-                    ));?>
+                    ));
+                    $index++;?>
                 </td>
             </tr>
              <?php endforeach; ?>
@@ -206,11 +216,94 @@
 
 <div id="modalCorrections" style="display:none">
     <div class="container">
-        aqui van a salir en algun momento las correcciones
+        <table>
+            <tr>
+                    <th>Nombre de Evaluador</th>
+                    <th>Tipo de Evaluador</th>
+                    <th>Status de Revisión</th>
+                    <th>Comentarios</th>
+            </tr>
+            <?php foreach ($paper['PaperEvaluator'] as $paperEvaluator): ?>
+                <tr>
+                    <td>
+                        <?php echo h($paperEvaluator['Evaluator']['User']['first_name'].' '. $paperEvaluator['Evaluator']['User']['last_name']); ?>
+                    </td>
+                    <td>
+                        <?php if($paperEvaluator['type']=="PRINCIPAL"){echo 'Principal';} elseif($paperEvaluator['type']=="SURROGATE"){echo 'Suplente';}?>
+                    </td>
+                    <?php 
+                    echo "<td><strong>";
+                        if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';} elseif($paperEvaluator['status']=="ASIGNED"){echo 'Asignado a Evaluador';} elseif($paperEvaluator['status']=="ACCEPT"){echo 'Evaluación Aceptada';} elseif($paperEvaluator['status']=="DENIED"){echo 'Evaluación Rechazada';}
+                    echo "</strong></td>";
+                    ?>
+                    <td>
+                        <?php if($paperEvaluator['comment']==null){
+                            echo 'No hay Correcciones';
+                        } else {
+                            $cadena = str_replace('.s.e.p.', '<br>', $paperEvaluator['comment']);
+                            echo $cadena;
+                        }?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
 </div>
 
-</div></div>
+<div id="acceptReject" style="display:none">
+    <h1>Aceptar o Rechazar Artículo</h1>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="lime full">Aceptar Artículo</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'acceptArticle',
+            $paperId,
+            'APPROVED'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="sugar full">Rechazar Artículo</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'acceptArticle',
+            $paperId,
+            'REJECTED'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <?php 
+        echo $this->Html->link(
+            '<button id="" class="sunlit full">Devolver Artículo al Autor</button>',
+        array(
+            'controller' => 'backend', 
+            'action' => 'acceptArticle',
+            $paperId,
+            'REVIEW'),
+        array( 
+            'class' => 'changeBtn',
+            'rel' => 'external', 
+            'escape'=> false)
+        );
+    ?>
+</div>
+
 <script type="text/javascript">
     
     if ($("#newEvaluator").length > 0){
@@ -258,6 +351,19 @@
         }, false);
     }
 
+    if ($("#acceptArticle").length > 0){
+        var acceptArticle = document.getElementById('acceptArticle');
+        acceptArticle.addEventListener('click', function () {
+            $("#acceptReject").modal({
+                animation: "flipInX", 
+                theme: 'dark'
+            });
+            $('.changeBtn').bind("click", function(e) {
+                window.location.href = $(this).attr("data-href");
+            });
+        }, false);
+    }
+
     if ($("#changeRevision").length > 0){
         var changeRevision = document.getElementById('changeRevision');
         changeRevision.addEventListener('click', function () {
@@ -281,6 +387,13 @@
         var toMagazine = document.getElementById('toMagazine');
         toMagazine.addEventListener('click', function () {
                 window.location.href = '../addArticleToMag/<?php echo $paperId;?>';
+        }, false);
+    }
+
+    if ($("#modifyArticle").length > 0){
+        var modifyArticle = document.getElementById('modifyArticle');
+        modifyArticle.addEventListener('click', function () {
+                window.location.href = '../modifyArticle/<?php echo $paperId;?>';
         }, false);
     }
 </script>

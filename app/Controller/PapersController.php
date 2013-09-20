@@ -166,4 +166,25 @@ class PapersController extends AppController {
         }
     }
 
+    public function modifyPaper() {
+        if ($this->request->is('post')) {
+            $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han guardado los cambios del paper <strong>'. $this->data['name'].'</strong>.');
+
+            $paperFile = $this->PaperFile->find('first', array('conditions' => array('PaperFile.paper_id' => $this->data['preview'])));
+
+            $data2['id'] = $paperFile['PaperFile']['id'];
+            $data2['raw'] = $this->data['content'];
+
+            $this->PaperFile->save($data2);
+
+            $this->Logbook->create();
+            $this->Logbook->save($data4);
+
+            $this->Session->setFlash(__('¡Los cambios fueron guardados!'));
+
+            
+            $this->redirect(array("controller" => "backend", "action" => "inspectPaper", $this->data['preview']));
+        }
+    }
+
 }
