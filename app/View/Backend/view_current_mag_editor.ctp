@@ -76,13 +76,14 @@
 				</div>
 					<br>
 					<button id="viewArticlesMag" class="sugar twenty" style="height:65px;margin-left:2%;">Reordenar Articulos</button>
-					<button id="previewMag" class="sugar twenty" style="height:65px;">Vista Previa</button>
 					<?php if($magazineFile == 0){?>
 						<button id="coverMagButton" class="sugar twenty" style="height:65px;">Crear Portada</button>
 						<button id="publishMagButton" class="sugar twenty" style="height:65px; display:none;">Publicar revista</button> 
+						<button id="previewMag" class="sugar twenty" style="height:65px; display:none;">Vista Previa</button>
 					<?php } else { ?>
 						<button id="publishMagButton" class="sugar twenty" style="height:65px;">Publicar revista</button>
 						<button id="coverMagButton" class="sugar twenty" style="height:65px; display:none;">Crear Portada</button>
+						<button id="previewMag" class="sugar twenty" style="height:65px;">Vista Previa</button>
 					<?php } ?>
 					<br><br>
 				</form>

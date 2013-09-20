@@ -49,7 +49,7 @@
                                             </td>
                                             <?php 
                                             echo "<td><strong>";
-                                                if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';} elseif($paperEvaluator['status']=="ASIGNED"){echo 'Asignado a Evaluador';} elseif($paperEvaluator['status']=="ACCEPT"){echo 'Evaluación Aceptada';} elseif($paperEvaluator['status']=="DENIED"){echo 'Evaluación Rechazada';}
+                                                if($paperEvaluator['status']=="APPROVED"){echo 'Aprobado';} elseif($paperEvaluator['status']=="DENIED"){echo 'Rechazado';} elseif($paperEvaluator['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paperEvaluator['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paperEvaluator['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';} elseif($paperEvaluator['status']=="ASIGNED"){echo 'Asignado a Evaluador';} elseif($paperEvaluator['status']=="ACCEPT"){echo 'Evaluación Aceptada';} elseif($paperEvaluator['status']=="DENIED"){echo 'Evaluación Rechazada';} elseif($paperEvaluator['status']=="EDITOR"){echo 'Aprobado por Editor';}
                                             echo "</strong></td>";
                                             ?>
                                             <?php if($paper['Paper']['status'] != 'APPROVED'){?>
