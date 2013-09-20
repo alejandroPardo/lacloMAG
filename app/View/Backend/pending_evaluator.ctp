@@ -25,7 +25,9 @@
 									echo "<td>".$paper['Paper']['name']."</td>";
 									if($paper['Paper']['evaluation_type']=='OPEN'){echo "<td><strong>Abierta</strong></td>";}else if($paper['Paper']['evaluation_type']=='BLIND'){echo "<td><strong>Ciega</strong></td>";}else if($paper['Paper']['evaluation_type']=='DOUBLEBLIND'){echo "<td><strong>Doble Ciega</strong></td>";}
 									if($paper['Paper']['evaluation_type']=='OPEN'){
-										echo "<td>".$author[$index]['0']['User']['first_name']." ".$author[$index]['0']['User']['last_name']."</td>";
+										echo "<td>";
+											echo $paperAuthors[$index]['Author']['User']['first_name'].' '.$paperAuthors[$index]['Author']['User']['last_name'];
+										echo "</td>";
 									} else {
 										echo "<td>Oculto por tipo de revisión</td>";
 									}

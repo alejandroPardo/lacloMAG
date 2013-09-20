@@ -485,6 +485,10 @@ class BackendController extends AppController {
   			)
   		);
   		$i=0;
+  		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por enviar.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+		}
   		foreach ($papers as $paper) {
   			$evaluators[$i] = $this->PaperEvaluator->find('all', array(
 			    'conditions' => array('paper_id'=>$paper['Paper']['id'])
@@ -518,13 +522,11 @@ class BackendController extends AppController {
 		$this->set('evalsTable', $evalsTable);
 		$this->set('evals', $evals);
 		$this->set('paperFiles', $paperFiles);
-		if(empty($papers)){
-			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por enviar.'));
-			$this->redirect(array("controller" => "backend", "action" => "author"));
-		}
+		
 	}
 
 	public function pendingAuthor() {
+		$this->PaperEvaluator->Behaviors->load('Containable');
 		$papers = $this->Paper->PaperAuthor->find('all',
   			array(
   				'conditions' => array(
@@ -539,13 +541,29 @@ class BackendController extends AppController {
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
 			    'fields' => array('id')
 			));
+			$paperEvaluators[$i] = $this->PaperEvaluator->find('all',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperEvaluator.paper_id' => $paper['Paper']['id']
+	  				),
+	  				'contain' => array(
+	  					'Evaluator' =>array(
+	  						'fields' => array('id'),
+	  						'User' => array(
+	  							'fields' => array('first_name','last_name')
+	  						)
+	  					),
+	  				)
+	  			)
+	  		);
 			$i++;
   		}
   		
-  		//debug($papers);
+  		//debug($paperEvaluators);
   		//die();
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
+		$this->set('paperEvaluators', $paperEvaluators);
 		if(empty($papers)){
 			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por revisión.'));
 			$this->redirect(array("controller" => "backend", "action" => "author"));
@@ -770,7 +788,7 @@ class BackendController extends AppController {
 						)
 					),
 					'PaperEvaluator'  => array(
-						'fields' => array('id','evaluator_id', 'status', 'type'),
+						'fields' => array('id','evaluator_id', 'status', 'type', 'comment'),
 						'Evaluator' => array(
 							'fields' => array('id', 'user_id'),
 							'User' => array(
@@ -782,6 +800,10 @@ class BackendController extends AppController {
   				),
   			)
   		);
+
+  		if($paper['Paper']['status'] != 'APPROVED'){
+  			$this->Session->setFlash(__('Para poder ver las correcciones de un evaluador debes asignar los dos evaluadores principales y un suplente.'));
+  		}
   		$this->set('paper', $paper);
 
   		if(empty($paper)){
@@ -802,9 +824,15 @@ class BackendController extends AppController {
 			)
 		));
 
+		
+		$assignedPapers = array();
 		$availableEvaluators = array();
 		foreach ($evaluators as $evaluator) {
+			$count = $this->PaperEvaluator->find('count', array(
+	        	'conditions' => array('PaperEvaluator.evaluator_id' => $evaluator['Evaluator']['id'], 'PaperEvaluator.status' => array('ASIGNED', 'ACCEPT'))
+	        ));
 			if (empty($evaluator['PaperEvaluator'])) {
+				array_push($assignedPapers, $count);
 				array_push($availableEvaluators, $evaluator);	
 			}
 		}
@@ -817,10 +845,112 @@ class BackendController extends AppController {
         	'conditions' => array('PaperEvaluator.paper_id' => $id, 'PaperEvaluator.type' => 'SURROGATE'),
         ));
   		$this->set('evaluators', $availableEvaluators);
+  		$this->set('assignedPapers', $assignedPapers);
   		$this->set('principalCount', $principalCount);
   		$this->set('surrogateCount', $surrogateCount);
   		$this->set('paperId', $id);
   	}
+
+  	public function modifyArticle($id=null){
+		if($id==null){
+			$this->Session->setFlash(__('Artículo Invalido.'));
+			$this->redirect(array("controller" => "backend", "action" => "index"));
+		} else {
+			$paper3 = $this->Paper->PaperAuthor->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'Paper.id' => $id
+	  				),
+	  			)
+	  		);
+			$paper2 = $this->PaperFile->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperFile.paper_id' => array($paper3['Paper']['id']),
+	  				),
+	  			)
+	  		);
+			if (!empty($paper2)) {
+				$this->set('content', $paper2['PaperFile']['raw']);
+				$this->set('name', $paper2['PaperFile']['name']);
+				$this->set('preview', $paper3['Paper']['id']);
+			}
+		}
+	}
+	public function acceptArticle($id=null, $status=null){
+		if($id == null || $status==null){
+			$this->Session->setFlash(__('Artículo Invalido, intente nuevamente'));
+			$this->redirect(array('action' => 'index'));
+		}
+		$evaluators = $this->PaperEvaluator->find('all', array(
+        	'conditions' => array('PaperEvaluator.paper_id' => $id, 'PaperEvaluator.status' => array('ASIGNED', 'ACCEPT'))
+        ));
+        
+
+        foreach ($evaluators as $evaluator) {
+        	$paperEvaluatorData = array('id' => $evaluator['PaperEvaluator']['id'], 'status' => 'EDITOR');
+        	$this->PaperEvaluator->save($paperEvaluatorData);
+        }
+
+        $paper = $this->Paper->find('first', array(
+        	'conditions' => array('Paper.id' => $id)
+        ));
+
+		if($status=='APPROVED'){
+			$this->Session->setFlash(__('Se ha Aceptado el articulo '.$paper['Paper']['name']));
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha aceptado el articulo <strong>'. $paper['Paper']['name'].'</strong>.');
+			$this->Logbook->save($data4);
+		} elseif($status=='REJECTED'){
+			$this->Session->setFlash(__('Se ha Rechazado el articulo '.$paper['Paper']['name']));
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha rechazado el articulo <strong>'. $paper['Paper']['name'].'</strong>.');
+			$this->Logbook->save($data4);
+		} elseif($status=='REVIEW'){
+			$this->Session->setFlash(__('Se ha Devuelto al autor el articulo '.$paper['Paper']['name']));
+			$data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha devuelto el articulo <strong>'. $paper['Paper']['name'].'</strong>.');
+			$this->Logbook->save($data4);
+		}
+
+        $paperData = array('id' => $id, 'status' => $status);
+        $this->Paper->save($paperData);
+        
+         $this->redirect(array('action' => 'index'));
+
+/*
+		$evaluatorData = array();
+  		$evaluatorData['PaperEvaluator']['paper_id'] = $paperId;
+  		$evaluatorData['PaperEvaluator']['evaluator_id'] = $evaluatorId;
+  		$evaluatorData['PaperEvaluator']['type'] = $evaluatorType;
+
+        $this->PaperEvaluator->create();
+
+        if ($this->PaperEvaluator->save($evaluatorData)) {
+
+            $evaluator = $this->Evaluator->find('first', array(
+            	'conditions' => array('Evaluator.id' => $evaluatorId),
+            	'fields' => array('user_id')
+            ));
+
+            $paper = $this->Paper->find('first', array(
+            	'conditions' => array('Paper.id' => $paperId),
+            ));
+            $paperData = array('id' => $paperId, 'status' => 'ONREVISION');
+            $this->Paper->save($paperData);
+			
+			$data4 = array('user_id' => $evaluator['Evaluator']['user_id'], 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha asiginado el articulo '. $paper['Paper']['name'].' para evaluar</strong>.');
+			$this->Logbook->save($data4);
+            //$evaluator['E']
+
+            $this->Session->setFlash(__('El evaluador ha sido asignado'));
+            $this->redirect(array(
+				'action' => 'inspectPaper',
+				$paperId
+			));
+        } else {
+            $this->Session->setFlash(__('The article category could not be saved. Please, try again.'));
+        }*/
+	}
+
+
   	public function addEvaluator($evaluatorId,$paperId,$evaluatorType) {
   		
   		$evaluatorData = array();
@@ -1285,6 +1415,7 @@ class BackendController extends AppController {
 	/***************/
 
 	public function pendingEvaluator(){
+		$this->PaperAuthor->Behaviors->load('Containable');
 		$papers = $this->Paper->PaperEvaluator->find('all',
   			array(
   				'conditions' => array(
@@ -1304,13 +1435,29 @@ class BackendController extends AppController {
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
 			    'fields' => array('id')
 			));
+			$paperAuthors[$i] = $this->PaperAuthor->find('first',
+	  			array(
+	  				'conditions' => array(
+	  					'PaperAuthor.paper_id' => $paper['Paper']['id']
+	  				),
+	  				'contain' => array(
+	  					'Author' =>array(
+	  						'fields' => array('id'),
+	  						'User' => array(
+	  							'fields' => array('first_name','last_name')
+	  						)
+	  					),
+	  				)
+	  			)
+	  		);
 			$i++;
   		}
 
-  		//debug($papers);
-
+  		//debug($paperAuthors);
+  		//die();
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
+		$this->set('paperAuthors', $paperAuthors);
 	}
 
 	public function evaluatePaper($id=null){
