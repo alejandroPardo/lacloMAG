@@ -23,7 +23,7 @@
 		<p class="subtext">Último Ejemplar</p>
 		<div id="lineset" class="clearfix">
 			<div id="linesleft"></div>
-			<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>">
+			<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>" target="_blank">
 				<div id="dates" style='background:#<?php echo $actual["MagazineFile"]["color"];?>'>
 					<span class="month">LACLOmag</span>
 					<span class="bignumber"><?php echo $actual["Magazine"]["id"];?></span>
@@ -47,7 +47,7 @@
 		</div>
 		<div id="projects" class="clearfix">
 			<?php foreach ($magazines as $magazine) { ?>
-				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="#"><img src="img/magnify.png" class="zoomer" alt=""></a></div>
+				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="#"><img src="img/view-frontend.png" class="zoomer" alt=""></a></div>
 			<?php } ?>
 		</div>
 	</div>

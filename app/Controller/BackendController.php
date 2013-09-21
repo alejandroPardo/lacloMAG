@@ -1206,16 +1206,32 @@ class BackendController extends AppController {
   	}
 
   	public function viewArticlesArchiveEditor() {
-  		
-  		$magazines = $this->Magazine->find('all', array(
-  			'conditions' => array(
-				'Magazine.status' => array('ARCHIVED', 'ACTUAL')
-			
-			),
-			'recursive' => 2
-  		));
-
-  		//debug($magazines);
+  		$this->Magazine->Behaviors->load('Containable');
+  		$magazines = $this->Magazine->find('all',
+  			array(
+  				'contain' => array(
+						'MagazineFile' => array(
+							'fields' => array('magazine_id', 'title', 'edition'),
+						),
+						'MagazinePaper' => array(
+							'Paper' => array(
+	  						'fields' => array('id','name','created','evaluation_type',),
+	  						'PaperAuthor' => array(
+	  							'fields' => array('paper_id', 'author_id'),
+	  							'Author' => array(
+	  								'User' => array(
+	  									'fields' => array('first_name', 'last_name')
+	  								)
+	  							)
+	  						)
+	  					)
+	  				),
+					),
+  				'conditions' => array(
+  						'Magazine.status' => array('ARCHIVED', 'ACTUAL')
+  				)
+  			)
+  		);
   		$this->set('magazines', $magazines);
   	}
 
@@ -1482,7 +1498,6 @@ class BackendController extends AppController {
 		$this->set('paper', $bodytag);
 		$this->set('evaluatorid', $paperEvaluator['PaperEvaluator']['id']);
 	}
-
 
 	public function articleEvaluator() {
   		$papers = $this->Paper->PaperEvaluator->find('all',

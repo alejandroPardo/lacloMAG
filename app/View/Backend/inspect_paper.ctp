@@ -99,6 +99,7 @@
 </div>
 
 <div id="modalContent" style="display:none">
+    <h1>Agregar Evaluador Principal</h1>
     <div class="wrapper">
         <?php if (!empty($evaluators)): ?>
         <table>
@@ -134,6 +135,7 @@
     </div>
 </div>
 <div id="modalSurrogate" style="display:none">
+    <h1>Agregar Evaluador Suplente</h1>
     <div class="wrapper">
         <?php if (!empty($evaluators)): ?>
         <table>

@@ -3,29 +3,30 @@
         <div id="pie" class="col full">
             <div class="content">
                 <div class="heading">
-                    <h4><span>Artículos</span> pendientes</h4>
-                    <span>Aquí se pueden visualizar los artículos recibidos por revisar, aprobar, asignar o rechazar.</span>
+                    <h4><span>Archivo de</span> revistas</h4>
+                    <span>Aquí se pueden visualizar las revistas actuales y anteriores de LACLOmagazine.</span>
                 </div>
                 <div id="table" class="tab padding pagTable">
                     <?php if ($magazines): ?>
-                        <table class="paginationTable" cellpadding="0" cellspacing="0">
+                        <table class="paginationTable">
                             <thead>
                                 <tr>
-                                    <th>id</th>
-                                    <th>Nombre Revista</th>
-                                    <th>Fecha Creacion</th>
-                                    <th>Titulo</th>
-                                    <th class="actions"><?php echo __('Actions'); ?></th>
+                                    <th>Nombre de Revista</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Título</th>
+                                    <th>Edición</th>
+                                    <th style="width:80px; text-align:center;">Acciones</th>
                                 </tr>
                             </thead>
                             <?php foreach ($magazines as $magazine): ?>
                                 <tr>
-                                    <td><?php echo h($magazine['Magazine']['id']); ?>&nbsp;</td>
-                                    <td><?php echo h($magazine['Magazine']['name']); ?>&nbsp;</td>
-                                    <td><?php echo h($magazine['Magazine']['created']); ?>&nbsp;</td>
-                                    <td><?php echo h($magazine['Magazine']['title']); ?>&nbsp;</td>
-                                    <td class="actions ">
-                                        <a href="#" class="inspectMag" <?php echo 'data-magid="'.$magazine['Magazine']['id'].'"'; ?> rel="external">Ver Articulos</a>
+                                    <td><?php echo $magazine['Magazine']['name']; ?></td>
+                                    <td><?php echo $magazine['Magazine']['created']; ?></td>
+                                    <td><?php echo $magazine['MagazineFile']['title']; ?></td>
+                                    <td><?php echo $magazine['MagazineFile']['edition']; ?></td>
+                                    <td style="width:80px; text-align:center;">
+                                        <a href="#" class="inspectMag" <?php echo 'data-magid="'.$magazine['Magazine']['id'].'"'; ?> rel="external"><span class="glyph info glyph-editor"></span></a>
+                                        <a href="../magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf" rel="external" target="_blank"><span class="glyph download glyph-editor"></span></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -43,31 +44,22 @@
     </div>
 </div>
 
-<table class="paginationTable" cellpadding="0" cellspacing="0">
-    <thead>
-        <tr>
-                
-        </tr>
-    </thead>
-    
-</table>
-
-
 <?php foreach ($magazines as $magazine): ?>
 <div <?php echo 'id="paperModal-'.$magazine['Magazine']['id'].'"'; ?>  style="display:none">
+    <h1>Artículos en la Revista</h1>
     <?php if (!empty($magazine['MagazinePaper'])): ?>
         <table cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                        <th>id</th>
-                        <th>Nombre Paper</th>
-                        <th>Fecha Creacion</th>
+                    <th>Nombre del Artículo</th>
+                    <th>Nombre del Autor</th>
+                    <th>Fecha de Creación</th>
                 </tr>
             </thead>
             <?php foreach ($magazine['MagazinePaper'] as $magazinePaper): ?>
                 <tr>
-                    <td> <?php echo $magazinePaper['Paper']['id']; ?></td>
                     <td>  <?php echo $magazinePaper['Paper']['name']; ?></td>
+                    <td> <?php echo $magazinePaper['Paper']['PaperAuthor']['0']['Author']['User']['first_name'].' '.$magazinePaper['Paper']['PaperAuthor']['0']['Author']['User']['last_name']; ?></td>
                     <td>  <?php echo $magazinePaper['Paper']['created']; ?></td>
                 </tr>
             <?php endforeach; ?>
