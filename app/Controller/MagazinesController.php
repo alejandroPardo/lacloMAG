@@ -61,6 +61,14 @@ class MagazinesController extends AppController {
                             'fields' => array('id','name','created','evaluation_type'),
                             'PaperFile' => array(
                                 'fields' => array('raw')
+                            ),
+                            'PaperAuthor' => array(
+                                'fields' => array('paper_id', 'author_id'),
+                                'Author' => array(
+                                    'User' => array(
+                                        'fields' => array('first_name', 'last_name')
+                                    )
+                                )
                             )
                         )
                     ),
@@ -78,15 +86,14 @@ class MagazinesController extends AppController {
             'download' => false,
             'no-outline',         // Make Chrome not complain
             'margin' => array(
-                'bottom' => 0,
+                'bottom' => 10,
                 'left' => 0,
                 'right' => 0,
-                'top' => 0
+                'top' => 10
             ),
             'pageSize' => 'Letter',
             'options' => array('')
         );
-
         
         if(substr($this->here,-4) == '.pdf'){
             if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
@@ -112,7 +119,7 @@ class MagazinesController extends AppController {
             }
             $index++;
         }
-
+        $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
         $this->set('papers', $papers);
 	}

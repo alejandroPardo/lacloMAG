@@ -15,9 +15,12 @@
 </head>
 <body>
 	<?php echo $cover;?>
-	<?php foreach ($papers as $paper) {
-		echo strlen($paper);
-		echo '<div class="redactor_box redactor_editor" style="margin: 10 10 10 10;">'./*substr($paper, 0, 2800)*/$paper.'</div>';
-	}?>
+	<?php $index=0;
+		foreach ($papers as $paper) {
+			echo '<div class="title" style="margin-top:20px; margin-bottom:20px;"><h2>'.$magazinePapers[$index]["Paper"]["name"].'</h2></div>';
+			echo '<div class="redactor_box redactor_editor" style="margin: 10px 10px 10px 10px;">'./*substr($paper, 0, 2800)*/$paper.'</div>';
+			$index++;
+		}
+	?>
 </body>
 </html>
