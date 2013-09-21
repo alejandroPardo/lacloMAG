@@ -536,6 +536,13 @@ class BackendController extends AppController {
   			)
   		);
   		$i=0;
+  		if(empty($papers)){
+			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por revisión.'));
+			$this->redirect(array("controller" => "backend", "action" => "author"));
+		}
+		$paperFiles=array();
+		$paperEvaluators=array();
+
   		foreach ($papers as $paper) {
   			$paperFiles[$i] = $this->PaperFile->find('all', array(
 			    'conditions' => array('paper_id'=>$paper['Paper']['id']),
@@ -564,10 +571,6 @@ class BackendController extends AppController {
 		$this->set('papers', $papers);
 		$this->set('paperFiles', $paperFiles);
 		$this->set('paperEvaluators', $paperEvaluators);
-		if(empty($papers)){
-			$this->Session->setFlash(__('Usted no tiene ningun Artículo pendiente por revisión.'));
-			$this->redirect(array("controller" => "backend", "action" => "author"));
-		}
   	}
 
 

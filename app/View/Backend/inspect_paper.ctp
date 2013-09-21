@@ -80,7 +80,7 @@
                         } else {
                             echo '<button id="acceptArticle" class="lime twenty" style="height:65px;margin-left:5%;">Aceptar o Rechazar Artículo</button>';
                             echo '<button id="changeRevision" class="lime twenty" style="height:65px;">Cambiar Tipo de Revisión</button>';
-                            echo '<button id="modifyArticle" class="lime twenty" style="height:65px;">Realizar Cambios al Artículo</button>';
+                            echo '<button id="modifyArticle" class="lime twenty" style="height:65px;">Editar Texto del Artículo</button>';
                             if($principalCount<2){
                                 echo '<button id="newEvaluator" class="lime twenty" style="height:65px;">Asignar Evaluadores Principales</button>';
                             }
