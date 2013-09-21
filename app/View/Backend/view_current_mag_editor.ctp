@@ -114,6 +114,7 @@
         <?php endif; ?>
 	</div>
 </div>
+
 <div id="modalMag" style="display:none;">
 	<div class="wrapper">
 		<h1>Publicar Revista?</h1>
@@ -127,6 +128,7 @@
 		<button class="closeModal sugar full">Seguir Editando</button><br><br>
 	</div>
 </div>
+
 <script type="text/javascript">
     var viewArticlesMag = document.getElementById('viewArticlesMag');
     

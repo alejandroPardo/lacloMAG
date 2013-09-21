@@ -1341,8 +1341,22 @@ class BackendController extends AppController {
   	}
 
   	public function publishMag () {
-  		debug($this->request->data);
   		$magId = $this->request->data['magId'];
+
+  		$magazines = $this->MagazineFiles->find('all',
+  			array(
+  				'conditions' => array(
+  						'Magazine.status' => 'ACTUAL'
+  				)
+  			)
+  		);
+
+  		if(!empty($magazines)){
+  			foreach ($magazines as $magazine) {
+	  			$data = array('id' => $magazine['Magazine']['id'], 'status' => 'ARCHIVED');
+				$this->Magazine->save($data);
+	  		}
+  		}
 
   		$this->Magazine->id = $magId;
   		$mag['Magazine']['status'] = 'ACTUAL';
@@ -1353,8 +1367,6 @@ class BackendController extends AppController {
 				'action' => 'viewCurrentMagEditor'
 			)); 
   		}
-
-  		die();
   	}
 
   	public function createNews($id=null){

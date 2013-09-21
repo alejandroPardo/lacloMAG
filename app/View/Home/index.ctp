@@ -47,7 +47,7 @@
 		</div>
 		<div id="projects" class="clearfix">
 			<?php foreach ($magazines as $magazine) { ?>
-				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="#"><img src="img/view-frontend.png" class="zoomer" alt=""></a></div>
+				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf" target="_blank"><img src="img/dl-frontend.png" class="dlder" alt=""></a><a href="home/magazine/<?php echo $magazine["Magazine"]["id"];?>" target="_blank"><img src="img/view-frontend.png" class="zoomer" alt=""></a></div>
 			<?php } ?>
 		</div>
 	</div>
