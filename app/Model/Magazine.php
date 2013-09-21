@@ -9,14 +9,16 @@
         public $validate = array(
         	'name' => array(
         		'alphaNumeric' => array(
-        			'rule' => 'alphaNumeric',
-        			'allowEmpty' => false
+        			'rule' => array('custom', '/^[a-z0-9 ]*$/i'), 
+        			'allowEmpty' => false,
+                    'message' => 'Caracteres alfanumericos solamente'
         		)
         	),
         	'title' => array(
         		'alphaNumeric' => array(
-        			'rule' => 'alphaNumeric',
-        			'allowEmpty' => false
+        			'rule' => array('custom', '/^[a-z0-9 ]*$/i'),
+        			'allowEmpty' => false,
+                    'message' => 'Caracteres alfanumericos solamente'
         		)
         	)
         );
