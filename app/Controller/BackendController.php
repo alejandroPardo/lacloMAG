@@ -1284,23 +1284,30 @@ class BackendController extends AppController {
 
   	public function newMag() {
 		if ($this->request->is('post')) {
-			//adding Mag...
-			//debug($this->request->data);
-			$this->request->data['Magazine']['status'] = 'ONCONSTRUCTION';
-			$this->Magazine->create($this->request->data['Magazine']);
+			$magazine = $this->Magazine->find('first', array(
+  				'conditions' => array('status' => 'ACTUAL'),
+  				'fields' => 'Magazine.exemplary'
+  			));
 
-			if ($this->Magazine->save()) {
-				$this->Session->setFlash(__('Revista Creada'));
-				$this->redirect(array(
-					'action' => 'viewCurrentMagEditor'
-				));
+            $this->Magazine->create();
+            $data = array('name' => $this->data['name'], 'title' => $this->data['name'], 'exemplary' => $magazine['Magazine']['exemplary']+1, 'status' => 'ONCONSTRUCTION');
+            $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha creado la revista <strong>'. $this->data['name'].'</strong>.');
+
+            if ($this->Magazine->save($data)) {
+            	$this->Logbook->create();
+            	$this->Logbook->save($data4);
+
+				$this->Session->setFlash(__('Nueva Revista Creada'));
+				$this->redirect(array('action' => 'viewCurrentMagEditor'));
+			} else {
+				$this->Session->setFlash(__('Ocurrió un error, intentelo nuevamente.'));
+				$this->redirect(array('action' => 'index'));
 			}
 		}
   	}
 
   	public function reorderMagpapers() {
   		
-  		debug($this->request->data);
   		$newPaperOrders = $this->request->data;
   		$orderedPapers = array();
   		$unorderedPapers = array();
@@ -1343,10 +1350,10 @@ class BackendController extends AppController {
   	public function publishMag () {
   		$magId = $this->request->data['magId'];
 
-  		$magazines = $this->MagazineFiles->find('all',
+  		$magazines = $this->Magazine->find('all',
   			array(
   				'conditions' => array(
-  						'Magazine.status' => 'ACTUAL'
+  					'Magazine.status' => 'ACTUAL'
   				)
   			)
   		);

@@ -46,7 +46,7 @@ class MagazinesController extends AppController {
         $magazine = $this->Magazine->find('first',
             array(
                 'conditions' => array(
-                    'Magazine.status' => array('ONCONSTRUCTION')
+                    'Magazine.id' => $id
                 ),
             )
         );

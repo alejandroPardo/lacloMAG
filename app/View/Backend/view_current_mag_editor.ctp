@@ -94,21 +94,24 @@
 
 <div id="modalArticles" style="display:none">
 	<div class="wrapper">
+		<h1>Orden de Artículos en la Revista</h1>
 		<?php if (!empty($magazinePapers)): ?>
 			<?php echo $this->Form->create(false, array('controller' => 'backend', 'action' => 'reorderMagPapers')); ?>
-	        <table  cellpadding="0" cellspacing="0">
+	        <table>
 	            <tr>
-	                    <th>Nombre de Paper</th>
-	                    <th>orden</th>
+	                    <th>Nombre del Artículo</th>
+	                    <th>Orden en Revista</th>
 	            </tr>
 	            <?php foreach ($magazinePapers as $magazinePaper): ?>
 	            <tr>
 	                <td><?php echo $magazinePaper['Paper']['name']; ?></td>
-	                <td><?php echo $this->Form->input($magazinePaper['MagazinePaper']['id'],array()); ?></td>
+	                <td><?php echo $this->Form->input('',array()); ?></td>
 	            </tr>
 	             <?php endforeach; ?>
 	        </table>
-	        <?php echo $this->Form->end('Cambiar Orden'); ?>
+	        <br><br>
+	        <button type="submit" class="lime full">Cambiar Orden</button>
+	        </form>
         <?php else: ?>
             <p>No hay Articulos</p>
         <?php endif; ?>
@@ -134,8 +137,7 @@
     
     viewArticlesMag.addEventListener('click', function () {
         $('#modalArticles').modal({
-    		animation: "flipInX", 
-    		theme: "dark"
+    		animation: "flipInX"
     	});
         $('.removePaper').on("click", function(e) {
             var a = confirm('Remover Paper?');

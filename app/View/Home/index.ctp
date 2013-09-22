@@ -23,15 +23,29 @@
 		<p class="subtext">Último Ejemplar</p>
 		<div id="lineset" class="clearfix">
 			<div id="linesleft"></div>
-			<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>" target="_blank">
-				<div id="dates" style='background:#<?php echo $actual["MagazineFile"]["color"];?>'>
-					<span class="month">LACLOmag</span>
-					<span class="bignumber"><?php echo $actual["Magazine"]["id"];?></span>
-				</div>
-			</a>
-			<div id="linesright"></div>
-		</div>
-		<p class="location"><?php echo $actual["MagazineFile"]["name"];?><br><?php echo $actual["MagazineFile"]["edition"];?></p>
+			<?php 
+				if(!empty($actual)){?>
+					<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>" target="_blank">
+					<div id="dates" style='background:#<?php echo $actual["MagazineFile"]["color"];?>'>
+						<span class="month">LACLOmag</span>
+						<span class="bignumber"><?php echo $actual["Magazine"]["exemplary"];?></span>
+					</div>
+				</a>
+				<div id="linesright"></div>
+			</div>
+			<p class="location"><?php echo $actual["MagazineFile"]["name"];?><br><?php echo $actual["MagazineFile"]["edition"];?></p>
+				<?php } else { ?>
+					<div id="dates">
+						<span class="month">LACLOmag</span>
+						<span class="bignumber"></span>
+					</div>
+					<div id="linesright"></div>
+			</div>
+			<p class="location">Aún no ha sido publicada ninguna revista.</p>
+
+				<?php }
+			?>
+			
 		<p class="intro"></p>
 		<p class="arrow"><a href="#Media"><img src="img/arrow.png" alt=""></a></p>
 	</div>
@@ -41,14 +55,15 @@
 	<div class="content">
 		<h2>Ejemplares de LACLO Magazine</h2>
 		<p>Aquí se pueden ver todos los ejemplares de LACLO Magazine. Descargalos o visualízalos en linea.<img class="flashing" src="img/stripe.gif" alt=""></p>
-		<div class="videoplayer" style="background:#<?php echo $actual['MagazineFile']['color'];?>;">
-
-			
-		</div>
+		<?php if(!empty($actual)){ ?>
+			<div class="videoplayer" style="background:#<?php echo $actual['MagazineFile']['color'];?>;"></div>
+		<?php } else {
+			echo '<br/><br/><h2 class="location" style="text-align:center;">Aún no ha sido publicada ninguna revista.</p>';
+		} ?>
 		<div id="projects" class="clearfix">
 			<?php foreach ($magazines as $magazine) { ?>
 				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf" target="_blank"><img src="img/dl-frontend.png" class="dlder" alt=""></a><a href="home/magazine/<?php echo $magazine["Magazine"]["id"];?>" target="_blank"><img src="img/view-frontend.png" class="zoomer" alt=""></a></div>
-			<?php } ?>
+			<?php }?>
 		</div>
 	</div>
 </div>
