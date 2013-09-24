@@ -1072,6 +1072,11 @@ class BackendController extends AppController {
 			)
 		));
 
+		if(empty($magazine)){
+			$this->Session->setFlash(__('No existe una revista En construcción, cree la misma primero.'));
+            $this->redirect(array('action' => 'newMag'));
+		}
+
 		$totalArticles = $this->MagazinePaper->find('count', array(
 			'conditions' => array('MagazinePaper.magazine_id' => $magazine['Magazine']['id'])
 		));
@@ -1128,10 +1133,12 @@ class BackendController extends AppController {
   	}
 
   	public function removeCoverfromMag($id = null) {
-		$this->MagazineFiles->id = $id;
+
 		$magazineFiles = $this->MagazineFiles->find('first',array(
-			'conditions' => array('MagazineFiles.id' => $id, 'MagazineFiles.type' => 'COVER')
+			'conditions' => array('MagazineFiles.magazine_id' => $id, 'MagazineFiles.type' => 'COVER')
 		));
+
+		$this->MagazineFiles->id = $magazineFiles['MagazineFiles']['id'];
 
 		if ($this->MagazineFiles->delete()) {
 			$this->Logbook->create();
