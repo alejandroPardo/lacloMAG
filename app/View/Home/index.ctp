@@ -54,15 +54,36 @@
 <div class="contentsection yellow clearfix s2">
 	<div class="content">
 		<h2>Ejemplares de LACLO Magazine</h2>
-		<p>Aquí se pueden ver todos los ejemplares de LACLO Magazine. Descargalos o visualízalos en linea.<img class="flashing" src="img/stripe.gif" alt=""></p>
+		<p>Aquí se pueden ver todos los ejemplares de LACLO Magazine. Descargalos o visualízalos en línea.<img class="flashing" src="img/stripe.gif" alt=""></p>
 		<?php if(!empty($actual)){ ?>
-			<div class="videoplayer" style="background:#<?php echo $actual['MagazineFile']['color'];?>;"></div>
+			<div id="actual">
+				<div class="videoplayer" style="background:#<?php echo $actual['MagazineFile']['color'];?>;">
+					<img alt="project" src="img/oldmags.png">
+					<img src="img/logo-archive-actual.png" class="logo"/>
+					<a href="magazines/view/<?php echo $actual['Magazine']['id'];?>.pdf" target="_blank">
+						<img src="img/dl-frontend.png" class="dlder"/>
+					</a>
+					<a href="home/magazine/<?php echo $actual["Magazine"]["id"];?>" target="_blank">
+						<img src="img/view-frontend.png" class="zoomer"/>
+					</a>
+				</div>
+			</div>
 		<?php } else {
 			echo '<br/><br/><h2 class="location" style="text-align:center;">Aún no ha sido publicada ninguna revista.</p>';
 		} ?>
 		<div id="projects" class="clearfix">
 			<?php foreach ($magazines as $magazine) { ?>
-				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;"><img alt="project" src="img/oldmags.png"><a href="magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf" target="_blank"><img src="img/dl-frontend.png" class="dlder" alt=""></a><a href="home/magazine/<?php echo $magazine["Magazine"]["id"];?>" target="_blank"><img src="img/view-frontend.png" class="zoomer" alt=""></a></div>
+				<div class="project" style="background:#<?php echo $magazine['MagazineFile']['color'];?>;">
+					<img alt="project" src="img/oldmags.png">
+					<img src="img/logo-archive.png" class="logo"/>
+					<p>Revista xxx</p>
+					<a href="magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf" target="_blank">
+						<img src="img/dl-frontend.png" class="dlder" alt="">
+					</a>
+					<a href="home/magazine/<?php echo $magazine["Magazine"]["id"];?>" target="_blank">
+						<img src="img/view-frontend.png" class="zoomer" alt="">
+					</a>
+				</div>
 			<?php }?>
 		</div>
 	</div>
