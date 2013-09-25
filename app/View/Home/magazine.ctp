@@ -29,7 +29,7 @@
 									<div class="redactor_box redactor_editor">
 										<?php echo $magazinePaper['Paper']['PaperFile']['0']['raw'];?>
 									</div>
-									<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
+									<p><em>Creado por: <?php echo $magazinePaper['Paper']['PaperAuthor']['0']['Author']['User']['first_name'].' '.$magazinePaper['Paper']['PaperAuthor']['0']['Author']['User']['last_name'];?></em></p>
 								</div>
 							</div>
 						</div>

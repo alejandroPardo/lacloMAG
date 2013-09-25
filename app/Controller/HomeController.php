@@ -18,7 +18,7 @@ class HomeController extends AppController {
 
         $actual = $this->Magazine->find('first', array('conditions' => array('Magazine.status' => 'ACTUAL')));
         $this->set('actual', $actual);
-        $magazines = $this->Magazine->find('all', array('conditions' => array('Magazine.status' => 'ARCHIVED')));
+        $magazines = $this->Magazine->find('all', array('conditions' => array('Magazine.status' => 'ARCHIVED'), 'order' => 'Magazine.created DESC'));
 		$this->set('magazines', $magazines);
 	}
 

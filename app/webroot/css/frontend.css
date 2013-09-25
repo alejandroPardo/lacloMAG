@@ -488,7 +488,7 @@ img {
 	position:relative;
 	float:left;
 	overflow:hidden;
-	border: solid 12px #FCC949;
+	border: solid 2px #FCC949;
 }
 
 #actual a {
@@ -501,93 +501,112 @@ img {
 
 #actual img {
 	width:100%;
-	height:243px;
+	height:120px;
 	vertical-align:bottom;
 }
 
 /* Sections */
 
-#projects .project {
-	border-radius:2px;
-	display:block;
-	width:30%;
-	margin:0 10px 10px 0px;
-	height:auto;
-	position:relative;
-	float:left;
-	overflow:hidden;
-	border: solid 12px #FCC949;
-}
+	#projects .project {
+		width:30%;
+		margin:0 auto 10px auto;
+		float:left;
+		display: block;
+		height: 129px;
+	}
 
-#projects img {
-	width:100%;
-	height:243px;
-	vertical-align:bottom;
-}
+	#projects .project img {
+		height:129px;
+		width: auto;
+		background:url(../img/bg-pc-oldmags.png);
+	}
 
-#project a {
-	display:block;
-}
+	#projects .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 60px;
+		height:60px;
+		margin-top: 10px;
+	}
 
-#projects .project .zoomer {
-	display:block;
-	position:absolute;
-	bottom: 1px;
-	right: 1px;
-	width:72px;
-	height:72px;
-}
+	#projects .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:60px;
+		height:60px;
+		margin-right: 70px;
+		margin-top: 10px;
+	}
 
-#projects .project .dlder {
-	display:block;
-	position:absolute;
-	bottom: 1px;
-	left: 1px;
-	width:72px;
-	height:72px;
-}
+	#projects .title {
+		font-size: 25px;
+		display:block;
+		position:absolute;
+		margin-top: 1px;
+		font-weight: bold;
+		margin-left: 35%;
+		width:auto;
+		text-align: left;
+	}
 
-#projects .project .logo {
-	display:block;
-	position:absolute;
-	top: 1px;
-	width:auto;
-	height:auto;
-}
+	#projects .edition {
+		font-size: 18px;
+		display:block;
+		position:absolute;
+		right: 1px;
+		margin-top: 70px;
+		font-weight: bold;
+		width:auto;
+		margin-left: 35%;
+		text-align: right;
+	}
 
-#projects .project p {
-	text-align: center;
-	position:absolute;
-	top: 1px;
-	margin-top: -100px;
-}
+	#actual .videoplayer {
+		width:100%;
+		margin:0 auto 10px auto;
+		float:none;
+	}
 
-#actual .videoplayer .zoomer {
-	display:block;
-	position:absolute;
-	bottom: 1px;
-	right: 1px;
-	width:72px;
-	height:72px;
-}
+	#actual .videoplayer img {
+		height:126px;
+		background:url(../img/bg-pc-actual.png);
+	}
 
+	#actual .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 60px;
+		height:60px;
+	}
 
-#actual .videoplayer .dlder {
-	display:block;
-	position:absolute;
-	bottom: 1px;
-	left: 1px;
-	width:72px;
-	height:72px;
-}
+	#actual .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:60px;
+		height:60px;
+		margin-right: 70px;
+	}
 
-#actual .videoplayer .logo {
-	display:block;
-	position:absolute;
-	top: 1px;
-	width:auto;
-	height:auto;
-}
+	#actual .title {
+		font-size: 40px;
+		display:block;
+		margin-top: 1px;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
+	}
+
+	#actual .edition {
+		font-size: 22px;
+		display:block;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
+	}
 
 /* Agenda */
 
@@ -820,16 +839,6 @@ img {
 		float:none;
 	}
 	
-	#projects .project {
-		width:92%;
-		margin:0 auto 10px auto;
-		float:none;
-	}
-	
-	#projects .project img {
-		height:auto;
-	}
-	
 	.sectioninfo.relative {
 		position:relative;
 		width:100%;
@@ -856,6 +865,108 @@ img {
 	
 	#footer {
 		text-align:center;
+	}
+
+	#projects .project {
+		width:30%;
+		margin:0 auto 10px auto;
+		float:left;
+		display: block;
+		height: 103px;
+	}
+
+	#projects .project img {
+		height:103px;
+		background:url(../img/bg-tablets-oldmags.png);
+	}
+
+	#projects .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 50px;
+		height:50px;
+		margin-top: 10px;
+	}
+
+	#projects .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:50px;
+		height:50px;
+		margin-right: 60px;
+		margin-top: 10px;
+	}
+
+	#projects .title {
+		font-size: 20px;
+		display:block;
+		position:absolute;
+
+		right: 120px;
+		margin-top: 1px;
+		font-weight: bold;
+		margin-left: 35%;
+		width:auto;
+		text-align: left;
+	}
+
+	#projects .edition {
+		font-size: 18px;
+		display:block;
+		position:absolute;
+		right: 1px;
+		margin-top: 70px;
+		font-weight: bold;
+		width:auto;
+		margin-left: 35%;
+		text-align: right;
+	}
+
+	#actual .videoplayer {
+		width:100%;
+		margin:0 auto 10px auto;
+		float:none;
+	}
+
+	#actual .videoplayer img {
+		height:100px;
+		background:url(../img/bg-tablets-actual.png);
+	}
+
+	#actual .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 50px;
+		height:50px;
+	}
+
+	#actual .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:50px;
+		height:50px;
+		margin-right: 60px;
+	}
+
+	#actual .title {
+		font-size: 30px;
+		display:block;
+		margin-top: 1px;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
+	}
+
+	#actual .edition {
+		font-size: 18px;
+		display:block;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
 	}
 }
 
@@ -899,9 +1010,106 @@ img {
 		width:87%;
 	}
 
-	.videoplayer{
-		width: 93%;
+	#projects .project {
+		width:30%;
+		margin:0 auto 10px auto;
+		float:left;
+		display: block;
+		height: 103px;
 	}
+
+	#projects .project img {
+		height:103px;
+		background:url(../img/bg-phones-oldmags.png);
+	}
+
+	#projects .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 40px;
+		height:40px;
+		margin-top: 10px;
+	}
+
+	#projects .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:40px;
+		height:40px;
+		margin-right: 50px;
+		margin-top: 10px;
+	}
+
+	#projects .title {
+		font-size: 15px;
+		display:block;
+		position:absolute;
+		margin-left: 35%;
+		margin-top: 1px;
+		left: 0px;
+		font-weight: bold;
+		width:auto;
+		text-align: left;
+	}
+
+	#projects .edition {
+		font-size: 12px;
+		display:block;
+		position:absolute;
+		right: 1px;
+		margin-top: 60px;
+		font-weight: bold;
+		width:240px;
+		text-align: right;
+	}
+
+	#actual .videoplayer {
+		width:100%;
+		margin:0 auto 10px auto;
+		float:none;
+	}
+
+	#actual .videoplayer img {
+		height:100px;
+		background:url(../img/bg-phones-actual.png);
+	}
+
+	#actual .zoomer {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width: 40px;
+		height:40px;
+	}
+
+	#actual .dlder {
+		display:block;
+		position:absolute;
+		right: 1px;
+		width:40px;
+		height:40px;
+		margin-right: 50px;
+	}
+
+	#actual .title {
+		font-size: 20px;
+		display:block;
+		margin-top: 1px;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
+	}
+
+	#actual .edition {
+		font-size: 14px;
+		display:block;
+		font-weight: bold;
+		width:70%;
+		text-align: left;
+	}
+
 }
 
 
