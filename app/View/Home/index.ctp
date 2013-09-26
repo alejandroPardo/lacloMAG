@@ -42,10 +42,8 @@
 					<div id="linesright"></div>
 			</div>
 			<p class="location">Aún no ha sido publicada ninguna revista.</p>
-
 				<?php }
 			?>
-			
 		<p class="intro"></p>
 		<p class="arrow"><a href="#Media"><img src="img/arrow.png" alt=""></a></p>
 	</div>
