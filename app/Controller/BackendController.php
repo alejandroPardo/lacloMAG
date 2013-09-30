@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class BackendController extends AppController {
-	public $uses = array('Message', 'MappedMessage', 'Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','MagazineEditor','Evaluator', 'PaperEvaluator', 'News', 'MagazineFiles');
+	public $uses = array('Logbook', 'User', 'Paper', 'PaperAuthor', 'Author', 'PaperFile','Magazine','MagazinePaper','Evaluator', 'PaperEvaluator', 'News', 'MagazineFiles');
 	public $userID;
 	public $actualMag;
 

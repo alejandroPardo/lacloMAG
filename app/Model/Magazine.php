@@ -3,7 +3,7 @@
 
     class Magazine extends AppModel {
         public $name = 'Magazine';
-        public $hasMany = array('ReaderComment', 'MagazineEditor', 'MagazinePaper');
+        public $hasMany = array('MagazinePaper');
         public $hasOne = 'MagazineFile';
     
         public $validate = array(
