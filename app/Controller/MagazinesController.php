@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('CakePdf', 'CakePdf.Pdf');
 /**
- * PaperFiles Controller
+ * MagazinesController Controller
  *
  * @property PaperFile $PaperFile
  */
@@ -12,6 +12,12 @@ class MagazinesController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
     }
+
+/**
+ * saveCover method
+ * guarda la portada de la revista
+ * @return void
+ */
 
 	public function saveCover(){
 		if ($this->request->is('post')) {
@@ -37,6 +43,12 @@ class MagazinesController extends AppController {
 			}
         }
 	}
+
+/**
+ * view method
+ * muestra una revista
+ * @return void
+ */
 
 	public function view($id=null){
 		$this->layout = 'cover';
@@ -84,7 +96,7 @@ class MagazinesController extends AppController {
             'orientation' => 'portrait',
             'filename' => 'MagazineCover_' . $id,
             'download' => false,
-            'no-outline',         // Make Chrome not complain
+            'no-outline',        
             'margin' => array(
                 'bottom' => 10,
                 'left' => 0,

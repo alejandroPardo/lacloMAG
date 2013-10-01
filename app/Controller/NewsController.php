@@ -1,15 +1,18 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Papers Controller
+ * NewsController Controller
  *
- * @property Paper $Paper
+ * 
  */
 class NewsController extends AppController {
     public $uses = array('Logbook', 'News');
 
-    public function index() {
-    }
+/**
+ * createNews method
+ * guarda una noticia en la base de datos
+ * @return void
+ */
 
     public function createNews() {
         if ($this->request->is('post')) {
@@ -45,6 +48,12 @@ class NewsController extends AppController {
             }
         }
     }
+
+/**
+ * delete method
+ * elimina una noticia en la base de datos
+ * @return void
+ */
 
     public function delete($id = null) {
         $this->News->id = $id;

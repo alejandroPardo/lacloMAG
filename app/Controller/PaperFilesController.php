@@ -8,9 +8,11 @@ App::uses('CakePdf', 'CakePdf.Pdf');
  */
 class PaperFilesController extends AppController {
 
-	public function index() {
-		
-	}
+/**
+ * view method
+ * muestra un artículo
+ * @return void
+ */
 	
 	public function view($id = null) {
         $this->PaperFile->id = $id;
@@ -35,8 +37,5 @@ class PaperFilesController extends AppController {
             $bodytag = $html['PaperFile']['raw'];
         }
         $this->set('htm', $bodytag);
-        /*'file:///Users/alejandropardo/Sites/LACLOmag/app/webroot/'
-        //"../../files/c45bda5d241331c7675a8320ce80d067.jpg"
-        //file:///Users/alejandropardo/Sites/lacloMAG/app/webroot/img/avatar.jpg*/
 	}
 }

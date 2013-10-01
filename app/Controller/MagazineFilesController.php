@@ -2,27 +2,38 @@
 App::uses('AppController', 'Controller');
 App::uses('CakePdf', 'CakePdf.Pdf');
 /**
- * PaperFiles Controller
+ * MagazineFilesController Controller
  *
- * @property PaperFile $PaperFile
+ *
  */
 class MagazineFilesController extends AppController {
 
-	public function index() {
-		
-	}
+/**
+ * index method
+ * 
+ * @return void
+ */
+
+	public function index() {}
+
+/**
+ * view method
+ * muestra el cover de la revista
+ * @return void
+ */
+
 	
 	public function view($id = null) {
         $this->layout = 'cover';
         $this->MagazineFile->id = $id;
         if (!$this->MagazineFile->exists()) {
-            throw new NotFoundException(__('Invalid invoice'));
+            throw new NotFoundException(__('Portada Invalida'));
         }
         $this->pdfConfig = array(
             'orientation' => 'portrait',
             'filename' => 'MagazineCover_' . $id,
             'download' => false,
-            'no-outline',         // Make Chrome not complain
+            'no-outline',
             'margin' => array(
                 'bottom' => 0,
                 'left' => 0,

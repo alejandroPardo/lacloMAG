@@ -8,59 +8,11 @@ App::uses('AppController', 'Controller');
 class PapersController extends AppController {
     public $uses = array('Paper', 'PaperFile', 'User', 'PaperAuthor', 'Logbook', 'RequestHandler', 'PaperEvaluator');
 
-    public function index() {
-    }
-
-    public function createReport() {
-
-        $paperID = intval($this->params['url']['file']);
-        $paper = $this->PaperFile->find('first', array('conditions' => array('PaperFile.id' => $paperID)));
-        $this->set('data', $paper);
-
-        // grab the html that is rendered in the view
-        $view = new View($this);
-        $raw = $view->render('create_report');
-        $raw = strstr($raw, '<!-- expense report -->'); // remove cake styling
-        $raw = strstr($raw, '<!-- end report -->', true);
-
-        // write to the database
-        $db_data = array('PaperFile' => array(
-          'name' => 'My Super Awesome PDF', // change this to something in a form
-          'raw' => base64_encode($raw) // encode the data to save space
-        ));
-
-        // get an instance of the pdf controller
-        $Pdf = ClassRegistry::init('PaperFile');
-
-        $Pdf->create($db_data);
-        $Pdf->save();
-
-        $this->redirect(array("controller" => "backend", "action" => "index"));
-    }
-
-    public function uploadPaper2() {
-
-        if ($this->request->is('post')) {
-            $file = $this->data['Paper']['file'];
-            debug($file);
-            die();
-
-            $this->Paper->create();
-            $data = array('name' => $this->data['Paper']['name']);
-            if ($this->Paper->save($data)) {
-                $this->PaperFile->create();
-                $data = array('name' => $file['name']);
-                if ($this->PaperFile->save($data)) {
-                    $this->Session->setFlash(__('The PaperFile has been saved '));
-                    $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
-
-                } else {
-                    $this->Session->setFlash(__('The PaperFile has not been saved '));
-                    $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
-                }
-            }
-        }
-    }
+/**
+ * createPaper method
+ * guarda un artículo en la base de datos
+ * @return void
+ */
 
     public function createPaper() {
         if ($this->request->is('post')) {
@@ -134,12 +86,17 @@ class PapersController extends AppController {
 
                 $this->Session->setFlash(__('¡El Paper fue guardado exitosamente!'));
 
-                
                 $this->redirect(array("controller" => "backend", "action" => "author"));
                 
             }
         }
     }
+
+/**
+ * saveEvaluation method
+ * guarda la evaluación un artículo en la base de datos
+ * @return void
+ */
 
     public function saveEvaluation() {
         if ($this->request->is('post')) {
@@ -166,6 +123,12 @@ class PapersController extends AppController {
         }
     }
 
+/**
+ * modifyPaper method
+ * modifica un artículo en la base de datos
+ * @return void
+ */
+
     public function modifyPaper() {
         if ($this->request->is('post')) {
             $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se han guardado los cambios del paper <strong>'. $this->data['name'].'</strong>.');
@@ -181,7 +144,6 @@ class PapersController extends AppController {
             $this->Logbook->save($data4);
 
             $this->Session->setFlash(__('¡Los cambios fueron guardados!'));
-
             
             $this->redirect(array("controller" => "backend", "action" => "inspectPaper", $this->data['preview']));
         }

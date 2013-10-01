@@ -1,16 +1,30 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * PaperFiles Controller
+ * Home Controller
  *
- * @property PaperFile $PaperFile
+ *
  */
 class HomeController extends AppController {
 	public $uses = array('Logbook', 'User','Magazine','MagazinePaper', 'News', 'PaperFile');
 
+/**
+ * beforeFilter method
+ * 
+ * @return void
+ */
+
 	function beforeFilter() {
 		parent::beforeFilter();
     }
+
+/**
+ * index method
+ * Datos de revistas y noticias
+ * @return void
+ */
+
+
 	public function index() {
 		$this->layout = 'frontend';
 		$news = $this->News->find('all', array('order' => array('News.created DESC')));
@@ -21,6 +35,12 @@ class HomeController extends AppController {
         $magazines = $this->Magazine->find('all', array('conditions' => array('Magazine.status' => 'ARCHIVED'), 'order' => 'Magazine.created DESC'));
 		$this->set('magazines', $magazines);
 	}
+
+/**
+ * magazine method
+ * Muestra una revista en formato html
+ * @return void
+ */
 
 	public function magazine($id = null){
 		$this->layout = 'magazine';
@@ -61,6 +81,13 @@ class HomeController extends AppController {
 		}
         $this->set('magazine', $magazine);
 	}
+
+/**
+ * news method
+ * Muestra una noticia en formato html
+ * @return void
+ */
+
 	public function news($id=null){
 		$this->layout = 'frontend';
 		$this->News->id = $id;
@@ -74,6 +101,12 @@ class HomeController extends AppController {
         $this->set('content', $news['News']['content']);
         $this->set('video', $news['News']['video_url']);
 	}
+
+/**
+ * process method
+ * Envia la solicitud de nuevo usuario
+ * @return void
+ */
 
 	public function process(){
 		if ($this->request->is('post')) {
