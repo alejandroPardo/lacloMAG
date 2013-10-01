@@ -24,7 +24,6 @@ class HomeController extends AppController {
  * @return void
  */
 
-
 	public function index() {
 		$this->layout = 'frontend';
 		$news = $this->News->find('all', array('order' => array('News.created DESC')));

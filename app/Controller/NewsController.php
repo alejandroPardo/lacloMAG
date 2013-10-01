@@ -17,7 +17,7 @@ class NewsController extends AppController {
     public function createNews() {
         if ($this->request->is('post')) {
             $this->News->create();
-            $data = array('headline' => $this->data['title'], 'summary' => $this->data['summary'], 'content' => $this->data['content'], 'status' => 'NEWS', 'author' => $this->Auth->user('ivd'), 'order' => date("F j"));
+            $data = array('headline' => $this->data['title'], 'summary' => $this->data['summary'], 'content' => $this->data['content'], 'status' => 'NEWS', 'author' => $this->Auth->user('id'), 'order' => date("F j"));
             $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha creado la noticia <strong>'. $this->data['title'].'</strong>.');
             if($this->data['preview']==0){
                 if ($this->News->save($data)) {
