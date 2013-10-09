@@ -124,7 +124,7 @@
 		<div class="col_12">
 			<h3> Una vez que haya publicado, no podrás editar mas la revista </h3>
 		</div>
-		<form action="/lacloMAG/backend/publishMag" id="PaperSaveEvaluationForm" method="post" accept-charset="utf-8">
+		<form action="publishMag" id="PaperSaveEvaluationForm" method="post" accept-charset="utf-8">
 			<input type="hidden" name="magId" value=<?php echo '"'.$magazine['Magazine']['id'].'"';?> />
 			<button name="magstatus" value="APPROVED" type="submit" class="lime full">Publicar</button><br><br>
 		</form>
