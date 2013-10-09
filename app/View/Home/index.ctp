@@ -133,7 +133,6 @@
 		<div class="sectioninfo relative">
 			<h2>LACLO</h2>
 			<p>Somos una comunidad abierta, integrada por personas e instituciones interesadas en la investigación, desarrollo y aplicación de las tecnologías relacionadas con Objetos de Aprendizaje en el sector educativo Latinoamericano.</a></p>
-			<p><img src="img/loudspeaker.png" alt=""></p>
 		</div>
 		<div class="normalcontent">
 			<br>
@@ -273,6 +272,6 @@
 </div>
 <div id="footer">
 	<div class="footercontent">
-		<p>&copy; Copyright LACLOmagazine 2013 - UCV <br>Caracas, Venezuela.</p>
+		<p>Desarrolladores: <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a><br>&copy; Copyright LACLOmagazine 2013 - UCV Todos los derechos reservados.<br> Caracas, Venezuela.</p>
 	</div>
 </div>

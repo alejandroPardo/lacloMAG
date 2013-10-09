@@ -21,7 +21,7 @@ a {
 	cursor: pointer;
 }
 body.dashboard:before {
-	content: "";
+	content: "";	
 	background: -webkit-linear-gradient(#DEE9E9, #DEE9E9); /*For pull-to-refresh in WebKit */
 	position: absolute;
 	top: 277px;
@@ -2167,8 +2167,8 @@ body.welcome #notifications {
 	height: 100%;
 	position: absolute;
 	z-index: -1;
-	background: -webkit-radial-gradient(circle, rgba(100,100,100,0.2), rgba(0,0,0,0.9));
-	background: -moz-radial-gradient(circle, rgba(100,100,100,0.2), rgba(0,0,0,0.9));
+	background: -webkit-radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+	background: -moz-radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
 }
 #overlayLogo {
   position: fixed; 
@@ -2756,11 +2756,7 @@ div.overlay h2 span {
 	height: 100%;
 	width: 3000px;
 	right: 0px;
-	background: url(../img/header.jpg);
-	opacity: 0.87;
-	-moz-box-shadow: rgba(0,0,0,0.91) -10px -3px 32px inset;
-	-webkit-box-shadow: rgba(0,0,0,0.91) -10px -3px 32px inset;
-	box-shadow: rgba(0,0,0,0.91) -10px -3px 32px inset;
+	background: url(../img/header.png);
 }
 #header ul li.dashboard {
 	padding-left: 0px;
@@ -2770,7 +2766,7 @@ div.overlay h2 span {
 #header ul li.dashboard a {
 	margin-right: -20px;
 	min-width: 144px;
-	background: url(../img/header-logo.jpg) no-repeat;
+	background: url(../img/header-logo.png) no-repeat;
 	background-position: 0px 0px;
 	z-index: 1;
 	position: relative;

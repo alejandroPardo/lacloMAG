@@ -54,6 +54,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 								'escape'=> false)
 							);
 						?>
+
 					</li>
 					<?php if($role=='Editor'){?>
 						<?php if($newCount>0){echo "<li class='count indicator'>"; } else {echo "<li class='count'>"; }?>
@@ -164,6 +165,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 							</li>
 						</ul>
 					</li>
+
 				</ul>
 			</div>
 			<div id="stream">
@@ -204,7 +206,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			    	<div class="latam">
 			    		<?php echo $this->Html->image('latam.png');?>
 			    	</div>
-			    	<h4><span class="theme">Copyright © 2013 Universidad Central de Venezuela. Todos los derechos reservados.</span></h4>
+			    	<h4><span class="theme">Copyright © 2013 Universidad Central de Venezuela. Todos los derechos reservados.<br>Desarrolladores: <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a></span></h4>
 			    </div>
 			    <div class="col_2">
 			    	<br/>
