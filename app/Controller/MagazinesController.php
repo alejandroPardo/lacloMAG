@@ -135,5 +135,43 @@ class MagazinesController extends AppController {
         $this->set('cover', $cover);
         $this->set('papers', $papers);
 	}
+
+/**
+ * sendEmail method
+ * envía correo con la notificación necesaria.
+ * @return void
+ */
+
+    public function sendEmail($subject=null, $content=null, $receiverid=null) {
+        if($subject==null || $content==null || $receiverid==null){
+            return 0;
+        }
+        $emailReceiver = $this->User->find('all', array(
+            'conditions' => array('id'=>$receiverid),
+        ));
+
+        //============Email================//
+        /* SMTP Options */
+
+        $this->Email->smtpOptions = array(
+            'port'=>'465',
+            'host' => 'ssl://smtp.gmail.com',
+            'username'=>'laclomag@gmail.com',
+            'password'=>'Laclo1234'
+        );
+
+        $this->Email->template = 'notification';
+        $this->Email->from    = 'LACLO Magazine <laclomag@gmail.com>';
+        $this->Email->to      = $emailReceiver['User']['first_name'].'<'.$emailReceiver['User']['email'].'>';
+        $this->Email->subject = 'LACLO Magazine - '.$subject;
+        $this->Email->sendAs = 'both';
+
+        $this->Email->delivery = 'smtp';
+        $this->set('ms', $content);
+        $this->set('user', $emailReceiver['User']['first_name'].' '.$emailReceiver['User']['last_name']);
+        $this->Email->send();
+        $this->set('smtp_errors', $this->Email->smtpError);
+        return 0;
+    }
 }
 	

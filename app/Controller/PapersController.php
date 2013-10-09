@@ -35,22 +35,26 @@ class PapersController extends AppController {
                         if ($this->PaperFile->save($data3)) {
                             $this->Logbook->create();
                             if ($this->Logbook->save($data4)) {
-                                $this->Session->setFlash(__('¡El Paper fue guardado exitosamente!'));
+                                $subject="Se ha Enviado su Artículo";
+                                $content="Su artículo ha sido enviado exitosamente a edición. Espere proximas noticias sobre el en su correo y en nuestra página web. ¡Gracias por enviar su artículo a LACLO Magazine!";
+                                $receiverid=$this->Auth->user('id');
+                                $this->sendEmail($subject, $content, $receiverid);
+                                $this->Session->setFlash(__('¡El Artículo fue guardado exitosamente!'));
                                 $this->redirect(array("controller" => "backend", "action" => "author"));
                             } else {   
-                                $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
+                                $this->Session->setFlash(__('El Artículo no ha sido guardado, ocurrió un error'));
                                 $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                             }
                         } else {
-                            $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
+                            $this->Session->setFlash(__('El Artículo no ha sido guardado, ocurrió un error'));
                             $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                         }
                     } else {
-                        $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
+                        $this->Session->setFlash(__('El Artículo no ha sido guardado, ocurrió un error'));
                         $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                     }
                 } else {
-                    $this->Session->setFlash(__('El Paper no ha sido guardado, ocurrió un error'));
+                    $this->Session->setFlash(__('El Artículo no ha sido guardado, ocurrió un error'));
                     $this->redirect(array("controller" => "backend", "action" => "uploadArticle"));
                 }
             } else {
@@ -84,7 +88,7 @@ class PapersController extends AppController {
                 $this->Logbook->create();
                 $this->Logbook->save($data4);
 
-                $this->Session->setFlash(__('¡El Paper fue guardado exitosamente!'));
+                $this->Session->setFlash(__('¡El Artículo fue guardado exitosamente!'));
 
                 $this->redirect(array("controller" => "backend", "action" => "author"));
                 
@@ -147,6 +151,44 @@ class PapersController extends AppController {
             
             $this->redirect(array("controller" => "backend", "action" => "inspectPaper", $this->data['preview']));
         }
+    }
+
+/**
+ * sendEmail method
+ * envía correo con la notificación necesaria.
+ * @return void
+ */
+
+    public function sendEmail($subject=null, $content=null, $receiverid=null) {
+        if($subject==null || $content==null || $receiverid==null){
+            return 0;
+        }
+        $emailReceiver = $this->User->find('first', array(
+            'conditions' => array('id'=>$receiverid),
+        ));
+
+        //============Email================//
+        /* SMTP Options */
+
+        $this->Email->smtpOptions = array(
+            'port'=>'465',
+            'host' => 'ssl://smtp.gmail.com',
+            'username'=>'laclomag@gmail.com',
+            'password'=>'Laclo1234'
+        );
+
+        $this->Email->template = 'notification';
+        $this->Email->from    = 'LACLO Magazine <laclomag@gmail.com>';
+        $this->Email->to      = $emailReceiver['User']['first_name'].'<'.$emailReceiver['User']['email'].'>';
+        $this->Email->subject = 'LACLO Magazine - '.$subject;
+        $this->Email->sendAs = 'both';
+
+        $this->Email->delivery = 'smtp';
+        $this->set('ms', $content);
+        $this->set('user', $emailReceiver['User']['first_name'].' '.$emailReceiver['User']['last_name']);
+        $this->Email->send();
+        $this->set('smtp_errors', $this->Email->smtpError);
+        return 0;
     }
 
 }

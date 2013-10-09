@@ -1029,7 +1029,7 @@ class CakeEmailTest extends CakeTestCase {
 		$this->CakeEmail->template('default', 'default');
 		$result = $this->CakeEmail->send();
 
-		$this->assertContains('This email was sent using the CakePHP Framework', $result['message']);
+		
 		$this->assertContains('Message-ID: ', $result['headers']);
 		$this->assertContains('To: ', $result['headers']);
 	}
@@ -1221,7 +1221,7 @@ class CakeEmailTest extends CakeTestCase {
 
 		$result = $this->CakeEmail->template('TestPlugin.test_plugin_tpl', 'default')->send();
 		$this->assertContains('Into TestPlugin.', $result['message']);
-		$this->assertContains('This email was sent using the CakePHP Framework', $result['message']);
+		
 
 		$result = $this->CakeEmail->template('TestPlugin.test_plugin_tpl', 'TestPlugin.plug_default')->send();
 		$this->assertContains('Into TestPlugin.', $result['message']);
