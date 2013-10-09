@@ -13,7 +13,7 @@
 						</textarea>
 					</div>
 					<br>
-					<h3 style="margin-left:5%;" >Nombre del Paper: <?php echo $name;?></h3>
+					<h3 style="margin-left:5%;" >Nombre del Artículo: <?php echo $name;?></h3>
 					<p>
 						<input type="hidden" name="preview" value="<?php echo $preview;?>" />
 						<input type="hidden" name="name" value="<?php echo $name;?>" />

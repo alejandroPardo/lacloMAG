@@ -13,7 +13,7 @@
 						</textarea>
 					</div>
 					<br>
-					<p style="margin-left:5%;" >Nombre del Paper</p>
+					<p style="margin-left:5%;" >Nombre del Artículo</p>
 					<p>
 						<input name="name" type="text" placeholder="Nombre del Paper" value="<?php echo $name;?>" style="width:80%;margin-left:10%;" id="video" />
 						<input type="hidden" name="userid" value="<?php echo $author;?>" />

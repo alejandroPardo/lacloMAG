@@ -10,7 +10,7 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Nombre del Paper</th>
+								<th>Nombre del Artículo</th>
 								<th>Creado</th>
 								<th>Status</th>
 								<th>Evaluadores</th>

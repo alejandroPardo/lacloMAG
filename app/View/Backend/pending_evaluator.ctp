@@ -10,7 +10,7 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Nombre del Paper</th>
+								<th>Nombre del Artículo</th>
 								<th>Tipo de Revisión</th>
 								<th>Autor</th>
 								<th style="width: 20px;">Visualizar</th>
