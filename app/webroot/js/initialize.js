@@ -437,7 +437,7 @@ function formBtn(){
 		);
 		event.preventDefault();
 		return false;
-	}
+	} 
 	return true;
 }
 

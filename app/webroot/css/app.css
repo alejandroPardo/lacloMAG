@@ -9001,3 +9001,9 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 	margin-right: 2px;
 	margin-bottom: 5px;
 }
+
+.letterpage
+{
+	width: 216mm;
+	height: 279mm;
+}

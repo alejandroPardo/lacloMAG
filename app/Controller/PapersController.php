@@ -24,6 +24,7 @@ class PapersController extends AppController {
                 $data = array('name' => $this->data['name'], 'status' => 'UNSENT');
                 $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha guardado el paper <strong>'. $this->data['name'].'</strong> en borrador.');
             }
+
             if($this->data['preview']==0){
                 if ($this->Paper->save($data)) {
                     $paperInserted = $this->Paper->getLastInsertID();

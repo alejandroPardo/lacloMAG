@@ -28,6 +28,7 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 	?>
 </head>
 <body>
+	<div style="width:216mm; height: 279"> </div>
 	<?php 
 		if($this->Session->check('Message.flash')){ 
 			echo "<script>";

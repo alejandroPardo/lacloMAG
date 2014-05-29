@@ -108,14 +108,17 @@ class MagazinesController extends AppController {
         );
         
         if(substr($this->here,-4) == '.pdf'){
+
             if(substr(WWW_ROOT,1) == DS){  //OSX y LINUX
                 $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
             } else {  //WINDOWS
                 $cover = str_replace("/laclomag/img", "FILE:".DS.DS.WWW_ROOT."img", $magazine['MagazineFile']['file']);
             }
+
         } else {
             $cover = $magazine['MagazineFile']['file'];
         }
+        $cover .= '<div id="newContent">New Content</div><div id="content">';
 
         $papers=null;
         $index=0;
@@ -131,9 +134,75 @@ class MagazinesController extends AppController {
             }
             $index++;
         }
+       
+    
+        $footer = '</div>';
+        $footer.='<div id="newContent">New Content</div>';
+        $papers[$index-1] .='
+
+        <script type="text/javascript">
+          function arrangePaper() {
+
+ var cover = document.getElementsByClassName("cover");
+        cover[0].style["height"] = "1284px";
+        
+       /* var newPage = document.createElement("div");
+        newPage.style.height = "1284px";
+        newPage.className = "newPage";
+
+        var content = document.getElementById("content");
+        var newContent = document.getElementById("newContent");
+
+        var childObjects = content.children;
+        var elementHeight;
+
+        var accumulatedHeight = 0;
+        var newElement;
+        var counter = 1;
+
+        for(var i = 0; i < childObjects.length; i++) {
+            //console.log(childObjects[i]);
+
+            if (childObjects[i].className.indexOf("title") > -1) {
+                newElement = childObjects[i].cloneNode(true);
+                newPage.appendChild(newElement);
+            }
+
+            if (childObjects[i].className.indexOf("redactor") > -1) {
+                newElement = childObjects[i].cloneNode(true);
+                newPage.appendChild(newElement);
+                
+            }
+
+            if(counter % 2 == 0) {
+                newContent.appendChild(newPage);
+                newPage = document.createElement("div");
+                newPage.style.height = "1284px";
+                newPage.className = "newPage";
+                newContent.appendChild(newPage);
+                newPage = document.createElement("div");
+                newPage.style.height = "1284px";
+                newPage.className = "newPage";
+            }
+
+            
+            
+
+            counter++;
+        }
+
+        while (content.firstChild) {
+          content.removeChild(content.firstChild);
+        }*/
+        
+        }
+        arrangePaper();
+            </script>';
+  
         $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
         $this->set('papers', $papers);
+        //$this->set('footer', $footer);
 	}
 
 /**
