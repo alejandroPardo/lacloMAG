@@ -118,7 +118,7 @@ class MagazinesController extends AppController {
         } else {
             $cover = $magazine['MagazineFile']['file'];
         }
-        $cover .= '<div id="newContent">New Content</div><div id="content">';
+        $cover .= '<div id="newContent"></div><div id="content">';
 
         $papers=null;
         $index=0;
@@ -143,11 +143,11 @@ class MagazinesController extends AppController {
         <script type="text/javascript">
           function arrangePaper() {
 
- var cover = document.getElementsByClassName("cover");
+        var cover = document.getElementsByClassName("cover");
         cover[0].style["height"] = "1284px";
         
-       /* var newPage = document.createElement("div");
-        newPage.style.height = "1284px";
+        var newPage = document.createElement("div");
+       //newPage.style.height = "1284px";
         newPage.className = "newPage";
 
         var content = document.getElementById("content");
@@ -177,11 +177,11 @@ class MagazinesController extends AppController {
             if(counter % 2 == 0) {
                 newContent.appendChild(newPage);
                 newPage = document.createElement("div");
-                newPage.style.height = "1284px";
+                //newPage.style.height = "1284px";
                 newPage.className = "newPage";
                 newContent.appendChild(newPage);
                 newPage = document.createElement("div");
-                newPage.style.height = "1284px";
+                //newPage.style.height = "1284px";
                 newPage.className = "newPage";
             }
 
@@ -191,9 +191,32 @@ class MagazinesController extends AppController {
             counter++;
         }
 
+        var contentHeight = content.clientHeight;
         while (content.firstChild) {
           content.removeChild(content.firstChild);
-        }*/
+        }
+
+       
+        var numberPages = Math.round(contentHeight / 1284);
+        var acumulatedPage = 2568;
+        var span;
+        span = document.createElement("span");
+        span.textContent = numberPages;
+        span.className = "totalPages";
+        newContent.appendChild(span);
+
+        for(var i=1; i <= numberPages; i++) {
+            span = document.createElement("span");
+            span.style.position = "absolute";
+            span.style.top = acumulatedPage + "px";
+            acumulatedPage += 1260;
+            span.style.right = "100px";
+            span.textContent = i;
+            span.className = "pageNumber";
+            newContent.appendChild(span);
+
+        }
+
         
         }
         arrangePaper();
@@ -202,7 +225,7 @@ class MagazinesController extends AppController {
         $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
         $this->set('papers', $papers);
-        //$this->set('footer', $footer);
+        $this->set('footer', $footer);
 	}
 
 /**

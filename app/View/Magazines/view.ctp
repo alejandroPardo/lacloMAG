@@ -27,14 +27,14 @@
 
 </body>
 <script type="text/javascript">
-    /*function arrangePaper() {
+    function arrangePaper() {
 
 
         var cover = document.getElementsByClassName("cover");
         cover[0].style["height"] = "1284px";
     	
     	var newPage = document.createElement("div");
-    	newPage.style.height = "1284px";
+    	//newPage.style.height = "1284px";
     	newPage.className = "newPage";
 
     	var content = document.getElementById("content");
@@ -64,25 +64,48 @@
     		if(counter % 2 == 0) {
     			newContent.appendChild(newPage);
     			newPage = document.createElement("div");
-				newPage.style.height = "1284px";
+				//newPage.style.height = "1284px";
 				newPage.className = "newPage";
 				newContent.appendChild(newPage);
 				newPage = document.createElement("div");
-				newPage.style.height = "1284px";
+				//newPage.style.height = "1284px";
 				newPage.className = "newPage";
     		}
+
+            
 
     		
     		
 
 			counter++;
     	}
+        var contentHeight = newContent.clientHeight;
+        console.log(contentHeight);
+        var numberPages = Math.round(contentHeight / 1284);
+
+        var span;
+        span = document.createElement("span");
+        span.textContent = numberPages;
+        span.className = "totalPages";
+        newContent.appendChild(span);
+
+        for(var i=1; i <= numberPages; i++) {
+            span = document.createElement("span");
+            span.style.position = "absolute";
+            acumulatedPage = 1284 + (1284 * i);
+            span.style.top = acumulatedPage + "px";
+            span.style.right = "100px";
+            span.textContent = i;
+            span.className = "pageNumber";
+            newContent.appendChild(span);
+
+        }
 
 		while (content.firstChild) {
 		  content.removeChild(content.firstChild);
 		}
     	
     }
-    arrangePaper();*/
+    //arrangePaper();
 </script>
 </html>
