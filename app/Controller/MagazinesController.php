@@ -118,7 +118,6 @@ class MagazinesController extends AppController {
         } else {
             $cover = $magazine['MagazineFile']['file'];
         }
-        $cover .= '<div id="newContent">New Content</div><div id="content">';
 
         $papers=null;
         $index=0;
@@ -136,7 +135,7 @@ class MagazinesController extends AppController {
         }
        
     
-        $footer = '</div>';
+        /*$footer = '</div>';
         $footer.='<div id="newContent">New Content</div>';
         $papers[$index-1] .='
 
@@ -193,11 +192,11 @@ class MagazinesController extends AppController {
 
         while (content.firstChild) {
           content.removeChild(content.firstChild);
-        }*/
+        }
         
         }
-        arrangePaper();
-            </script>';
+        /*arrangePaper();
+            </script>';*/
   
         $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
