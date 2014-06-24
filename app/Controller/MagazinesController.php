@@ -136,7 +136,7 @@ class MagazinesController extends AppController {
         }
        
     
-        $footer = '</div>';
+        /*$footer = '</div>';
         $footer.='<div id="newContent">New Content</div>';
         $papers[$index-1] .='
 
@@ -195,6 +195,7 @@ class MagazinesController extends AppController {
         while (content.firstChild) {
           content.removeChild(content.firstChild);
         }
+<<<<<<< HEAD
 
        
         var numberPages = Math.round(contentHeight / 1284);
@@ -217,15 +218,17 @@ class MagazinesController extends AppController {
 
         }
 
+=======
+>>>>>>> c947f545e5dd36672959164eefef818276b70af5
         
         }
-        arrangePaper();
-            </script>';
+        /*arrangePaper();
+            </script>';*/
   
         $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
         $this->set('papers', $papers);
-        $this->set('footer', $footer);
+        //$this->set('footer', $footer);
 	}
 
 /**

@@ -22,7 +22,7 @@
 			echo '<div class="redactor_box redactor_editor" style="margin: 10px 10px 10px 10px;">'./*substr($paper, 0, 2800)*/$paper.'</div>';
 			$index++;
 		}
-		echo $footer;
+		//echo $footer;
 	?>
 
 </body>
