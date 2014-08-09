@@ -4,14 +4,14 @@
 			<div class="content">
 				<div class="heading">
 					<h4><span>Historial</span> del Evaluador</h4>
-					<span>Aceptaciones, correcciones, aprovaciones y negaciones</span>
+					<span>Aceptaciones, correcciones, aprobaciones y negaciones</span>
 				</div>
 				<div class="wrapper padding">
 					<div id="pie_chart" style="height: 250px; width: 500px;">
 						<?php 
 							echo "<script>";
 							echo "$(document).ready(function(){";
-								echo "var data = [{ label: 'Artículos Aceptados para Corregir: $accepted', data: $accepted }, { label: 'Artículos Rechazados para Corregir: $rejected', data: $rejected },{ label: 'Artículos Negados: $denied ', data: $denied },{ label: 'Artículos que necesitan cambios: $changes ', data: $changes },{ label: 'Artículos Aprovados: $approved ', data: $approved }];";
+								echo "var data = [{ label: 'Artículos Aceptados para Corregir: $accepted', data: $accepted }, { label: 'Artículos Rechazados para Corregir: $rejected', data: $rejected },{ label: 'Artículos Negados: $denied ', data: $denied },{ label: 'Artículos que necesitan cambios: $changes ', data: $changes },{ label: 'Artículos Aprobados: $approved ', data: $approved }];";
 								echo "$.plot($('#pie_chart'), data,{";	
 		       						echo "series: {";
 		           						echo "pie: {"; 

@@ -99,8 +99,8 @@ Configure::write('Dispatcher.filters', array(
 Configure::write('CakePdf', array(
     'engine' => 'CakePdf.WkHtmlToPdf',
     'download'=>false,
-    'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf'.DS.'wkhtmltopdf.exe', //Windows
-    //'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf.app'.DS.'Contents'.DS.'MacOS'.DS.'wkhtmltopdf', //OSX
+    //'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf'.DS.'wkhtmltopdf.exe', //Windows
+    'binary'=>APP . 'Vendor'.DS.'wkhtmltopdfosx', //OSX
     //'binary'=>APP . 'Vendor'.DS.'wkhtmltopdf-amd64', //Linux
     'orientation'=>'portrait',
     'pagesize'=>'Letter'));

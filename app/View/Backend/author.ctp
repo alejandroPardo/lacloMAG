@@ -4,7 +4,7 @@
 			<div class="content">
 				<div class="heading">
 					<h4><span>Historial</span> del Autor</h4>
-					<span>Publicaciones, aprovaciones y negaciones</span>
+					<span>Publicaciones, aprobaciones y negaciones</span>
 				</div>
 				<div class="wrapper padding">
 					<div id="pie_chart" style="height: 250px; width: 420px;">
@@ -12,7 +12,7 @@
 						<?php 
 							echo "<script>";
 							echo "$(document).ready(function(){";
-								echo "var data = [{ label: 'Artículos Aprovados: $approved', data: $approved }, { label: 'Artículos Rechazados: $rejected', data: $rejected },{ label: 'Artículos Publicados: $published ', data: $published },{ label: 'Artículos en Edición: $editing ', data: $editing },{ label: 'Artículos sin Enviar: $unsent ', data: $unsent },{ label: 'Artículos devueltos: $review ', data: $review }];";
+								echo "var data = [{ label: 'Artículos Aprobados: $approved', data: $approved }, { label: 'Artículos Rechazados: $rejected', data: $rejected },{ label: 'Artículos Publicados: $published ', data: $published },{ label: 'Artículos en Edición: $editing ', data: $editing },{ label: 'Artículos sin Enviar: $unsent ', data: $unsent },{ label: 'Artículos devueltos: $review ', data: $review }];";
 								echo "$.plot($('#pie_chart'), data,{";	
 		       						echo "series: {";
 		           						echo "pie: {"; 
