@@ -53,6 +53,11 @@ class MagazinesController extends AppController {
 	public function view($id=null){
 		$this->layout = 'cover';
         ini_set('memory_limit', '-1');
+        $magazineFiles = $this->MagazineFiles->find('first',array(
+            'conditions' => array('MagazineFiles.magazine_id' => $id, 'MagazineFiles.type' => 'COVER')
+        ));
+        $idCover=$magazineFiles['MagazineFiles']['id'];
+        
 
         $this->MagazinePaper->Behaviors->load('Containable');
         $magazine = $this->Magazine->find('first',
@@ -228,6 +233,7 @@ class MagazinesController extends AppController {
         $this->set('magazinePapers', $magazinePapers);
         $this->set('cover', $cover);
         $this->set('papers', $papers);
+        $this->set('idCover', $magazineFiles['MagazineFiles']['id']);
         //$this->set('footer', $footer);
 	}
 

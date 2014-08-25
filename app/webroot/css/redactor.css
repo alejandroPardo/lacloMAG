@@ -693,12 +693,12 @@ body .redactor_toolbar li a.redactor_btn_alignment	 		{ background-position: -62
 }
 
 div .cover{
-	width: 21.59cm;
-	height: 25.09cm;
-	min-width: 21.59cm;
-	min-height: 25.09cm;
-	max-width: 21.59cm;
-	max-height: 25.09cm;
+	width: 20.2cm;
+	height: 25.1cm;
+	min-width: 20.2cm;
+	min-height: 25.1cm;
+	max-width: 20.2cm;
+	max-height: 25.1cm;
 
 	-webkit-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
 	-moz-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;

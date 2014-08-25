@@ -1,4 +1,5 @@
-<?php echo $cover;?>
+<?php echo '!!!COVER!!!'.$idCover;?>
+<?php echo '!!!COVER!!!'.$cover.'!!!COVER!!!';?>
 <?php $index=0;
 	foreach ($papers as $paper) {
 		echo '<div class="title"><h2>'.$magazinePapers[$index]["Paper"]["name"].'</h2></div>';
