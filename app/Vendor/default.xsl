@@ -28,6 +28,8 @@
           ul {padding-left: 0em;}
           ul ul {padding-left: 1em;}
           a {text-decoration:none; color: black;}
+          h1+ul ul ul {display: none;}
+          h1+ul ul {display: none;}
         </style>
       </head>
       <body>
