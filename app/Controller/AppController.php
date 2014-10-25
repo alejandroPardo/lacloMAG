@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $helpers = array('AjaxMultiUpload.Upload');
+    //public $helpers = array('AjaxMultiUpload.Upload');
     
     public $components = array(
         'Session',
@@ -43,7 +43,7 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
         'RequestHandler',
-        'AjaxMultiUpload.Upload',
+       // 'AjaxMultiUpload.Upload',
         'Email'
     );
 

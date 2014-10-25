@@ -81,7 +81,7 @@
                             echo '<button id="modifyArticle" class="lime twenty" style="height:65px;">Editar el Texto del Artículo</button>';
                         } else {
                             echo '<button id="acceptArticle" class="lime twenty" style="width:180px;height:65px;margin-left:5%;">Aceptar o Rechazar Artículo</button>';
-                            echo '<button id="changeRevision" class="lime twenty" style="width:180px;height:65px;">Cambiar Tipo de Revisión</button>';
+                            /*echo '<button id="changeRevision" class="lime twenty" style="width:180px;height:65px;">Cambiar Tipo de Revisión</button>';*/
                             echo '<button id="modifyArticle" class="lime twenty" style="height:65px;width:180px;">Editar el Texto del Artículo</button>';
                             if($principalCount<2){
                                 echo '<button id="newEvaluator" class="lime twenty" style="height:65px;width:180px;">Asignar Evaluadores Principales</button>';
@@ -404,7 +404,7 @@
     if ($("#previewMag").length > 0){
         var previewMag = document.getElementById('previewMag');
         previewMag.addEventListener('click', function () {
-                window.open("../../paperfiles/view/<?php echo $paper['PaperFile']['0']['id'];?>.pdf", '_blank');
+                window.open("../../paperFiles/view/<?php echo $paper['PaperFile']['0']['id'];?>.pdf", '_blank');
         }, false);
     }
 </script>

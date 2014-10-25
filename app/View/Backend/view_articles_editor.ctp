@@ -50,7 +50,7 @@
                                     if($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ASSIGNED"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';}  elseif($paper['Paper']['status']=="UNSENT"){echo 'Por Enviar a Edición';}  elseif($paper['Paper']['status']=="ONREVISION"){echo 'Por Revisar';}  elseif($paper['Paper']['status']=="RECEIVED"){echo 'Recibido en Edición';}  elseif($paper['Paper']['status']=="CONFIRMED"){echo 'Aceptado';}  elseif($paper['Paper']['status']=="PUBLISHED"){echo 'Publicado';}  elseif($paper['Paper']['status']=="UNPUBLISHED"){echo 'No Publicado';}
                                 echo "</strong></td>";
                                 echo "<td style='text-align: center;'>";
-                                        $file = "../paperfiles/view/".$paper['PaperFile']['0']['id'].".pdf";
+                                        $file = "../paperFiles/view/".$paper['PaperFile']['0']['id'].".pdf";
                                         echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
                                         /*echo $this->Form->postLink('<span class="glyph delete glyph-editor"></span>', array('action' => 'delete',$paper['Paper']['id']), array('escape'=> false), __('¿Estas seguro de eliminar el artículo %s?', $paper['Paper']['name'])); */?>
                             </td>

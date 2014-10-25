@@ -27,7 +27,7 @@
 											if($paper['PaperEvaluator']['status']=="APPROVED"){echo 'Aprobado';} elseif($paper['PaperEvaluator']['status']=="DENIED"){echo 'Rechazado';} elseif($paper['PaperEvaluator']['status']=="MINORCHANGE"){echo 'Necesita Cambios Menores';} elseif($paper['PaperEvaluator']['status']=="AUTHORCHANGE"){echo 'Devuelto al Autor';} elseif($paper['PaperEvaluator']['status']=="CORRECTED"){echo 'Devuelto al Autor y Corregido';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
-										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
+										$file = "../paperFiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
 									echo "</td>";
 								echo "</tr>";

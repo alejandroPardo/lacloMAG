@@ -150,7 +150,11 @@ class PapersController extends AppController {
 
             $this->Session->setFlash(__('¡Los cambios fueron guardados!'));
             
-            $this->redirect(array("controller" => "backend", "action" => "inspectPaper", $this->data['preview']));
+            if($this->data['caller']=='mag'){
+                $this->redirect(array("controller" => "backend", "action" => "viewCurrentMagEditor"));
+            } else {
+                $this->redirect(array("controller" => "backend", "action" => "inspectPaper", $this->data['preview']));
+            }
         }
     }
 

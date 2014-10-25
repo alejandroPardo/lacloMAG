@@ -27,7 +27,7 @@
 											if($paper['Paper']['status']=="UNSENT"){echo 'Por Enviar';} elseif($paper['Paper']['status']=="SENT"){echo 'Enviado';} elseif($paper['Paper']['status']=="ONREVISION"){echo 'Asignado para Revisión';} elseif($paper['Paper']['status']=="REJECTED"){echo 'Rechazado';} elseif($paper['Paper']['status']=="APPROVED"){echo 'Aceptado';} elseif($paper['Paper']['status']=="PUBLISHED"){echo 'Publicado';} elseif($paper['Paper']['status']=="UNPUBLISHED"){echo 'Aceptado';} elseif($paper['Paper']['status']=="REVIEW"){echo 'Por realizar correcciones';}
 									echo "</strong></td>";
 									echo "<td style='text-align: center;'>";
-										$file = "../paperfiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
+										$file = "../paperFiles/view/".$paperFiles[$index]['0']['PaperFile']['id'].".pdf";
 										echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
 									echo "</td>";
 								echo "</tr>";

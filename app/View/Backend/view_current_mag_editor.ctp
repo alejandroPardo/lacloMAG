@@ -12,8 +12,8 @@
 		                    <th>Nombre de Artículo</th>
 		                    <th>Creado</th>
 		                    <th>Autor</th>
-		                    <th style="width:150px;">Orden en Revista</th>
-		                    <th style="width:80px;">Acciones</th>
+		                    <th style="width:100px;">Orden en Revista</th>
+		                    <th style="width:130px;">Acciones</th>
 			            </tr>
 			            <?php if($magazineFile == 1){?>
 				            <tr>
@@ -52,6 +52,19 @@
 			                </td>
 			                <td><?php echo $magazinePaper['MagazinePaper']['order']; ?></td>	
 			                <td style='text-align: center;'>
+			                	<?php 
+				                    echo $this->Html->link(
+				                        '<span class="glyph pencil glyph-editor"><span>',
+				                    array(
+				                        'controller' => 'backend', 
+				                        'action' => 'modifyArticle',
+				                        $magazinePaper['Paper']['id'].'*'),
+				                    array( 
+				                        'class' => 'removePaper',
+				                        'rel' => 'external', 
+				                        'escape'=> false)
+				                    );
+				                ?>
 		                	 	<?php 
 				                    echo $this->Html->link(
 				                        '<span class="glyph delete glyph-editor"><span>',
@@ -66,7 +79,7 @@
 				                    );
 				                ?>
 				                <?php 
-				                	$file = "../paperfiles/view/".$magazinePaper['Paper']['PaperFile']['0']['id'].".pdf";
+				                	$file = "../paperFiles/view/".$magazinePaper['Paper']['PaperFile']['0']['id'].".pdf";
 									echo '<a href='.$file.' rel="external" target="_blank" ><span class="glyph download glyph-editor"><span></a>';
 				                ?>
 			                </td>
@@ -84,6 +97,7 @@
 						<button id="publishMagButton" class="sugar twenty" style="height:65px;">Publicar revista</button>
 						<button id="coverMagButton" class="sugar twenty" style="height:65px; display:none;">Crear Portada</button>
 						<button id="previewMag" class="sugar twenty" style="height:65px;">Vista Previa</button>
+						
 					<?php } ?>
 					<br><br>
 				</form>
@@ -120,7 +134,7 @@
 
 <div id="modalMag" style="display:none;">
 	<div class="wrapper">
-		<h1>Publicar Revista?</h1>
+		<h1>¿Publicar Revista?</h1>
 		<div class="col_12">
 			<h3> Una vez que haya publicado, no podrás editar mas la revista </h3>
 		</div>
@@ -187,5 +201,12 @@
     	//document.location.href="../magazines/view/<?php echo $magazine['Magazine']['id'];?>.pdf";
     	
     }, false);
+
+	if ($("#modifyMagazine").length > 0){
+        var modifyMagazine = document.getElementById('modifyMagazine');
+        modifyMagazine.addEventListener('click', function () {
+                window.location.href = 'modifyMagazine/<?php echo $magazine["Magazine"]["id"];?>';
+        }, false);
+    }
 
 </script>

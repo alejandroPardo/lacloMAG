@@ -932,6 +932,7 @@ class BackendController extends AppController {
 	        $surrogateCount = $this->PaperEvaluator->find('count', array(
 	        	'conditions' => array('PaperEvaluator.paper_id' => $id, 'PaperEvaluator.type' => 'SURROGATE'),
 	        ));
+
 	  		$this->set('evaluators', $availableEvaluators);
 	  		$this->set('assignedPapers', $assignedPapers);
 	  		$this->set('principalCount', $principalCount);
@@ -950,6 +951,12 @@ class BackendController extends AppController {
   		if($this->Auth->user('role') != 'editor'){
 			$this->redirect(array("controller" => "users", "action" => "logout"));
 		} else {
+			if(substr($id, -1) == '*'){
+				list($id) = explode("*", $id);
+				$caller = 'mag';
+			} else {
+				$caller = 'paper';
+			}
 			if($id==null){
 				$this->Session->setFlash(__('Artículo Invalido.'));
 				$this->redirect(array("controller" => "backend", "action" => "index"));
@@ -972,6 +979,50 @@ class BackendController extends AppController {
 					$this->set('content', $paper2['PaperFile']['raw']);
 					$this->set('name', $paper2['PaperFile']['name']);
 					$this->set('preview', $paper3['Paper']['id']);
+					$this->set('caller', $caller);
+				}
+			}
+		}
+	}
+
+/**
+ * modifyMagazine method
+ * permite hacer cambios en el texto de la revista
+ * @return void
+ */
+
+  	public function modifyMagazine($id=null){
+  		if($this->Auth->user('role') != 'editor'){
+			$this->redirect(array("controller" => "users", "action" => "logout"));
+		} else {
+			if($id==null){
+				$this->Session->setFlash(__('Revista Invalida.'));
+				$this->redirect(array("controller" => "backend", "action" => "index"));
+			} else {
+				$magazine = $this->MagazinePaper->find('all',
+		  			array(
+		  				'conditions' => array(
+		  					'magazine_id' => $id
+		  				),
+		  			)
+		  		);
+		  		$i=0;
+		  		foreach ($magazine as $paper) {
+		  			$paperFiles[$i] = $this->PaperFile->find('all', array(
+					    'conditions' => array('paper_id'=>$paper['Paper']['id']),
+					    'fields' => array('raw')
+					));
+					$i++;
+		  		}
+		  		$content='';
+		  		foreach ($paperFiles as $paperFile) {
+		  			$content.=$paperFile[0]['PaperFile']['raw'];
+		  		}
+
+				if (!empty($magazine)) {
+					$this->set('content', $content);
+					//$this->set('name', $paper2['PaperFile']['name']);
+					$this->set('preview', $id);
 				}
 			}
 		}
@@ -1312,6 +1363,7 @@ class BackendController extends AppController {
 		  				),
 		  			)
 		  		);
+
 		  		$this->set('magazine', $magazine);
 		  		$this->set('magazinePapers', $magazinePapers);
 		  		$this->set('magazineFile', $magazineFile);
@@ -1383,8 +1435,15 @@ class BackendController extends AppController {
 	  				'fields' => 'Magazine.exemplary'
 	  			));
 
+	  			
+
 	            $this->Magazine->create();
-	            $data = array('name' => $this->data['name'], 'title' => $this->data['name'], 'exemplary' => $magazine['Magazine']['exemplary']+1, 'status' => 'ONCONSTRUCTION');
+	            if($magazine){
+	  				$data = array('name' => $this->data['name'], 'title' => $this->data['name'], 'exemplary' => $magazine['Magazine']['exemplary']+1, 'status' => 'ONCONSTRUCTION');
+	  			} else {
+	  				$data = array('name' => $this->data['name'], 'title' => $this->data['name'], 'exemplary' => 0, 'status' => 'ONCONSTRUCTION');
+	  			}
+	            //$data = array('name' => $this->data['name'], 'title' => $this->data['name'], 'exemplary' => $magazine['Magazine']['exemplary']+1, 'status' => 'ONCONSTRUCTION');
 	            $data4 = array('user_id' => $this->Auth->user('id'), 'ip' => $this->request->clientIp(), 'type' => 'NOTIFICATION', 'description' => 'Se ha creado la revista <strong>'. $this->data['name'].'</strong>.');
 
 	            if ($this->Magazine->save($data)) {
@@ -1713,7 +1772,9 @@ class BackendController extends AppController {
 	  		}
 
 			$this->set('papers', $papers);
-			$this->set('paperFiles', $paperFiles);
+			if($papers){
+				$this->set('paperFiles', $paperFiles);
+			}
 			if(empty($papers)){
 				$this->Session->setFlash(__('Usted no tiene ningún Artículo aceptado para revisión.'));
 				$this->redirect(array("controller" => "backend", "action" => "evaluator"));

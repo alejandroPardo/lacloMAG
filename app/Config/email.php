@@ -39,7 +39,7 @@ class EmailConfig {
 
 	public $default = array(
 		'host' => 'ssl://smtp.gmail.com',
-        'port' => 465,
+        'port' => 587,
         'username' => 'laclomag@gmail.com',
         'password' => 'Laclo1234',
         'transport' => 'Smtp'
