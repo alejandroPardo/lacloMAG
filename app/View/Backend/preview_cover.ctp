@@ -12,6 +12,7 @@
 							<div class="column full">
 								<div class='cover' style='background: #<?php echo $magazine["color"];?> !important; margin-top:10px; margin-bottom:10px;'>
 									<br/>
+										<img src='/laclomag/img/cc.png' class='creativecommons'>
 									<h3 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['edicion'];?>
 									</h3>
@@ -24,6 +25,7 @@
 									<h2 style="color:#<?php echo $magazine['fontcolor'];?> !important;">
 										<?php echo $magazine['desc'];?>
 									</h2>
+									<br/><br/><br/><br/><br/><br/>
 								</div>
 							</div>
 						</div>

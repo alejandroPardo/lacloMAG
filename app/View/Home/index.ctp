@@ -265,13 +265,22 @@
 				<a href="backend/" target="_blank"><img alt="client" src="img/backend.jpg"></a>
 				<a href="http://www.laclo.org" target="_blank"><img alt="client" src="img/laclo.jpg"></a>
 				<a href="http://www.ucv.ve" target="_blank"><img alt="client" src="img/ucv.jpg"></a>
-				<a href="http://www.laclo.org/index.php?option=com_content&view=article&id=48&Itemid=100058&lang=es" target="_blank"><img alt="client" src="img/repos.jpg"></a>
+				<a href="http://www.ciens.ucv.ve" target="_blank"><img alt="client" src="img/repos.jpg"></a>
 			</div>
 		</div>
 	</div>
 </div>
 <div id="footer">
 	<div class="footercontent">
-		<p>Desarrolladores: <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a><br>&copy; Copyright LACLOmagazine 2013 - UCV Todos los derechos reservados.<br> Caracas, Venezuela.</p>
+		<h4><span class="theme">
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><?php echo $this->Html->image('cc.png');?></a><br>
+			<div class="footersegmentleft">
+			Excepto al indicarse lo contrario, el contenido de este sitio tiene licencia internacional <strong>Creative Commons Attribution 4.0.</strong>
+			</div>
+			<div class="footersegmentright">
+				<strong>Desarrolladores:</strong> <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a>
+				<br><strong>Tutores:</strong> <a href="mailto:yoslyhernandez@gmail.com">Yosly Hernández</a> // <a href="mailto:asilva.sprock@gmail.com">Antonio Silva</a>
+			</div>
+		</span></h4>
 	</div>
 </div>

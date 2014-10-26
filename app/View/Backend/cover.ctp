@@ -9,15 +9,15 @@
 				<div class="wrapper padding">
 					<div class="profileData">
 						<?php echo $this->Form->create(null, array('url' => array('controller' => 'backend', 'action' => 'previewCover'), 'enctype' => 'multipart/form-data'));?>
-							<p>Título de Portada (30 Caracteres)</p>
+							<p>Título de Portada (20 Caracteres)</p>
 							<p>
-								<input id="title" name="title" type="text" maxlength="30" placeholder="Título" />
+								<input id="title" name="title" type="text" maxlength="20" placeholder="Título" />
 							</p>
-							<p>Descripción de Portada (60 Caracteres)</p>
+							<p>Descripción de Portada (40 Caracteres)</p>
 							<p>
-								<input id="desc" name="desc" type="text" maxlength="60" placeholder="Descripción" />
+								<input id="desc" name="desc" type="text" maxlength="40" placeholder="Descripción" />
 							</p>
-							<p>Edicion: (20 Caracteres) Ejemplo: No. 1 | Enero - Junio 2013</p>
+							<p>Edicion: (40 Caracteres) Ejemplo: No. 1 | Enero - Junio 2013</p>
 							<p>
 								<input id="desc" name="edicion" type="text" maxlength="40" placeholder="Edición" />
 							</p>

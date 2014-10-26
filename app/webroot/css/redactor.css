@@ -708,7 +708,7 @@ div .cover{
 	min-height: 25.1cm;
 	max-width: 20.2cm;
 	max-height: 25.1cm;
-
+	position: relative;
 	-webkit-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
 	-moz-box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
 	box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset !important;
@@ -716,6 +716,16 @@ div .cover{
 
 div .cover img{
 	width: 100%;
+}
+
+div .cover .creativecommons{
+	width: 80px;
+	height: 21px;
+	margin-left: 17cm;
+	margin-top:24cm;
+	position: absolute;
+	display: block;
+	float: right;
 }
 
 div .cover h1{

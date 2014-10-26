@@ -202,17 +202,27 @@ $cakeDescription = __d('LACLOmag', 'LACLO Magazine');
 			    	<br/>
 			    	<br/>
 			   		<?php echo $this->Html->image('laclo-logo.png');?>
+			   		<h4><span class="theme">
+			    		<div class="footersegmentleft">
+			    		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><?php echo $this->Html->image('cc.png');?></a><br/>
+						Excepto al indicarse lo contrario, el contenido de este sitio tiene licencia internacional <strong>Creative Commons Attribution 4.0.</strong><br>
+						</div>
+					</span></h4>
 			    </div>
 			    <div class="col_4">
 			    	<div class="latam">
 			    		<?php echo $this->Html->image('latam.png');?>
 			    	</div>
-			    	<h4><span class="theme">Copyright © 2013 Universidad Central de Venezuela. Todos los derechos reservados.<br>Desarrolladores: <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a></span></h4>
 			    </div>
 			    <div class="col_2">
 			    	<br/>
 			   		<?php echo $this->Html->image('ucv-logo.png');?>
-
+			   		<h4><span class="theme">
+			   			<div class="footersegmentright">
+							<strong>Desarrolladores:</strong> <a href="mailto:alejandro.pardo.r@gmail.com">Alejandro Pardo</a> // <a href="mailto:jcamejo3@gmail.com">Juan Carlos Camejo</a>
+							<br><strong>Tutores:</strong> <a href="mailto:yoslyhernandez@gmail.com">Yosly Hernández</a> // <a href="mailto:asilva.sprock@gmail.com">Antonio Silva</a>
+						</div>
+					</span></h4>
 			    </div>
 			</div>
 			</div>
