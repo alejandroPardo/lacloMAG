@@ -8,9 +8,4 @@
 		$index++;
 		echo '<div class="page-break"></div>';
 	}
-	echo "<div class='cover' style='background: #59B7FF !important;'><br/>
-					<h3 style='color:#FFFFFF !important;'>No. 1 | Enero - Junio 2014</h3><br/>
-					<img src='/laclomag/img/bannercover.jpg'><h1 style='color:#FFFFFF 
-					!important;'>Ejemplar Inicial</h1><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-					<h2 style='color:#FFFFFF !important;'>Este es el primer ejemplar de LACLOmagazine</h2></div>";
 ?>
