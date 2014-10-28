@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.0.18
 -- Dumped by pg_dump version 9.0.18
--- Started on 2014-10-27 17:32:45
+-- Started on 2014-10-27 23:27:06
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -372,7 +372,7 @@ ALTER SEQUENCE logbooks_id_seq OWNED BY logbooks.id;
 -- Name: logbooks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('logbooks_id_seq', 3, true);
+SELECT pg_catalog.setval('logbooks_id_seq', 5, true);
 
 
 --
@@ -1444,6 +1444,8 @@ COPY evaluators (id, user_id) FROM stdin;
 
 COPY logbooks (id, user_id, description, created, ip, type) FROM stdin;
 3	4	Se ha asiginado el articulo Artículo para revista 1 para evaluar</strong>.	2014-10-27 22:00:39	127.0.0.1	NOTIFICATION
+5	4	Se han enviado las correcciones del paper <strong>Artículo para revista 1</strong> al editor con status <strong>APPROVED</strong>.	2014-10-28 03:46:20	127.0.0.1	NOTIFICATION
+4	4	Usted ha aceptado evaluar el artículo <strong>Artículo para revista 1</strong>.	2014-10-28 03:45:01	127.0.0.1	NOTIFICATION
 2	3	Se ha creado la noticia <strong>asdasd</strong>.	2014-10-27 19:27:04	127.0.0.1	NOTIFICATION
 \.
 
@@ -1569,7 +1571,7 @@ COPY paper_editors (id, paper_id, editor_id, comments) FROM stdin;
 --
 
 COPY paper_evaluators (id, paper_id, evaluator_id, comment, type, status) FROM stdin;
-3	11	1	\N	PRINCIPAL	ASIGNED
+3	11	1	.s.e.p.======================.s.e.p.AREA PARA CORRECCIONES.s.e.p.======================.s.e.p..s.e.p..s.e.p.Aquí puede escribir todos los comentarios sobre la revisión del artículo a su derecha.	PRINCIPAL	APPROVED
 \.
 
 
@@ -1632,8 +1634,8 @@ COPY readers (id, user_id) FROM stdin;
 COPY users (id, username, email, password, role, created, modified, last_login, first_name, last_name, tokenhash) FROM stdin;
 1	ale	alejandro.pardo.r@gmail.com	f6caa9aaf55160618260aac07fab499a70e8e941	admin	2013-06-29 15:43:00	2013-07-10 16:22:29	2013-07-02 19:14:10	Alejandro	Pardo	1b8fb4d1830b5cea8564c11e61c981fb50d34576
 2	author	author@laclomag.com	f6caa9aaf55160618260aac07fab499a70e8e941	author	2013-06-29 15:43:00	2013-09-04 01:25:23	2013-09-04 01:25:23	Test	Author	384b05616ce2e1c3495c82573aa388e4fbfdfa85a4329453f2e6abe96c10f00485c81adf61851c2ce66cbb295d2addd2715eb9e5c2c4948bd6263a97cc425fd2
-4	evaluator	evaluator@laclomag.com	f6caa9aaf55160618260aac07fab499a70e8e941	evaluator	2013-08-19 01:21:00	2013-09-02 18:32:56	2013-09-02 18:32:56	test	evaluator	\N
 3	editor	editor@laclomag.com	f6caa9aaf55160618260aac07fab499a70e8e941	editor	2013-06-29 15:43:00	2014-10-27 19:25:29	2014-10-27 19:25:29	Test	Editor	384b05616ce2e1c3495c82573aa388e4fbfdfa85a4329453f2e6abe96c10f00485c81adf61851c2ce66cbb295d2addd2715eb9e5c2c4948bd6263a97cc425fd2
+4	evaluator	evaluator@laclomag.com	f6caa9aaf55160618260aac07fab499a70e8e941	evaluator	2013-08-19 01:21:00	2014-10-28 03:44:23	2014-10-28 03:44:23	test	evaluator	\N
 \.
 
 
@@ -2099,7 +2101,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2014-10-27 17:32:45
+-- Completed on 2014-10-27 23:27:06
 
 --
 -- PostgreSQL database dump complete
